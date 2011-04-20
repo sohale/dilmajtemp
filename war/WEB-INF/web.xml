@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>DilmajUserServiceImpl</servlet-name>
+    <servlet-class>dilmaj.server.DilmajUserServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>DilmajUserServiceImpl</servlet-name>
+    <url-pattern>/testgwt/dilmajuserservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TermServiceImpl</servlet-name>
+    <servlet-class>dilmaj.server.TermServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>TermServiceImpl</servlet-name>
+    <url-pattern>/testgwt/termservice</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TermSuggestionServiceImpl</servlet-name>
+    <servlet-class>dilmaj.server.TermSuggestionServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>TermSuggestionServiceImpl</servlet-name>
+    <url-pattern>/testgwt/termsuggestionservice</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>InteractionServiceImpl</servlet-name>
+    <servlet-class>dilmaj.server.InteractionServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>InteractionServiceImpl</servlet-name>
+    <url-pattern>/testgwt/interactionservice</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>TestGWT.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
