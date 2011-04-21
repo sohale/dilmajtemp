@@ -18,12 +18,12 @@ import dilmaj.shared.TermComposite;
 public class SearchController extends Controller implements KeyUpHandler, ClickHandler {
 	private SearchPanel panel;
 	private boolean atEnd=true;
-	private AllTermsPanel allPanel;
+	//private AllTermsPanel allPanel;
 	private TermServiceAsync termSvc = GWT.create(TermService.class);
 	
-	public SearchController(SearchPanel searchPanel, AllTermsPanel allPanel) {
+	public SearchController(SearchPanel searchPanel) {
 		panel=searchPanel;
-		this.allPanel=allPanel;
+		//this.allPanel=allPanel;
 	}
 	
 	@Override
@@ -40,6 +40,6 @@ public class SearchController extends Controller implements KeyUpHandler, ClickH
 		// TODO Auto-generated method stub
 		Button button=(Button)event.getSource();
 		String captionFilter=button.getText();
-		termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter, allPanel, button.getAbsoluteLeft(), button.getAbsoluteTop()));
+		termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter, button.getAbsoluteLeft(), button.getAbsoluteTop()));
 	}
 }

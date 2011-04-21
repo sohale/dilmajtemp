@@ -21,7 +21,7 @@ import dilmaj.shared.*;
 
 public class TermSuggestionsPanel extends HorizontalPanel {
 	private FlexTable tsTable=new FlexTable();
-	private HashMap<Long,TermComposite> allTerms;
+	//private HashMap<Long,TermComposite> allTerms;
 	private Set<TermComposite> termSet=new HashSet<TermComposite>();
 	//private WelcomeController controller;
 	private AllTermsPanel allTermsPanel;
@@ -30,14 +30,14 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 		add(tsTable);
 	}
 	
-	public void populateTable(HashMap<Long,TermComposite> allTerms) {
-		this.allTerms=allTerms;
+	public void populateTable() {
+		//this.allTerms=allTerms;
 		
-		Iterator<Long> iterator=allTerms.keySet().iterator();
+		Iterator<Long> iterator=AllTerms.TheInstance.getTerms().keySet().iterator();
 		int row=0;
 		while (iterator.hasNext()) {
 			Long key=iterator.next();
-			TermComposite termVO=allTerms.get(key);
+			TermComposite termVO=AllTerms.TheInstance.getTerms().get(key);
 			
 			Iterator<TermSuggestionComposite> tsIterator=termVO.getSuggestions().iterator();
 			if (tsIterator.hasNext()) {

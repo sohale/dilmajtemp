@@ -15,8 +15,6 @@ public class SearchPanel extends VerticalPanel {
 	private HorizontalPanel inputPanel=new HorizontalPanel();
 	private HorizontalPanel outputPanel=new HorizontalPanel();
 	
-	private AllTermsPanel allPanel;
-	
 	private TextBox inputBox=new TextBox();
 	
 	private SearchController controller;
@@ -25,10 +23,8 @@ public class SearchPanel extends VerticalPanel {
 	
 	private Button theButton=new Button();
 	
-	public SearchPanel(AllTermsPanel allPanel) {
-		this.allPanel=allPanel;
-		
-		controller=new SearchController(this, allPanel);
+	public SearchPanel() {
+		controller=new SearchController(this);
 		
 		inputBox.addKeyUpHandler(controller);
 		inputPanel.add(inputBox);

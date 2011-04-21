@@ -13,12 +13,12 @@ import dilmaj.shared.TermComposite;
 
 public class GetSomeTermsCallback implements AsyncCallback<List<TermComposite>> {
 	String captionFilter;
-	AllTermsPanel allPanel;
+	//AllTermsPanel allPanel;
 	int left, top;
 	
-	public GetSomeTermsCallback(String filter, AllTermsPanel allPanel, int left, int top) {
+	public GetSomeTermsCallback(String filter, int left, int top) {
 		captionFilter=filter;
-		this.allPanel=allPanel;
+		//this.allPanel=allPanel;
 		this.left=left;
 		this.top=top;
 	}
@@ -38,7 +38,7 @@ public class GetSomeTermsCallback implements AsyncCallback<List<TermComposite>> 
 		if (result.size()>0) 
 			panel=ResultsPanel.getInstance(result);
 		else
-			panel=ResultsPanel.getInstance(captionFilter, allPanel);
+			panel=ResultsPanel.getInstance(captionFilter);
 		
 		panel.setSize("100px", "100px");
 		

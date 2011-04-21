@@ -30,8 +30,8 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		return resultsPanel;
 	}
 	
-	public static ResultsPanel getInstance(String newTerm, AllTermsPanel allPanel) {
-		resultsPanel=new ResultsPanel(newTerm, allPanel);
+	public static ResultsPanel getInstance(String newTerm) {
+		resultsPanel=new ResultsPanel(newTerm);
 		return resultsPanel;
 	}
 	
@@ -54,7 +54,7 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		add(mainPanel);
 	}
 	
-	private ResultsPanel(String newTerm, AllTermsPanel allPanel) {
+	private ResultsPanel(String newTerm) {
 		this.allPanel=allPanel;
 		TermButton termButton=new TermButton(newTerm);
 		ResultsController controller=new ResultsController(allPanel, this);

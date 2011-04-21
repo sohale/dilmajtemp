@@ -20,23 +20,23 @@ public class InsertTermController extends Controller implements ClickHandler {
 	private TermServiceAsync termSvc = GWT.create(TermService.class);
 	private DilmajUserServiceAsync userSvc = GWT.create(DilmajUserService.class);
 	private MyPanel insertTermPanel;
-	private AllTermsPanel allPanel;
+	//private AllTermsPanel allPanel;
 	
-	public InsertTermController(MyPanel insertPanel, AllTermsPanel allPanel) {
+	public InsertTermController(MyPanel insertPanel) {
 		insertTermPanel=insertPanel;
-		this.allPanel=allPanel;
+		//this.allPanel=allPanel;
 	}
 	
 	public void insertTerm(String caption) {
 		TermComposite termVO=new TermComposite(caption);
 		
-		termSvc.addEntry(termVO, new InsertTermCallback(insertTermPanel, allPanel));
+		termSvc.addEntry(termVO, new InsertTermCallback(insertTermPanel));
 	}
 	
 	public void insertTerm(String caption, String username) {
 		TermComposite termVO=new TermComposite(caption, username);
 		
-		termSvc.addEntry(termVO, new InsertTermCallback(insertTermPanel, allPanel));
+		termSvc.addEntry(termVO, new InsertTermCallback(insertTermPanel));
 	}
 	
 	public void onClick(ClickEvent event) {

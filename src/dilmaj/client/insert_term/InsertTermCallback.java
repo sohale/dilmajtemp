@@ -3,6 +3,7 @@ package dilmaj.client.insert_term;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dilmaj.client.MyPanel;
+import dilmaj.client.welcome.AllTerms;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.MessageComposite;
@@ -11,11 +12,11 @@ import dilmaj.shared.TermComposite;
 
 public class InsertTermCallback implements AsyncCallback<TermComposite> {
 	MyPanel panel;
-	AllTermsPanel allPanel;
+	//AllTermsPanel allPanel;
 	
-	public InsertTermCallback(MyPanel panel, AllTermsPanel allPanel) {
+	public InsertTermCallback(MyPanel panel) {
 		this.panel=panel;
-		this.allPanel=allPanel;
+		//this.allPanel=allPanel;
 	}
 
 	@Override
@@ -31,7 +32,8 @@ public class InsertTermCallback implements AsyncCallback<TermComposite> {
 			panel.setMessage(new MessageComposite("Did you login?!"));
 		else {
 			panel.setMessage(new MessageComposite(result.getId()+""));
-			allPanel.updateTermsTable(result);
+			AllTerms.TheInstance.add(result);
+			//allPanel.updateTermsTable(result);
 		}
 	}
 }

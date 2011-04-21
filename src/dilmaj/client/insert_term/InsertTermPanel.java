@@ -17,14 +17,14 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel {
 	private TextBox termBox=new TextBox();
 	private Button insertButton=new Button(GlobalSettings.constants.create());
 	private ListBox languageBox=new ListBox();
-	private AllTermsPanel allPanel;
+	//private AllTermsPanel allPanel;
 	private InsertTermController controller;
 	private MessageComposite messageVO;
 	
-	public InsertTermPanel(AllTermsPanel allPanel) {
-		this.allPanel=allPanel;
+	public InsertTermPanel() {
+		//this.allPanel=allPanel;
 		
-		controller=new InsertTermController(this, allPanel);
+		controller=new InsertTermController(this);
 
 		add(termLabel);
 		add(termBox);

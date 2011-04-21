@@ -11,10 +11,10 @@ import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 
 public class LoadAllTermsCallback implements AsyncCallback<HashMap<Long, TermComposite>> {
-	AllTermsPanel panel;
+	//AllTermsPanel panel;
 	
-	public LoadAllTermsCallback(AllTermsPanel panel) {
-		this.panel=panel;
+	public LoadAllTermsCallback() {
+		//this.panel=panel;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class LoadAllTermsCallback implements AsyncCallback<HashMap<Long, TermCom
 		// TODO Auto-generated method stub
 		AllTerms.TheInstance.setTerms(result);
 		
-		panel.populateTable();
+		//panel.populateTable();
 	}
 
 }

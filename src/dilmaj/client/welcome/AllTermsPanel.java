@@ -20,7 +20,7 @@ import dilmaj.shared.*;
 
 public class AllTermsPanel extends HorizontalPanel {
 	private FlexTable termsTable=new FlexTable();
-	private HashMap<Long, TermComposite> allTerms;
+	//private HashMap<Long, TermComposite> allTerms;
 	private WelcomeController controller;
 	private InsertSuggestionPanel insertPanel;
 	private TermSuggestionsPanel tsPanel;
@@ -30,37 +30,17 @@ public class AllTermsPanel extends HorizontalPanel {
 		this.insertPanel=insertPanel;
 		this.tsPanel=tsPanel;
 		controller=new WelcomeController(this, insertPanel);
-	}
-	
-	public void populateTable(HashMap<Long, TermComposite> terms) {
-		allTerms=terms;
-		
-		Iterator<Long> iterator=allTerms.keySet().iterator();
-		int row=0;
-		while (iterator.hasNext()) {
-			Long key=iterator.next();
-			TermSummaryPanel termPanel=new TermSummaryPanel(allTerms.get(key), controller);
-			/*TermButton termButton=new TermButton(allTerms.get(key));
-			termButton.addClickHandler(controller);*/
-			termsTable.setWidget(row++, 0, termPanel);
-		}
-		
-		tsPanel.populateTable(allTerms);
+		AllTerms.TheInstance.setAllTermsPanel(this);
+		//while (!AllTerms.TheInstance.isLoaded()) {}
+		//populateTable();
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {
-		if (allTerms!=null)
-			allTerms=new HashMap<Long, TermComposite>();
-		allTerms.put(newTerm.getId(), newTerm);
 		TermSummaryPanel termPanel=new TermSummaryPanel(newTerm, controller);
-		termsTable.setWidget(allTerms.size(), 0, termPanel);
+		termsTable.setWidget(AllTerms.TheInstance.getTerms().size(), 0, termPanel);
 	}
 	
-	public HashMap<Long, TermComposite> getAllTerms() {
-		return allTerms;
-	}
-	
-	public List<TermComposite> getSome(String captionFilter) {
+	/*public List<TermComposite> getSome(String captionFilter) {
 		List<TermComposite> someTerms=new ArrayList<TermComposite>();
 		
 		Iterator<Long> iterator=allTerms.keySet().iterator();
@@ -75,22 +55,22 @@ public class AllTermsPanel extends HorizontalPanel {
 		}
 		
 		return someTerms;
-	}
+	}*/
 
 	public void populateTable() {
 		// TODO Auto-generated method stub
-		allTerms=AllTerms.TheInstance.getTerms();
+		//allTerms=AllTerms.TheInstance.getTerms();
 		
-		Iterator<Long> iterator=allTerms.keySet().iterator();
+		Iterator<Long> iterator=AllTerms.TheInstance.getTerms().keySet().iterator();
 		int row=0;
 		while (iterator.hasNext()) {
 			Long key=iterator.next();
-			TermSummaryPanel termPanel=new TermSummaryPanel(allTerms.get(key), controller);
+			TermSummaryPanel termPanel=new TermSummaryPanel(AllTerms.TheInstance.getTerms().get(key), controller);
 			/*TermButton termButton=new TermButton(allTerms.get(key));
 			termButton.addClickHandler(controller);*/
 			termsTable.setWidget(row++, 0, termPanel);
 		}
 		
-		tsPanel.populateTable(allTerms);
+		tsPanel.populateTable();
 	}
 }

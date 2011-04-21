@@ -47,7 +47,7 @@ public class ResultsController extends Controller implements ClickHandler {
 				popup.show();
 			} else {
 				termVO=new TermComposite(termButton.getText());
-				termSvc.addEntry(termVO, new InsertTermCallback(aPanel, allPanel));
+				termSvc.addEntry(termVO, new InsertTermCallback(aPanel));
 			}
 		} catch (ClassCastException cce) {
 			Button button=(Button)event.getSource();

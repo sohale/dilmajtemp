@@ -62,11 +62,9 @@ public class TestGWT implements EntryPoint {
 		
 		if (termId==null && username==null && activator==null) {
 			TermSuggestionsPanel termSuggestionsPanel=new TermSuggestionsPanel();
-		    allTermsPanel=new AllTermsPanel(insertSuggestionPanel, termSuggestionsPanel);
-			termSvc.loadAll(new LoadAllTermsCallback(allTermsPanel));
-		    insertTermPanel=new InsertTermPanel(allTermsPanel);
+			termSvc.loadAll(new LoadAllTermsCallback());
 		    
-			SearchPanel searchPanel=new SearchPanel(allTermsPanel);
+			SearchPanel searchPanel=new SearchPanel();
 			RootPanel.get("searchPanel").add(searchPanel);
 			
 			RegisterPanel registerPanel=new RegisterPanel();
@@ -74,6 +72,8 @@ public class TestGWT implements EntryPoint {
 			
 			RootPanel.get("termSuggestions").add(termSuggestionsPanel);
 			
+		    allTermsPanel=new AllTermsPanel(insertSuggestionPanel, termSuggestionsPanel);
+		    insertTermPanel=new InsertTermPanel();
 		    RootPanel.get("insertTerm").add(insertTermPanel);
 		    
 		    RootPanel.get("insertSuggestion").add(insertSuggestionPanel);
