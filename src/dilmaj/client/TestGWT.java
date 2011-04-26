@@ -21,6 +21,7 @@ import dilmaj.client.register.RegisterPanel;
 import dilmaj.client.register.SendConfirmationEmailCallback;
 import dilmaj.client.search.SearchPanel;
 import dilmaj.client.top.TopMenu;
+import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.LoadAllTermsCallback;
@@ -71,6 +72,8 @@ public class TestGWT implements EntryPoint {
 			RootPanel.get("registerationPanel").add(registerPanel);
 			
 			RootPanel.get("termSuggestions").add(termSuggestionsPanel);
+			
+			RootPanel.get("myTerms").add(new MyTermsPanel());
 			
 		    allTermsPanel=new AllTermsPanel(insertSuggestionPanel, termSuggestionsPanel);
 		    insertTermPanel=new InsertTermPanel();
