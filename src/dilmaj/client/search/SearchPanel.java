@@ -56,8 +56,9 @@ public class SearchPanel extends VerticalPanel {
 		buttons.clear();
 		
 		if (text.length()>0 && entries.length>1)
-			for (int i=0;i<entries.length;i++) {
-				Button button=new Button(entries[i]);
+			for (String s:entries) {
+			//for (int i=0;i<entries.length;i++) {
+				Button button=new Button(s);
 				button.addClickHandler(controller);
 				outputPanel.add(button);
 				buttons.add(button);
