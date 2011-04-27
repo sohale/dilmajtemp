@@ -168,8 +168,10 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 	    Iterator<Term> iterator=allTerms.iterator();
 	    while (iterator.hasNext()) {
 	    	Term term=iterator.next();
-	    	TermComposite termVO=TermComposite.getInstance(term);
-	    	termsMap.put(termVO.getId(), termVO);
+	    	if (term.getUsername().equalsIgnoreCase(username)) {
+		    	TermComposite termVO=TermComposite.getInstance(term);
+		    	termsMap.put(termVO.getId(), termVO);
+	    	}
 	    }
 	    	
 		return termsMap;
