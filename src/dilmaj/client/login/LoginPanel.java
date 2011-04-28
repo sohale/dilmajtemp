@@ -25,8 +25,18 @@ public class LoginPanel extends VerticalPanel {
 	private HorizontalPanel buttonsPanel=new HorizontalPanel();
 	private LoginController controller=new LoginController(this);
 	private TopMenu topMenu;
+	private boolean isLogged=false;
 	
-	public LoginPanel(TopMenu topMenu) {
+	private static LoginPanel theInstance=null;
+	
+	public static LoginPanel getInstance(TopMenu topMenu) {
+		if (theInstance==null)
+			theInstance=new LoginPanel(topMenu);
+		
+		return theInstance;
+	}
+	
+	private LoginPanel(TopMenu topMenu) {
 		add(username);
 		add(password);
 		
@@ -54,20 +64,24 @@ public class LoginPanel extends VerticalPanel {
 	}
 	
 	public void login(String username) {
-		this.username.setVisible(false);
-		this.password.setText("");
-		this.password.setVisible(false);
-		loginButton.setText(GlobalSettings.constants.logout());
-		topMenu.login(username);
-		
-		//MyTermsController.myTermsController.loadMyTerms();
+		if (!isLogged) {
+			this.username.setVisible(false);
+			this.password.setText("");
+			this.password.setVisible(false);
+			loginButton.setText(GlobalSettings.constants.logout());
+			isLogged=true;
+			topMenu.login(username);
+		}
 	}
 	
 	public void logout() {
-		username.setVisible(true);
-		username.setText("");
-		password.setVisible(true);
-		loginButton.setText(GlobalSettings.constants.login());
-		topMenu.logout();
+		if (isLogged) {
+			username.setVisible(true);
+			username.setText("");
+			password.setVisible(true);
+			loginButton.setText(GlobalSettings.constants.login());
+			isLogged=false;
+			topMenu.logout();
+		}
 	}
 }

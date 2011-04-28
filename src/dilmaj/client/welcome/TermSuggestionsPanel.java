@@ -26,7 +26,15 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	//private WelcomeController controller;
 	private AllTermsPanel allTermsPanel;
 	
-	public TermSuggestionsPanel() {
+	private static TermSuggestionsPanel theInstance=null;
+	
+	public static TermSuggestionsPanel getInstance() {
+		if (theInstance==null)
+			theInstance=new TermSuggestionsPanel();
+		return theInstance;
+	}
+	
+	private TermSuggestionsPanel() {
 		add(tsTable);
 	}
 	

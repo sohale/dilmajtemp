@@ -20,8 +20,15 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel {
 	//private AllTermsPanel allPanel;
 	private InsertTermController controller;
 	private MessageComposite messageVO;
+	private static InsertTermPanel theInstance=null;
 	
-	public InsertTermPanel() {
+	public static InsertTermPanel getInstance() {
+		if (theInstance==null)
+			theInstance=new InsertTermPanel();
+		return theInstance;
+	}
+	
+	private InsertTermPanel() {
 		//this.allPanel=allPanel;
 		
 		controller=new InsertTermController(this);

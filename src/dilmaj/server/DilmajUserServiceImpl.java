@@ -31,7 +31,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
         String activator=new BigInteger(130, random).toString(32);
 		
 		User user=new User(userVO);
-		user.setActivator(activator);
+		user.setActivator("permanent");//activator);
 		
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {

@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.MyPanel;
 import dilmaj.client.TermButton;
+import dilmaj.client.TermSummaryController;
 import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.MessageComposite;
@@ -43,8 +44,8 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		Iterator<TermComposite> iterator=foundTerms.iterator();
 		while (iterator.hasNext()) {
 			TermComposite aTerm=iterator.next();
-			ResultsController controller=new ResultsController(this);
-			TermSummaryPanel panel=new TermSummaryPanel(aTerm, controller);
+			//ResultsController controller=new ResultsController(this);
+			TermSummaryPanel panel=TermSummaryPanel.getSummaryPanel(aTerm);
 			mainPanel.add(panel);
 		}
 		

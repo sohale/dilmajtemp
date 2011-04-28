@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
+import dilmaj.client.TermSummaryController;
 import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.shared.*;
@@ -28,17 +29,19 @@ public class MyTermsPanel extends HorizontalPanel {
 	}
 	
 	public void populateTable() {
+		Window.alert("My Terms Loaded : "+MyTerms.TheInstance.getTerms().size());
 		Iterator<Long> iterator=MyTerms.TheInstance.getTerms().keySet().iterator();
 		int row=0;
 		while (iterator.hasNext()) {
 			Long key=iterator.next();
-			TermSummaryPanel termPanel=new TermSummaryPanel(MyTerms.TheInstance.getTerms().get(key), null);
+			TermComposite termVO=MyTerms.TheInstance.getTerms().get(key);
+			TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(termVO);
 			termsTable.setWidget(row++, 0, termPanel);
 		}
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {
-		TermSummaryPanel termPanel=new TermSummaryPanel(newTerm, null);
+		TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(newTerm);
 		termsTable.setWidget(MyTerms.TheInstance.getTerms().size(), 0, termPanel);
 	}
 }

@@ -46,7 +46,7 @@ public class TestGWT implements EntryPoint {
 			+ "attempting to contact the server. Please check your network "
 			+ "connection and try again.";
 
-	private InsertSuggestionPanel insertSuggestionPanel=new InsertSuggestionPanel();
+	private InsertSuggestionPanel insertSuggestionPanel=InsertSuggestionPanel.getInstance();
 	private AllTermsPanel allTermsPanel;
 	private InsertTermPanel insertTermPanel;
 
@@ -62,7 +62,7 @@ public class TestGWT implements EntryPoint {
 		RootPanel.get("topMenu").add(topMenu);
 		
 		if (termId==null && username==null && activator==null) {
-			TermSuggestionsPanel termSuggestionsPanel=new TermSuggestionsPanel();
+			TermSuggestionsPanel termSuggestionsPanel=TermSuggestionsPanel.getInstance();
 			termSvc.loadAll(new LoadAllTermsCallback());
 		    
 			SearchPanel searchPanel=new SearchPanel();
@@ -76,7 +76,7 @@ public class TestGWT implements EntryPoint {
 			RootPanel.get("myTerms").add(new MyTermsPanel());
 			
 		    allTermsPanel=new AllTermsPanel(insertSuggestionPanel, termSuggestionsPanel);
-		    insertTermPanel=new InsertTermPanel();
+		    insertTermPanel=InsertTermPanel.getInstance();
 		    RootPanel.get("insertTerm").add(insertTermPanel);
 		    
 		    RootPanel.get("insertSuggestion").add(insertSuggestionPanel);

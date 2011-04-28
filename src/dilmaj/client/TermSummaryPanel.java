@@ -1,5 +1,7 @@
 package dilmaj.client;
 
+import java.util.HashMap;
+
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -16,7 +18,18 @@ public class TermSummaryPanel extends HorizontalPanel {
 	Label summaryLabel;
 	String title;
 	
-	public TermSummaryPanel(TermComposite termVO, Controller controller) {
+	private static HashMap<TermComposite, TermSummaryPanel> summaryPanels=new HashMap<TermComposite, TermSummaryPanel>();
+	
+	public static TermSummaryPanel getSummaryPanel(TermComposite termVO) {
+		TermSummaryPanel summaryPanel=summaryPanels.get(termVO);
+		if (summaryPanel==null) {
+			summaryPanel=new TermSummaryPanel(termVO, TermSummaryController.getController(termVO));
+			summaryPanels.put(termVO, summaryPanel);
+		}
+		return summaryPanel;
+	}
+	
+	private TermSummaryPanel(TermComposite termVO, TermSummaryController controller) {
 		this.termVO=termVO;
 		button=new TermButton(termVO);
 		button.setText(termVO.getCaption());

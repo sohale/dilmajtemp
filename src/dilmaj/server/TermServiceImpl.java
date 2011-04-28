@@ -164,13 +164,14 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 
 	    List<Term> allTerms = (List<Term>) pm.newQuery(query).execute();
 	    
-	    List<TermComposite> allTermVOs=new ArrayList<TermComposite>();
 	    Iterator<Term> iterator=allTerms.iterator();
 	    while (iterator.hasNext()) {
 	    	Term term=iterator.next();
-	    	if (term.getUsername().equalsIgnoreCase(username)) {
-		    	TermComposite termVO=TermComposite.getInstance(term);
-		    	termsMap.put(termVO.getId(), termVO);
+	    	if (term.getUsername()!=null) {
+		    	if (term.getUsername().equalsIgnoreCase(username)) {
+			    	TermComposite termVO=TermComposite.getInstance(term);
+			    	termsMap.put(termVO.getId(), termVO);
+		    	}
 	    	}
 	    }
 	    	
