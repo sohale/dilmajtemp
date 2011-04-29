@@ -136,5 +136,11 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 	    return (String)getThreadLocalRequest().getSession().getAttribute("loggedUser");
 	}
+
+	@Override
+	public void logout() {
+		// TODO Auto-generated method stub
+		getThreadLocalRequest().getSession().setAttribute("loggedUser", null);
+	}
 	
 }

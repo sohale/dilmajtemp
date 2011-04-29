@@ -48,7 +48,7 @@ public class LoginController extends Controller {
 			MemberComposite accountVO=new MemberComposite(panel.getUsername(), panel.getPassword());
 			accountSvc.find(accountVO, new FindCallback(panel));
 		} else if (sourceTitle.compareTo(GlobalSettings.constants.logout())==0) {
-			panel.logout();
+			accountSvc.logout(new LogoutCallback(panel));
 		}
 	}
 
