@@ -7,7 +7,7 @@ import dilmaj.shared.TermComposite;
 public enum AllTerms {
 	TheInstance();
 	
-	HashMap<Long, TermComposite> allTerms;
+	HashMap<Long, TermComposite> allTerms=null;
 	boolean isLoaded=false;
 	AllTermsPanel allPanel=null;
 	
@@ -21,13 +21,18 @@ public enum AllTerms {
 	
 	public void setAllTermsPanel(AllTermsPanel allTermsPanel) {
 		allPanel=allTermsPanel;
+		if (!isLoaded && allTerms!=null) {
+			allPanel.populateTable();
+			isLoaded=true;
+		}
 	}
 	
 	public void setTerms(HashMap<Long, TermComposite> terms) {
 		allTerms=terms;
-		isLoaded=true;
-		if (allPanel!=null)
+		if (allPanel!=null && !isLoaded) {
 			allPanel.populateTable();
+			isLoaded=true;
+		}
 	}
 
 	public TermComposite add(TermComposite termVO) {

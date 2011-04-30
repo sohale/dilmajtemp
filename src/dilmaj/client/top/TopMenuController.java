@@ -50,7 +50,7 @@ public class TopMenuController extends Controller {
 			popup.setPopupPosition(left, bottom);
 			
 			if (loginPanel==null)
-				loginPanel=new LoginPanel(topMenu);
+				loginPanel=LoginPanel.getInstance(topMenu);
 			popup.add(loginPanel);
 			
 			popup.show();

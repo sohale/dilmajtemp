@@ -31,7 +31,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
         String activator=new BigInteger(130, random).toString(32);
 		
 		User user=new User(userVO);
-		user.setActivator(activator);
+		user.setActivator("permanent");//activator);
 		
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
@@ -135,6 +135,12 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 	public String getLoggedUser() {
 		// TODO Auto-generated method stub
 	    return (String)getThreadLocalRequest().getSession().getAttribute("loggedUser");
+	}
+
+	@Override
+	public void logout() {
+		// TODO Auto-generated method stub
+		getThreadLocalRequest().getSession().setAttribute("loggedUser", null);
 	}
 	
 }

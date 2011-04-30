@@ -43,8 +43,8 @@ public class GetLoggedAccountCallback implements AsyncCallback<String> {
 				topMenu.login(result);
 		}
 		
-		if (termPanel!=null)
-			termController.insertTerm(termCaption, result);
+		/*if (termPanel!=null)
+			termController.insertTerm(termCaption, result);*/
 
 	}
 }

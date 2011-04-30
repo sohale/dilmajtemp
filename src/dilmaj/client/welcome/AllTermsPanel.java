@@ -36,7 +36,7 @@ public class AllTermsPanel extends HorizontalPanel {
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {
-		TermSummaryPanel termPanel=new TermSummaryPanel(newTerm, controller);
+		TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(newTerm);
 		termsTable.setWidget(AllTerms.TheInstance.getTerms().size(), 0, termPanel);
 	}
 	
@@ -65,7 +65,7 @@ public class AllTermsPanel extends HorizontalPanel {
 		int row=0;
 		while (iterator.hasNext()) {
 			Long key=iterator.next();
-			TermSummaryPanel termPanel=new TermSummaryPanel(AllTerms.TheInstance.getTerms().get(key), controller);
+			TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(AllTerms.TheInstance.getTerms().get(key));
 			/*TermButton termButton=new TermButton(allTerms.get(key));
 			termButton.addClickHandler(controller);*/
 			termsTable.setWidget(row++, 0, termPanel);

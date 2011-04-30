@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Panel;
 import dilmaj.client.DilmajUserService;
 import dilmaj.client.DilmajUserServiceAsync;
 import dilmaj.client.MyPanel;
+import dilmaj.client.login.LoginPanel;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
@@ -42,11 +43,13 @@ public class TopMenu extends HorizontalPanel implements MyPanel {
 		// TODO Auto-generated method stub
 		loginLabel.setText(username);
 		loginPanel.setTitle(username);
+		LoginPanel.getInstance(this).login(username);
 		//mouseOver.removeHandler();
 	}
 	
 	public void logout() {
 		loginPanel.setTitle(GlobalSettings.constants.login());
 		loginLabel.setText(GlobalSettings.constants.login());
+		LoginPanel.getInstance(this).logout();
 	}
 }

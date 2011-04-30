@@ -1,12 +1,17 @@
 package dilmaj.client.login;
 
+import dilmaj.client.TermService;
+import dilmaj.client.TermServiceAsync;
+import dilmaj.client.view_my_terms.LoadMyTermsCallback;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.UserComposite;
 import dilmaj.shared.MessageComposite;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class FindCallback implements AsyncCallback<MemberComposite> {
+	private TermServiceAsync termSvc = GWT.create(TermService.class);
 	LoginPanel panel;
 	
 	public FindCallback(LoginPanel panel) {
@@ -28,6 +33,7 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 		else {
 			//panel.setMessage(new MessageComposite(result.getId()+""));
 			panel.login(result.getUsername());
+			termSvc.getMyTerms(new LoadMyTermsCallback());
 		}
 	}
 }
