@@ -33,7 +33,7 @@
   <!-- you can leave the body empty if you want  -->
   <!-- to create a completely dynamic UI.        -->
   <!--                                           -->
-  <body>
+  <body dir=rtl>
 
     <!-- OPTIONAL: include this if you want history support -->
     <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
@@ -48,51 +48,77 @@
 
     <h1>سخن گزار</h1>
 
-	<table align=left>
-	<tr>
-		<td>
-			<div id="topMenu"></div>
+	<table align=right dir=rtl>
+	<tr align=left>
+		<td >
+			<div id="topMenu"  style="background-color:#ffffbb;"></div>
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<div id="searchPanel"></div>
+	<tr style="background-color:#bbddbb;">
+		<td span=2>
+			<div id="searchPanel">Search</div>
 		</td>
+	
 	</tr>
 	<tr>
-	<td>
-	<div id="registerationPanel"></div>
+<!-- registration was a TD here --> 
+    <td>
+	    <div id="projectDescription"></div>
 	</td>
 	<td>
-	<div id="projectDescription"></div>
-	</td>
+	<div id="loginPanel">(Login panel(?))</div>
+    </td>
 	<td>
-	  <div id="loginPanel"></div>
-	  </td>
-		<td>
-			<div id="myTerms">
-				  <h3>My terms list here!</h3>
-			</div>
-		</td>
+	-
+	</td>
 	</tr>
-	<tr>
-		<td>
+	<tr style="background-color:#bbddbb;">
+		<td>Insert Term
 			<div id="insertTerm"></div>
 		</td>
-	</tr>
-	<tr>
-		<td>
-			<div id="allTerms"></div>
-		</td>
-		<td>
+		<td>Insert suggestion:
 			<div id="insertSuggestion"></div>
 		</td>
-		<td>
+	</tr>
+	<tr>
+	<tr style="background-color:#eef7ee;height:9px;">
+	<td></td><td></td>
+	</tr>
+	<tr>
+		<td>List of terms:
+			<div id="allTerms"></div>
+		</td>
+		<td>List of suggestions
 			<div id="termSuggestions"></div>
 		</td>
 	</tr>
 	<tr>
+		<td>
+	<div id="registerationPanel"  style="background-color:#ffffbb; direction:ltr;">
+	<center><b>Sign up</b></center>
+	</div>
+	</td>
+	<td>
   	</tr>
-      </tble>
+  		<td>
+		<div id="myTerms">
+		  <h3 style="direction:ltr;">My terms list here!</h3>
+		</div>
+		<td>
+	</tr>
+      </table>
+      <br>
+      <hr>
+      <table  align=left dir=ltr>
+      <tr>
+      		<td>List of terms:
+			<div id="allTerms"></div>
+		</td>
+		<td>List of suggestions
+			<div id="termSuggestions"></div>
+		</td>
+      </tr>
+      </table>
+      
   </body>
 </html>
