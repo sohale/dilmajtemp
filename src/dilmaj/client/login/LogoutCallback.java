@@ -3,6 +3,7 @@ package dilmaj.client.login;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.view_my_terms.LoadMyTermsCallback;
+import dilmaj.client.view_my_terms.MyTerms;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.UserComposite;
 import dilmaj.shared.MessageComposite;
@@ -28,5 +29,6 @@ public class LogoutCallback implements AsyncCallback {
 	public void onSuccess(Object result) {
 		// TODO Auto-generated method stub
 		panel.logout();
+		MyTerms.TheInstance.clear();
 	}
 }

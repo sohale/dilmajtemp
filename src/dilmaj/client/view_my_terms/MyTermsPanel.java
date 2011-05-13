@@ -29,14 +29,18 @@ public class MyTermsPanel extends HorizontalPanel {
 	}
 	
 	public void populateTable() {
-		Window.alert("My Terms Loaded : "+MyTerms.TheInstance.getTerms().size());
-		Iterator<Long> iterator=MyTerms.TheInstance.getTerms().keySet().iterator();
-		int row=0;
-		while (iterator.hasNext()) {
-			Long key=iterator.next();
-			TermComposite termVO=MyTerms.TheInstance.getTerms().get(key);
-			TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(termVO);
-			termsTable.setWidget(row++, 0, termPanel);
+		if (MyTerms.TheInstance.getTerms()!=null) {
+			Window.alert("My Terms Loaded : "+MyTerms.TheInstance.getTerms().size());
+			Iterator<Long> iterator=MyTerms.TheInstance.getTerms().keySet().iterator();
+			int row=0;
+			while (iterator.hasNext()) {
+				Long key=iterator.next();
+				TermComposite termVO=MyTerms.TheInstance.getTerms().get(key);
+				TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(termVO);
+				termsTable.setWidget(row++, 0, termPanel);
+			}
+		} else {
+			termsTable.removeAllRows();
 		}
 	}
 	
