@@ -26,7 +26,8 @@ public class TopMenuController extends Controller {
 	}
 
 	/**
-	 * Who is logged in
+	 * Who is logged in.
+	 * does not return it, just sends it into a GetLoggedAccountCallback
 	 */
 	public void checkLogin() {
 		accountSvc.getLoggedUser(new GetLoggedAccountCallback(topMenu));

@@ -50,6 +50,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		PersistenceManager pm=PMF.get().getPersistenceManager();
 		MemberComposite member=null;
 		
+		//google's jQL?
 	    String query = "select from " + User.class.getName()+" where username=='"+userVO.getUsername()+"'";//+" and activator=="+userVO.getActivator();
 
 	    List<User> allUsers = (List<User>) pm.newQuery(query).execute();
@@ -57,16 +58,17 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 	    if (allUsers==null)
 	    	return null;
 	
-	    User user=allUsers.get(0);
-	    String activator=user.getActivator();
+	    User user=allUsers.get(0); //Get the first entry
+	    String activator=user.getActivator(); //Has user activated?
 
-	    member=new MemberComposite(user);
+	    member=new MemberComposite(user); //copies all fields
 	    
+	    // exceptions for activation: activate all.
 	    if (activator.compareToIgnoreCase("activator")!=0) {
 		    user.setActivator("permanent");
 		    
 		    try {
-		    	pm.makePersistent(user);
+		    	pm.makePersistent(user); //do the "update" on table
 		    } finally {
 	            pm.close();
 	        }
@@ -74,6 +76,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		    member.setActivator("permanent");
 	    }
 		
+	    //set the session variable
 	    getThreadLocalRequest().getSession().setAttribute("loggedUser", member.getUsername());
 
 	    return member;
