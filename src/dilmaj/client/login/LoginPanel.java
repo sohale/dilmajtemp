@@ -64,7 +64,7 @@ public class LoginPanel extends VerticalPanel {
 	}
 	
 	public void login(String username) {
-		if (!isLogged) {
+		if (!isLogged) { //if not logged in by TopMenu
 			this.username.setVisible(false);
 			this.password.setText("");
 			this.password.setVisible(false);
