@@ -25,6 +25,9 @@ public class TopMenuController extends Controller {
 		this.topMenu=topMenu;
 	}
 
+	/**
+	 * Who is logged in
+	 */
 	public void checkLogin() {
 		accountSvc.getLoggedUser(new GetLoggedAccountCallback(topMenu));
 	}
