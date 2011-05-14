@@ -32,9 +32,9 @@ public class LoginController extends Controller {
 		String sourceTitle=button.getText();
 
 		
-		Widget parent=panel.getParent();
+		Widget parent=panel.getParent(); // there is a popup
 		
-		if (parent!=null) {
+		if (parent!=null) { //if popped out, hide it
 			try {
 				PopupPanel popup=(PopupPanel)parent;
 				popup.hide();
