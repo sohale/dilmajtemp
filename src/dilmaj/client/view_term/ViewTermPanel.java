@@ -33,7 +33,18 @@ public class ViewTermPanel extends HorizontalPanel {
 	private Label termLabel;
 	private FlexTable suggestionsTable=new FlexTable();
 	
-	public ViewTermPanel(TermComposite theTerm, PopupPanel popup) {
+	private static HashMap<TermComposite,ViewTermPanel> viewTermPanels=new HashMap<TermComposite,ViewTermPanel>();
+	
+	public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
+		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
+		if (viewTermPanel==null) {
+			viewTermPanel=new ViewTermPanel(theTerm, popup);
+			viewTermPanels.put(theTerm, viewTermPanel);
+		}
+		return viewTermPanel;
+	}
+	
+	private ViewTermPanel(TermComposite theTerm, PopupPanel popup) {
 		controller=new ViewTermController(this, allPanel, popup);
 		this.theTerm=theTerm;
 

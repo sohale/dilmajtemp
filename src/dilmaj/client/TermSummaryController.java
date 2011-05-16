@@ -36,7 +36,7 @@ public class TermSummaryController implements ClickHandler {
 		TermComposite termComposite=termButton.getTermComposite();
 		
 		PopupPanel popup=new PopupPanel();
-		ViewTermPanel viewTermPanel=new ViewTermPanel(termComposite, popup);
+		ViewTermPanel viewTermPanel=ViewTermPanel.getInstance(termComposite, popup);
 		
 		popup.setSize("100px", "100px");
 		
