@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 import dilmaj.client.TermButton;
+import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.shared.*;
 
@@ -49,14 +50,15 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 			
 			Iterator<TermSuggestionComposite> tsIterator=termVO.getSuggestions().iterator();
 			if (tsIterator.hasNext()) {
-				TermButton termButton=new TermButton(termVO);
-				tsTable.setWidget(row, 0, termButton);
+				//TermButton termButton=new TermButton(termVO);
+				TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(termVO);
+				tsTable.setWidget(row, 0, termPanel);
 				
 				int col=1;
 				while (tsIterator.hasNext()) {
 					TermComposite suggestionVO=tsIterator.next().getSuggestion();
-					TermButton suggestionButton=new TermButton(suggestionVO);
-					tsTable.setWidget(row, col, suggestionButton);
+					TermSummaryPanel suggestionPanel=TermSummaryPanel.getSummaryPanel(suggestionVO);
+					tsTable.setWidget(row, col, suggestionPanel);
 					col++;
 				}
 				row++;
