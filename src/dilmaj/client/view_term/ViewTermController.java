@@ -12,8 +12,10 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 
+import dilmaj.client.TermButton;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
+import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.view_suggestion.ViewSuggestionPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.Controller;
@@ -53,6 +55,9 @@ public class ViewTermController extends Controller {
 		String caption=((Button)event.getSource()).getText();
 		if (caption.compareTo(GlobalSettings.constants.close())==0)
 			popup.hide();
+		if (caption.compareTo("add new suggestion")==0) {
+			InsertSuggestionPanel.getInstance().setTerm(viewTermPanel.getTerm());
+		}
 	}
 
 	@Override

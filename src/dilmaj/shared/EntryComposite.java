@@ -1,6 +1,5 @@
 package dilmaj.shared;
 
-
 import java.sql.Timestamp;
 import java.util.Date;
 

@@ -27,11 +27,6 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	Label termLabel;
 	
 	Button closeButton=new Button("x");
-
-	HorizontalPanel rankPanel=new HorizontalPanel();
-	Button voteButton=new Button("+");
-	Button devoteButton=new Button("-");
-	Label votesLabel=new Label();
 	
 	HorizontalPanel interactionPanel=new HorizontalPanel();
 	PushButton likeButton=new PushButton(new Image("images/like.jpg"));
@@ -59,19 +54,11 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		tsLabel=new Label(suggestion.getCaption()+"="+term.getCaption());
 		add(tsLabel);
 		
-		add(rankPanel);
-		rankPanel.add(voteButton);
-		rankPanel.add(votesLabel);
-		votesLabel.setText(termSuggestion.getRank()+"");
-		rankPanel.add(devoteButton);
-		
 		add(interactionPanel);
 		interactionPanel.add(likeButton);
 		interactionPanel.add(likesLabel);
 		likesLabel.setText(termSuggestion.getLikes()+"");
-		
-		voteButton.addClickHandler(controller);
-		devoteButton.addClickHandler(controller);
+
 		closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
 		

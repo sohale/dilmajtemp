@@ -4,9 +4,12 @@ import java.util.HashMap;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.PopupPanel;
 
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.insert_term.InsertTermPanel;
+import dilmaj.client.login.LoginPanel;
+import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.shared.TermComposite;
 
 public class TermSummaryController implements ClickHandler {
@@ -28,7 +31,22 @@ public class TermSummaryController implements ClickHandler {
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
-		InsertSuggestionPanel.getInstance().setTerm(((TermButton)event.getSource()).getTermComposite());
+		
+		TermButton termButton=(TermButton)event.getSource();
+		TermComposite termComposite=termButton.getTermComposite();
+		
+		PopupPanel popup=new PopupPanel();
+		ViewTermPanel viewTermPanel=ViewTermPanel.getInstance(termComposite, popup);
+		
+		popup.setSize("100px", "100px");
+		
+		int left=termButton.getAbsoluteLeft();
+		int bottom=termButton.getAbsoluteTop()+termButton.getOffsetHeight();
+		popup.setPopupPosition(left, bottom);
+		
+		popup.add(viewTermPanel);
+		
+		popup.show();
 	}
 
 }

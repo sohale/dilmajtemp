@@ -21,15 +21,15 @@ import dilmaj.shared.*;
 public class AllTermsPanel extends HorizontalPanel {
 	private FlexTable termsTable=new FlexTable();
 	//private HashMap<Long, TermComposite> allTerms;
-	private WelcomeController controller;
-	private InsertSuggestionPanel insertPanel;
+	//private WelcomeController controller;
+	//private InsertSuggestionPanel insertPanel;
 	private TermSuggestionsPanel tsPanel;
 	
-	public AllTermsPanel(InsertSuggestionPanel insertPanel, TermSuggestionsPanel tsPanel) {
+	public AllTermsPanel(TermSuggestionsPanel tsPanel) {
 		add(termsTable);
-		this.insertPanel=insertPanel;
+		//this.insertPanel=insertPanel;
 		this.tsPanel=tsPanel;
-		controller=new WelcomeController(this, insertPanel);
+		//controller=new WelcomeController(this, insertPanel);
 		AllTerms.TheInstance.setAllTermsPanel(this);
 		//while (!AllTerms.TheInstance.isLoaded()) {}
 		//populateTable();

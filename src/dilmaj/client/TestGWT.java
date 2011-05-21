@@ -8,8 +8,10 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RichTextArea;
 
 import com.google.gwt.user.client.ui.RootPanel;
 //import com.google.gwt.widgetideas.client.CollapsiblePanel;
@@ -75,12 +77,16 @@ public class TestGWT implements EntryPoint {
 			
 			RootPanel.get("myTerms").add(new MyTermsPanel());
 			
-		    allTermsPanel=new AllTermsPanel(insertSuggestionPanel, termSuggestionsPanel);
+		    allTermsPanel=new AllTermsPanel(termSuggestionsPanel);
 		    insertTermPanel=InsertTermPanel.getInstance();
 		    RootPanel.get("insertTerm").add(insertTermPanel);
 		    
 		    RootPanel.get("insertSuggestion").add(insertSuggestionPanel);
 		    
+		    /*HorizontalPanel hp = new HorizontalPanel();
+		    HTML html = new HTML("<p>This is html with a <a href='AllTerms.html'>link</a></p>");
+		    hp.add(html);
+		    Label label=new Label(GWT.getModuleBaseURL()+"AllTerms.html");*/
 		    RootPanel.get("allTerms").add(allTermsPanel);
 		    
 		    HorizontalPanel descriptionPanel=new HorizontalPanel();

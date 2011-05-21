@@ -24,6 +24,7 @@ public class ViewTermPanel extends HorizontalPanel {
 	private ViewTermController controller;
 	private TermComposite theTerm;
 	private Button closeButton=new Button(GlobalSettings.constants.close());
+	private Button addSuggestion=new Button("add new suggestion");
 	private PopupPanel popup=null;
 
 	private HashMap<String, TermSuggestionComposite> suggestions=new HashMap<String, TermSuggestionComposite>();
@@ -32,7 +33,18 @@ public class ViewTermPanel extends HorizontalPanel {
 	private Label termLabel;
 	private FlexTable suggestionsTable=new FlexTable();
 	
-	public ViewTermPanel(TermComposite theTerm, PopupPanel popup) {
+	private static HashMap<TermComposite,ViewTermPanel> viewTermPanels=new HashMap<TermComposite,ViewTermPanel>();
+	
+	public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
+		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
+		if (viewTermPanel==null) {
+			viewTermPanel=new ViewTermPanel(theTerm, popup);
+			viewTermPanels.put(theTerm, viewTermPanel);
+		}
+		return viewTermPanel;
+	}
+	
+	private ViewTermPanel(TermComposite theTerm, PopupPanel popup) {
 		controller=new ViewTermController(this, allPanel, popup);
 		this.theTerm=theTerm;
 
@@ -59,6 +71,7 @@ public class ViewTermPanel extends HorizontalPanel {
 		add(insertButton);
 		add(languageBox);*/
 		add(termPanel);
+		add(addSuggestion);
 		add(closeButton);
 		
 		/*languageBox.addItem(GlobalSettings.constants.english());
@@ -66,6 +79,7 @@ public class ViewTermPanel extends HorizontalPanel {
 		languageBox.addItem(GlobalSettings.constants.arabic());
 		languageBox.setVisibleItemCount(1);*/
 		
+		addSuggestion.addClickHandler(controller);
 		closeButton.addClickHandler(controller);
 		
 		//termBox.setText(theTerm.getCaption());
@@ -103,5 +117,9 @@ public class ViewTermPanel extends HorizontalPanel {
 	
 	public TermSuggestionComposite getSuggestion(String caption) {
 		return suggestions.get(caption);
+	}
+	
+	public TermComposite getTerm() {
+		return theTerm;
 	}
 }

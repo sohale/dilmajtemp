@@ -15,6 +15,13 @@ public enum MyTerms {
 		
 	}
 	
+	public void clear() {
+		myTerms.clear();
+		myTerms=null;
+		myPanel.populateTable();
+		isLoaded=false;
+	}
+	
 	public void setMyPanel(MyTermsPanel myPanel) {
 		this.myPanel=myPanel;
 		if (myTerms!=null && !isLoaded) {
