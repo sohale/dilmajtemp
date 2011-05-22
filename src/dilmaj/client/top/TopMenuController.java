@@ -25,6 +25,10 @@ public class TopMenuController extends Controller {
 		this.topMenu=topMenu;
 	}
 
+	/**
+	 * Who is logged in.
+	 * does not return it, just sends it into a GetLoggedAccountCallback
+	 */
 	public void checkLogin() {
 		accountSvc.getLoggedUser(new GetLoggedAccountCallback(topMenu));
 	}
@@ -38,10 +42,10 @@ public class TopMenuController extends Controller {
 	public void onMouseOver(MouseOverEvent event) {
 		// TODO Auto-generated method stub
 		FocusPanel panel=(FocusPanel)event.getSource();
-		String caption=panel.getTitle();
+		String caption=panel.getTitle(); //is it logged in or out
 		
 		//if (caption.compareTo(GlobalSettings.constants.login())==0) {
-			PopupPanel popup=new PopupPanel(); 
+			PopupPanel popup=new PopupPanel(); //for putting Login panel in it
 			
 			popup.setSize("100px", "100px");
 			
@@ -50,7 +54,7 @@ public class TopMenuController extends Controller {
 			popup.setPopupPosition(left, bottom);
 			
 			if (loginPanel==null)
-				loginPanel=LoginPanel.getInstance(topMenu);
+				loginPanel=LoginPanel.getInstance(topMenu); //Pattern: FactoryMethod
 			popup.add(loginPanel);
 			
 			popup.show();

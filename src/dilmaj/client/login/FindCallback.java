@@ -32,7 +32,7 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			panel.setMessage(new MessageComposite("User not found!"));
 		else {
 			//panel.setMessage(new MessageComposite(result.getId()+""));
-			panel.login(result.getUsername());
+			panel.login(result.getUsername()); //May call TopMenu automatically.
 			termSvc.getMyTerms(new LoadMyTermsCallback());
 		}
 	}
