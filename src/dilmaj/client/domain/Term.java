@@ -1,6 +1,6 @@
 package dilmaj.client.domain;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -48,7 +48,7 @@ public class Term {
 		return username;
 	}
 
-	public void setTimestamp(Timestamp timeStamp) {
+	public void setTimestamp(Date timeStamp) {
 		this.timeStamp=timeStamp;
 	}
 }

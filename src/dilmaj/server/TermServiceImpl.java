@@ -35,8 +35,8 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		newTerm.setUser(username);
 		Term term=new Term(newTerm);
 
-	    //java.util.Date today = new java.util.Date();
-	    //term.setTimestamp(new Timestamp(today.getTime()));
+	    java.util.Date today = new java.util.Date();
+	    term.setTimestamp(today);
 		
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
