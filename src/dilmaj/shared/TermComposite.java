@@ -19,7 +19,7 @@ public class TermComposite extends EntryComposite implements IsSerializable {
 		TermComposite termVO=allTerms.get(term.getId());
 		if (termVO==null) {
 			termVO=new TermComposite(term);
-			allTerms.put(termVO.getId(), termVO);
+			allTerms.put(term.getId(), termVO);
 		}
 		return termVO;
 	}

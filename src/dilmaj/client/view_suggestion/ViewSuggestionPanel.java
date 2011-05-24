@@ -1,7 +1,9 @@
 package dilmaj.client.view_suggestion;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -10,12 +12,16 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import dilmaj.client.DilmajConstants;
 import dilmaj.client.MyPanel;
+import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
 
 public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
+	private DilmajConstants constants = GWT.create(DilmajConstants.class);
+
 	private static HashMap<TermSuggestionComposite, ViewSuggestionPanel> allInstances=new HashMap<TermSuggestionComposite, ViewSuggestionPanel>();
 	
 	private MessageComposite message;
@@ -25,6 +31,8 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	
 	Label tsLabel;
 	Label termLabel;
+	Label suggestorLabel;
+	Label votersLabel;
 	
 	Button closeButton=new Button("x");
 	
@@ -62,6 +70,17 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
 		
+		suggestorLabel=new Label(constants.suggestor()+": "+suggestion.getUser());
+		String votersString=constants.supporters()+": ";
+		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
+		while (icIterator.hasNext()) {
+			InteractionComposite ic=icIterator.next();
+			votersString=votersString.concat(ic.getUser()+", ");
+		}
+		votersLabel=new Label(votersString);
+		
+		add(suggestorLabel);
+		add(votersLabel);
 		add(closeButton);
 	}
 	

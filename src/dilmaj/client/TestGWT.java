@@ -41,7 +41,7 @@ public class TestGWT implements EntryPoint {
 
 	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 	  
-	  private String username=new String("");
+	  private String username="";
 	  private long userid;
 	  
 	  private static final String SERVER_ERROR = "An error occurred while "

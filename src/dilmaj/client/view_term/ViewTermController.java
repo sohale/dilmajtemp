@@ -63,12 +63,17 @@ public class ViewTermController extends Controller {
 	@Override
 	public void onMouseOver(MouseOverEvent event) {
 		// TODO Auto-generated method stub
-		String label=((Label)event.getSource()).getText();
+		Label sourceLabel=(Label)event.getSource();
+		String label=sourceLabel.getText();
+		
 		TermSuggestionComposite tsVO=viewTermPanel.getSuggestion(label);
 		ViewSuggestionPanel sPanel=ViewSuggestionPanel.getInstance(tsVO);
 		PopupPanel sPopup=sPopups.get(sPanel);
 		if (sPopup==null) {
 			sPopup=new PopupPanel();
+			int left=sourceLabel.getAbsoluteLeft();
+			int bottom=sourceLabel.getAbsoluteTop()+sourceLabel.getOffsetHeight();
+			sPopup.setPopupPosition(left, bottom);
 			sPopup.add(sPanel);
 			sPopups.put(sPanel, sPopup);
 		}

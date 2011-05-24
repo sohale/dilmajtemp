@@ -109,4 +109,9 @@ public interface DilmajConstants extends Constants {
 	  @DefaultStringValue("arabic")
 	  String arabic();
 
+	  @DefaultStringValue("suggestor")
+	  String suggestor();
+	  
+	  @DefaultStringValue("supporters")
+	  String supporters();
 }

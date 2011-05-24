@@ -63,7 +63,7 @@ public class ViewTermPanel extends HorizontalPanel {
 			suggestionLabel.addMouseOverHandler(controller);
 			
 			suggestionsTable.setWidget(row, 1, suggestionLabel);
-			suggestionsTable.setText(row, 0, tsVO.getRank()+"");
+			suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
 			row++;
 		}
 		termPanel.add(suggestionsTable);
