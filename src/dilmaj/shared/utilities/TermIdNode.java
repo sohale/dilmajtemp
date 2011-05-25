@@ -6,7 +6,7 @@ import dilmaj.shared.TermComposite;
 
 public class TermIdNode {
 	TermComposite value;
-	TermIdComparator comparator=new TermIdComparator();
+	//TermIdComparator comparator=new TermIdComparator();
 	
 	TermIdNode left=null;
 	TermIdNode rite=null;
@@ -16,7 +16,7 @@ public class TermIdNode {
 	}
 	
 	public TermIdNode addChild(TermComposite newValue) {
-		if (comparator.compare(value, newValue)<0) {
+		if (TermIdComparator.TERM_ID_COMPARATOR.compare(value, newValue)<0) {
 			if (left==null) {
 				left=new TermIdNode(newValue);
 				return left;
@@ -26,7 +26,7 @@ public class TermIdNode {
 			}
 		}
 		
-		if (comparator.compare(value, newValue)>=0) {
+		if (TermIdComparator.TERM_ID_COMPARATOR.compare(value, newValue)>=0) {
 			if (rite==null) {
 				rite=new TermIdNode(newValue);
 				return rite;
