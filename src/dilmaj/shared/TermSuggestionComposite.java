@@ -1,8 +1,10 @@
 package dilmaj.shared;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
@@ -12,7 +14,7 @@ public class TermSuggestionComposite extends EntryComposite implements IsSeriali
 	TermComposite term;
 	TermComposite suggestion;
 	long rank=0;
-	List<InteractionComposite> interactions=new ArrayList<InteractionComposite>();
+	Set<InteractionComposite> interactions=new HashSet<InteractionComposite>();
 	
 	public TermSuggestionComposite() {
 		super();
@@ -97,7 +99,7 @@ public class TermSuggestionComposite extends EntryComposite implements IsSeriali
 		return nLikes;
 	}
 	
-	public List<InteractionComposite> getInteractions() {
+	public Set<InteractionComposite> getInteractions() {
 		return interactions;
 	}
 }

@@ -39,7 +39,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	HorizontalPanel interactionPanel=new HorizontalPanel();
 	PushButton likeButton=new PushButton(new Image("images/like.jpg"));
 	Label likesLabel=new Label();
-	
+	String votersString=constants.supporters()+": ";
 	ViewSuggestionController controller=new ViewSuggestionController(this);
 
 	public static ViewSuggestionPanel getInstance(TermSuggestionComposite tsVO) {
@@ -71,7 +71,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		likeButton.addClickHandler(controller);
 		
 		suggestorLabel=new Label(constants.suggestor()+": "+suggestion.getUser());
-		String votersString=constants.supporters()+": ";
+		
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
@@ -99,5 +99,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		termSuggestion=tsVO;
 		//votesLabel.setText(termSuggestion.getRank()+"");
 		likesLabel.setText(termSuggestion.getLikes()+"");
+		votersString=votersString.concat(tsVO.getUser()+", ");
+		votersLabel.setText(votersString);
 	}
 }

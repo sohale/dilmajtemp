@@ -2,7 +2,10 @@ package dilmaj.shared;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
@@ -11,7 +14,7 @@ import dilmaj.client.domain.Term;
 
 public class TermComposite extends EntryComposite implements IsSerializable {
 	String caption;
-	List<TermSuggestionComposite> suggestions=new ArrayList<TermSuggestionComposite>();
+	private Set<TermSuggestionComposite> suggestions=new HashSet<TermSuggestionComposite>();
 	
 	private static HashMap<Long, TermComposite> allTerms=new HashMap<Long, TermComposite>();
 	
@@ -52,7 +55,7 @@ public class TermComposite extends EntryComposite implements IsSerializable {
 		suggestions.add(suggestion);
 	}
 	
-	public List<TermSuggestionComposite> getSuggestions() {
+	public Set<TermSuggestionComposite> getSuggestions() {
 		return suggestions;
 	}
 }

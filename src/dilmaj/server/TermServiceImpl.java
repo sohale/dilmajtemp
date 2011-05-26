@@ -66,6 +66,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 			while (iterator.hasNext()) {
 				TermComposite termVO=TermComposite.getInstance(iterator.next());//new TermComposite(iterator.next());
 				termVOs.put(termVO.getId(), termVO);
+				termVO.getSuggestions().clear();
 			}
 		}
 		
