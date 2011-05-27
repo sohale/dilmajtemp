@@ -11,7 +11,7 @@ import dilmaj.shared.MessageComposite;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class LogoutCallback implements AsyncCallback {
+public class LogoutCallback implements AsyncCallback<Object> {
 	LoginPanel panel;
 	
 	public LogoutCallback(LoginPanel panel) {
