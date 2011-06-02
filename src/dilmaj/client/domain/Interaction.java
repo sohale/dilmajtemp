@@ -1,6 +1,5 @@
 package dilmaj.client.domain;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -9,7 +8,6 @@ import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.PersistenceCapable;
 
 import dilmaj.shared.LikeComposite;
-import dilmaj.shared.TermComposite;
 
 @PersistenceCapable
 public class Interaction {

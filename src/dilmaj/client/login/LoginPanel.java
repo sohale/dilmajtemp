@@ -1,14 +1,9 @@
 package dilmaj.client.login;
 
-import dilmaj.client.DilmajUserService;
-import dilmaj.client.DilmajUserServiceAsync;
 import dilmaj.client.top.TopMenu;
-import dilmaj.client.view_my_terms.MyTermsController;
 import dilmaj.shared.GlobalSettings;
-import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;

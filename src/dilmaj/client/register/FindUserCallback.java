@@ -1,17 +1,12 @@
 package dilmaj.client.register;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import dilmaj.client.DilmajUserService;
-import dilmaj.client.DilmajUserServiceAsync;
 import dilmaj.client.TestGWT;
-import dilmaj.shared.EmailComposite;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
 
 public class FindUserCallback implements AsyncCallback<MemberComposite> {
-	private DilmajUserServiceAsync userSvc = GWT.create(DilmajUserService.class);
 	TestGWT panel;
 	
 	public FindUserCallback(TestGWT panel) {

@@ -7,7 +7,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
-import dilmaj.client.welcome.WelcomeController;
 import dilmaj.shared.*;
 
 public class InsertSuggestionPanel extends HorizontalPanel {
@@ -20,7 +19,6 @@ public class InsertSuggestionPanel extends HorizontalPanel {
 	private MessageComposite message;
 	
 	private TermComposite term;
-	private TermComposite suggestion;
 	
 	private InsertSuggestionController controller;
 	

@@ -1,6 +1,5 @@
 package dilmaj.client.domain;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +11,6 @@ import javax.jdo.annotations.PersistenceCapable;
 
 import dilmaj.shared.EntryComposite;
 import dilmaj.shared.MemberComposite;
-import dilmaj.shared.TermComposite;
 import dilmaj.shared.UserComposite;
 
 @PersistenceCapable

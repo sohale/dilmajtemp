@@ -1,7 +1,6 @@
 package dilmaj.client;
 
 import com.google.gwt.i18n.client.Constants;
-import com.google.gwt.i18n.client.Messages.DefaultMessage;
 
 public interface DilmajConstants extends Constants {
 	  @DefaultStringValue("Caption")

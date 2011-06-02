@@ -6,7 +6,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import dilmaj.shared.EmailComposite;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
-import dilmaj.shared.UserComposite;
 
 @RemoteServiceRelativePath("dilmajuserservice")
 public interface DilmajUserService extends RemoteService {

@@ -2,11 +2,9 @@ package dilmaj.client;
 
 import java.util.HashMap;
 
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
-import dilmaj.client.view_term.ViewTermController;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.TermComposite;

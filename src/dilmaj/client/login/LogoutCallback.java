@@ -1,17 +1,11 @@
 package dilmaj.client.login;
 
-import dilmaj.client.TermService;
-import dilmaj.client.TermServiceAsync;
-import dilmaj.client.view_my_terms.LoadMyTermsCallback;
 import dilmaj.client.view_my_terms.MyTerms;
-import dilmaj.shared.MemberComposite;
-import dilmaj.shared.UserComposite;
 import dilmaj.shared.MessageComposite;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class LogoutCallback implements AsyncCallback<Object> {
+public class LogoutCallback implements AsyncCallback<Void> {
 	LoginPanel panel;
 	
 	public LogoutCallback(LoginPanel panel) {
@@ -26,7 +20,7 @@ public class LogoutCallback implements AsyncCallback<Object> {
 	}
 
 	@Override
-	public void onSuccess(Object result) {
+	public void onSuccess(Void result) {
 		// TODO Auto-generated method stub
 		panel.logout();
 		MyTerms.TheInstance.clear();

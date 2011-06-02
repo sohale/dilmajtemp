@@ -1,7 +1,6 @@
 package dilmaj.client;
 
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import dilmaj.shared.TermComposite;
 

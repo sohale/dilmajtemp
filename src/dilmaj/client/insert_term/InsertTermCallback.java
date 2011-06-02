@@ -4,10 +4,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dilmaj.client.MyPanel;
 import dilmaj.client.welcome.AllTerms;
-import dilmaj.client.welcome.AllTermsPanel;
-import dilmaj.shared.Controller;
 import dilmaj.shared.MessageComposite;
-import dilmaj.shared.Repository;
 import dilmaj.shared.TermComposite;
 
 public class InsertTermCallback implements AsyncCallback<TermComposite> {

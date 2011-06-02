@@ -1,14 +1,9 @@
 package dilmaj.client.search;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import dilmaj.client.welcome.AllTermsPanel;
-import dilmaj.shared.Controller;
-import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 
 public class GetSomeTermsCallback implements AsyncCallback<List<TermComposite>> {

@@ -3,7 +3,6 @@ package dilmaj.client.register;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dilmaj.client.TestGWT;
-import dilmaj.shared.EmailComposite;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
 

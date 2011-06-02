@@ -2,8 +2,6 @@ package dilmaj.client.register;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import dilmaj.shared.EmailComposite;
-import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
 
 public class SendConfirmationEmailCallback implements AsyncCallback<MessageComposite> {

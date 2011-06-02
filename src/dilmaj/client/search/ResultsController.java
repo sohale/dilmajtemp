@@ -6,7 +6,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.PopupPanel;
 
-import dilmaj.client.MyPanel;
 import dilmaj.client.TermButton;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
@@ -18,11 +17,12 @@ import dilmaj.shared.TermComposite;
 
 public class ResultsController extends Controller implements ClickHandler {
 	private TermServiceAsync termSvc = GWT.create(TermService.class);
+	@SuppressWarnings("unused")
 	private AllTermsPanel allPanel;
 	private ResultsPanel aPanel;
 
-	public ResultsController(AllTermsPanel allPanel, ResultsPanel aPanel) {
-		this.allPanel=allPanel;
+	public ResultsController(AllTermsPanel allTermsPanel, ResultsPanel aPanel) {
+		allPanel=allTermsPanel;
 		this.aPanel=aPanel;
 	}
 	
@@ -35,7 +35,7 @@ public class ResultsController extends Controller implements ClickHandler {
 		// TODO Auto-generated method stub
 		try {
 			TermButton termButton=(TermButton)event.getSource();
-			String title=termButton.getText();
+			//String title=termButton.getText();
 			TermComposite termVO=termButton.getTermComposite();
 			if (termVO!=null) {
 				PopupPanel popup=new PopupPanel();
@@ -50,6 +50,7 @@ public class ResultsController extends Controller implements ClickHandler {
 				termSvc.addEntry(termVO, new InsertTermCallback(aPanel));
 			}
 		} catch (ClassCastException cce) {
+			@SuppressWarnings("unused")
 			Button button=(Button)event.getSource();
 			aPanel.hide();
 		}

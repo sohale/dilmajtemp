@@ -8,10 +8,8 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RichTextArea;
 
 import com.google.gwt.user.client.ui.RootPanel;
 //import com.google.gwt.widgetideas.client.CollapsiblePanel;
@@ -20,7 +18,6 @@ import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.insert_term.InsertTermPanel;
 import dilmaj.client.register.FindUserCallback;
 import dilmaj.client.register.RegisterPanel;
-import dilmaj.client.register.SendConfirmationEmailCallback;
 import dilmaj.client.search.SearchPanel;
 import dilmaj.client.top.TopMenu;
 import dilmaj.client.view_my_terms.MyTermsPanel;
@@ -30,7 +27,6 @@ import dilmaj.client.welcome.LoadAllTermsCallback;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
-import dilmaj.shared.Repository;
 
 
 /**
@@ -41,13 +37,6 @@ public class TestGWT implements EntryPoint {
 
 	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 	  
-	  private String username="";
-	  private long userid;
-	  
-	  private static final String SERVER_ERROR = "An error occurred while "
-			+ "attempting to contact the server. Please check your network "
-			+ "connection and try again.";
-
 	private InsertSuggestionPanel insertSuggestionPanel=InsertSuggestionPanel.getInstance();
 	private AllTermsPanel allTermsPanel;
 	private InsertTermPanel insertTermPanel;

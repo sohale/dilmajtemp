@@ -4,7 +4,6 @@ import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.view_my_terms.LoadMyTermsCallback;
 import dilmaj.shared.MemberComposite;
-import dilmaj.shared.UserComposite;
 import dilmaj.shared.MessageComposite;
 
 import com.google.gwt.core.client.GWT;

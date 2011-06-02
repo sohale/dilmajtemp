@@ -10,7 +10,6 @@ import dilmaj.shared.Controller;
 import dilmaj.shared.EmailComposite;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
-import dilmaj.shared.UserComposite;
 
 public class RegisterController extends Controller implements ClickHandler {
 	private RegisterPanel panel;

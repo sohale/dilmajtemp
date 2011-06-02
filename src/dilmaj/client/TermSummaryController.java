@@ -6,9 +6,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.PopupPanel;
 
-import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
-import dilmaj.client.insert_term.InsertTermPanel;
-import dilmaj.client.login.LoginPanel;
 import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.shared.TermComposite;
 
