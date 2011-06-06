@@ -79,4 +79,8 @@ public class ViewTermController extends Controller {
 		}
 		sPopup.show();
 	}
+	
+	public void setPopup(PopupPanel popup) {
+		this.popup=popup;
+	}
 }

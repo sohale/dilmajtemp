@@ -40,7 +40,11 @@ public class ViewTermPanel extends HorizontalPanel {
 		if (viewTermPanel==null) {
 			viewTermPanel=new ViewTermPanel(theTerm, popup);
 			viewTermPanels.put(theTerm, viewTermPanel);
+		} else {
+			if (popup!=viewTermPanel.getPopup())
+				viewTermPanel.setPopup(popup);
 		}
+		
 		return viewTermPanel;
 	}
 	
@@ -67,22 +71,12 @@ public class ViewTermPanel extends HorizontalPanel {
 			row++;
 		}
 		termPanel.add(suggestionsTable);
-		/*add(termBox);
-		add(insertButton);
-		add(languageBox);*/
 		add(termPanel);
 		add(addSuggestion);
 		add(closeButton);
 		
-		/*languageBox.addItem(GlobalSettings.constants.english());
-		languageBox.addItem(GlobalSettings.constants.french());
-		languageBox.addItem(GlobalSettings.constants.arabic());
-		languageBox.setVisibleItemCount(1);*/
-		
 		addSuggestion.addClickHandler(controller);
 		closeButton.addClickHandler(controller);
-		
-		//termBox.setText(theTerm.getCaption());
 		
 		this.popup=popup;
 	}
@@ -121,5 +115,14 @@ public class ViewTermPanel extends HorizontalPanel {
 	
 	public TermComposite getTerm() {
 		return theTerm;
+	}
+	
+	public PopupPanel getPopup() {
+		return popup;
+	}
+	
+	public void setPopup(PopupPanel popup) {
+		this.popup=popup;
+		controller.setPopup(popup);
 	}
 }
