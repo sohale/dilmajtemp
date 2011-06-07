@@ -113,4 +113,7 @@ public interface DilmajConstants extends Constants {
 	  
 	  @DefaultStringValue("supporters")
 	  String supporters();
+	  
+	  @DefaultStringValue("Settings")
+	  String settings();
 }

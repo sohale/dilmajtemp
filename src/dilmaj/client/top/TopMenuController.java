@@ -11,26 +11,18 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import dilmaj.client.DilmajUserService;
 import dilmaj.client.DilmajUserServiceAsync;
 import dilmaj.client.login.LoginPanel;
+import dilmaj.client.settings.SettingsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MemberComposite;
 
 public class TopMenuController extends Controller {
 	private TopMenu topMenu;
-	private DilmajUserServiceAsync accountSvc = GWT.create(DilmajUserService.class);
-	private MemberComposite loggedMember;
 	private LoginPanel loginPanel=null;
+	private SettingsPanel settingsPanel=null;
 	
 	public TopMenuController(TopMenu topMenu) {
 		this.topMenu=topMenu;
-	}
-
-	/**
-	 * Who is logged in.
-	 * does not return it, just sends it into a GetLoggedAccountCallback
-	 */
-	public void checkLogin() {
-		accountSvc.getLoggedUser(new GetLoggedAccountCallback(topMenu));
 	}
 	
 	@Override
@@ -44,7 +36,7 @@ public class TopMenuController extends Controller {
 		FocusPanel panel=(FocusPanel)event.getSource();
 		String caption=panel.getTitle(); //is it logged in or out
 		
-		//if (caption.compareTo(GlobalSettings.constants.login())==0) {
+		if (caption.compareTo(GlobalSettings.constants.login())==0) {
 			PopupPanel popup=new PopupPanel(); //for putting Login panel in it
 			
 			popup.setSize("100px", "100px");
@@ -58,6 +50,22 @@ public class TopMenuController extends Controller {
 			popup.add(loginPanel);
 			
 			popup.show();
-		//}
+		}
+		
+		if (caption.compareTo(GlobalSettings.constants.settings())==0) {
+			PopupPanel popup=new PopupPanel(); //for putting Login panel in it
+			
+			popup.setSize("100px", "100px");
+			
+			int left=panel.getAbsoluteLeft();
+			int bottom=panel.getAbsoluteTop()+panel.getOffsetHeight();
+			popup.setPopupPosition(left, bottom);
+			
+			if (settingsPanel==null)
+				settingsPanel=SettingsPanel.getInstance(topMenu); //Pattern: FactoryMethod
+			popup.add(settingsPanel);
+			
+			popup.show();
+		}
 	}
 }
