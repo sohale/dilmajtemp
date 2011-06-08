@@ -47,6 +47,16 @@
     <url-pattern>/testgwt/interactionservice</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>SettingsServiceImpl</servlet-name>
+    <servlet-class>dilmaj.server.SettingsServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SettingsServiceImpl</servlet-name>
+    <url-pattern>/testgwt/settingsservice</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>TestGWT.html</welcome-file>
