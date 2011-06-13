@@ -9,6 +9,7 @@ public class MemberComposite extends UserComposite {
 	protected String name;
 	protected String adminPin;
 	protected String activator;
+	protected SettingsComposite settings;
 	
 	public MemberComposite() {
 		
@@ -66,7 +67,15 @@ public class MemberComposite extends UserComposite {
 	}
 
 	public void setUsername(String username2) {
-		// TODO Auto-generated method stub
 		this.username=username2;
+	}
+	
+	public void setSettings(SettingsComposite settingsVO) {
+		settings=settingsVO;
+	}
+
+	public SettingsComposite getSettings() {
+		// TODO Auto-generated method stub
+		return settings;
 	}
 }

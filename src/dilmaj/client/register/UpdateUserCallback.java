@@ -13,15 +13,21 @@ public class UpdateUserCallback implements AsyncCallback<MemberComposite> {
 		this.panel=panel;
 	}
 	
+	public UpdateUserCallback() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void onFailure(Throwable caught) {
 		// TODO Auto-generated method stub
-		panel.setMessage(new MessageComposite("Error!"));
+		if (panel!=null)
+			panel.setMessage(new MessageComposite("Error!"));
 	}
 
 	@Override
 	public void onSuccess(MemberComposite result) {
 		// TODO Auto-generated method stub
-		panel.setMessage(new MessageComposite("you may now login"));
+		if (panel!=null)
+			panel.setMessage(new MessageComposite("you may now login"));
 	}
 }

@@ -9,4 +9,6 @@ public interface SettingsServiceAsync {
 	void update(SettingsComposite settingsVO,
 			AsyncCallback<SettingsComposite> callback);
 
+	void create(String username, AsyncCallback<SettingsComposite> callback);
+
 }

@@ -6,11 +6,13 @@ import javax.jdo.Transaction;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import dilmaj.client.DilmajUserService;
+import dilmaj.client.domain.Settings;
 import dilmaj.client.domain.Term;
 import dilmaj.client.domain.User;
 import dilmaj.shared.EmailComposite;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
+import dilmaj.shared.SettingsComposite;
 import dilmaj.shared.TermComposite;
 
 import java.io.UnsupportedEncodingException;
@@ -78,7 +80,13 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		
 	    //set the session variable
 	    getThreadLocalRequest().getSession().setAttribute("loggedUser", member.getUsername());
-
+	    
+	    query = "select from " + Settings.class.getName()+" where username=='"+userVO.getUsername()+"'";//+" and activator=="+userVO.getActivator();
+	    List<Settings> allSettings = (List<Settings>) pm.newQuery(query).execute();
+	    if (allSettings.size()==1) {
+	    	userVO.setSettings(new SettingsComposite(allSettings.get(0)));
+	    }
+	    
 	    return member;
 	}
 

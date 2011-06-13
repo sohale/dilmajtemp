@@ -41,4 +41,21 @@ public class SettingsServiceImpl extends RemoteServiceServlet implements Setting
         }
         return settingsVO;
 	}
+
+	@Override
+	public SettingsComposite create(String username) {
+		// TODO Auto-generated method stub
+		Settings settings=new Settings();
+		settings.setUsername(username);
+		
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            pm.makePersistent(settings);
+        } finally {
+            pm.close();
+        }
+		SettingsComposite settingsVO=new SettingsComposite(settings);
+
+		return settingsVO;
+	}
 }

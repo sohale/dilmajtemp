@@ -12,15 +12,22 @@ public class Settings {
     @Persistent
 	String username;
     
+    @Persistent
+    byte termsPerPage=-118; // indicates how many terms a user wishes to see in every page, the actual value would be 128+termsPerPage, range:{-128,127}, default is 10
+    
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     protected Long id;
 
     public Settings(SettingsComposite settingsVO) {
 		username=settingsVO.getUser().getUsername();
+		termsPerPage=settingsVO.getTermsPerPage();
 	}
 	
-    public void setId(Long id) {
+    public Settings() {
+	}
+
+	public void setId(Long id) {
     	this.id=id;
     }
     
@@ -34,5 +41,9 @@ public class Settings {
 	
 	public void setUsername(String username) {
 		this.username=username;
+	}
+
+	public byte getTermsPerPage() {
+		return termsPerPage;
 	}
 }

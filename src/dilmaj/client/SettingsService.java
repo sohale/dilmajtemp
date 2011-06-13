@@ -8,4 +8,5 @@ import dilmaj.shared.SettingsComposite;
 @RemoteServiceRelativePath("settingsservice")
 public interface SettingsService extends RemoteService {
 	SettingsComposite update(SettingsComposite settingsVO);
+	SettingsComposite create(String username);
 }
