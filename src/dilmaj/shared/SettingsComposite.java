@@ -12,6 +12,10 @@ public class SettingsComposite implements IsSerializable {
 	protected Long id;
 	protected byte termsPerPage;
 	
+	public SettingsComposite() {
+		
+	}
+	
 	public SettingsComposite(Settings settings) {
 		id=settings.getId();
 		termsPerPage=settings.getTermsPerPage();
