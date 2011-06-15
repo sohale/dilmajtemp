@@ -19,19 +19,18 @@ public class LoginPanel extends VerticalPanel {
 	private Button closeButton=new Button("x");
 	private HorizontalPanel buttonsPanel=new HorizontalPanel();
 	private LoginController controller=new LoginController(this);
-	private TopMenu topMenu;
 	private boolean isLogged=false;
 	
 	private static LoginPanel theInstance=null;
 	
-	public static LoginPanel getInstance(TopMenu topMenu) {
+	public static LoginPanel getInstance() {
 		if (theInstance==null)
-			theInstance=new LoginPanel(topMenu);
+			theInstance=new LoginPanel();
 		
 		return theInstance;
 	}
 	
-	private LoginPanel(TopMenu topMenu) {
+	private LoginPanel() {
 		add(username);
 		add(password);
 		
@@ -41,8 +40,6 @@ public class LoginPanel extends VerticalPanel {
 		buttonsPanel.add(loginButton);
 		loginButton.addClickHandler(controller);
 		closeButton.addClickHandler(controller);
-		
-		this.topMenu=topMenu;
 	}
 	
 	public void setMessage(MessageComposite messageVO) {
@@ -65,7 +62,7 @@ public class LoginPanel extends VerticalPanel {
 			this.password.setVisible(false);
 			loginButton.setText(GlobalSettings.constants.logout());
 			isLogged=true;
-			topMenu.login(username);
+			TopMenu.getInstance().login(username);
 		}
 	}
 	
@@ -76,7 +73,7 @@ public class LoginPanel extends VerticalPanel {
 			password.setVisible(true);
 			loginButton.setText(GlobalSettings.constants.login());
 			isLogged=false;
-			topMenu.logout();
+			TopMenu.getInstance().logout();
 		}
 	}
 }

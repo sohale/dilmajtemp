@@ -1,5 +1,7 @@
 package dilmaj.client.login;
 
+import dilmaj.client.settings.SettingsPanel;
+import dilmaj.client.top.TopMenu;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.SettingsComposite;
 
@@ -19,5 +21,6 @@ public class CreateSettingsCallback implements AsyncCallback<SettingsComposite> 
 	@Override
 	public void onSuccess(SettingsComposite result) {
 		theMember.setSettings(result);
+		SettingsPanel.getInstance().setSettings(result);
 	}
 }

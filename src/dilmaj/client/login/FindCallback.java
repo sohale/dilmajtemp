@@ -4,6 +4,8 @@ import dilmaj.client.SettingsService;
 import dilmaj.client.SettingsServiceAsync;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
+import dilmaj.client.settings.SettingsPanel;
+import dilmaj.client.top.TopMenu;
 import dilmaj.client.view_my_terms.LoadMyTermsCallback;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
@@ -40,6 +42,8 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			SettingsComposite settingsVO=result.getSettings();
 			if (settingsVO==null) {
 				settingsSvc.create(result.getUsername(), new CreateSettingsCallback(result));
+			} else {
+				SettingsPanel.getInstance().setSettings(settingsVO);
 			}
 		}
 	}

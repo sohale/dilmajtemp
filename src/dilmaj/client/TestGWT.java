@@ -42,15 +42,13 @@ public class TestGWT implements EntryPoint {
 	private InsertTermPanel insertTermPanel;
 
 	private DilmajUserServiceAsync userSvc = GWT.create(DilmajUserService.class);
-	
-	private TopMenu topMenu=new TopMenu();
 
 	public void onModuleLoad() {
 		String termId = com.google.gwt.user.client.Window.Location.getParameter("termId");
 		String activator = com.google.gwt.user.client.Window.Location.getParameter("activator");
 		String username = com.google.gwt.user.client.Window.Location.getParameter("username");
 		
-		RootPanel.get("topMenu").add(topMenu);
+		RootPanel.get("topMenu").add(TopMenu.getInstance());
 		
 		if (termId==null && username==null && activator==null) {
 			TermSuggestionsPanel termSuggestionsPanel=TermSuggestionsPanel.getInstance();

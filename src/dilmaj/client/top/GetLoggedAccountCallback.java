@@ -10,14 +10,11 @@ import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
 	
 public class GetLoggedAccountCallback implements AsyncCallback<String> {
-	TopMenu topMenu=null;
-	
 	InsertTermPanel termPanel=null;
 	InsertTermController termController;
 	String termCaption;
 	
-	public GetLoggedAccountCallback(TopMenu topMenu) {
-		this.topMenu=topMenu;
+	public GetLoggedAccountCallback() {
 	}
 	
 	public GetLoggedAccountCallback(InsertTermPanel termPanel, InsertTermController termController, String termCaption) {
@@ -29,18 +26,17 @@ public class GetLoggedAccountCallback implements AsyncCallback<String> {
 	@Override
 	public void onFailure(Throwable caught) {
 		// TODO Auto-generated method stub
-		if (topMenu!=null)
-			topMenu.setMessage(new MessageComposite("Check Login Error!"));
 		if (termPanel!=null)
 			termPanel.setMessage(new MessageComposite("Check Login Error!"));
+		else
+			TopMenu.getInstance().setMessage(new MessageComposite("Check Login Error!"));
 	}
 
 	@Override
 	public void onSuccess(String result) {
 		// TODO Auto-generated method stub
 		if (result!=null) {
-			if (topMenu!=null)
-				topMenu.login(result);
+			TopMenu.getInstance().login(result);
 		}
 		
 		/*if (termPanel!=null)

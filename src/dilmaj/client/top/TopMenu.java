@@ -16,12 +16,21 @@ public class TopMenu extends HorizontalPanel implements MyPanel {
 	private FocusPanel loginPanel=new FocusPanel();
 	private FocusPanel settingsPanel=new FocusPanel();
 	
-	private TopMenuController controller=new TopMenuController(this);
+	private TopMenuController controller=new TopMenuController();
 	Label loginLabel=new Label(GlobalSettings.constants.login());
 	Label settingsLabel=new Label(GlobalSettings.constants.settings());
 	//private HandlerRegistration mouseOver;
 	
-	public TopMenu() {
+	private static TopMenu topMenu=null;
+	
+	public static TopMenu getInstance() {
+		if (topMenu==null)
+			topMenu=new TopMenu();
+		
+		return topMenu;
+	}
+	
+	private TopMenu() {
 		loginPanel.setTitle(GlobalSettings.constants.login());
 		loginPanel.add(loginLabel);
 		add(loginPanel);
@@ -33,6 +42,8 @@ public class TopMenu extends HorizontalPanel implements MyPanel {
 		settingsPanel.add(settingsLabel);
 		add(settingsPanel);
 		/*mouseOver=*/settingsPanel.addMouseOverHandler(controller);
+		
+		controller.checkLogin();
 	}
 	
 	@Override
@@ -46,13 +57,13 @@ public class TopMenu extends HorizontalPanel implements MyPanel {
 		// TODO Auto-generated method stub
 		loginLabel.setText(username);
 		loginPanel.setTitle(username);
-		LoginPanel.getInstance(this).login(username);
+		LoginPanel.getInstance().login(username);
 		//mouseOver.removeHandler();
 	}
 	
 	public void logout() {
 		loginPanel.setTitle(GlobalSettings.constants.login());
 		loginLabel.setText(GlobalSettings.constants.login());
-		LoginPanel.getInstance(this).logout();
+		LoginPanel.getInstance().logout();
 	}
 }

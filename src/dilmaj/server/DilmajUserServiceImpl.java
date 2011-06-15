@@ -83,9 +83,9 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 	            pm.close();
 	        }
 		    
-	    	getThreadLocalRequest().getSession().setAttribute("loggedUser", member.getUsername());
 		    member.setActivator("permanent");
 	    }
+    	getThreadLocalRequest().getSession().setAttribute("loggedUser", member.getUsername());
 		
 	    //set the session variable
 	    
