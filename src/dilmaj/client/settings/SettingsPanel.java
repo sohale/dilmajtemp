@@ -20,6 +20,9 @@ public class SettingsPanel extends VerticalPanel {
 	private SettingsComposite settingsVO;
 	private Label label;
 	
+	private Label termsLabel;
+	private TextBox termsBox;
+	
 	private static SettingsPanel theInstance=null;
 	
 	public static SettingsPanel getInstance() {
@@ -34,6 +37,11 @@ public class SettingsPanel extends VerticalPanel {
 		add(closeButton);
 		label=new Label();
 		add(label);
+		
+		termsLabel=new Label("Number of terms in each page");
+		add(termsLabel);
+		termsBox=new TextBox();
+		add(termsBox);
 	}
 	
 	public void setMessage(MessageComposite messageVO) {
@@ -43,9 +51,16 @@ public class SettingsPanel extends VerticalPanel {
 	
 	public void setSettings(SettingsComposite settings) {
 		settingsVO=settings;
-		if (settings!=null)
-			label.setText(settings.getId()+"");
-		else
-			label.setText("");
+		if (settings!=null) {
+			//label.setText(settings.getId()+"");
+			termsBox.setText(settings.getTermsPerPage()+128+"");
+		} else {
+			//label.setText("");
+			termsBox.setText("");
+		}
+	}
+	
+	public SettingsComposite getSettings() {
+		return settingsVO;
 	}
 }

@@ -72,5 +72,6 @@ public class AllTermsPanel extends HorizontalPanel {
 		}
 		
 		tsPanel.populateTable();
+		tsPanel.browseNext();
 	}
 }
