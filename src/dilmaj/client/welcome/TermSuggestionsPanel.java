@@ -43,8 +43,16 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	private TermSuggestionsPanel() {
 		SettingsComposite settingsVO=SettingsPanel.getInstance().getSettings();
 		if (settingsVO!=null)
-			termsPerPage=settingsVO.getTermsPerPage()+128;
+			termsPerPage=settingsVO.getTermsPerPage();
 		add(tsTable);
+	}
+	
+	public void browseFirst() {
+		SettingsComposite settingsVO=SettingsPanel.getInstance().getSettings();
+		if (settingsVO!=null)
+			termsPerPage=settingsVO.getTermsPerPage();
+		currentIndex=0;
+		browseNext();
 	}
 	
 	public void browseNext() {

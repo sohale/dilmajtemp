@@ -2,6 +2,7 @@ package dilmaj.client.settings;
 
 import dilmaj.client.DilmajUserService;
 import dilmaj.client.DilmajUserServiceAsync;
+import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MemberComposite;
@@ -31,8 +32,10 @@ public class SettingsController extends Controller {
 		
 		if (parent!=null) { //if popped out, hide it
 			try {
+				panel.update();
 				PopupPanel popup=(PopupPanel)parent;
 				popup.hide();
+				TermSuggestionsPanel.getInstance().browseFirst();
 			} catch (ClassCastException cce) {
 			}
 		} else {

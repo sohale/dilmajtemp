@@ -10,7 +10,7 @@ import dilmaj.client.domain.Settings;
 public class SettingsComposite implements IsSerializable {
 	protected MemberComposite theUser;
 	protected Long id;
-	protected byte termsPerPage;
+	protected int termsPerPage;
 	
 	public SettingsComposite() {
 		
@@ -33,7 +33,11 @@ public class SettingsComposite implements IsSerializable {
 		return id;
 	}
 
-	public byte getTermsPerPage() {
+	public int getTermsPerPage() {
 		return termsPerPage;
+	}
+
+	public void setTermsPerpage(int parseInt) {
+		termsPerPage=parseInt;
 	}
 }

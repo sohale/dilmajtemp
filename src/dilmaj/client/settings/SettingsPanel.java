@@ -63,4 +63,8 @@ public class SettingsPanel extends VerticalPanel {
 	public SettingsComposite getSettings() {
 		return settingsVO;
 	}
+	
+	public void update() {
+		settingsVO.setTermsPerpage(Integer.parseInt(termsBox.getText()));
+	}
 }
