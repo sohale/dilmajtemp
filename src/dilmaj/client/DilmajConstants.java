@@ -116,4 +116,7 @@ public interface DilmajConstants extends Constants {
 	  
 	  @DefaultStringValue("Settings")
 	  String settings();
+	  
+	  @DefaultStringValue("Confirm")
+	  String confirm();
 }

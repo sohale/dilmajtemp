@@ -1,10 +1,12 @@
 package dilmaj.client.settings;
 
+import dilmaj.client.DilmajConstants;
 import dilmaj.client.top.TopMenu;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SettingsComposite;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -15,6 +17,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SettingsPanel extends VerticalPanel {
 	private Button closeButton=new Button("x");
+	private DilmajConstants constants = GWT.create(DilmajConstants.class);
+	private Button okButton=new Button(constants.confirm());
 	private SettingsController controller=new SettingsController(this);
 	private MessageComposite message;
 	private SettingsComposite settingsVO;
@@ -42,6 +46,9 @@ public class SettingsPanel extends VerticalPanel {
 		add(termsLabel);
 		termsBox=new TextBox();
 		add(termsBox);
+		
+		okButton.addClickHandler(controller);
+		add(okButton);
 	}
 	
 	public void setMessage(MessageComposite messageVO) {
@@ -53,7 +60,7 @@ public class SettingsPanel extends VerticalPanel {
 		settingsVO=settings;
 		if (settings!=null) {
 			//label.setText(settings.getId()+"");
-			termsBox.setText(settings.getTermsPerPage()+128+"");
+			termsBox.setText(settings.getTermsPerPage()+"");
 		} else {
 			//label.setText("");
 			termsBox.setText("");

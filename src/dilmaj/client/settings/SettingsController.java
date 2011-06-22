@@ -1,7 +1,12 @@
 package dilmaj.client.settings;
 
+import dilmaj.client.DilmajConstants;
 import dilmaj.client.DilmajUserService;
 import dilmaj.client.DilmajUserServiceAsync;
+import dilmaj.client.SettingsService;
+import dilmaj.client.SettingsServiceAsync;
+import dilmaj.client.TermSuggestionService;
+import dilmaj.client.TermSuggestionServiceAsync;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
@@ -16,6 +21,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class SettingsController extends Controller {
 	private SettingsPanel panel;
+	private DilmajConstants constants = GWT.create(DilmajConstants.class);
+	private SettingsServiceAsync settingsSvc = GWT.create(SettingsService.class);
 
 	public SettingsController(SettingsPanel panel) {
 		this.panel=panel;
@@ -35,7 +42,10 @@ public class SettingsController extends Controller {
 				panel.update();
 				PopupPanel popup=(PopupPanel)parent;
 				popup.hide();
-				TermSuggestionsPanel.getInstance().browseFirst();
+				if (sourceTitle.compareTo(constants.confirm())==0) {
+					TermSuggestionsPanel.getInstance().browseFirst();
+					settingsSvc.update(panel.getSettings(), new UpdateSettingsCallback(panel));
+				}
 			} catch (ClassCastException cce) {
 			}
 		} else {
