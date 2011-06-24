@@ -13,7 +13,7 @@ public class Settings {
 	String username;
     
     @Persistent
-    int termsPerPage=10; // indicates how many terms a user wishes to see in every page, the actual value would be 128+termsPerPage, range:{-128,127}, default is 10
+    int termsPerPage; // indicates how many terms a user wishes to see in every page, the actual value would be 128+termsPerPage, range:{-128,127}, default is 10
     
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -45,5 +45,10 @@ public class Settings {
 
 	public int getTermsPerPage() {
 		return termsPerPage;
+	}
+
+	public void setTermsPerPage(int termsPerPage2) {
+		// TODO Auto-generated method stub
+		termsPerPage=termsPerPage2;
 	}
 }

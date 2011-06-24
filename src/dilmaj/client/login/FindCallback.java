@@ -39,12 +39,7 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			//panel.setMessage(new MessageComposite(result.getId()+""));
 			panel.login(result.getUsername()); //May call TopMenu automatically.
 			termSvc.getMyTerms(new LoadMyTermsCallback());
-			SettingsComposite settingsVO=result.getSettings();
-			if (settingsVO==null) {
-				settingsSvc.create(result, new CreateSettingsCallback(result));
-			} else {
-				SettingsPanel.getInstance().setSettings(settingsVO);
-			}
+			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
 		}
 	}
 }

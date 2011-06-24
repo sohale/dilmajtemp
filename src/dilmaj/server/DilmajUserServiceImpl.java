@@ -71,15 +71,6 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		    
 		    try {
 		    	pm.makePersistent(user); //do the "update" on table
-
-			    query = "select from " + Settings.class.getName()+" where username=='"+userVO.getUsername()+"'";//+" and activator=="+userVO.getActivator();
-			    List<Settings> allSettings = (List<Settings>) pm.newQuery(query).execute();
-			    if (allSettings!=null) {
-				    if (allSettings.size()==1) {
-				    	Settings settings=allSettings.get(0);
-				    	member.setSettings(SettingsComposite.getInstance(settings));
-				    }
-			    }
 		    } finally {
 	            pm.close();
 	        }

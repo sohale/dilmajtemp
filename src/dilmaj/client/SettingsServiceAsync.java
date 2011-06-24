@@ -13,4 +13,6 @@ public interface SettingsServiceAsync {
 	void create(MemberComposite userVO,
 			AsyncCallback<SettingsComposite> callback);
 
+	void find(String username, AsyncCallback<SettingsComposite> callback);
+
 }

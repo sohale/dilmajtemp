@@ -33,13 +33,27 @@ public class SettingsServiceImpl extends RemoteServiceServlet implements Setting
 	public SettingsComposite update(SettingsComposite settingsVO) {
 		// TODO Auto-generated method stub
         PersistenceManager pm = PMF.get().getPersistenceManager();
-		Settings settings=new Settings(settingsVO);
-		settings.setId(settingsVO.getId());
+		Settings settings=null;
+
+		String query = "select from " + Settings.class.getName()+" where username=='"+settingsVO.getUser()+"'";//+" and activator=="+userVO.getActivator();
+	    List<Settings> allSettings = (List<Settings>) pm.newQuery(query).execute();
+	    if (allSettings!=null) {
+		    if (allSettings.size()>0) {
+		    	settings=allSettings.get(0);
+		    }
+	    }
+	    
+	    if (settings==null) {
+	    	return null;
+	    }
+	    settings.setTermsPerPage(settingsVO.getTermsPerPage());
+	    
         try {
             pm.makePersistent(settings);
         } finally {
             pm.close();
         }
+        
         return settingsVO;
 	}
 
@@ -55,8 +69,26 @@ public class SettingsServiceImpl extends RemoteServiceServlet implements Setting
         } finally {
             pm.close();
         }
-		SettingsComposite settingsVO=SettingsComposite.getInstance(settings);
+		SettingsComposite settingsVO=new SettingsComposite(settings);
 
 		return settingsVO;
+	}
+
+	@Override
+	public SettingsComposite find(String username) {
+		// TODO Auto-generated method stub
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        
+	    String query = "select from " + Settings.class.getName()+" where username=='"+username+"'";//+" and activator=="+userVO.getActivator();
+	    List<Settings> allSettings = (List<Settings>) pm.newQuery(query).execute();
+	    if (allSettings!=null) {
+		    if (allSettings.size()>0) {
+		    	Settings settings=allSettings.get(0);
+		    	SettingsComposite settingsVO=new SettingsComposite(settings);
+		    	return settingsVO;
+		    }
+	    }
+	    
+	    return null;
 	}
 }

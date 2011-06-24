@@ -12,27 +12,15 @@ public class SettingsComposite implements IsSerializable {
 	protected String username;
 	protected Long id;
 	protected int termsPerPage;
-	private static HashMap<String, SettingsComposite> allSettings=new HashMap<String, SettingsComposite>();
 	
-	public static SettingsComposite getInstance(Settings settings) {
-		String username=settings.getUsername();
-		SettingsComposite theInstance=allSettings.get(username);
-		if (theInstance==null) {
-			theInstance=new SettingsComposite(settings);
-			theInstance.username=username;
-			allSettings.put(username, theInstance);
-		}
-		
-		return theInstance;
-	}
-	
-	private SettingsComposite() {
+	public SettingsComposite() {
 		
 	}
 	
-	private SettingsComposite(Settings settings) {
+	public SettingsComposite(Settings settings) {
 		id=settings.getId();
 		termsPerPage=settings.getTermsPerPage();
+		username=settings.getUsername();
 	}
 	
 	public void setUsername(String username) {

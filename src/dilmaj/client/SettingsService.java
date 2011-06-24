@@ -10,4 +10,5 @@ import dilmaj.shared.SettingsComposite;
 public interface SettingsService extends RemoteService {
 	SettingsComposite update(SettingsComposite settingsVO);
 	SettingsComposite create(MemberComposite userVO);
+	SettingsComposite find(String username);
 }
