@@ -32,6 +32,8 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	private int termsPerPage=2;
 	private int currentIndex=0;
 	
+	private Button nextButton=new Button("next");
+	
 	private static TermSuggestionsPanel theInstance=null;
 	
 	public static TermSuggestionsPanel getInstance() {
@@ -45,6 +47,9 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 		if (settingsVO!=null)
 			termsPerPage=settingsVO.getTermsPerPage();
 		add(tsTable);
+		add(nextButton);
+		TermSuggestionController controller=new TermSuggestionController(this);
+		nextButton.addClickHandler(controller);
 	}
 	
 	public void browseFirst() {
