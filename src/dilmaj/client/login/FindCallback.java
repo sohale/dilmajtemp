@@ -41,7 +41,7 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			termSvc.getMyTerms(new LoadMyTermsCallback());
 			SettingsComposite settingsVO=result.getSettings();
 			if (settingsVO==null) {
-				settingsSvc.create(result.getUsername(), new CreateSettingsCallback(result));
+				settingsSvc.create(result, new CreateSettingsCallback(result));
 			} else {
 				SettingsPanel.getInstance().setSettings(settingsVO);
 			}

@@ -2,31 +2,45 @@ package dilmaj.shared;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 import dilmaj.client.domain.Settings;
 
 public class SettingsComposite implements IsSerializable {
-	protected MemberComposite theUser;
+	protected String username;
 	protected Long id;
 	protected int termsPerPage;
+	private static HashMap<String, SettingsComposite> allSettings=new HashMap<String, SettingsComposite>();
 	
-	public SettingsComposite() {
+	public static SettingsComposite getInstance(Settings settings) {
+		String username=settings.getUsername();
+		SettingsComposite theInstance=allSettings.get(username);
+		if (theInstance==null) {
+			theInstance=new SettingsComposite(settings);
+			theInstance.username=username;
+			allSettings.put(username, theInstance);
+		}
+		
+		return theInstance;
+	}
+	
+	private SettingsComposite() {
 		
 	}
 	
-	public SettingsComposite(Settings settings) {
+	private SettingsComposite(Settings settings) {
 		id=settings.getId();
 		termsPerPage=settings.getTermsPerPage();
 	}
 	
-	public void setMember(MemberComposite memberVO) {
-		theUser=memberVO;
+	public void setUsername(String username) {
+		this.username=username;
 	}
 	
-	public MemberComposite getUser() {
-		return theUser;
+	public String getUser() {
+		return username;
 	}
 
 	public Long getId() {

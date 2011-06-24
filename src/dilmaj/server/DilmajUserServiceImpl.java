@@ -63,7 +63,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 	    User user=allUsers.get(0); //Get the first entry
 	    String activator=user.getActivator(); //Has user activated?
 
-	    member=new MemberComposite(user); //copies all fields
+	    member=MemberComposite.getInstance(user); //copies all fields
 	    
 	    // exceptions for activation: activate all.
 	    if (activator.compareToIgnoreCase("activator")!=0) {
@@ -76,7 +76,8 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 			    List<Settings> allSettings = (List<Settings>) pm.newQuery(query).execute();
 			    if (allSettings!=null) {
 				    if (allSettings.size()==1) {
-				    	member.setSettings(new SettingsComposite(allSettings.get(0)));
+				    	Settings settings=allSettings.get(0);
+				    	member.setSettings(SettingsComposite.getInstance(settings));
 				    }
 			    }
 		    } finally {

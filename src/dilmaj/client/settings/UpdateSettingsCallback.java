@@ -25,8 +25,6 @@ public class UpdateSettingsCallback implements AsyncCallback<SettingsComposite> 
 
 	@Override
 	public void onSuccess(SettingsComposite result) {
-		// TODO Auto-generated method stub
-		//panel.setMessage(new MessageComposite(result.getId()+""));
-		//panel.updateTermSuggestionRank(result);
+		panel.setSettings(result);
 	}
 }

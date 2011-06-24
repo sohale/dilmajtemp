@@ -22,6 +22,7 @@ import dilmaj.client.domain.TermSuggestion;
 import dilmaj.client.domain.Term;
 import dilmaj.client.domain.User;
 import dilmaj.shared.LikeComposite;
+import dilmaj.shared.MemberComposite;
 import dilmaj.shared.SettingsComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
@@ -43,10 +44,10 @@ public class SettingsServiceImpl extends RemoteServiceServlet implements Setting
 	}
 
 	@Override
-	public SettingsComposite create(String username) {
+	public SettingsComposite create(MemberComposite userVO) {
 		// TODO Auto-generated method stub
 		Settings settings=new Settings();
-		settings.setUsername(username);
+		settings.setUsername(userVO.getUsername());
 		
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
@@ -54,7 +55,7 @@ public class SettingsServiceImpl extends RemoteServiceServlet implements Setting
         } finally {
             pm.close();
         }
-		SettingsComposite settingsVO=new SettingsComposite(settings);
+		SettingsComposite settingsVO=SettingsComposite.getInstance(settings);
 
 		return settingsVO;
 	}

@@ -39,13 +39,13 @@ public class SettingsController extends Controller {
 		
 		if (parent!=null) { //if popped out, hide it
 			try {
-				panel.update();
-				PopupPanel popup=(PopupPanel)parent;
-				popup.hide();
 				if (sourceTitle.compareTo(constants.confirm())==0) {
+					panel.update();
 					TermSuggestionsPanel.getInstance().browseFirst();
 					settingsSvc.update(panel.getSettings(), new UpdateSettingsCallback(panel));
 				}
+				PopupPanel popup=(PopupPanel)parent;
+				popup.hide();
 			} catch (ClassCastException cce) {
 			}
 		} else {

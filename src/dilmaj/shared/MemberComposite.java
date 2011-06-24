@@ -1,5 +1,7 @@
 package dilmaj.shared;
 
+import java.util.HashMap;
+
 import dilmaj.client.domain.User;
 
 public class MemberComposite extends UserComposite {
@@ -11,11 +13,22 @@ public class MemberComposite extends UserComposite {
 	protected String activator;
 	protected SettingsComposite settings;
 	
+	private static HashMap<String, MemberComposite> allMembers=new HashMap<String, MemberComposite>();
+	
+	public static MemberComposite getInstance(User theUser) {
+		MemberComposite memberVO=allMembers.get(theUser.getUsername());
+		if (memberVO==null) {
+			memberVO=new MemberComposite(theUser);
+			allMembers.put(theUser.getUsername(), memberVO);
+		}
+		return memberVO;
+	}
+	
 	public MemberComposite() {
 		
 	}
 	
-	public MemberComposite(User newUser) {
+	private MemberComposite(User newUser) {
 		this.id=newUser.getId();
 		this.username=newUser.getUsername();
 		this.password=newUser.getPassword();

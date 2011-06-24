@@ -20,7 +20,7 @@ public class Settings {
     protected Long id;
 
     public Settings(SettingsComposite settingsVO) {
-		username=settingsVO.getUser().getUsername();
+		username=settingsVO.getUser();
 		termsPerPage=settingsVO.getTermsPerPage();
 	}
 	

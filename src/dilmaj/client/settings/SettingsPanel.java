@@ -72,6 +72,7 @@ public class SettingsPanel extends VerticalPanel {
 	}
 	
 	public void update() {
-		settingsVO.setTermsPerpage(Integer.parseInt(termsBox.getText()));
+		int tpp=Integer.parseInt(termsBox.getText());
+		settingsVO.setTermsPerpage(tpp);
 	}
 }

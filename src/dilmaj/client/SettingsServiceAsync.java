@@ -2,6 +2,7 @@ package dilmaj.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import dilmaj.shared.MemberComposite;
 import dilmaj.shared.SettingsComposite;
 
 public interface SettingsServiceAsync {
@@ -9,6 +10,7 @@ public interface SettingsServiceAsync {
 	void update(SettingsComposite settingsVO,
 			AsyncCallback<SettingsComposite> callback);
 
-	void create(String username, AsyncCallback<SettingsComposite> callback);
+	void create(MemberComposite userVO,
+			AsyncCallback<SettingsComposite> callback);
 
 }
