@@ -17,7 +17,7 @@ public interface DilmajUserServiceAsync {
 
 	void update(MemberComposite userVO, AsyncCallback<MemberComposite> callback);
 
-	void getLoggedUser(AsyncCallback<String> callback);
+	void getLoggedUser(AsyncCallback<MemberComposite> callback);
 
 	void logout(AsyncCallback<Void> callback);
 }

@@ -14,5 +14,5 @@ public interface DilmajUserService extends RemoteService {
 	MemberComposite find(MemberComposite userVO);
 	MemberComposite update(MemberComposite userVO);
 	void logout();
-	String getLoggedUser();
+	MemberComposite getLoggedUser();
 }

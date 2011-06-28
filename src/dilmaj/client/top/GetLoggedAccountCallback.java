@@ -1,15 +1,20 @@
 package dilmaj.client.top;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dilmaj.client.MyPanel;
+import dilmaj.client.SettingsService;
+import dilmaj.client.SettingsServiceAsync;
 import dilmaj.client.insert_term.InsertTermController;
 import dilmaj.client.insert_term.InsertTermPanel;
+import dilmaj.client.login.FindSettingsCallback;
 import dilmaj.shared.EmailComposite;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
 	
-public class GetLoggedAccountCallback implements AsyncCallback<String> {
+public class GetLoggedAccountCallback implements AsyncCallback<MemberComposite> {
+	private SettingsServiceAsync settingsSvc = GWT.create(SettingsService.class);
 	InsertTermPanel termPanel=null;
 	InsertTermController termController;
 	String termCaption;
@@ -33,10 +38,11 @@ public class GetLoggedAccountCallback implements AsyncCallback<String> {
 	}
 
 	@Override
-	public void onSuccess(String result) {
+	public void onSuccess(MemberComposite result) {
 		// TODO Auto-generated method stub
 		if (result!=null) {
-			TopMenu.getInstance().login(result);
+			TopMenu.getInstance().login(result.getUsername());
+			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
 		}
 		
 		/*if (termPanel!=null)
