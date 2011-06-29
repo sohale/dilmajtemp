@@ -53,14 +53,15 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	}
 	
 	public void browseFirst() {
-		SettingsComposite settingsVO=SettingsPanel.getInstance().getSettings();
-		if (settingsVO!=null)
-			termsPerPage=settingsVO.getTermsPerPage();
 		currentIndex=0;
 		browseNext();
 	}
 	
 	public void browseNext() {
+		SettingsComposite settingsVO=SettingsPanel.getInstance().getSettings();
+		if (settingsVO!=null)
+			termsPerPage=settingsVO.getTermsPerPage();
+		
 		tsTable.clear();
 		
 		int i;
@@ -76,7 +77,7 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 			}
 		}
 		
-		currentIndex+=i;
+		currentIndex=i;
 		if (currentIndex>=rows.size())
 			currentIndex=0;
 	}
