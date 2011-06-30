@@ -2,6 +2,8 @@ package dilmaj.client.settings;
 
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.top.TopMenu;
+import dilmaj.client.welcome.AllTermsPanel;
+import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SettingsComposite;
@@ -59,12 +61,12 @@ public class SettingsPanel extends VerticalPanel {
 	public void setSettings(SettingsComposite settings) {
 		settingsVO=settings;
 		if (settings!=null) {
-			//label.setText(settings.getId()+"");
 			termsBox.setText(settings.getTermsPerPage()+"");
 		} else {
-			//label.setText("");
 			termsBox.setText("");
 		}
+		//TermSuggestionsPanel.getInstance().browseFirst();
+		AllTermsPanel.getInstance().browseFirst();
 	}
 	
 	public SettingsComposite getSettings() {
@@ -74,5 +76,11 @@ public class SettingsPanel extends VerticalPanel {
 	public void update() {
 		int tpp=Integer.parseInt(termsBox.getText());
 		settingsVO.setTermsPerpage(tpp);
+	}
+	
+	public int getTermsPerPage() {
+		if (settingsVO==null)
+			return 10;
+		return settingsVO.getTermsPerPage();
 	}
 }

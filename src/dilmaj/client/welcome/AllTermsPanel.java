@@ -13,65 +13,96 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
 
+import dilmaj.client.TableRow;
 import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
+import dilmaj.client.settings.SettingsPanel;
 import dilmaj.shared.*;
 
 public class AllTermsPanel extends HorizontalPanel {
 	private FlexTable termsTable=new FlexTable();
-	//private HashMap<Long, TermComposite> allTerms;
-	//private WelcomeController controller;
-	//private InsertSuggestionPanel insertPanel;
-	private TermSuggestionsPanel tsPanel;
+	private List<TableRow> rows=new ArrayList<TableRow>();
+
+	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
+	private int currentIndex=0;
 	
-	public AllTermsPanel(TermSuggestionsPanel tsPanel) {
+	private Button nextButton=new Button("next");
+	
+	private static AllTermsPanel theInstance=null;
+	
+	public static AllTermsPanel getInstance() {
+		if (theInstance==null)
+			theInstance=new AllTermsPanel();
+		
+		return theInstance;
+	}
+	
+	private AllTermsPanel() {
 		add(termsTable);
-		//this.insertPanel=insertPanel;
-		this.tsPanel=tsPanel;
-		//controller=new WelcomeController(this, insertPanel);
+		add(nextButton);
+		AllTermsController controller=new AllTermsController(this);
+		nextButton.addClickHandler(controller);
 		AllTerms.TheInstance.setAllTermsPanel(this);
-		//while (!AllTerms.TheInstance.isLoaded()) {}
-		//populateTable();
+	}
+	
+	public void browseFirst() {
+		currentIndex=0;
+		browseNext();
+		TermSuggestionsPanel.getInstance().browseFirst();
+	}
+	
+	public void browseNext() {
+		termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
+		
+		termsTable.clear();
+		
+		int i;
+		int row=0;
+		for (i=currentIndex;i<currentIndex+termsPerPage && i<rows.size();i++) {
+			Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
+			
+			int col=0;
+			while (widgetIterator.hasNext()) {
+				Widget widget=widgetIterator.next();
+				
+				termsTable.setWidget(row, col, widget);
+				col++;
+			}
+			
+			row++;
+		}
+		
+		currentIndex=i;
+		if (currentIndex>=rows.size())
+			currentIndex=0;
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {
 		TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(newTerm);
-		termsTable.setWidget(AllTerms.TheInstance.getTerms().size(), 0, termPanel);
+		//termsTable.setWidget(AllTerms.TheInstance.getTerms().size(), 0, termPanel);
+		TableRow tableRow=new TableRow();
+		tableRow.addWidget(termPanel);
+		rows.add(tableRow);
 	}
-	
-	/*public List<TermComposite> getSome(String captionFilter) {
-		List<TermComposite> someTerms=new ArrayList<TermComposite>();
-		
-		Iterator<Long> iterator=allTerms.keySet().iterator();
-		while (iterator.hasNext()) {
-			Long key=iterator.next();
-			TermComposite term=allTerms.get(key);
-			String caption=term.getCaption();
-			
-			if (caption!=null)
-				if (caption.startsWith(captionFilter))
-					someTerms.add(term);
-		}
-		
-		return someTerms;
-	}*/
 
 	public void populateTable() {
 		// TODO Auto-generated method stub
-		//allTerms=AllTerms.TheInstance.getTerms();
-		
 		Iterator<Long> iterator=AllTerms.TheInstance.getTerms().keySet().iterator();
-		int row=0;
 		while (iterator.hasNext()) {
 			Long key=iterator.next();
-			TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(AllTerms.TheInstance.getTerms().get(key));
-			/*TermButton termButton=new TermButton(allTerms.get(key));
-			termButton.addClickHandler(controller);*/
-			termsTable.setWidget(row++, 0, termPanel);
+			TermComposite termComposite=AllTerms.TheInstance.getTerms().get(key);
+			if (termComposite.getSuggestions().size()==0) {
+				TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(termComposite);
+				TableRow tableRow=new TableRow();
+				tableRow.addWidget(termPanel);
+				rows.add(tableRow);
+			}
 		}
 		
-		tsPanel.populateTable();
-		tsPanel.browseNext();
+		TermSuggestionsPanel.getInstance().populateTable();
+		//tsPanel.browseNext();
+		//browseFirst();
 	}
 }

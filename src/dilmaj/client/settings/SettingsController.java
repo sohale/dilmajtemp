@@ -7,6 +7,7 @@ import dilmaj.client.SettingsService;
 import dilmaj.client.SettingsServiceAsync;
 import dilmaj.client.TermSuggestionService;
 import dilmaj.client.TermSuggestionServiceAsync;
+import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
@@ -41,7 +42,6 @@ public class SettingsController extends Controller {
 			try {
 				if (sourceTitle.compareTo(constants.confirm())==0) {
 					panel.update();
-					TermSuggestionsPanel.getInstance().browseFirst();
 					settingsSvc.update(panel.getSettings(), new UpdateSettingsCallback(panel));
 				}
 				PopupPanel popup=(PopupPanel)parent;

@@ -29,7 +29,7 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	private AllTermsPanel allTermsPanel;
 	private List<TableRow> rows=new ArrayList<TableRow>();
 	
-	private int termsPerPage=2;
+	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 	private int currentIndex=0;
 	
 	private Button nextButton=new Button("next");
@@ -58,13 +58,12 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	}
 	
 	public void browseNext() {
-		SettingsComposite settingsVO=SettingsPanel.getInstance().getSettings();
-		if (settingsVO!=null)
-			termsPerPage=settingsVO.getTermsPerPage();
+		termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 		
 		tsTable.clear();
 		
 		int i;
+		int row=0;
 		for (i=currentIndex;i<currentIndex+termsPerPage && i<rows.size();i++) {
 			Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
 			
@@ -72,9 +71,11 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 			while (widgetIterator.hasNext()) {
 				Widget widget=widgetIterator.next();
 				
-				tsTable.setWidget(i, col, widget);
+				tsTable.setWidget(row, col, widget);
 				col++;
 			}
+			
+			row++;
 		}
 		
 		currentIndex=i;
@@ -99,7 +100,7 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 				tableRow.addWidget(termPanel);
 				
 				//int col=1;
-				while (tsIterator.hasNext()) {
+				/*while (tsIterator.hasNext()) {
 					TermComposite suggestionVO=tsIterator.next().getSuggestion();
 					TermSummaryPanel suggestionPanel=TermSummaryPanel.getSummaryPanel(suggestionVO);
 					//tsTable.setWidget(row, col, suggestionPanel);
@@ -107,10 +108,12 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 					tableRow.addWidget(suggestionPanel);
 					
 					//col++;
-				}
+				}*/
 				rows.add(tableRow);
 				//row++;
 			}
 		}
+		
+		AllTermsPanel.getInstance().browseFirst();
 	}
 }
