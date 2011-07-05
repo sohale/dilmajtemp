@@ -27,8 +27,10 @@ public class AllTermsPanel extends HorizontalPanel {
 
 	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 	private int currentIndex=0;
+	private int prevIndex;
 	
 	private Button nextButton=new Button("next");
+	private Button prevButton=new Button("prev");
 	
 	private static AllTermsPanel theInstance=null;
 	
@@ -42,13 +44,16 @@ public class AllTermsPanel extends HorizontalPanel {
 	private AllTermsPanel() {
 		add(termsTable);
 		add(nextButton);
+		add(prevButton);
 		AllTermsController controller=new AllTermsController(this);
 		nextButton.addClickHandler(controller);
+		prevButton.addClickHandler(controller);
 		AllTerms.TheInstance.setAllTermsPanel(this);
 	}
 	
 	public void browseFirst() {
 		currentIndex=0;
+		prevIndex=rows.size()-1;
 		browseNext();
 		TermSuggestionsPanel.getInstance().browseFirst();
 	}
@@ -77,6 +82,32 @@ public class AllTermsPanel extends HorizontalPanel {
 		currentIndex=i;
 		if (currentIndex>=rows.size())
 			currentIndex=0;
+	}
+	
+	public void browsePrev() {
+		termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
+		
+		termsTable.clear();
+		
+		int i;
+		int row=0;
+		for (i=prevIndex;i>prevIndex-termsPerPage && i>=0;i--) {
+			Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
+			
+			int col=0;
+			while (widgetIterator.hasNext()) {
+				Widget widget=widgetIterator.next();
+				
+				termsTable.setWidget(row, col, widget);
+				col++;
+			}
+			
+			row++;
+		}
+		
+		prevIndex=i;
+		if (prevIndex<0)
+			prevIndex=rows.size()-1;
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {

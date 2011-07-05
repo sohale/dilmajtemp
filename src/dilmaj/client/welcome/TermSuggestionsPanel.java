@@ -31,8 +31,10 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	
 	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 	private int currentIndex=0;
+	private int prevIndex;
 	
 	private Button nextButton=new Button("next");
+	private Button prevButton=new Button("prev");
 	
 	private static TermSuggestionsPanel theInstance=null;
 	
@@ -48,12 +50,15 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 			termsPerPage=settingsVO.getTermsPerPage();
 		add(tsTable);
 		add(nextButton);
+		add(prevButton);
 		TermSuggestionController controller=new TermSuggestionController(this);
 		nextButton.addClickHandler(controller);
+		prevButton.addClickHandler(controller);
 	}
 	
 	public void browseFirst() {
 		currentIndex=0;
+		prevIndex=rows.size()-1;
 		browseNext();
 	}
 	
@@ -80,6 +85,39 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 		
 		currentIndex=i;
 		if (currentIndex>=rows.size())
+			currentIndex=0;
+	}
+	
+	public void browsePrev() {
+		termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
+		
+		tsTable.clear();
+		
+		int i;
+		int row=0;
+		int startIndex, endIndex;
+		endIndex=currentIndex-termsPerPage-1;
+		startIndex=endIndex-termsPerPage;
+		if (endIndex<0) {
+			endIndex=rows.size()-1;
+			startIndex=endIndex - (rows.size() % termsPerPage)+1;
+		}
+		for (i=startIndex;i<=endIndex;i++) {
+			Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
+			
+			int col=0;
+			while (widgetIterator.hasNext()) {
+				Widget widget=widgetIterator.next();
+				
+				tsTable.setWidget(row, col, widget);
+				col++;
+			}
+			
+			row++;
+		}
+		
+		currentIndex=i;
+		if (currentIndex>=0)
 			currentIndex=0;
 	}
 	
