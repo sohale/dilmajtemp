@@ -91,7 +91,15 @@ public class AllTermsPanel extends HorizontalPanel {
 		
 		int i;
 		int row=0;
-		for (i=prevIndex;i>prevIndex-termsPerPage && i>=0;i--) {
+		
+		if (currentIndex==0)
+			currentIndex=(rows.size()/termsPerPage)*termsPerPage-termsPerPage;
+		else if (currentIndex==termsPerPage)
+			currentIndex=(rows.size()/termsPerPage)*termsPerPage;
+		else
+			currentIndex=currentIndex-2*termsPerPage;
+		
+		for (i=currentIndex;i<currentIndex+termsPerPage && i<rows.size();i++) {
 			Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
 			
 			int col=0;
@@ -105,9 +113,9 @@ public class AllTermsPanel extends HorizontalPanel {
 			row++;
 		}
 		
-		prevIndex=i;
-		if (prevIndex<0)
-			prevIndex=rows.size()-1;
+		currentIndex=i;
+		if (currentIndex>=rows.size())
+			currentIndex=0;
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {

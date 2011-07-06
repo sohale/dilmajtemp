@@ -95,14 +95,15 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 		
 		int i;
 		int row=0;
-		int startIndex, endIndex;
-		endIndex=currentIndex-termsPerPage-1;
-		startIndex=endIndex-termsPerPage;
-		if (endIndex<0) {
-			endIndex=rows.size()-1;
-			startIndex=endIndex - (rows.size() % termsPerPage)+1;
-		}
-		for (i=startIndex;i<=endIndex;i++) {
+		
+		if (currentIndex==0)
+			currentIndex=(rows.size()/termsPerPage)*termsPerPage-termsPerPage;
+		else if (currentIndex==termsPerPage)
+			currentIndex=(rows.size()/termsPerPage)*termsPerPage;
+		else
+			currentIndex=currentIndex-2*termsPerPage;
+		
+		for (i=currentIndex;i<currentIndex+termsPerPage && i<rows.size();i++) {
 			Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
 			
 			int col=0;
@@ -117,7 +118,7 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 		}
 		
 		currentIndex=i;
-		if (currentIndex>=0)
+		if (currentIndex>=rows.size())
 			currentIndex=0;
 	}
 	
