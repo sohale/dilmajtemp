@@ -38,10 +38,9 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 	
 	private ResultsPanel(List<TermComposite> foundTerms) {
 		this.foundTerms=foundTerms;
-		
-		VerticalPanel mainPanel=new VerticalPanel();
 
 		Iterator<TermComposite> iterator=foundTerms.iterator();
+		VerticalPanel mainPanel=new VerticalPanel();
 		while (iterator.hasNext()) {
 			TermComposite aTerm=iterator.next();
 			//ResultsController controller=new ResultsController(this);

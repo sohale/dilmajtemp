@@ -13,15 +13,17 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.TermSummaryController;
 import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.shared.*;
 
-public class MyTermsPanel extends HorizontalPanel {
+public class MyTermsPanel extends VerticalPanel {
 	private FlexTable termsTable=new FlexTable();
 	private InsertSuggestionPanel insertPanel;
+	private int maxLength;
 	
 	public MyTermsPanel() {
 		add(termsTable);

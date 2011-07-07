@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import dilmaj.client.TableRow;
@@ -21,13 +22,12 @@ import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.shared.*;
 
-public class AllTermsPanel extends HorizontalPanel {
+public class AllTermsPanel extends VerticalPanel {
 	private FlexTable termsTable=new FlexTable();
 	private List<TableRow> rows=new ArrayList<TableRow>();
 
 	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 	private int currentIndex=0;
-	private int prevIndex;
 	
 	private Button nextButton=new Button("next");
 	private Button prevButton=new Button("prev");
@@ -43,8 +43,10 @@ public class AllTermsPanel extends HorizontalPanel {
 	
 	private AllTermsPanel() {
 		add(termsTable);
-		add(nextButton);
-		add(prevButton);
+		HorizontalPanel navigationPanel=new HorizontalPanel();
+		navigationPanel.add(prevButton);
+		navigationPanel.add(nextButton);
+		add(navigationPanel);
 		AllTermsController controller=new AllTermsController(this);
 		nextButton.addClickHandler(controller);
 		prevButton.addClickHandler(controller);
@@ -53,7 +55,6 @@ public class AllTermsPanel extends HorizontalPanel {
 	
 	public void browseFirst() {
 		currentIndex=0;
-		prevIndex=rows.size()-1;
 		browseNext();
 		TermSuggestionsPanel.getInstance().browseFirst();
 	}

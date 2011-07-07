@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import dilmaj.client.TableRow;
@@ -23,7 +24,7 @@ import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.shared.*;
 
-public class TermSuggestionsPanel extends HorizontalPanel {
+public class TermSuggestionsPanel extends VerticalPanel {
 	private FlexTable tsTable=new FlexTable();
 	private Set<TermComposite> termSet=new HashSet<TermComposite>();
 	private AllTermsPanel allTermsPanel;
@@ -37,6 +38,8 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	private Button prevButton=new Button("prev");
 	
 	private static TermSuggestionsPanel theInstance=null;
+	
+	private int maxLength;
 	
 	public static TermSuggestionsPanel getInstance() {
 		if (theInstance==null)
@@ -124,7 +127,6 @@ public class TermSuggestionsPanel extends HorizontalPanel {
 	
 	public void populateTable() {
 		Iterator<Long> iterator=AllTerms.TheInstance.getTerms().keySet().iterator();
-		//int row=0;
 		while (iterator.hasNext()) {
 			Long key=iterator.next();
 			TermComposite termVO=AllTerms.TheInstance.getTerms().get(key);
