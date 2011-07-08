@@ -17,9 +17,11 @@ public enum MyTerms {
 	}
 	
 	public void clear() {
-		myTerms.clear();
-		myTerms=null;
-		myPanel.populateTable();
+		if (myTerms!=null) {
+			myTerms.clear();
+			myTerms=null;
+			myPanel.populateTable();
+		}
 		isLoaded=false;
 	}
 	
@@ -36,6 +38,7 @@ public enum MyTerms {
 		
 		if (myPanel!=null && !isLoaded) {
 			myPanel.populateTable();
+			myPanel.browseFirst();
 			isLoaded=true;
 		}
 	}

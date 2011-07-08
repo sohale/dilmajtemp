@@ -88,35 +88,37 @@ public class AllTermsPanel extends VerticalPanel {
 	public void browsePrev() {
 		termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 		
-		termsTable.clear();
-		
-		int i;
-		int row=0;
-		
-		if (currentIndex==0)
-			currentIndex=(rows.size()/termsPerPage)*termsPerPage-termsPerPage;
-		else if (currentIndex==termsPerPage)
-			currentIndex=(rows.size()/termsPerPage)*termsPerPage;
-		else
-			currentIndex=currentIndex-2*termsPerPage;
-		
-		for (i=currentIndex;i<currentIndex+termsPerPage && i<rows.size();i++) {
-			Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
+		if (rows.size()>termsPerPage){
+			termsTable.clear();
 			
-			int col=0;
-			while (widgetIterator.hasNext()) {
-				Widget widget=widgetIterator.next();
+			int i;
+			int row=0;
+			
+			if (currentIndex==0)
+				currentIndex=(rows.size()/termsPerPage)*termsPerPage-termsPerPage;
+			else if (currentIndex==termsPerPage)
+				currentIndex=(rows.size()/termsPerPage)*termsPerPage;
+			else
+				currentIndex=currentIndex-2*termsPerPage;
+			
+			for (i=currentIndex;i<currentIndex+termsPerPage && i<rows.size();i++) {
+				Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
 				
-				termsTable.setWidget(row, col, widget);
-				col++;
+				int col=0;
+				while (widgetIterator.hasNext()) {
+					Widget widget=widgetIterator.next();
+					
+					termsTable.setWidget(row, col, widget);
+					col++;
+				}
+				
+				row++;
 			}
 			
-			row++;
+			currentIndex=i;
+			if (currentIndex>=rows.size())
+				currentIndex=0;
 		}
-		
-		currentIndex=i;
-		if (currentIndex>=rows.size())
-			currentIndex=0;
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {

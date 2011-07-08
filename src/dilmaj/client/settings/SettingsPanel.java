@@ -2,6 +2,7 @@ package dilmaj.client.settings;
 
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.top.TopMenu;
+import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.GlobalSettings;
@@ -67,6 +68,7 @@ public class SettingsPanel extends VerticalPanel {
 		}
 		//TermSuggestionsPanel.getInstance().browseFirst();
 		AllTermsPanel.getInstance().browseFirst();
+		MyTermsPanel.getInstance().browseFirst();
 	}
 	
 	public SettingsComposite getSettings() {

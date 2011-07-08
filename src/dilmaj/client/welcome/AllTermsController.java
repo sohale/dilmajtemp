@@ -25,5 +25,4 @@ public class AllTermsController extends Controller {
 		else
 			panel.browsePrev();
 	}
-
 }
