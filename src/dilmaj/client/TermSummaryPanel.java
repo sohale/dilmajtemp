@@ -30,7 +30,9 @@ public class TermSummaryPanel extends HorizontalPanel {
 	private TermSummaryPanel(TermComposite termVO, TermSummaryController controller) {
 		this.termVO=termVO;
 		button=new TermButton(termVO);
-		button.setText(termVO.getCaption());
+		String trail="";
+		String caption=termVO.getCaption();
+		button.setText(caption);
 		button.setTitle(termVO.getId()+"");
 		button.addClickHandler(controller);
 		add(button);

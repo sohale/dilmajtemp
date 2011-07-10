@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import dilmaj.client.TableRow;
@@ -21,7 +22,7 @@ import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.shared.*;
 
-public class AllTermsPanel extends HorizontalPanel {
+public class AllTermsPanel extends VerticalPanel {
 	private FlexTable termsTable=new FlexTable();
 	private List<TableRow> rows=new ArrayList<TableRow>();
 
@@ -29,6 +30,7 @@ public class AllTermsPanel extends HorizontalPanel {
 	private int currentIndex=0;
 	
 	private Button nextButton=new Button("next");
+	private Button prevButton=new Button("prev");
 	
 	private static AllTermsPanel theInstance=null;
 	
@@ -41,9 +43,13 @@ public class AllTermsPanel extends HorizontalPanel {
 	
 	private AllTermsPanel() {
 		add(termsTable);
-		add(nextButton);
+		HorizontalPanel navigationPanel=new HorizontalPanel();
+		navigationPanel.add(prevButton);
+		navigationPanel.add(nextButton);
+		add(navigationPanel);
 		AllTermsController controller=new AllTermsController(this);
 		nextButton.addClickHandler(controller);
+		prevButton.addClickHandler(controller);
 		AllTerms.TheInstance.setAllTermsPanel(this);
 	}
 	
@@ -77,6 +83,42 @@ public class AllTermsPanel extends HorizontalPanel {
 		currentIndex=i;
 		if (currentIndex>=rows.size())
 			currentIndex=0;
+	}
+	
+	public void browsePrev() {
+		termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
+		
+		if (rows.size()>termsPerPage){
+			termsTable.clear();
+			
+			int i;
+			int row=0;
+			
+			if (currentIndex==0)
+				currentIndex=(rows.size()/termsPerPage)*termsPerPage-termsPerPage;
+			else if (currentIndex==termsPerPage)
+				currentIndex=(rows.size()/termsPerPage)*termsPerPage;
+			else
+				currentIndex=currentIndex-2*termsPerPage;
+			
+			for (i=currentIndex;i<currentIndex+termsPerPage && i<rows.size();i++) {
+				Iterator<Widget> widgetIterator=rows.get(i).getWidgets().iterator();
+				
+				int col=0;
+				while (widgetIterator.hasNext()) {
+					Widget widget=widgetIterator.next();
+					
+					termsTable.setWidget(row, col, widget);
+					col++;
+				}
+				
+				row++;
+			}
+			
+			currentIndex=i;
+			if (currentIndex>=rows.size())
+				currentIndex=0;
+		}
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {

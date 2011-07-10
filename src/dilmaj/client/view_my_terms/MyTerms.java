@@ -1,6 +1,7 @@
 package dilmaj.client.view_my_terms;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 import dilmaj.shared.TermComposite;
 
@@ -16,9 +17,11 @@ public enum MyTerms {
 	}
 	
 	public void clear() {
-		myTerms.clear();
-		myTerms=null;
-		myPanel.populateTable();
+		if (myTerms!=null) {
+			myTerms.clear();
+			myTerms=null;
+			myPanel.populateTable();
+		}
 		isLoaded=false;
 	}
 	
@@ -32,8 +35,10 @@ public enum MyTerms {
 	
 	public void setTerms(HashMap<Long, TermComposite> terms) {
 		myTerms=terms;
+		
 		if (myPanel!=null && !isLoaded) {
 			myPanel.populateTable();
+			myPanel.browseFirst();
 			isLoaded=true;
 		}
 	}

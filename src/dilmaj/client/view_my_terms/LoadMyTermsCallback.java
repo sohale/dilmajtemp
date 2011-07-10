@@ -26,7 +26,7 @@ public class LoadMyTermsCallback implements AsyncCallback<HashMap<Long, TermComp
 	@Override
 	public void onSuccess(HashMap<Long, TermComposite> result) {
 		// TODO Auto-generated method stub
-		Window.alert("My terms loaded at callback : "+result.size());
+		//Window.alert("My terms loaded at callback : "+result.size());
 		MyTerms.TheInstance.setTerms(result);
 	}
 

@@ -57,6 +57,7 @@ public class ViewTermController extends Controller {
 			popup.hide();
 		if (caption.compareTo("add new suggestion")==0) {
 			InsertSuggestionPanel.getInstance().setTerm(viewTermPanel.getTerm());
+			InsertSuggestionPanel.getInstance().setVisible(true);
 		}
 	}
 
