@@ -42,6 +42,7 @@ public class InsertSuggestionPanel extends HorizontalPanel {
 		
 		insertButton.addClickHandler(controller);
 		
+		languageBox.addItem(GlobalSettings.constants.persian());
 		languageBox.addItem(GlobalSettings.constants.english());
 		languageBox.addItem(GlobalSettings.constants.french());
 		languageBox.addItem(GlobalSettings.constants.arabic());
