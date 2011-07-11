@@ -23,7 +23,8 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Terms")
 	  String terms();
-
+	  
+	  //adding persian language
 	  @DefaultStringValue("Areas")
 	  String areas();
 
