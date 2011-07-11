@@ -22,9 +22,11 @@ public class InsertSuggestionPanel extends HorizontalPanel {
 	
 	private InsertSuggestionController controller;
 	
-	private static InsertSuggestionPanel theInstance=new InsertSuggestionPanel();;
+	private static InsertSuggestionPanel theInstance=null;
 	
 	public static InsertSuggestionPanel getInstance() {
+		if (theInstance==null)
+			theInstance=new InsertSuggestionPanel();
 		return theInstance;
 	}
 	
