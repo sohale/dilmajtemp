@@ -6,6 +6,7 @@ import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.GlobalSettings;
+import dilmaj.shared.Language;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SettingsComposite;
 
@@ -14,6 +15,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -30,6 +32,9 @@ public class SettingsPanel extends VerticalPanel {
 	private Label termsLabel;
 	private TextBox termsBox;
 	
+	private ListBox sourceLanguageBox=new ListBox();
+	private ListBox targetLanguageBox=new ListBox();
+
 	private static SettingsPanel theInstance=null;
 	
 	public static SettingsPanel getInstance() {
@@ -50,6 +55,13 @@ public class SettingsPanel extends VerticalPanel {
 		termsBox=new TextBox();
 		add(termsBox);
 		
+		add(sourceLanguageBox);
+		add(targetLanguageBox);
+		for (String s : Language.getAllLanguages()) {
+			sourceLanguageBox.addItem(s);
+			targetLanguageBox.addItem(s);
+		}
+		
 		okButton.addClickHandler(controller);
 		add(okButton);
 	}
@@ -63,8 +75,12 @@ public class SettingsPanel extends VerticalPanel {
 		settingsVO=settings;
 		if (settings!=null) {
 			termsBox.setText(settings.getTermsPerPage()+"");
+			sourceLanguageBox.setSelectedIndex(settings.getSourceLanguage());
+			targetLanguageBox.setSelectedIndex(settings.getTargetLanguage());
 		} else {
 			termsBox.setText("");
+			sourceLanguageBox.setSelectedIndex(Language.getLanguageIndex("English"));
+			targetLanguageBox.setSelectedIndex(Language.getLanguageIndex("Persian"));
 		}
 		//TermSuggestionsPanel.getInstance().browseFirst();
 		AllTermsPanel.getInstance().browseFirst();
@@ -77,7 +93,11 @@ public class SettingsPanel extends VerticalPanel {
 	
 	public void update() {
 		int tpp=Integer.parseInt(termsBox.getText());
+		int sl=sourceLanguageBox.getSelectedIndex();
+		int tl=targetLanguageBox.getSelectedIndex();
 		settingsVO.setTermsPerpage(tpp);
+		settingsVO.setSourceLanguage(sl);
+		settingsVO.setTargetLanguage(tl);
 	}
 	
 	public int getTermsPerPage() {

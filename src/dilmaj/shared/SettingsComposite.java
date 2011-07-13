@@ -12,6 +12,8 @@ public class SettingsComposite implements IsSerializable {
 	protected String username;
 	protected Long id;
 	protected int termsPerPage;
+	protected int sourceLanguage;
+	protected int targetLanguage;
 	
 	public SettingsComposite() {
 		
@@ -21,6 +23,8 @@ public class SettingsComposite implements IsSerializable {
 		id=settings.getId();
 		termsPerPage=settings.getTermsPerPage();
 		username=settings.getUsername();
+		sourceLanguage=settings.getSourceLanguage();
+		targetLanguage=settings.getTargetLanguage();
 	}
 	
 	public void setUsername(String username) {
@@ -41,5 +45,25 @@ public class SettingsComposite implements IsSerializable {
 
 	public void setTermsPerpage(int parseInt) {
 		termsPerPage=parseInt;
+	}
+
+	public int getSourceLanguage() {
+		// TODO Auto-generated method stub
+		return sourceLanguage;
+	}
+
+	public int getTargetLanguage() {
+		// TODO Auto-generated method stub
+		return targetLanguage;
+	}
+
+	public void setSourceLanguage(int sl) {
+		// TODO Auto-generated method stub
+		sourceLanguage=sl;
+	}
+
+	public void setTargetLanguage(int tl) {
+		// TODO Auto-generated method stub
+		targetLanguage=tl;
 	}
 }

@@ -13,6 +13,12 @@ public class Settings {
 	String username;
     
     @Persistent
+	int sourceLanguage=0;
+    
+    @Persistent
+	int targetLanguage=0;
+    
+    @Persistent
     int termsPerPage; // indicates how many terms a user wishes to see in every page, the actual value would be 128+termsPerPage, range:{-128,127}, default is 10
     
     @PrimaryKey
@@ -22,6 +28,8 @@ public class Settings {
     public Settings(SettingsComposite settingsVO) {
 		username=settingsVO.getUser();
 		termsPerPage=settingsVO.getTermsPerPage();
+		sourceLanguage=settingsVO.getSourceLanguage();
+		targetLanguage=settingsVO.getTargetLanguage();
 	}
 	
     public Settings() {
@@ -50,5 +58,15 @@ public class Settings {
 	public void setTermsPerPage(int termsPerPage2) {
 		// TODO Auto-generated method stub
 		termsPerPage=termsPerPage2;
+	}
+
+	public int getSourceLanguage() {
+		// TODO Auto-generated method stub
+		return sourceLanguage;
+	}
+
+	public int getTargetLanguage() {
+		// TODO Auto-generated method stub
+		return targetLanguage;
 	}
 }

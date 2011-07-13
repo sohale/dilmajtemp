@@ -35,7 +35,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		User user=new User(userVO);
 		user.setActivator("permanent");//activator);
 		
-        PersistenceManager pm = PMF.get().getPersistenceManager();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             pm.makePersistent(user);
         } finally {
