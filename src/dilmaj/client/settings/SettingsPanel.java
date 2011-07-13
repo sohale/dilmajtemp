@@ -53,13 +53,14 @@ public class SettingsPanel extends VerticalPanel {
 		termsLabel=new Label("Number of terms in each page");
 		add(termsLabel);
 		termsBox=new TextBox();
+		termsBox.setText("10");
 		add(termsBox);
 		
 		add(sourceLanguageBox);
 		add(targetLanguageBox);
-		for (String s : Language.getAllLanguages()) {
-			sourceLanguageBox.addItem(s);
-			targetLanguageBox.addItem(s);
+		for (Language l : Language.values()) {
+			sourceLanguageBox.addItem(l.toString());
+			targetLanguageBox.addItem(l.toString());
 		}
 		
 		okButton.addClickHandler(controller);
@@ -78,9 +79,9 @@ public class SettingsPanel extends VerticalPanel {
 			sourceLanguageBox.setSelectedIndex(settings.getSourceLanguage());
 			targetLanguageBox.setSelectedIndex(settings.getTargetLanguage());
 		} else {
-			termsBox.setText("");
-			sourceLanguageBox.setSelectedIndex(Language.getLanguageIndex("English"));
-			targetLanguageBox.setSelectedIndex(Language.getLanguageIndex("Persian"));
+			termsBox.setText("10");
+			sourceLanguageBox.setSelectedIndex(Language.ENGLISH.indexOf());
+			targetLanguageBox.setSelectedIndex(Language.PERSIAN.indexOf());
 		}
 		//TermSuggestionsPanel.getInstance().browseFirst();
 		AllTermsPanel.getInstance().browseFirst();
