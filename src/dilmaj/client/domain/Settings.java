@@ -13,10 +13,10 @@ public class Settings {
 	String username;
     
     @Persistent
-	int sourceLanguage=0;
+	Integer sourceLanguage=0;
     
     @Persistent
-	int targetLanguage=0;
+	Integer targetLanguage=0;
     
     @Persistent
     int termsPerPage; // indicates how many terms a user wishes to see in every page, the actual value would be 128+termsPerPage, range:{-128,127}, default is 10
@@ -60,13 +60,23 @@ public class Settings {
 		termsPerPage=termsPerPage2;
 	}
 
-	public int getSourceLanguage() {
+	public Integer getSourceLanguage() {
 		// TODO Auto-generated method stub
 		return sourceLanguage;
 	}
 
-	public int getTargetLanguage() {
+	public Integer getTargetLanguage() {
 		// TODO Auto-generated method stub
 		return targetLanguage;
+	}
+
+	public void setSourceLanguage(int sourceLanguage2) {
+		// TODO Auto-generated method stub
+		sourceLanguage=sourceLanguage2;
+	}
+
+	public void setTargetLanguage(int targetLanguage2) {
+		// TODO Auto-generated method stub
+		targetLanguage=targetLanguage2;
 	}
 }

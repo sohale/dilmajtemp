@@ -1,6 +1,8 @@
 package dilmaj.client.settings;
 
 import dilmaj.client.DilmajConstants;
+import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
+import dilmaj.client.insert_term.InsertTermPanel;
 import dilmaj.client.top.TopMenu;
 import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.welcome.AllTermsPanel;
@@ -32,7 +34,9 @@ public class SettingsPanel extends VerticalPanel {
 	private Label termsLabel;
 	private TextBox termsBox;
 	
+	private Label sourceLabel=new Label("source language:");
 	private ListBox sourceLanguageBox=new ListBox();
+	private Label targetLabel=new Label("target language:");
 	private ListBox targetLanguageBox=new ListBox();
 
 	private static SettingsPanel theInstance=null;
@@ -56,7 +60,9 @@ public class SettingsPanel extends VerticalPanel {
 		termsBox.setText("10");
 		add(termsBox);
 		
+		add(sourceLabel);
 		add(sourceLanguageBox);
+		add(targetLabel);
 		add(targetLanguageBox);
 		for (Language l : Language.values()) {
 			sourceLanguageBox.addItem(l.toString());
@@ -86,6 +92,8 @@ public class SettingsPanel extends VerticalPanel {
 		//TermSuggestionsPanel.getInstance().browseFirst();
 		AllTermsPanel.getInstance().browseFirst();
 		MyTermsPanel.getInstance().browseFirst();
+		InsertTermPanel.getInstance().changeLanguage();
+		InsertSuggestionPanel.getInstance().changeLanguage();
 	}
 	
 	public SettingsComposite getSettings() {
@@ -105,5 +113,17 @@ public class SettingsPanel extends VerticalPanel {
 		if (settingsVO==null)
 			return 10;
 		return settingsVO.getTermsPerPage();
+	}
+	
+	public int getSourceLanguage() {
+		if (settingsVO==null)
+			return Language.ENGLISH.indexOf();
+		return settingsVO.getSourceLanguage();
+	}
+	
+	public int getTargetLanguage() {
+		if (settingsVO==null)
+			return Language.PERSIAN.indexOf();
+		return settingsVO.getTargetLanguage();
 	}
 }

@@ -47,6 +47,8 @@ public class SettingsServiceImpl extends RemoteServiceServlet implements Setting
 	    	return null;
 	    }
 	    settings.setTermsPerPage(settingsVO.getTermsPerPage());
+	    settings.setSourceLanguage(settingsVO.getSourceLanguage());
+	    settings.setTargetLanguage(settingsVO.getTargetLanguage());
 	    
         try {
             pm.makePersistent(settings);

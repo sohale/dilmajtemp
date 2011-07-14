@@ -23,8 +23,20 @@ public class SettingsComposite implements IsSerializable {
 		id=settings.getId();
 		termsPerPage=settings.getTermsPerPage();
 		username=settings.getUsername();
-		sourceLanguage=settings.getSourceLanguage();
-		targetLanguage=settings.getTargetLanguage();
+		
+		Integer sl, tl;
+		sl=settings.getSourceLanguage();
+		tl=settings.getTargetLanguage();
+		
+		if (sl==null)
+			sourceLanguage=Language.ENGLISH.indexOf();
+		else
+			sourceLanguage=settings.getSourceLanguage();
+		
+		if (tl==null)
+			targetLanguage=Language.PERSIAN.indexOf();
+		else
+			targetLanguage=settings.getTargetLanguage();
 	}
 	
 	public void setUsername(String username) {
