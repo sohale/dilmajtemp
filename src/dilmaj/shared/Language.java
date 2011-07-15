@@ -37,6 +37,23 @@ public enum Language {
 		return languageName;
 	}
 	
+	public static Language toString(int index) {
+		switch (index) {
+		case 0:
+			return UNKNOWN;
+		case 1:
+			return PERSIAN;
+		case 2:
+			return ENGLISH;
+		case 3:
+			return FRENCH;
+		case 4:
+			return ARABIC;
+		default:
+			return UNKNOWN;
+		}
+	}
+	
 	public abstract int indexOf();
 }
 	

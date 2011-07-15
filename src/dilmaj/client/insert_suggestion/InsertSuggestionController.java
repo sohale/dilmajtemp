@@ -21,8 +21,8 @@ public class InsertSuggestionController extends Controller implements ClickHandl
 	public InsertSuggestionController() {
 	}
 	
-	public void insertSuggestion(String caption, TermComposite term) {
-		TermComposite termVO=new TermComposite(caption);
+	public void insertSuggestion(String caption, TermComposite term, int language) {
+		TermComposite termVO=new TermComposite(caption, language);
 		
 		termSvc.addEntry(termVO, new InsertSuggestionCallback(insertPanel));
 	}
@@ -37,6 +37,9 @@ public class InsertSuggestionController extends Controller implements ClickHandl
 		// TODO Auto-generated method stub
 		insertPanel=(InsertSuggestionPanel)((Button)event.getSource()).getParent();
 		
-		insertSuggestion(insertPanel.getSuggestionCaption(), insertPanel.getTerm());
+		String caption=insertPanel.getSuggestionCaption();
+		int language=insertPanel.getLanguage();
+		
+		insertSuggestion(caption, insertPanel.getTerm(), language);
 	}
 }

@@ -83,4 +83,9 @@ public class InsertSuggestionPanel extends HorizontalPanel implements SettingsLi
 		// TODO Auto-generated method stub
 		languageBox.setSelectedIndex(SettingsPanel.getInstance().getTargetLanguage());
 	}
+
+	public int getLanguage() {
+		// TODO Auto-generated method stub
+		return languageBox.getSelectedIndex();
+	}
 }

@@ -24,11 +24,15 @@ public class Term {
 
     @Persistent
     protected Date timeStamp;
+    
+    @Persistent
+    protected Integer language;
 
 	public Term(TermComposite newTerm) {
 		caption=newTerm.getCaption();
 		timeStamp=newTerm.getTimeStamp();
 		username=newTerm.getUser();
+		language=newTerm.getLanguage();
 	}
 	
 	public Long getId() {
@@ -50,5 +54,13 @@ public class Term {
 
 	public void setTimestamp(Date timeStamp) {
 		this.timeStamp=timeStamp;
+	}
+	
+	public Integer getLanguage() {
+		return language;
+	}
+	
+	public void setLanguage(int newLanguage) {
+		language=newLanguage;
 	}
 }

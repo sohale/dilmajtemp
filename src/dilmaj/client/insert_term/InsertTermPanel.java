@@ -69,4 +69,9 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel, Setting
 		// TODO Auto-generated method stub
 		languageBox.setSelectedIndex(SettingsPanel.getInstance().getSourceLanguage());
 	}
+
+	public int getTermLanguage() {
+		// TODO Auto-generated method stub
+		return languageBox.getSelectedIndex();
+	}
 }

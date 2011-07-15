@@ -35,6 +35,8 @@ public class ViewTermPanel extends HorizontalPanel {
 	
 	private static HashMap<TermComposite,ViewTermPanel> viewTermPanels=new HashMap<TermComposite,ViewTermPanel>();
 	
+	private Label languageLabel;
+	
 	public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
 		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
 		if (viewTermPanel==null) {
@@ -54,6 +56,9 @@ public class ViewTermPanel extends HorizontalPanel {
 
 		termLabel=new Label(GlobalSettings.constants.term()+" "+theTerm.getCaption());
 		termPanel.add(termLabel);
+		
+		languageLabel=new Label(Language.toString(theTerm.getLanguage()).toString());
+		termPanel.add(languageLabel);
 		
 		suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
 		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());

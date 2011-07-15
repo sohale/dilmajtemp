@@ -18,8 +18,8 @@ public class InsertTermController extends Controller implements ClickHandler {
 		insertTermPanel=insertPanel;
 	}
 	
-	public void insertTerm(String caption) {
-		TermComposite termVO=new TermComposite(caption);
+	public void insertTerm(String caption, int language) {
+		TermComposite termVO=new TermComposite(caption, language);
 		
 		termSvc.addEntry(termVO, new InsertTermCallback(insertTermPanel));
 	}
@@ -34,7 +34,9 @@ public class InsertTermController extends Controller implements ClickHandler {
 		// TODO Auto-generated method stub
 		//insertTermPanel=(MyHorizontalPanel)().getParent();
 		//userSvc.getLoggedUser(new GetLoggedAccountCallback((InsertTermPanel)insertTermPanel, this, ((InsertTermPanel)insertTermPanel).getTermCaption()));
-		insertTerm(((InsertTermPanel)insertTermPanel).getTermCaption());
+		String caption=((InsertTermPanel)insertTermPanel).getTermCaption();
+		int language=((InsertTermPanel)insertTermPanel).getTermLanguage();
+		insertTerm(caption, language);
 		/*TermComposite termVO=insertTerm();*/
 	}
 }
