@@ -7,10 +7,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
+import dilmaj.client.SettingsListener;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.shared.*;
 
-public class InsertSuggestionPanel extends HorizontalPanel {
+public class InsertSuggestionPanel extends HorizontalPanel implements SettingsListener {
 	private Label termLabel=new Label(GlobalSettings.constants.term());
 	private Label equalLabel=new Label("=");
 	private Label selectedTerm=new Label("");
@@ -49,12 +50,10 @@ public class InsertSuggestionPanel extends HorizontalPanel {
 			languageBox.addItem(l.toString());
 		}
 
-		/*languageBox.addItem(GlobalSettings.constants.persian());
-		languageBox.addItem(GlobalSettings.constants.english());
-		languageBox.addItem(GlobalSettings.constants.french());
-		languageBox.addItem(GlobalSettings.constants.arabic());*/
 		languageBox.setVisibleItemCount(1);
 		languageBox.setSelectedIndex(SettingsPanel.getInstance().getTargetLanguage());
+		
+		SettingsPanel.getInstance().addChangeListener(this);
 	}
 	
 	public String getSuggestionCaption() {
@@ -79,7 +78,9 @@ public class InsertSuggestionPanel extends HorizontalPanel {
 		return controller;
 	}
 	
-	public void changeLanguage() {
+	@Override
+	public void onChange() {
+		// TODO Auto-generated method stub
 		languageBox.setSelectedIndex(SettingsPanel.getInstance().getTargetLanguage());
 	}
 }

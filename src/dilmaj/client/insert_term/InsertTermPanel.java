@@ -8,10 +8,11 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 
 import dilmaj.client.MyPanel;
+import dilmaj.client.SettingsListener;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.shared.*;
 
-public class InsertTermPanel extends HorizontalPanel implements MyPanel {
+public class InsertTermPanel extends HorizontalPanel implements MyPanel, SettingsListener {
 	private Label termLabel=new Label(GlobalSettings.constants.term());
 	private TextBox termBox=new TextBox();
 	private Button insertButton=new Button(GlobalSettings.constants.create());
@@ -42,12 +43,10 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel {
 			languageBox.addItem(l.toString());
 		}
 
-		/*languageBox.addItem(GlobalSettings.constants.persian());
-		languageBox.addItem(GlobalSettings.constants.english());
-		languageBox.addItem(GlobalSettings.constants.french());
-		languageBox.addItem(GlobalSettings.constants.arabic());*/
 		languageBox.setVisibleItemCount(1);
 		languageBox.setSelectedIndex(SettingsPanel.getInstance().getSourceLanguage());
+		
+		SettingsPanel.getInstance().addChangeListener(this);
 	}
 	
 	public String getTermCaption() {
@@ -65,7 +64,9 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel {
 		Window.alert(messageComposite.toString());
 	}
 	
-	public void changeLanguage() {
+	@Override
+	public void onChange() {
+		// TODO Auto-generated method stub
 		languageBox.setSelectedIndex(SettingsPanel.getInstance().getSourceLanguage());
 	}
 }

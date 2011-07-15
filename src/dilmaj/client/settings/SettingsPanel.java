@@ -1,6 +1,10 @@
 package dilmaj.client.settings;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import dilmaj.client.DilmajConstants;
+import dilmaj.client.SettingsListener;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.insert_term.InsertTermPanel;
 import dilmaj.client.top.TopMenu;
@@ -38,6 +42,8 @@ public class SettingsPanel extends VerticalPanel {
 	private ListBox sourceLanguageBox=new ListBox();
 	private Label targetLabel=new Label("target language:");
 	private ListBox targetLanguageBox=new ListBox();
+	
+	private Set<SettingsListener> settingsListeners=new HashSet<SettingsListener>();
 
 	private static SettingsPanel theInstance=null;
 	
@@ -90,10 +96,15 @@ public class SettingsPanel extends VerticalPanel {
 			targetLanguageBox.setSelectedIndex(Language.PERSIAN.indexOf());
 		}
 		//TermSuggestionsPanel.getInstance().browseFirst();
-		AllTermsPanel.getInstance().browseFirst();
-		MyTermsPanel.getInstance().browseFirst();
-		InsertTermPanel.getInstance().changeLanguage();
-		InsertSuggestionPanel.getInstance().changeLanguage();
+		
+		for (SettingsListener sl : settingsListeners) {
+			sl.onChange();
+		}
+		
+		//AllTermsPanel.getInstance().browseFirst();
+		//MyTermsPanel.getInstance().browseFirst();
+		//InsertTermPanel.getInstance().changeLanguage();
+		//InsertSuggestionPanel.getInstance().changeLanguage();
 	}
 	
 	public SettingsComposite getSettings() {
@@ -125,5 +136,9 @@ public class SettingsPanel extends VerticalPanel {
 		if (settingsVO==null)
 			return Language.PERSIAN.indexOf();
 		return settingsVO.getTargetLanguage();
+	}
+	
+	public void addChangeListener(SettingsListener settingsListener) {
+		settingsListeners.add(settingsListener);
 	}
 }

@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import dilmaj.client.SettingsListener;
 import dilmaj.client.TableRow;
 import dilmaj.client.TermSummaryController;
 import dilmaj.client.TermSummaryPanel;
@@ -24,7 +25,7 @@ import dilmaj.client.settings.SettingsPanel;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.*;
 
-public class MyTermsPanel extends VerticalPanel {
+public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 	private FlexTable termsTable=new FlexTable();
 	private List<TableRow> rows=new ArrayList<TableRow>();
 
@@ -56,6 +57,8 @@ public class MyTermsPanel extends VerticalPanel {
 		navigationPanel.add(prevButton);
 		navigationPanel.add(nextButton);
 		add(navigationPanel);
+		
+		SettingsPanel.getInstance().addChangeListener(this);
 	}
 	
 	public void populateTable() {
@@ -152,5 +155,13 @@ public class MyTermsPanel extends VerticalPanel {
 	
 	public boolean isLoggedIn() {
 		return isLoggedIn;
+	}
+
+	@Override
+	public void onChange() {
+		// TODO Auto-generated method stub
+		currentIndex=0;
+		browseNext();
+		TermSuggestionsPanel.getInstance().browseFirst();
 	}
 }
