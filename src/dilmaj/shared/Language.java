@@ -1,31 +1,52 @@
 package dilmaj.shared;
 
+import com.google.gwt.core.client.GWT;
+
+import dilmaj.client.DilmajConstants;
+
 public enum Language {
 	UNKNOWN("Unknown") {
 		public int indexOf() {
 			return 0;
+		}
+		public String toString() {
+			return constants.unknown();
 		}
 	},
 	PERSIAN("Persian") {
 		public int indexOf() {
 			return 1;
 		}
+		public String toString() {
+			return constants.persian();
+		}
 	},
 	ENGLISH("English") {
 		public int indexOf() {
 			return 2;
+		}
+		public String toString() {
+			return constants.english();
 		}
 	},
 	FRENCH("French") {
 		public int indexOf() {
 			return 3;
 		}
+		public String toString() {
+			return constants.french();
+		}
 	},
 	ARABIC("Arabic") {
 		public int indexOf() {
 			return 4;
 		}
+		public String toString() {
+			return constants.arabic();
+		}
 	};
+	
+	private static DilmajConstants constants = GWT.create(DilmajConstants.class);
 	
 	private final String languageName;
 	Language(String name) {
@@ -37,21 +58,15 @@ public enum Language {
 		return languageName;
 	}
 	
-	public static Language toString(int index) {
-		switch (index) {
-		case 0:
-			return UNKNOWN;
-		case 1:
-			return PERSIAN;
-		case 2:
-			return ENGLISH;
-		case 3:
-			return FRENCH;
-		case 4:
-			return ARABIC;
-		default:
-			return UNKNOWN;
+	public static Language getLanguage(int index) {
+		Language[] languages=values();
+		
+		for (Language language:languages) {
+			if (language.indexOf()==index)
+				return language;
 		}
+		
+		return UNKNOWN;
 	}
 	
 	public abstract int indexOf();

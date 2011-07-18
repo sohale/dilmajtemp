@@ -123,4 +123,7 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Persian")
 	  String persian();
+
+	  @DefaultStringValue("Unknown")
+	  String unknown();
 }

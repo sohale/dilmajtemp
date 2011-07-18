@@ -57,7 +57,7 @@ public class ViewTermPanel extends HorizontalPanel {
 		termLabel=new Label(GlobalSettings.constants.term()+" "+theTerm.getCaption());
 		termPanel.add(termLabel);
 		
-		languageLabel=new Label(Language.toString(theTerm.getLanguage()).toString());
+		languageLabel=new Label(Language.getLanguage(theTerm.getLanguage()).toString());
 		termPanel.add(languageLabel);
 		
 		suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
