@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 
 import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.shared.TermComposite;

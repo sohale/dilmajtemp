@@ -49,8 +49,8 @@ public class ViewSuggestionController extends Controller {
 				tsVO.increaseRank();
 			else if (buttonCaption.equals("-"))
 				tsVO.decreaseRank();
-			else
-				((PopupPanel)suggestionPanel.getParent()).hide();
+			/*else
+				((PopupPanel)suggestionPanel.getParent()).hide();*/
 			
 			if (!buttonCaption.equals("x"))
 				tsSvc.update(tsVO, new UpdateTermSuggestionCallback(suggestionPanel));

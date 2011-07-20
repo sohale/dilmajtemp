@@ -11,6 +11,7 @@ import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 
 import dilmaj.client.TermButton;
 import dilmaj.client.TermService;
@@ -69,7 +70,11 @@ public class ViewTermController extends Controller {
 		
 		TermSuggestionComposite tsVO=viewTermPanel.getSuggestion(label);
 		ViewSuggestionPanel sPanel=ViewSuggestionPanel.getInstance(tsVO);
-		PopupPanel sPopup=sPopups.get(sPanel);
+		
+		RootPanel.get("termDetails").clear();
+		RootPanel.get("termDetails").add(sPanel);
+
+		/*PopupPanel sPopup=sPopups.get(sPanel);
 		if (sPopup==null) {
 			sPopup=new PopupPanel();
 			int left=sourceLabel.getAbsoluteLeft();
@@ -78,7 +83,7 @@ public class ViewTermController extends Controller {
 			sPopup.add(sPanel);
 			sPopups.put(sPanel, sPopup);
 		}
-		sPopup.show();
+		sPopup.show();*/
 	}
 	
 	public void setPopup(PopupPanel popup) {
