@@ -50,7 +50,7 @@ public class LikeServiceImpl extends RemoteServiceServlet implements LikeService
     			return null;
     		
     		TermSuggestion ts=allTermSuggestions.get(0);
-    		ts.addLikeID(like.getId());
+    		ts.addInteractionID(like.getId());
             newLike.setId(like.getId());
             pm.makePersistent(ts);
             //tsVO.a

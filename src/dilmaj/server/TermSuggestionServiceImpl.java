@@ -13,6 +13,7 @@ import dilmaj.client.TermSuggestionService;
 import dilmaj.client.domain.Interaction;
 import dilmaj.client.domain.Term;
 import dilmaj.client.domain.TermSuggestion;
+import dilmaj.shared.CommentComposite;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
 import dilmaj.shared.TermComposite;
@@ -76,6 +77,10 @@ public class TermSuggestionServiceImpl extends RemoteServiceServlet  implements 
 							if (interaction.getKind().equals("like")) {
 								LikeComposite likeVO=new LikeComposite();
 								tsVO.addInteraction(likeVO);
+							}
+							if (interaction.getKind().equals("comment")) {
+								CommentComposite commentVO=new CommentComposite();
+								tsVO.addInteraction(commentVO);
 							}
 						}
 					}

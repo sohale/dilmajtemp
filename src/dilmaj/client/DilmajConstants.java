@@ -126,4 +126,7 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Unknown")
 	  String unknown();
+
+	  @DefaultStringValue("Said")
+	  String said();
 }

@@ -72,19 +72,19 @@ public class TermSuggestion {
 		return rank;
 	}
 	
-	public void addLikeID(Long likeID) {
+	public void addInteractionID(Long interactionID) {
 		if (interactionIDs==null)
 			interactionIDs=new ArrayList<Long>();
 		
-		Iterator<Long> likeIterator=interactionIDs.iterator();
-		while (likeIterator.hasNext()) {
-			Long anID=likeIterator.next();
+		Iterator<Long> interactionIterator=interactionIDs.iterator();
+		while (interactionIterator.hasNext()) {
+			Long anID=interactionIterator.next();
 			if (anID!=null)
-				if (anID.longValue()==likeID.longValue())
+				if (anID.longValue()==interactionID.longValue())
 					return;
 		}
 		
-		interactionIDs.add(new Long(likeID.longValue()));
+		interactionIDs.add(new Long(interactionID.longValue()));
 	}
 	
 	public void increaseRank() {

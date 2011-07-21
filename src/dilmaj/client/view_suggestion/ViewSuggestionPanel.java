@@ -6,15 +6,19 @@ import java.util.Iterator;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.MyPanel;
+import dilmaj.shared.CommentComposite;
 import dilmaj.shared.InteractionComposite;
+import dilmaj.shared.LikeComposite;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
@@ -42,6 +46,11 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	String votersString=constants.supporters()+": ";
 	ViewSuggestionController controller=new ViewSuggestionController(this);
 
+	FlexTable commentsTable=new FlexTable();
+	TextArea commentArea=new TextArea();
+	Button commentButton=new Button("Create Comment");
+	int commentsCounter=0;
+	
 	public static ViewSuggestionPanel getInstance(TermSuggestionComposite tsVO) {
 		ViewSuggestionPanel anInstance=allInstances.get(tsVO);
 		if (anInstance==null) {
@@ -69,15 +78,33 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 
 		closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
+		commentButton.addClickHandler(controller);
 		
 		suggestorLabel=new Label(constants.suggestor()+": "+suggestion.getUser());
 		
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
-			votersString=votersString.concat(ic.getUser()+", ");
+			try {
+				LikeComposite likeComposite=(LikeComposite)ic;
+				votersString=votersString.concat(ic.getUser()+", ");
+			}
+			catch (ClassCastException cce0) {
+				try {
+					CommentComposite commentComposite=(CommentComposite)ic;
+					commentsTable.setText(commentsCounter, 1, commentComposite.getUser()+constants.said());
+					commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
+				}
+				catch (ClassCastException cce1) {
+					
+				}
+			}
 		}
 		votersLabel=new Label(votersString);
+
+		add(commentsTable);
+		add(commentArea);
+		add(commentButton);
 		
 		add(suggestorLabel);
 		add(votersLabel);
@@ -99,7 +126,38 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		termSuggestion=tsVO;
 		//votesLabel.setText(termSuggestion.getRank()+"");
 		likesLabel.setText(termSuggestion.getLikes()+"");
-		votersString=votersString.concat(tsVO.getUser()+", ");
+
+		votersString="";
+		commentsCounter=0;
+		commentsTable.clear();
+		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
+		while (icIterator.hasNext()) {
+			InteractionComposite ic=icIterator.next();
+			try {
+				LikeComposite likeComposite=(LikeComposite)ic;
+				votersString=votersString.concat(ic.getUser()+", ");
+			}
+			catch (ClassCastException cce0) {
+				try {
+					CommentComposite commentComposite=(CommentComposite)ic;
+					commentsTable.setText(commentsCounter, 1, commentComposite.getUser()+constants.said());
+					commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
+				}
+				catch (ClassCastException cce1) {
+					
+				}
+			}
+		}
 		votersLabel.setText(votersString);
+	}
+
+	public void addComment(CommentComposite commentComposite) {
+		commentsTable.setText(commentsCounter, 1, commentComposite.getUser()+constants.said());
+		commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
+	}
+	
+	public String getComment() {
+		// TODO Auto-generated method stub
+		return commentArea.getText();
 	}
 }

@@ -16,6 +16,7 @@ import dilmaj.client.TermServiceAsync;
 import dilmaj.client.TermSuggestionService;
 import dilmaj.client.TermSuggestionServiceAsync;
 import dilmaj.client.view_term.ViewTermCallback;
+import dilmaj.shared.CommentComposite;
 import dilmaj.shared.Controller;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
@@ -45,12 +46,16 @@ public class ViewSuggestionController extends Controller {
 		} catch (ClassCastException cce0) {
 			Button sourceButton=(Button)source;
 			String buttonCaption=sourceButton.getText();
-			if (buttonCaption.equals("+"))
+			if (buttonCaption.equals("+")) {
 				tsVO.increaseRank();
-			else if (buttonCaption.equals("-"))
+			} else if (buttonCaption.equals("-")) {
 				tsVO.decreaseRank();
-			/*else
-				((PopupPanel)suggestionPanel.getParent()).hide();*/
+			} else if (buttonCaption.equals("Create Comment")) {
+				CommentComposite commentVO=new CommentComposite();
+				commentVO.setFeedback(suggestionPanel.getComment());
+				commentVO.setTermSuggestion(tsVO);
+				interactionSvc.create(commentVO, new CreateCommentCallback(suggestionPanel));
+			}
 			
 			if (!buttonCaption.equals("x"))
 				tsSvc.update(tsVO, new UpdateTermSuggestionCallback(suggestionPanel));

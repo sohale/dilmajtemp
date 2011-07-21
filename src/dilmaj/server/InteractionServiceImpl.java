@@ -20,10 +20,12 @@ import dilmaj.client.TermService;
 import dilmaj.client.domain.Interaction;
 import dilmaj.client.domain.TermSuggestion;
 import dilmaj.client.domain.Term;
+import dilmaj.shared.CommentComposite;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
+import dilmaj.shared.UseCaseComposite;
 
 public class InteractionServiceImpl extends RemoteServiceServlet implements InteractionService {
 
@@ -68,7 +70,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
     			return null;
     		
     		TermSuggestion ts=allTermSuggestions.get(0);
-    		ts.addLikeID(like.getId());
+    		ts.addInteractionID(like.getId());
             newLike.setId(like.getId());
             //newLike.setTimestamp(like.getTimestamp());
             pm.makePersistent(ts);
@@ -78,5 +80,55 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
         }
                 
 		return newLike;
+	}
+
+	@Override
+	public CommentComposite create(CommentComposite newComment) {
+		// TODO Auto-generated method stub
+		String username=(String)getThreadLocalRequest().getSession().getAttribute("loggedUser");
+		if (username==null)
+			return null;
+		if (username.equals(""))
+			return null;
+		newComment.setUser(username);
+		
+		Interaction Comment=new Interaction(newComment);
+	    //java.util.Date today = new java.util.Date();
+	    //Comment.setTimestamp(new Timestamp(today.getTime()));
+		
+		TermSuggestionComposite tsVO=newComment.getTermSuggestion();
+		Comment.setTermSuggestionID(tsVO.getId());
+		
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            pm.makePersistent(Comment);
+            
+    		String query = "select from " + TermSuggestion.class.getName()+" where id=="+tsVO.getId();
+
+    	    List<TermSuggestion> allTermSuggestions = (List<TermSuggestion>) pm.newQuery(query).execute();
+    		
+    		if (allTermSuggestions==null)
+    			return null;
+    		
+    		if (allTermSuggestions.size()!=1)
+    			return null;
+    		
+    		TermSuggestion ts=allTermSuggestions.get(0);
+    		ts.addInteractionID(Comment.getId());
+            newComment.setId(Comment.getId());
+            //newComment.setTimestamp(Comment.getTimestamp());
+            pm.makePersistent(ts);
+            //tsVO.a
+        } finally {
+            pm.close();
+        }
+                
+		return newComment;
+	}
+
+	@Override
+	public UseCaseComposite create(UseCaseComposite likeVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
