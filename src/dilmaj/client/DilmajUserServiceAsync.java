@@ -10,8 +10,8 @@ public interface DilmajUserServiceAsync {
 
 	void create(MemberComposite userVO, AsyncCallback<MemberComposite> callback);
 
-	void sendMail(EmailComposite emailVO,
-			AsyncCallback<MessageComposite> callback);
+	//void sendMail(EmailComposite emailVO,
+			//AsyncCallback<MessageComposite> callback);
 
 	void find(MemberComposite userVO, AsyncCallback<MemberComposite> callback);
 

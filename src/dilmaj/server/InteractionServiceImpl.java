@@ -20,6 +20,7 @@ import dilmaj.client.TermService;
 import dilmaj.client.domain.Interaction;
 import dilmaj.client.domain.TermSuggestion;
 import dilmaj.client.domain.Term;
+import dilmaj.client.domain.User;
 import dilmaj.shared.CommentComposite;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
@@ -122,7 +123,12 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
         } finally {
             pm.close();
         }
-                
+        
+        // sending notification email
+        String tsOwner=tsVO.getSuggestion().getUser();
+		String message=newComment.getUser()+" left a comment on your suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
+		DilmajUserServiceImpl.sendMail(tsOwner, message);
+    		
 		return newComment;
 	}
 

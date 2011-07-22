@@ -84,8 +84,49 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 	    return member;
 	}
 
-	@Override
-	public MessageComposite sendMail(EmailComposite emailVO) {
+	public static void sendMail(String username, String message) {
+		PersistenceManager pm=PMF.get().getPersistenceManager();
+		
+        pm = PMF.get().getPersistenceManager();
+        try {
+    		String query = "select from " + User.class.getName()+" where username=='"+username+"'";
+
+    	    List<User> allUsers = (List<User>) pm.newQuery(query).execute();
+    		
+    		if (allUsers!=null)
+    			if (allUsers.size()==1) {
+		    		User ts=allUsers.get(0);
+		    		String email=ts.getEmail();
+		            Properties props = new Properties();
+		            Session session = Session.getDefaultInstance(props, null);
+
+		            String msgBody = message;
+
+		            try {
+		                Message msg = new MimeMessage(session);
+		                msg.setFrom(new InternetAddress("admin@dilmajtest.appspotmail.com", "Dilmaj Admin"));
+		                msg.addRecipient(Message.RecipientType.TO,
+		                                 new InternetAddress(email, username));
+		                msg.setSubject("dilmaj notification");
+		                msg.setText(msgBody);
+		                Transport.send(msg);
+
+		            } catch (AddressException e) {
+		                // ...
+		            } catch (MessagingException e) {
+		                // ...
+		            } catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+					}  
+		         }
+        } finally {
+            pm.close();
+        }
+	}
+	
+	//@Override
+	/*public MessageComposite sendMail(EmailComposite emailVO) {
 		// TODO Auto-generated method stub
 		
     	Properties props = new Properties();
@@ -100,13 +141,13 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 			new javax.mail.Authenticator() 
 	{
 		protected PasswordAuthentication getPasswordAuthentication()
-		{ return new PasswordAuthentication("ali.fatolahi@gmail.com","Google_3m9a8r6y8a8m7");	}
+		{ return new PasswordAuthentication("admin@dilmajtest.appspotmail.com","");	}
 	});		
  
     	try {
  
             Message message = new MimeMessage(session);
-	    message.setFrom(new InternetAddress("ali.fatolahi@gmail.com"));
+	    message.setFrom(new InternetAddress("admin@dilmajtest.appspotmail.com"));
 	    message.setRecipients(Message.RecipientType.TO, 
                         InternetAddress.parse(emailVO.getTo()));
 	    message.setSubject(emailVO.getSubject());
@@ -120,7 +161,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
     	} catch (MessagingException e) {
     	    throw new RuntimeException(e);
     	}
-    }
+    }*/
 
 	@Override
 	public MemberComposite update(MemberComposite userVO) {
@@ -183,5 +224,4 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 		getThreadLocalRequest().getSession().setAttribute("loggedUser", null);
 	}
-	
 }

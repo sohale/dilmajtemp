@@ -10,7 +10,7 @@ import dilmaj.shared.MessageComposite;
 @RemoteServiceRelativePath("dilmajuserservice")
 public interface DilmajUserService extends RemoteService {
 	MemberComposite create(MemberComposite userVO);
-	MessageComposite sendMail(EmailComposite emailVO);
+	//MessageComposite sendMail(EmailComposite emailVO);
 	MemberComposite find(MemberComposite userVO);
 	MemberComposite update(MemberComposite userVO);
 	void logout();
