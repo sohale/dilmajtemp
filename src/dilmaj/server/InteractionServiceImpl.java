@@ -133,8 +133,50 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 	}
 
 	@Override
-	public UseCaseComposite create(UseCaseComposite likeVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public UseCaseComposite create(UseCaseComposite newUseCase) {
+		String username=(String)getThreadLocalRequest().getSession().getAttribute("loggedUser");
+		if (username==null)
+			return null;
+		if (username.equals(""))
+			return null;
+		newUseCase.setUser(username);
+		
+		Interaction useCase=new Interaction(newUseCase);
+	    //java.util.Date today = new java.util.Date();
+	    //useCase.setTimestamp(new Timestamp(today.getTime()));
+		
+		TermSuggestionComposite tsVO=newUseCase.getTermSuggestion();
+		useCase.setTermSuggestionID(tsVO.getId());
+		
+        PersistenceManager pm = PMF.get().getPersistenceManager();
+        try {
+            pm.makePersistent(useCase);
+            
+    		String query = "select from " + TermSuggestion.class.getName()+" where id=="+tsVO.getId();
+
+    	    List<TermSuggestion> allTermSuggestions = (List<TermSuggestion>) pm.newQuery(query).execute();
+    		
+    		if (allTermSuggestions==null)
+    			return null;
+    		
+    		if (allTermSuggestions.size()!=1)
+    			return null;
+    		
+    		TermSuggestion ts=allTermSuggestions.get(0);
+    		ts.addInteractionID(useCase.getId());
+            newUseCase.setId(useCase.getId());
+            //newuseCase.setTimestamp(useCase.getTimestamp());
+            pm.makePersistent(ts);
+            //tsVO.a
+        } finally {
+            pm.close();
+        }
+        
+        // sending notification email
+        String tsOwner=tsVO.getSuggestion().getUser();
+		String message=newUseCase.getUser()+" left a useCase on your suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
+		DilmajUserServiceImpl.sendMail(tsOwner, message);
+    		
+		return newUseCase;
 	}
 }

@@ -21,6 +21,7 @@ import dilmaj.shared.Controller;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
 import dilmaj.shared.TermSuggestionComposite;
+import dilmaj.shared.UseCaseComposite;
 
 public class ViewSuggestionController extends Controller {
 	private TermSuggestionServiceAsync tsSvc = GWT.create(TermSuggestionService.class);
@@ -55,6 +56,11 @@ public class ViewSuggestionController extends Controller {
 				commentVO.setFeedback(suggestionPanel.getComment());
 				commentVO.setTermSuggestion(tsVO);
 				interactionSvc.create(commentVO, new CreateCommentCallback(suggestionPanel));
+			} else if (buttonCaption.equals("Create Sample")) {
+				UseCaseComposite sampleVO=new UseCaseComposite();
+				sampleVO.setFeedback(suggestionPanel.getUseCase());
+				sampleVO.setTermSuggestion(tsVO);
+				interactionSvc.create(sampleVO, new CreateUseCaseCallback(suggestionPanel));
 			}
 			
 			if (!buttonCaption.equals("x"))

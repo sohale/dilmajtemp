@@ -22,6 +22,7 @@ import dilmaj.shared.CommentComposite;
 import dilmaj.shared.LikeComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
+import dilmaj.shared.UseCaseComposite;
 
 public class TermServiceImpl extends RemoteServiceServlet implements TermService {
 
@@ -100,6 +101,10 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 							if (interaction.getKind().equals("comment")) {
 								CommentComposite commentVO=new CommentComposite(interaction);
 								tsVO.addInteraction(commentVO);
+							}
+							if (interaction.getKind().equals("useCase")) {
+								UseCaseComposite sampleVO=new UseCaseComposite(interaction);
+								tsVO.addInteraction(sampleVO);
 							}
 						}
 					}

@@ -22,6 +22,7 @@ import dilmaj.shared.LikeComposite;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
+import dilmaj.shared.UseCaseComposite;
 
 public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	private DilmajConstants constants = GWT.create(DilmajConstants.class);
@@ -50,6 +51,11 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	TextArea commentArea=new TextArea();
 	Button commentButton=new Button("Create Comment");
 	int commentsCounter=0;
+
+	FlexTable samplesTable=new FlexTable();
+	TextArea sampleArea=new TextArea();
+	Button sampleButton=new Button("Create Sample");
+	int samplesCounter=0;
 	
 	public static ViewSuggestionPanel getInstance(TermSuggestionComposite tsVO) {
 		ViewSuggestionPanel anInstance=allInstances.get(tsVO);
@@ -79,6 +85,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
 		commentButton.addClickHandler(controller);
+		sampleButton.addClickHandler(controller);
 		
 		suggestorLabel=new Label(constants.suggestor()+": "+suggestion.getUser());
 		
@@ -96,7 +103,14 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 					commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
 				}
 				catch (ClassCastException cce1) {
-					
+					try {
+						UseCaseComposite sampleComposite=(UseCaseComposite)ic;
+						samplesTable.setText(samplesCounter, 1, sampleComposite.getUser()+constants.said());
+						samplesTable.setText(samplesCounter++, 0, sampleComposite.getFeedback());
+					}
+					catch (ClassCastException cce2) {
+						
+					}
 				}
 			}
 		}
@@ -105,6 +119,10 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		add(commentsTable);
 		add(commentArea);
 		add(commentButton);
+
+		add(samplesTable);
+		add(sampleArea);
+		add(sampleButton);
 		
 		add(suggestorLabel);
 		add(votersLabel);
@@ -129,7 +147,9 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 
 		votersString="";
 		commentsCounter=0;
+		samplesCounter=0;
 		commentsTable.clear();
+		samplesTable.clear();
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
@@ -144,7 +164,14 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 					commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
 				}
 				catch (ClassCastException cce1) {
-					
+					try {
+						UseCaseComposite sampleComposite=(UseCaseComposite)ic;
+						samplesTable.setText(samplesCounter, 1, sampleComposite.getUser()+constants.said());
+						samplesTable.setText(samplesCounter++, 0, sampleComposite.getFeedback());
+					}
+					catch (ClassCastException cce2) {
+						
+					}
 				}
 			}
 		}
@@ -156,8 +183,16 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
 	}
 	
+	public void addUseCase(UseCaseComposite sampleComposite) {
+		samplesTable.setText(samplesCounter, 1, sampleComposite.getUser()+constants.said());
+		samplesTable.setText(samplesCounter++, 0, sampleComposite.getFeedback());
+	}
+	
 	public String getComment() {
-		// TODO Auto-generated method stub
 		return commentArea.getText();
+	}
+	
+	public String getUseCase() {
+		return sampleArea.getText();
 	}
 }
