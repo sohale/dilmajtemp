@@ -57,6 +57,16 @@
     <url-pattern>/testgwt/settingsservice</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>SessionServiceImpl</servlet-name>
+    <servlet-class>dilmaj.server.SessionServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SessionServiceImpl</servlet-name>
+    <url-pattern>/testgwt/sessionservice</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>TestGWT.html</welcome-file>
