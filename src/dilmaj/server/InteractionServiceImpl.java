@@ -2,6 +2,7 @@ package dilmaj.server;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -24,6 +25,7 @@ import dilmaj.client.domain.User;
 import dilmaj.shared.CommentComposite;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
+import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
 import dilmaj.shared.UseCaseComposite;
@@ -128,6 +130,12 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
         String tsOwner=tsVO.getSuggestion().getUser();
 		String message=newComment.getUser()+" left a comment on your suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
 		DilmajUserServiceImpl.sendMail(tsOwner, message);
+		
+		// live log
+		message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
+		MessageComposite messageVO=new MessageComposite(message);
+		messageVO.setDateTime(new Date());
+		SessionServiceImpl.addMessage(messageVO);
     		
 		return newComment;
 	}

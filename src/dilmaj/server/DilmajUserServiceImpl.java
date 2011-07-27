@@ -97,6 +97,10 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
     			if (allUsers.size()==1) {
 		    		User ts=allUsers.get(0);
 		    		String email=ts.getEmail();
+		    		
+		    		if (email==null)
+		    			return;
+		    		
 		            Properties props = new Properties();
 		            Session session = Session.getDefaultInstance(props, null);
 

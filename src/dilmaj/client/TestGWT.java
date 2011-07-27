@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.insert_term.InsertTermPanel;
+import dilmaj.client.livelog.LiveLogPanel;
 import dilmaj.client.register.FindUserCallback;
 import dilmaj.client.register.RegisterPanel;
 import dilmaj.client.search.SearchPanel;
@@ -81,6 +82,8 @@ public class TestGWT implements EntryPoint {
 		    descriptionPanel.setWidth("300px");
 		    descriptionPanel.add(new Label(constants.describeProject()));
 		    RootPanel.get("projectDescription").add(descriptionPanel);
+		    
+		    //RootPanel.get("liveLog").add(LiveLogPanel.getInstance());
 		} else if (username!=null && activator!=null) {
 			MemberComposite userVO=new MemberComposite();
 			userVO.setActivator(activator);

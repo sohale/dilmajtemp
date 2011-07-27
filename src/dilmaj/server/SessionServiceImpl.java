@@ -32,6 +32,7 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 	public static void addMessage(MessageComposite aMessage) {
 		Date date=new Date();
 		aMessage.setDateTime(date);
+		allMessages.add(aMessage);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ public class LiveLogPanel extends VerticalPanel {
 	private static String sessionID;
 	private LiveLogController controller;
 	
-	public LiveLogPanel getInstance() {
+	public static LiveLogPanel getInstance() {
 		if (theInstance==null)
 			theInstance=new LiveLogPanel();
 		
