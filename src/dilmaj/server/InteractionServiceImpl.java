@@ -126,16 +126,23 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
             pm.close();
         }
         
+        String fullURL=getThreadLocalRequest().getRequestURL().toString();
+        String request=getThreadLocalRequest().getRequestURI();
+        int index=fullURL.indexOf(request);
+        String baseURL=fullURL.substring(0, index-1);
+        String termURL=baseURL+"?termId="+tsVO.getTerm().getId();
+        String suggestionURL=baseURL+"?termSuggestionId="+tsVO.getId();
+        
         // sending notification email
         String tsOwner=tsVO.getSuggestion().getUser();
-		String message=newComment.getUser()+" left a comment on your suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
+		String message=newComment.getUser()+" left a comment on your suggestion <a href=\""+suggestionURL+"\">"+tsVO.getSuggestion().getCaption()+"</a> for the term  <a href=\""+termURL+"\">"+tsVO.getTerm().getCaption()+"</a>.";
 		DilmajUserServiceImpl.sendMail(tsOwner, message);
 		
 		// live log
-		message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
+		/*message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
 		MessageComposite messageVO=new MessageComposite(message);
 		messageVO.setDateTime(new Date());
-		SessionServiceImpl.addMessage(messageVO);
+		SessionServiceImpl.addMessage(messageVO);*/
     		
 		return newComment;
 	}
