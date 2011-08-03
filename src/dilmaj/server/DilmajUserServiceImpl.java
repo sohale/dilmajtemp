@@ -111,8 +111,37 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		                msg.setFrom(new InternetAddress("admin@dilmajtest.appspotmail.com", "Dilmaj Admin"));
 		                msg.addRecipient(Message.RecipientType.TO,
 		                                 new InternetAddress(email, username));
+		                //msg.setSubject("dilmaj notification");
+		                //msg.setText(msgBody);
+		                
+		                
+		                MimeMultipart content = new MimeMultipart("alternative");
+		                //MimeBodyPart text = new MimeBodyPart();
+		                MimeBodyPart html = new MimeBodyPart();
+
+		                /*text.setText(textBody);
+		                text.setHeader("MIME-Version" , "1.0" );
+		                text.setHeader("Content-Type" , text.getContentType() );*/
+
+		                html.setContent(msgBody, "text/html");
+		                html.setHeader("MIME-Version" , "1.0" );
+		                //html.setHeader("Content-Type" , html.getContentType() );
+
+		                //content.addBodyPart(text);
+		                content.addBodyPart(html);
+
+		                msg.setContent( content );
+		                msg.setHeader("MIME-Version" , "1.0" );
+		                //msg.setHeader("Content-Type" , content.getContentType() );
+		                msg.setHeader("X-Mailer", "Dilmaj Automated Emailer");
+
+		                // -- Set the subject --
 		                msg.setSubject("dilmaj notification");
-		                msg.setText(msgBody);
+
+		                // -- Set some other header information --
+		                msg.setSentDate(new Date());
+
+		                
 		                Transport.send(msg);
 
 		            } catch (AddressException e) {
