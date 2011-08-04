@@ -12,4 +12,5 @@ public interface TermSuggestionService extends RemoteService {
 	public TermSuggestionComposite create(TermSuggestionComposite termSuggestion);
 	public List<TermSuggestionComposite> loadAll();
 	public TermSuggestionComposite update(TermSuggestionComposite tsVO);
+	public TermSuggestionComposite load(long termSuggestionId);
 }

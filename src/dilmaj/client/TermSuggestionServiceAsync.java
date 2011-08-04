@@ -16,4 +16,7 @@ public interface TermSuggestionServiceAsync {
 	void update(TermSuggestionComposite tsVO,
 			AsyncCallback<TermSuggestionComposite> callback);
 
+	void load(long termSuggestionId,
+			AsyncCallback<TermSuggestionComposite> callback);
+
 }

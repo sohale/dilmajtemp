@@ -129,7 +129,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
         String fullURL=getThreadLocalRequest().getRequestURL().toString();
         String request=getThreadLocalRequest().getRequestURI();
         int index=fullURL.indexOf(request);
-        String baseURL=fullURL.substring(0, index-1);
+        String baseURL=fullURL.substring(0, index);
         String termURL=baseURL+"?termId="+tsVO.getTerm().getId();
         String suggestionURL=baseURL+"?termSuggestionId="+tsVO.getId();
         

@@ -18,6 +18,7 @@ import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
+import dilmaj.shared.UseCaseComposite;
 
 public class TermSuggestionServiceImpl extends RemoteServiceServlet  implements TermSuggestionService {
 
@@ -140,5 +141,69 @@ public class TermSuggestionServiceImpl extends RemoteServiceServlet  implements 
         //tsVO.increaseRank();
         
 		return tsVO;
+	}
+
+	@Override
+	public TermSuggestionComposite load(long termSuggestionId) {
+		// TODO Auto-generated method stub
+		PersistenceManager pm=PMF.get().getPersistenceManager();
+
+		String query = "select from " + TermSuggestion.class.getName()+" where id=="+termSuggestionId;
+	    List<TermSuggestion> allTermSuggestions = (List<TermSuggestion>) pm.newQuery(query).execute();
+	    
+	    TermSuggestionComposite tsVO=null;
+	    
+	    if (allTermSuggestions.size()==1) {
+	    	TermSuggestion ts=allTermSuggestions.get(0);
+	    	tsVO=new TermSuggestionComposite(ts);
+	    	
+	    	TermComposite termVO=null;
+	    	TermComposite suggestionVO=null;
+	    	
+			query = "select from " + Term.class.getName()+" where id=="+ts.getTermId();
+			List<Term> allTerms = (List<Term>) pm.newQuery(query).execute();
+			if (allTerms!=null) {
+				if (allTerms.size()==1) {
+					termVO=TermComposite.getInstance(allTerms.get(0));//new TermComposite(allTerms.get(0));
+					tsVO.setTerm(termVO);
+				}
+			}
+			
+			query = "select from " + Term.class.getName()+" where id=="+ts.getSuggestionId();
+			allTerms = (List<Term>) pm.newQuery(query).execute();
+			if (allTerms!=null) {
+				if (allTerms.size()==1) {
+					suggestionVO=TermComposite.getInstance(allTerms.get(0));//new TermComposite(allTerms.get(0));
+					tsVO.setSuggestion(suggestionVO);
+				}
+			}
+
+			Iterator<Long> interactionIDsIterator=ts.getInteractions().iterator();
+			while (interactionIDsIterator.hasNext()) {
+				Long interactionID=interactionIDsIterator.next();
+				query = "select from " + Interaction.class.getName()+" where id=="+interactionID;
+				List<Interaction> allInteractions=(List<Interaction>)pm.newQuery(query).execute();
+				if (allInteractions!=null) {
+					Iterator<Interaction> interactionsIterator=allInteractions.iterator();
+					while (interactionsIterator.hasNext()) {
+						Interaction interaction=interactionsIterator.next();
+						if (interaction.getKind().equals("like")) {
+							LikeComposite likeVO=new LikeComposite(interaction);
+							tsVO.addInteraction(likeVO);
+						}
+						if (interaction.getKind().equals("comment")) {
+							CommentComposite commentVO=new CommentComposite(interaction);
+							tsVO.addInteraction(commentVO);
+						}
+						if (interaction.getKind().equals("useCase")) {
+							UseCaseComposite sampleVO=new UseCaseComposite(interaction);
+							tsVO.addInteraction(sampleVO);
+						}
+					}
+				}
+			}
+	    }
+	    
+	    return tsVO;
 	}
 }
