@@ -33,7 +33,7 @@ public class TermSummaryPanel extends HorizontalPanel {
 		String trail="";
 		String caption=termVO.getCaption();
 		button.setText(caption);
-		button.setTitle(termVO.getId()+"");
+		button.setTitle(termVO.getRunningTitle());
 		button.addClickHandler(controller);
 		add(button);
 		

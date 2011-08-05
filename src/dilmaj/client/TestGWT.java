@@ -24,12 +24,14 @@ import dilmaj.client.top.TopMenu;
 import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.view_suggestion.LoadSuggestionCallback;
 import dilmaj.client.view_suggestion.ViewSuggestionPanel;
+import dilmaj.client.view_term.LoadTermCallback;
 import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.LoadAllTermsCallback;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
+import dilmaj.shared.TermComposite;
 
 
 /**
@@ -57,8 +59,11 @@ public class TestGWT implements EntryPoint {
 		
 		if (termSuggestionId!=null) {
 			termSuggestionSvc.load(Long.parseLong(termSuggestionId), new LoadSuggestionCallback());
+		} else if (termId!=null) {
+			TermComposite termVO=new TermComposite();
+			termVO.setId(Long.parseLong(termId));
+			termSvc.get(termVO, new LoadTermCallback());
 		} else {
-			
 			if (termId==null && username==null && activator==null) {
 				TermSuggestionsPanel termSuggestionsPanel=TermSuggestionsPanel.getInstance();
 				termSvc.loadAll(new LoadAllTermsCallback());

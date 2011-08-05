@@ -1,4 +1,4 @@
-package dilmaj.client.view_suggestion;
+package dilmaj.client.view_term;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -10,9 +10,9 @@ import dilmaj.shared.Repository;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
 
-public class LoadSuggestionCallback implements AsyncCallback<TermSuggestionComposite> {
+public class LoadTermCallback implements AsyncCallback<TermComposite> {
 	
-	public LoadSuggestionCallback() {
+	public LoadTermCallback() {
 	}
 
 	@Override
@@ -21,9 +21,9 @@ public class LoadSuggestionCallback implements AsyncCallback<TermSuggestionCompo
 	}
 
 	@Override
-	public void onSuccess(TermSuggestionComposite result) {
+	public void onSuccess(TermComposite result) {
 		// TODO Auto-generated method stub
-		RootPanel.get("termSuggestionDetails").clear();
-		RootPanel.get("termSuggestionDetails").add(ViewSuggestionPanel.getInstance(result));
+		RootPanel.get("termDetails").clear();
+		RootPanel.get("termDetails").add(ViewTermPanel.getInstance(result));
 	}
 }

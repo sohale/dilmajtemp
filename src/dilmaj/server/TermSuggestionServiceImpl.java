@@ -143,6 +143,7 @@ public class TermSuggestionServiceImpl extends RemoteServiceServlet  implements 
 		return tsVO;
 	}
 
+	// this might be a source of bug that perhaps creates duplicate terms	
 	@Override
 	public TermSuggestionComposite load(long termSuggestionId) {
 		// TODO Auto-generated method stub

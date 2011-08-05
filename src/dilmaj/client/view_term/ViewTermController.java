@@ -71,8 +71,8 @@ public class ViewTermController extends Controller {
 		TermSuggestionComposite tsVO=viewTermPanel.getSuggestion(label);
 		ViewSuggestionPanel sPanel=ViewSuggestionPanel.getInstance(tsVO);
 		
-		RootPanel.get("termDetails").clear();
-		RootPanel.get("termDetails").add(sPanel);
+		RootPanel.get("termSuggestionDetails").clear();
+		RootPanel.get("termSuggestionDetails").add(sPanel);
 
 		/*PopupPanel sPopup=sPopups.get(sPanel);
 		if (sPopup==null) {

@@ -130,4 +130,15 @@ public class ViewTermPanel extends HorizontalPanel {
 		this.popup=popup;
 		controller.setPopup(popup);
 	}
+
+	public static ViewTermPanel getInstance(TermComposite theTerm) {
+		// TODO Auto-generated method stub
+		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
+		if (viewTermPanel==null) {
+			viewTermPanel=new ViewTermPanel(theTerm, null);
+			viewTermPanels.put(theTerm, viewTermPanel);
+		}
+		
+		return viewTermPanel;
+	}
 }

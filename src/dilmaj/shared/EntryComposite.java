@@ -9,6 +9,7 @@ public class EntryComposite implements IsSerializable {
 	protected Date timeStamp;
 	protected Long id;
 	protected String username;
+	protected String runningTitle;
 	
 	public Date getTimeStamp() {
 		return timeStamp;
@@ -36,5 +37,13 @@ public class EntryComposite implements IsSerializable {
 	
 	public void setTimestamp(Date timeStamp) {
 		this.timeStamp=timeStamp;
+	}
+	
+	public String getRunningTitle() {
+		return runningTitle;
+	}
+	
+	public void setRunningTitle(String newTitle) {
+		runningTitle=newTitle;
 	}
 }

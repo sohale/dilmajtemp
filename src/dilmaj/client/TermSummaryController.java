@@ -33,10 +33,14 @@ public class TermSummaryController implements ClickHandler {
 		TermButton termButton=(TermButton)event.getSource();
 		TermComposite termComposite=termButton.getTermComposite();
 		
-		PopupPanel popup=new PopupPanel();
-		ViewTermPanel viewTermPanel=ViewTermPanel.getInstance(termComposite, popup);
+		//PopupPanel popup=new PopupPanel();
+		ViewTermPanel viewTermPanel=ViewTermPanel.getInstance(termComposite/*, popup*/);
 		
-		popup.setSize("100px", "100px");
+		RootPanel.get("termDetails").clear();
+		RootPanel.get("termDetails").add(viewTermPanel);
+		RootPanel.get("termSuggestionDetails").clear();
+
+		/*popup.setSize("100px", "100px");
 		
 		int left=termButton.getAbsoluteLeft();
 		int bottom=termButton.getAbsoluteTop()+termButton.getOffsetHeight();
@@ -44,7 +48,7 @@ public class TermSummaryController implements ClickHandler {
 		
 		popup.add(viewTermPanel);
 		
-		popup.show();
+		popup.show();*/
 	}
 
 }
