@@ -96,7 +96,7 @@ public class TestGWT implements EntryPoint {
 			    descriptionPanel.add(new Label(constants.describeProject()));
 			    RootPanel.get("projectDescription").add(descriptionPanel);
 			    
-			    //RootPanel.get("liveLog").add(LiveLogPanel.getInstance());
+			    RootPanel.get("liveLogWall").add(LiveLogPanel.getInstance());
 			} else if (username!=null && activator!=null) {
 				MemberComposite userVO=new MemberComposite();
 				userVO.setActivator(activator);

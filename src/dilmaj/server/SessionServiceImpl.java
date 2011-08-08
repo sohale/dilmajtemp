@@ -44,9 +44,9 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		Date date=allSessions.get(sessionID);
 		
 		for (MessageComposite aMessage:allMessages) {
-			if (aMessage.getDateTime().after(date)) {
+			//if (aMessage.getDateTime().after(date)) {
 				myMessages.add(aMessage);
-			}
+			//}
 		}
 		
 		return myMessages;

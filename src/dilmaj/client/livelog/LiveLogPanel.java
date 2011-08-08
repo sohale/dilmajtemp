@@ -2,6 +2,7 @@ package dilmaj.client.livelog;
 
 import java.util.List;
 
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -11,6 +12,7 @@ public class LiveLogPanel extends VerticalPanel {
 	private static LiveLogPanel theInstance=null;
 	private static String sessionID;
 	private LiveLogController controller;
+	private Button refreshButton=new Button("Refresh");
 	
 	public static LiveLogPanel getInstance() {
 		if (theInstance==null)
@@ -22,6 +24,8 @@ public class LiveLogPanel extends VerticalPanel {
 	private LiveLogPanel() {
 		controller=new LiveLogController(this);
 		controller.openSession();
+		add(refreshButton);
+		refreshButton.addClickHandler(controller);
 	}
 
 	public void addMessages(List<MessageComposite> newMessages) {
