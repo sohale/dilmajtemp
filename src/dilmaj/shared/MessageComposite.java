@@ -6,7 +6,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class MessageComposite implements IsSerializable {
 	String message;
-	Date date;
+	long sequence;
 	
 	public MessageComposite() {
 		
@@ -20,11 +20,11 @@ public class MessageComposite implements IsSerializable {
 		return message;
 	}
 
-	public void setDateTime(Date date) {
-		this.date=date;
+	public void setSequence(long sequence) {
+		this.sequence=sequence;
 	}
 	
-	public Date getDateTime() {
-		return date;
+	public long getSequence() {
+		return sequence;
 	}
 }

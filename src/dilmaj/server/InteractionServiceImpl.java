@@ -97,7 +97,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		// live log
 		//message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
 		MessageComposite messageVO=new MessageComposite(message);
-		messageVO.setDateTime(new Date());
+		//messageVO.setDateTime(new Date());
 		SessionServiceImpl.addMessage(messageVO);
 
 		return newLike;
@@ -159,7 +159,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		// live log
 		//message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
 		MessageComposite messageVO=new MessageComposite(message);
-		messageVO.setDateTime(new Date());
+		//messageVO.setDateTime(new Date());
 		SessionServiceImpl.addMessage(messageVO);
     		
 		return newComment;
@@ -220,7 +220,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		// live log
 		//message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
 		MessageComposite messageVO=new MessageComposite(message);
-		messageVO.setDateTime(new Date());
+		//messageVO.setDateTime(new Date());
 		SessionServiceImpl.addMessage(messageVO);
     		
 		return newUseCase;

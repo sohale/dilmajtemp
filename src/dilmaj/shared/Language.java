@@ -10,6 +10,8 @@ public enum Language {
 			return 0;
 		}
 		public String toString() {
+			if (constants==null)
+				constants=GWT.create(DilmajConstants.class);
 			return constants.unknown();
 		}
 	},
@@ -18,6 +20,8 @@ public enum Language {
 			return 1;
 		}
 		public String toString() {
+			if (constants==null)
+				constants=GWT.create(DilmajConstants.class);
 			return constants.persian();
 		}
 	},
@@ -26,6 +30,8 @@ public enum Language {
 			return 2;
 		}
 		public String toString() {
+			if (constants==null)
+				constants=GWT.create(DilmajConstants.class);
 			return constants.english();
 		}
 	},
@@ -34,6 +40,8 @@ public enum Language {
 			return 3;
 		}
 		public String toString() {
+			if (constants==null)
+				constants=GWT.create(DilmajConstants.class);
 			return constants.french();
 		}
 	},
@@ -42,13 +50,16 @@ public enum Language {
 			return 4;
 		}
 		public String toString() {
+			if (constants==null)
+				constants=GWT.create(DilmajConstants.class);
 			return constants.arabic();
 		}
 	};
 	
-	private static DilmajConstants constants = GWT.create(DilmajConstants.class);
+	private static DilmajConstants constants=null;
 	
 	private final String languageName;
+	
 	Language(String name) {
 		languageName=name.toUpperCase();
 	}
