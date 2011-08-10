@@ -26,7 +26,7 @@ import javax.mail.internet.*;
 
 public class SessionServiceImpl extends RemoteServiceServlet implements
 		SessionService {
-	private static long timer=0;
+	private static Long timer=new Long(0);
 	private static List<MessageComposite> allMessages=new ArrayList<MessageComposite>();
 	private static HashMap<String, Long> allSessions=new HashMap<String, Long>();
 	
@@ -48,14 +48,20 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		if (sessionID==null || allSessions==null)
 			return myMessages;
 		
+		/*for (String key:allSessions.keySet()) {
+			Long s=allSessions.get(key);
+			if (s!=null)
+				s++;
+		}*/
+		
 		if (allSessions.get(sessionID)==null)
 			return myMessages;
 		
-		long seq=allSessions.get(sessionID);
-		long newSeq=seq;
+		Long seq=allSessions.get(sessionID);
+		Long newSeq=seq;
 		
 		for (MessageComposite aMessage:allMessages) {
-			if (aMessage.getSequence() > seq) {
+			if (aMessage.getSequence() >= seq) {
 				myMessages.add(aMessage);
 				newSeq=aMessage.getSequence();
 			}
@@ -70,7 +76,6 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public String openSession() {
 		// TODO Auto-generated method stub
-		Date date=new Date();
 		String sessionID=getThreadLocalRequest().getSession().getId();
 		
 		allSessions.put(sessionID, timer);

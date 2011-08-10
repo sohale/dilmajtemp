@@ -6,7 +6,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class MessageComposite implements IsSerializable {
 	String message;
-	long sequence;
+	Long sequence;
 	
 	public MessageComposite() {
 		
