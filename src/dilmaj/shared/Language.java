@@ -1,10 +1,13 @@
 package dilmaj.shared;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import com.google.gwt.core.client.GWT;
 
 import dilmaj.client.DilmajConstants;
 
-public enum Language {
+public enum Language implements Iterable<Language>, Iterator<Language> {
 	UNKNOWN("Unknown") {
 		public int indexOf() {
 			return 0;
@@ -59,6 +62,7 @@ public enum Language {
 	private static DilmajConstants constants=null;
 	
 	private final String languageName;
+	private static int index=-1;
 	
 	Language(String name) {
 		languageName=name.toUpperCase();
@@ -81,23 +85,50 @@ public enum Language {
 	}
 	
 	public abstract int indexOf();
-}
 	
-	/*public static String[] getAllLanguages() {
-		String[] languages={"Unknown", "Persian", "English", "French", "Arabic"};
-		return languages;
-	}*/
-
-	/*public static int getLanguageIndex(String string) {
-		// TODO Auto-generated method stub
-		if (string.compareToIgnoreCase("Persian")==0)
-			return 1;
-		if (string.compareToIgnoreCase("English")==0)
-			return 2;
-		if (string.compareToIgnoreCase("French")==0)
-			return 3;
-		if (string.compareToIgnoreCase("Arabic")==0)
-			return 4;
-		return 0;
+	public static Iterable<Language> getIterable() {
+		return UNKNOWN;
 	}
-}*/
+	
+	@Override
+	public Iterator<Language> iterator() {
+		index=indexOf()-1;
+		return this;
+	}
+	
+	@Override
+	public boolean hasNext() {
+		if (index>=4)
+			return false;
+		return true;
+	}
+	
+	@Override
+	public Language next() {
+		switch (index) {
+		case -1:
+			index=0;
+			return UNKNOWN;
+		case 0:
+			index=1;
+			return PERSIAN;
+		case 1:
+			index=2;
+			return ENGLISH;
+		case 2:
+			index =3;
+			return FRENCH;
+		case 3:
+			index=4;
+			return ARABIC;
+		default:
+			index=-1;
+			throw new NoSuchElementException();
+		}
+	}
+	
+	@Override
+	public void remove() {
+		throw new UnsupportedOperationException();		
+	}
+}

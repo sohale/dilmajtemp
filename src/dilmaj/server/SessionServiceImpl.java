@@ -18,6 +18,7 @@ import dilmaj.shared.TermComposite;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.net.ServerSocket;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -26,21 +27,21 @@ import javax.mail.internet.*;
 
 public class SessionServiceImpl extends RemoteServiceServlet implements
 		SessionService {
-	private static Long timer=new Long(0);
+	private static int timer=0;
 	private static List<MessageComposite> allMessages=new ArrayList<MessageComposite>();
-	private static HashMap<String, Long> allSessions=new HashMap<String, Long>();
+	//private static HashMap<String, Thread> allSessions=new HashMap<String, Thread>();
 	
 	public static void addMessage(MessageComposite aMessage) {
-		aMessage.setSequence(timer++);
 		allMessages.add(aMessage);
+		aMessage.setSequence(timer++);
 	}
 	
 	@Override
-	public List<MessageComposite> getLog() {
+	public List<MessageComposite> getLog(int lastId) {
 		// TODO Auto-generated method stub
 		List<MessageComposite> myMessages=new ArrayList<MessageComposite>();
 		
-		if (allSessions.size()==0)
+		/*if (allSessions.size()==0)
 			return myMessages;
 		
 		String sessionID=getThreadLocalRequest().getSession().getId();
@@ -48,44 +49,55 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		if (sessionID==null || allSessions==null)
 			return myMessages;
 		
-		/*for (String key:allSessions.keySet()) {
-			Long s=allSessions.get(key);
-			if (s!=null)
-				s++;
-		}*/
-		
 		if (allSessions.get(sessionID)==null)
 			return myMessages;
 		
-		Long seq=allSessions.get(sessionID);
-		Long newSeq=seq;
-		
-		for (MessageComposite aMessage:allMessages) {
-			if (aMessage.getSequence() >= seq) {
-				myMessages.add(aMessage);
-				newSeq=aMessage.getSequence();
-			}
+		int seq=allSessions.get(sessionID);
+		int newSeq=seq;*/
+
+		for (int i=lastId+1;i<allMessages.size();i++) {
+			MessageComposite aMessage=allMessages.get(i);
+			myMessages.add(aMessage);
+			//newSeq=aMessage.getSequence();
 		}
 		
-		if (sessionID!=null)
-			allSessions.put(sessionID, newSeq);
+		/*if (sessionID!=null)
+			allSessions.put(sessionID, newSeq);*/
 		
 		return myMessages;
 	}
 
 	@Override
-	public String openSession() {
+	public int openSession() {
 		// TODO Auto-generated method stub
 		String sessionID=getThreadLocalRequest().getSession().getId();
 		
-		allSessions.put(sessionID, timer);
+		MessageComposite newMessage=new MessageComposite("just logged in!");
+		addMessage(newMessage);
+		//allSessions.put(sessionID, makeThread());
 		
-		return sessionID;
+		return newMessage.getSequence();
 	}
 
 	@Override
 	public void closeSession(String myID) {
-		// TODO Auto-generated method stub
-		allSessions.remove(myID);
+		//allSessions.remove(myID);
 	}
+	
+	/*private Thread makeThread() {
+		Runnable runLoop=new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					
+				} catch (InterruptedException e) {
+					return;
+				}
+			}
+			
+		};
+		
+		return new Thread(runLoop);
+	}*/
 }

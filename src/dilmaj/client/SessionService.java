@@ -11,7 +11,7 @@ import dilmaj.shared.MessageComposite;
 
 @RemoteServiceRelativePath("sessionservice")
 public interface SessionService extends RemoteService {
-	public List<MessageComposite> getLog();
-	public String openSession();
+	public List<MessageComposite> getLog(int lastId);
+	public int openSession();
 	public void closeSession(String myID);
 }

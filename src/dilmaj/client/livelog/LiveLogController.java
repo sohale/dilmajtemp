@@ -1,5 +1,8 @@
 package dilmaj.client.livelog;
 
+import java.io.Serializable;
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 
@@ -25,6 +28,6 @@ public class LiveLogController extends Controller {
 
 	@Override
 	public void onClick(ClickEvent event) {
-		sessionSvc.getLog(new GetLogCallback(panel));
+		sessionSvc.getLog(panel.getLastMessageId(), new GetLogCallback(panel));
 	}
 }

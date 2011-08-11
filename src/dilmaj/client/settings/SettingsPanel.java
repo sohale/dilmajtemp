@@ -70,7 +70,7 @@ public class SettingsPanel extends VerticalPanel {
 		add(sourceLanguageBox);
 		add(targetLabel);
 		add(targetLanguageBox);
-		for (Language l : Language.values()) {
+		for (Language l : Language.getIterable()) {
 			sourceLanguageBox.addItem(l.toString());
 			targetLanguageBox.addItem(l.toString());
 		}

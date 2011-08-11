@@ -13,6 +13,7 @@ public class LiveLogPanel extends VerticalPanel {
 	private static String sessionID;
 	private LiveLogController controller;
 	private Button refreshButton=new Button("Refresh");
+	private int maxMessageId=-1;
 	
 	public static LiveLogPanel getInstance() {
 		if (theInstance==null)
@@ -29,8 +30,12 @@ public class LiveLogPanel extends VerticalPanel {
 	}
 
 	public void addMessages(List<MessageComposite> newMessages) {
-		for (MessageComposite aMessage:newMessages)
+		for (MessageComposite aMessage:newMessages) {
+			int messageId=aMessage.getSequence();
+			if (maxMessageId<messageId)
+				maxMessageId=messageId;
 			add(new Label(aMessage.toString()));
+		}
 	}
 	
 	public void setSessionID(String result) {
@@ -44,5 +49,13 @@ public class LiveLogPanel extends VerticalPanel {
 		} finally {
 			super.finalize();
 		}
+	}
+	
+	public int getLastMessageId() {
+		return maxMessageId;
+	}
+
+	public void setMaxMessageId(Integer result) {
+		maxMessageId=result;
 	}
 }

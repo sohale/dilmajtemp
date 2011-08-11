@@ -46,7 +46,7 @@ public class InsertSuggestionPanel extends HorizontalPanel implements SettingsLi
 		
 		insertButton.addClickHandler(controller);
 		
-		for (Language l : Language.values()) {
+		for (Language l : Language.getIterable()) {
 			languageBox.addItem(l.toString());
 		}
 

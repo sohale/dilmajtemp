@@ -157,7 +157,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		DilmajUserServiceImpl.sendMail(tsOwner, message);
 		
 		// live log
-		//message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
+		message=newComment.getUser()+" left a comment on "+tsOwner+"'s suggestion "+tsVO.getSuggestion().getCaption()+" for the term "+tsVO.getTerm().getCaption()+".";
 		MessageComposite messageVO=new MessageComposite(message);
 		//messageVO.setDateTime(new Date());
 		SessionServiceImpl.addMessage(messageVO);

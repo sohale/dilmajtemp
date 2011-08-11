@@ -39,7 +39,7 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel, Setting
 		
 		insertButton.addClickHandler(controller);
 		
-		for (Language l : Language.values()) {
+		for (Language l : Language.getIterable()) {
 			languageBox.addItem(l.toString());
 		}
 

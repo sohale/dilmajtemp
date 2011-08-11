@@ -16,7 +16,7 @@ import dilmaj.shared.SettingsComposite;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-public class OpenSessionCallback implements AsyncCallback<String> {
+public class OpenSessionCallback implements AsyncCallback<Integer> {
 	private SessionServiceAsync sessionSvc = GWT.create(SessionService.class);
 	LiveLogPanel panel;
 	
@@ -29,8 +29,9 @@ public class OpenSessionCallback implements AsyncCallback<String> {
 	}
 
 	@Override
-	public void onSuccess(String result) {
-		panel.setSessionID(result);
-		sessionSvc.getLog(new GetLogCallback(panel));
+	public void onSuccess(Integer result) {
+		//panel.setSessionID(result);
+		//sessionSvc.getLog(new GetLogCallback(panel));
+		panel.setMaxMessageId(result);
 	}
 }
