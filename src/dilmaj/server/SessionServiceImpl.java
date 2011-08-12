@@ -29,7 +29,7 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		SessionService {
 	private static int timer=0;
 	private static List<MessageComposite> allMessages=new ArrayList<MessageComposite>();
-	//private static HashMap<String, Thread> allSessions=new HashMap<String, Thread>();
+	//private static HashMap<String, SessionThread> allSessions=new HashMap<String, SessionThread>();
 	
 	public static void addMessage(MessageComposite aMessage) {
 		allMessages.add(aMessage);
@@ -37,8 +37,12 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	@Override
-	public List<MessageComposite> getLog(int lastId) {
+	public synchronized List<MessageComposite> getLog(int lastId) {
 		// TODO Auto-generated method stub
+		String sessionID=getThreadLocalRequest().getSession().getId();
+		//SessionThread sessionThread=allSessions.get(sessionID);
+		//sessionThread.setLastId(lastId);
+		
 		List<MessageComposite> myMessages=new ArrayList<MessageComposite>();
 		
 		/*if (allSessions.size()==0)
@@ -86,11 +90,13 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 	
 	/*private Thread makeThread() {
 		Runnable runLoop=new Runnable() {
-
+			
 			@Override
 			public void run() {
 				try {
-					
+					synchronized(allMessages) {
+						
+					}
 				} catch (InterruptedException e) {
 					return;
 				}
@@ -98,6 +104,6 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 			
 		};
 		
-		return new Thread(runLoop);
+		return new SessionThread(runLoop);
 	}*/
 }
