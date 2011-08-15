@@ -39,6 +39,7 @@ public class CreateCommentCallback implements AsyncCallback<CommentComposite> {
 			TermSuggestionComposite tsVO=panel.getTermSuggestionComposite();
 			tsVO.addInteraction(result);
 			tsSvc.update(tsVO, new UpdateTermSuggestionCallback(panel));
+			panel.reset();
 		}
 	}
 }

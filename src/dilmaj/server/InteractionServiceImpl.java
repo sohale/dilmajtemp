@@ -51,9 +51,12 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		Iterator<InteractionComposite> interactionIterator=tsVO.getInteractions().iterator();
 		while (interactionIterator.hasNext()) {
 			InteractionComposite interactionVO=interactionIterator.next();
-			String un=interactionVO.getUser();
-			if (username.equals(un))
-				return null;
+			String interactionType=interactionVO.getClass().getName();
+			if (interactionType.compareToIgnoreCase("dilmaj.shared.LikeComposite")==0) {
+				String un=interactionVO.getUser();
+				if (username.equals(un))
+					return null;
+			}
 		}
 		
 		like.setTermSuggestionID(tsVO.getId());

@@ -195,4 +195,9 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	public String getUseCase() {
 		return sampleArea.getText();
 	}
+
+	public void reset() {
+		commentArea.setText("");
+		sampleArea.setText("");
+	}
 }
