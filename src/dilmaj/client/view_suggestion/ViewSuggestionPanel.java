@@ -116,13 +116,13 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		}
 		votersLabel=new Label(votersString);
 
-		add(commentsTable);
 		add(commentArea);
 		add(commentButton);
+		add(commentsTable);
 
-		add(samplesTable);
 		add(sampleArea);
 		add(sampleButton);
+		add(samplesTable);
 		
 		add(suggestorLabel);
 		add(votersLabel);
