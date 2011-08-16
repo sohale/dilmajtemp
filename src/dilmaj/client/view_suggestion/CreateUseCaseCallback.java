@@ -40,6 +40,7 @@ public class CreateUseCaseCallback implements AsyncCallback<UseCaseComposite> {
 			TermSuggestionComposite tsVO=panel.getTermSuggestionComposite();
 			tsVO.addInteraction(result);
 			tsSvc.update(tsVO, new UpdateTermSuggestionCallback(panel));
+			panel.reset();
 		}
 	}
 }

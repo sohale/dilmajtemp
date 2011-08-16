@@ -85,7 +85,14 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 				
 				TermComposite tVO=termVOs.get(ts.getTermId());
 				TermComposite sVO=termVOs.get(ts.getSuggestionId());
+				runningTitle=tVO.getRunningTitle();
+				if (runningTitle!=null) {
+					runningTitle+=" ";
+				} else {
+					runningTitle="";
+				}
 				runningTitle+=sVO.getCaption();
+				tVO.setRunningTitle(runningTitle);
 
 				TermSuggestionComposite tsVO=new TermSuggestionComposite(ts);
 
@@ -117,7 +124,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 				tsVO.setSuggestion(sVO);
 				tsVO.setTerm(tVO);
 				tVO.addSuggestion(tsVO);
-				tVO.setRunningTitle(runningTitle);
+				//tVO.setRunningTitle(runningTitle);
 			}
 		}
 		
