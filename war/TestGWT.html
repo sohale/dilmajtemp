@@ -49,47 +49,52 @@
     <h1>سخن گزار</h1>
 
 	<table align=right dir=rtl>
-	<tr align=left>
+	<tr align=left  style="vertical-align:top">
 		<td >
 			<div id="topMenu"  style="background-color:#ffffbb;"></div>
 		</td>
-	</tr>
+
+	<td>
+	<table>
 	<tr style="background-color:#bbddbb;">
 		<td span=2>
 			<div id="searchPanel">Search</div>
 		</td>
-	
-	</tr>
-	<tr>
-<!-- registration was a TD here --> 
-    <td>
-	    <div id="projectDescription"></div>
-	</td>
-	<td>
-	<div id="loginPanel">(Login panel(?))</div>
-    </td>
-	<td>
-	-
-	</td>
 	</tr>
 	<tr style="background-color:#bbddbb;">
 		<td>Insert Term
 			<div id="insertTerm"></div>
 		</td>
+		</tr>
+	<tr style="background-color:#bbddbb;">
 		<td>Insert suggestion:
 			<div id="insertSuggestion"></div>
 		</td>
 	</tr>
-	<tr>
-	<tr style="background-color:#eef7ee;height:9px;">
-	<td></td><td></td>
-	</tr>
-	<tr>
-	<!-- order changed by sohail. remove this comment.-->
-		<td><!--Terms and suggestions--> ترم ها و معادل ها:
-			<div id="termSuggestions"></div>
-		</td>
+	</table>
+	</td>
+
 		<td style="vertical-align:top">
+		<table>
+		<tr>
+		<td>
+		پخش زنده
+		</td>
+		</tr>
+		<tr>
+      	<td bgcolor=#A9BCF5>
+			<div id="liveLogWall"></div>
+		</td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+	<tr style="vertical-align:top">
+	<!-- order changed by sohail. remove this comment.-->
+		<td style="vertical-align:top">
+			<div id="termTabs"></div>
+		</td>
+		<td>
 		<table>
 		<tr>
 		<td>
@@ -117,23 +122,6 @@
 		</tr>
 		</table>
 		</td>
-		<td>ترم های بدون معادل:
-			<div id="allTerms"></div>
-		</td>
-		<td style="vertical-align:top">
-		<table>
-		<tr>
-		<td>
-		پخش زنده
-		</td>
-		</tr>
-		<tr>
-      	<td bgcolor=#A9BCF5>
-			<div id="liveLogWall"></div>
-		</td>
-		</tr>
-		</table>
-		</td>
 	</tr>
 	<tr>
 		<td>
@@ -143,14 +131,6 @@
 	</td>
 	<td>
   	</tr>
-  		<td>
-		<div id="myTerms">
-		  <h3 style="direction:ltr;">My terms list here!</h3>
-		</div>
-		<td>
-      </tr>
       </table>
-      <br>
-      <hr>
   </body>
 </html>

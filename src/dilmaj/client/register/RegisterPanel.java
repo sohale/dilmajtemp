@@ -42,8 +42,17 @@ public class RegisterPanel extends VerticalPanel {
 	SimpleEntryPanel re_adminPinPanel=new SimpleEntryPanel(re_adminPinBox, re_adminPinLabel);
 	SimpleEntryPanel adminPinPanel=new SimpleEntryPanel(adminPinBox, adminPinLabel);
 	SimpleEntryPanel namePanel=new SimpleEntryPanel(nameBox, nameLabel);
+	
+	public static RegisterPanel theInstance=null;
+	
+	public static RegisterPanel getInstance() {
+		if (theInstance==null)
+			theInstance=new RegisterPanel();
+		
+		return theInstance;
+	}
 
-	public RegisterPanel() {
+	private RegisterPanel() {
 		super();
 
 		add(usernamePanel);

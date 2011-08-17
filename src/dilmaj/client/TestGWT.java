@@ -6,6 +6,7 @@ package dilmaj.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Unit;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -21,6 +22,7 @@ import dilmaj.client.register.FindUserCallback;
 import dilmaj.client.register.RegisterPanel;
 import dilmaj.client.search.SearchPanel;
 import dilmaj.client.top.TopMenu;
+import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.view_suggestion.LoadSuggestionCallback;
 import dilmaj.client.view_suggestion.ViewSuggestionPanel;
@@ -54,8 +56,8 @@ public class TestGWT implements EntryPoint {
 		String activator = com.google.gwt.user.client.Window.Location.getParameter("activator");
 		String username = com.google.gwt.user.client.Window.Location.getParameter("username");
 		String termSuggestionId = com.google.gwt.user.client.Window.Location.getParameter("termSuggestionId");
-		
-		RootPanel.get("topMenu").add(TopMenu.getInstance());
+	    
+	    RootPanel.get("topMenu").add(TopMenuTabs.getInstance());
 		
 		if (termSuggestionId!=null) {
 			termSuggestionSvc.load(Long.parseLong(termSuggestionId), new LoadSuggestionCallback());
@@ -71,12 +73,12 @@ public class TestGWT implements EntryPoint {
 				SearchPanel searchPanel=new SearchPanel();
 				RootPanel.get("searchPanel").add(searchPanel);
 				
-				RegisterPanel registerPanel=new RegisterPanel();
-				RootPanel.get("registerationPanel").add(registerPanel);
+				//RegisterPanel registerPanel=new RegisterPanel();
+				//RootPanel.get("registerationPanel").add(registerPanel);
 				
-				RootPanel.get("termSuggestions").add(termSuggestionsPanel);
+				//RootPanel.get("termSuggestions").add(termSuggestionsPanel);
 				
-				RootPanel.get("myTerms").add(MyTermsPanel.getInstance());
+				//RootPanel.get("myTerms").add(MyTermsPanel.getInstance());
 				
 			    allTermsPanel=AllTermsPanel.getInstance();
 			    insertTermPanel=InsertTermPanel.getInstance();
@@ -89,14 +91,16 @@ public class TestGWT implements EntryPoint {
 			    HTML html = new HTML("<p>This is html with a <a href='AllTerms.html'>link</a></p>");
 			    hp.add(html);
 			    Label label=new Label(GWT.getModuleBaseURL()+"AllTerms.html");*/
-			    RootPanel.get("allTerms").add(allTermsPanel);
+			    //RootPanel.get("allTerms").add(allTermsPanel);
 			    
 			    HorizontalPanel descriptionPanel=new HorizontalPanel();
 			    descriptionPanel.setWidth("300px");
 			    descriptionPanel.add(new Label(constants.describeProject()));
-			    RootPanel.get("projectDescription").add(descriptionPanel);
+			    //RootPanel.get("projectDescription").add(descriptionPanel);
 			    
 			    RootPanel.get("liveLogWall").add(LiveLogPanel.getInstance());
+			    
+			    RootPanel.get("termTabs").add(TermTabsPanel.getInstance());
 			} else if (username!=null && activator!=null) {
 				MemberComposite userVO=new MemberComposite();
 				userVO.setActivator(activator);
