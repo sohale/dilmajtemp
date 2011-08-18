@@ -11,7 +11,7 @@ public interface SessionServiceAsync {
 
 	void getLog(int lastId, AsyncCallback<List<MessageComposite>> callback);
 
-	void openSession(AsyncCallback<Integer> callback);
+	void openSession(AsyncCallback<Void> callback);
 
 	void closeSession(String myID, AsyncCallback<Void> callback);
 

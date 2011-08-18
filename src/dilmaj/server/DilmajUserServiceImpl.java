@@ -26,6 +26,8 @@ import javax.mail.internet.*;
 public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		DilmajUserService {
 
+	private static Set<String> onlineUsers=new HashSet<String>();
+	
 	@Override
 	public MemberComposite create(MemberComposite userVO) {
 		// TODO Auto-generated method stub
@@ -80,6 +82,7 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
     	getThreadLocalRequest().getSession().setAttribute("loggedUser", member.getUsername());
 		
 	    //set the session variable
+    	onlineUsers.add(member.getUsername());
 	    
 	    return member;
 	}
@@ -255,6 +258,15 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public void logout() {
 		// TODO Auto-generated method stub
+		MemberComposite user=getLoggedUser();
+		String username=user.getUsername();
 		getThreadLocalRequest().getSession().setAttribute("loggedUser", null);
+		onlineUsers.remove(username);
+	}
+
+	@Override
+	public Set<String> getOnlineUsers() {
+		// TODO Auto-generated method stub
+		return onlineUsers;
 	}
 }

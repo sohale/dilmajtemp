@@ -1,11 +1,15 @@
 package dilmaj.client.login;
 
+import dilmaj.client.DilmajUserService;
+import dilmaj.client.DilmajUserServiceAsync;
 import dilmaj.client.SettingsService;
 import dilmaj.client.SettingsServiceAsync;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.client.top.TopMenu;
+import dilmaj.client.users_panel.GetOnlineUsersCallback;
+import dilmaj.client.users_panel.UsersPanel;
 import dilmaj.client.view_my_terms.LoadMyTermsCallback;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
@@ -17,6 +21,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public class FindCallback implements AsyncCallback<MemberComposite> {
 	private TermServiceAsync termSvc = GWT.create(TermService.class);
 	private SettingsServiceAsync settingsSvc = GWT.create(SettingsService.class);
+	private DilmajUserServiceAsync accountSvc = GWT.create(DilmajUserService.class);
 	LoginPanel panel;
 	
 	public FindCallback(LoginPanel panel) {
@@ -40,6 +45,7 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			panel.login(result.getUsername()); //May call TopMenu automatically.
 			termSvc.getMyTerms(new LoadMyTermsCallback());
 			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
+			accountSvc.getOnlineUsers(new GetOnlineUsersCallback(UsersPanel.getInstance()));
 		}
 	}
 }

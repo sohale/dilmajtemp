@@ -24,6 +24,8 @@ public class TermTabsPanel extends TabPanel {
 		add(AllTermsPanel.getInstance(), "All Terms");
 		add(TermSuggestionsPanel.getInstance(), "Terms and Suggestions");
 		add(MyTermsPanel.getInstance(), "My Terms");
+		
+		selectTab(1);
 	}
 
 }

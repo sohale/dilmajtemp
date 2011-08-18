@@ -1,6 +1,6 @@
 package dilmaj.server;
 
-public class SessionThread extends Thread {
+public class SessionThread extends Thread implements Runnable {
 	private int lastId;
 
 	public SessionThread(Runnable runnable) {
@@ -9,5 +9,9 @@ public class SessionThread extends Thread {
 	
 	public void setLastId(int lastId) {
 		this.lastId=lastId;
+	}
+	
+	public void run() {
+	
 	}
 }

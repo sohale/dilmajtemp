@@ -29,7 +29,7 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		SessionService {
 	private static int timer=0;
 	private static List<MessageComposite> allMessages=new ArrayList<MessageComposite>();
-	//private static HashMap<String, SessionThread> allSessions=new HashMap<String, SessionThread>();
+	private static HashMap<String, SessionThread> allSessions=new HashMap<String, SessionThread>();
 	
 	public static void addMessage(MessageComposite aMessage) {
 		allMessages.add(aMessage);
@@ -72,15 +72,15 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public int openSession() {
+	public void openSession() {
 		// TODO Auto-generated method stub
 		String sessionID=getThreadLocalRequest().getSession().getId();
 		
-		MessageComposite newMessage=new MessageComposite("just logged in!");
-		addMessage(newMessage);
+		//MessageComposite newMessage=new MessageComposite("just logged in!");
+		//addMessage(newMessage);
 		//allSessions.put(sessionID, makeThread());
 		
-		return newMessage.getSequence();
+		//return newMessage.getSequence();
 	}
 
 	@Override

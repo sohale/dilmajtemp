@@ -1,5 +1,8 @@
 package dilmaj.client;
 
+import java.util.List;
+import java.util.Set;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dilmaj.shared.EmailComposite;
@@ -20,4 +23,6 @@ public interface DilmajUserServiceAsync {
 	void getLoggedUser(AsyncCallback<MemberComposite> callback);
 
 	void logout(AsyncCallback<Void> callback);
+
+	void getOnlineUsers(AsyncCallback<Set<String>> callback);
 }

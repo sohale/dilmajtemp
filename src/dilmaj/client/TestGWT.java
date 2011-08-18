@@ -23,6 +23,7 @@ import dilmaj.client.register.RegisterPanel;
 import dilmaj.client.search.SearchPanel;
 import dilmaj.client.top.TopMenu;
 import dilmaj.client.top.TopMenuTabs;
+import dilmaj.client.users_panel.UsersPanel;
 import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.view_suggestion.LoadSuggestionCallback;
 import dilmaj.client.view_suggestion.ViewSuggestionPanel;
@@ -101,6 +102,8 @@ public class TestGWT implements EntryPoint {
 			    RootPanel.get("liveLogWall").add(LiveLogPanel.getInstance());
 			    
 			    RootPanel.get("termTabs").add(TermTabsPanel.getInstance());
+			    
+			    RootPanel.get("usersPanel").add(UsersPanel.getInstance());
 			} else if (username!=null && activator!=null) {
 				MemberComposite userVO=new MemberComposite();
 				userVO.setActivator(activator);
