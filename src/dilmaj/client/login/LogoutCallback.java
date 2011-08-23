@@ -25,6 +25,8 @@ public class LogoutCallback implements AsyncCallback<Void> {
 	public void onSuccess(Void result) {
 		// TODO Auto-generated method stub
 		panel.logout();
+		UsersPanel.getInstance().logOut();
+		
 		MyTerms.TheInstance.clear();
 		SettingsPanel.getInstance().setSettings(null);
 		UsersPanel.getInstance().empty();

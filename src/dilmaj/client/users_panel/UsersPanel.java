@@ -12,6 +12,8 @@ public class UsersPanel extends VerticalPanel {
 	
 	private static UsersPanel theInstance=null;
 	
+	private boolean isLoggedIn=false; 
+	
 	public static UsersPanel getInstance() {
 		if (theInstance==null)
 			theInstance=new UsersPanel();
@@ -47,5 +49,17 @@ public class UsersPanel extends VerticalPanel {
 	public void empty() {
 		clear();
 		users.clear();
+	}
+	
+	public void logIn() {
+		isLoggedIn=true;
+	}
+	
+	public boolean isLoggedIn() {
+		return isLoggedIn;
+	}
+	
+	public void logOut() {
+		isLoggedIn=false;
 	}
 }

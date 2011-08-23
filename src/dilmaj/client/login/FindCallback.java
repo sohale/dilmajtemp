@@ -45,7 +45,9 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			panel.login(result.getUsername()); //May call TopMenu automatically.
 			termSvc.getMyTerms(new LoadMyTermsCallback());
 			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
-			accountSvc.getOnlineUsers(new GetOnlineUsersCallback(UsersPanel.getInstance()));
+			
+			UsersPanel.getInstance().logIn();
+			accountSvc.getOnlineUsers(new GetOnlineUsersCallback());
 		}
 	}
 }

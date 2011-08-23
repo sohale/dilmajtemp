@@ -267,6 +267,12 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public Set<String> getOnlineUsers() {
 		// TODO Auto-generated method stub
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		return onlineUsers;
 	}
 }

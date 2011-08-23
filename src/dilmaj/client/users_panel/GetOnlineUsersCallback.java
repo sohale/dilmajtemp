@@ -20,10 +20,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class GetOnlineUsersCallback implements AsyncCallback<Set<String>> {
 	private DilmajUserServiceAsync accountSvc = GWT.create(DilmajUserService.class);
-	UsersPanel panel;
 	
-	public GetOnlineUsersCallback(UsersPanel panel) {
-		this.panel=panel;
+	public GetOnlineUsersCallback() {
 	}
 
 	@Override
@@ -35,7 +33,11 @@ public class GetOnlineUsersCallback implements AsyncCallback<Set<String>> {
 	@Override
 	public void onSuccess(Set<String> result) {
 		// TODO Auto-generated method stub
-		panel.updateUsersList(result);
-		accountSvc.getOnlineUsers(new GetOnlineUsersCallback(panel));
+		UsersPanel.getInstance().updateUsersList(result);
+		
+		if (UsersPanel.getInstance().isLoggedIn())
+			accountSvc.getOnlineUsers(new GetOnlineUsersCallback());
+		else
+			UsersPanel.getInstance().clear();
 	}
 }
