@@ -23,7 +23,7 @@ public class LiveLogPanel extends VerticalPanel {
 	}
 	
 	private LiveLogPanel() {
-		controller=new LiveLogController(this);
+		controller=new LiveLogController();
 		controller.openSession();
 		add(refreshButton);
 		refreshButton.addClickHandler(controller);

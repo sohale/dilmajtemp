@@ -83,6 +83,11 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		
 	    //set the session variable
     	onlineUsers.add(member.getUsername());
+    	
+		String message=member.getUsername()+" just logged in!";
+		MessageComposite messageVO=new MessageComposite(message);
+		SessionServiceImpl.addMessage(messageVO);
+
 	    
 	    return member;
 	}

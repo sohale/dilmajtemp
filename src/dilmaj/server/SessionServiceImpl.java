@@ -29,15 +29,15 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		SessionService {
 	private static int timer=0;
 	private static List<MessageComposite> allMessages=new ArrayList<MessageComposite>();
-	private static HashMap<String, SessionThread> allSessions=new HashMap<String, SessionThread>();
+	private static HashMap<String, Integer> allSessions=new HashMap<String, Integer>();
 	
 	public static void addMessage(MessageComposite aMessage) {
 		allMessages.add(aMessage);
-		aMessage.setSequence(timer++);
+		//aMessage.setSequence(timer++);
 	}
 	
 	@Override
-	public synchronized List<MessageComposite> getLog(int lastId) {
+	public List<MessageComposite> getLog(int lastId) {
 		// TODO Auto-generated method stub
 		String sessionID=getThreadLocalRequest().getSession().getId();
 		//SessionThread sessionThread=allSessions.get(sessionID);
@@ -65,27 +65,35 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 			//newSeq=aMessage.getSequence();
 		}
 		
-		/*if (sessionID!=null)
-			allSessions.put(sessionID, newSeq);*/
+		if (sessionID!=null)
+			allSessions.put(sessionID, timer);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		return myMessages;
 	}
 
 	@Override
-	public void openSession() {
+	public Integer openSession() {
 		// TODO Auto-generated method stub
 		String sessionID=getThreadLocalRequest().getSession().getId();
 		
-		//MessageComposite newMessage=new MessageComposite("just logged in!");
-		//addMessage(newMessage);
-		//allSessions.put(sessionID, makeThread());
+		int index=timer;
+		allSessions.put(sessionID, index);
+		MessageComposite newMessage=new MessageComposite("A new quest connected!!");
+		addMessage(newMessage);
+		//allSessions.put(sessionID, timer);
 		
-		//return newMessage.getSequence();
+		return index;
 	}
 
 	@Override
 	public void closeSession(String myID) {
-		//allSessions.remove(myID);
+		allSessions.remove(myID);
 	}
 	
 	/*private Thread makeThread() {

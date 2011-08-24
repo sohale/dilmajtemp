@@ -11,10 +11,9 @@ import dilmaj.shared.MessageComposite;
 
 public class GetLogCallback implements AsyncCallback<List<MessageComposite>> {
 	private SessionServiceAsync sessionSvc = GWT.create(SessionService.class);
-	LiveLogPanel panel;
+	//LiveLogPanel panel;
 	
-	public GetLogCallback(LiveLogPanel panel) {
-		this.panel=panel;
+	public GetLogCallback() {
 	}
 	
 	@Override
@@ -26,7 +25,7 @@ public class GetLogCallback implements AsyncCallback<List<MessageComposite>> {
 	@Override
 	public void onSuccess(List<MessageComposite> result) {
 		// TODO Auto-generated method stub
-		panel.addMessages(result);
-		sessionSvc.getLog(panel.getLastMessageId(), new GetLogCallback(panel));
+		LiveLogPanel.getInstance().addMessages(result);
+		sessionSvc.getLog(LiveLogPanel.getInstance().getLastMessageId(), new GetLogCallback());
 	}
 }

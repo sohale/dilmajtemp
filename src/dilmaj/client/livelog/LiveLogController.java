@@ -12,14 +12,12 @@ import dilmaj.shared.Controller;
 
 public class LiveLogController extends Controller {
 	private SessionServiceAsync sessionSvc = GWT.create(SessionService.class);
-	private LiveLogPanel panel;
 	
-	public LiveLogController(LiveLogPanel panel) {
-		this.panel=panel;
+	public LiveLogController() {
 	}
 	
 	public void openSession() {
-		sessionSvc.openSession(new OpenSessionCallback(panel));
+		sessionSvc.openSession(new OpenSessionCallback());
 	}
 
 	public void closeSession(String sessionID) {
@@ -28,6 +26,6 @@ public class LiveLogController extends Controller {
 
 	@Override
 	public void onClick(ClickEvent event) {
-		sessionSvc.getLog(panel.getLastMessageId(), new GetLogCallback(panel));
+		sessionSvc.getLog(LiveLogPanel.getInstance().getLastMessageId(), new GetLogCallback());
 	}
 }
