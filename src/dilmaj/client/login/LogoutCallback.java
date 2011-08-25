@@ -29,6 +29,6 @@ public class LogoutCallback implements AsyncCallback<Void> {
 		
 		MyTerms.TheInstance.clear();
 		SettingsPanel.getInstance().setSettings(null);
-		UsersPanel.getInstance().empty();
+		//UsersPanel.getInstance().empty();
 	}
 }

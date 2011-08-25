@@ -60,6 +60,7 @@ public class UsersPanel extends VerticalPanel {
 	}
 	
 	public void logOut() {
+		empty();
 		isLoggedIn=false;
 	}
 }

@@ -37,7 +37,5 @@ public class GetOnlineUsersCallback implements AsyncCallback<Set<String>> {
 		
 		if (UsersPanel.getInstance().isLoggedIn())
 			accountSvc.getOnlineUsers(new GetOnlineUsersCallback());
-		else
-			UsersPanel.getInstance().clear();
 	}
 }
