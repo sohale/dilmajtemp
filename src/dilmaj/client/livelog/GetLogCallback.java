@@ -26,6 +26,7 @@ public class GetLogCallback implements AsyncCallback<List<MessageComposite>> {
 	public void onSuccess(List<MessageComposite> result) {
 		// TODO Auto-generated method stub
 		LiveLogPanel.getInstance().addMessages(result);
-		sessionSvc.getLog(LiveLogPanel.getInstance().getLastMessageId(), new GetLogCallback());
+		
+		sessionSvc.getLog(LiveLogPanel.getInstance().getLastMessageId(), this/*new GetLogCallback()*/);
 	}
 }

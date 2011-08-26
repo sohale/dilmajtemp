@@ -37,7 +37,7 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	@Override
-	public synchronized List<MessageComposite> getLog(int lastId) {
+	public List<MessageComposite> getLog(int lastId) {
 		// TODO Auto-generated method stub
 		//String sessionID=getThreadLocalRequest().getSession().getId();
 		//SessionThread sessionThread=allSessions.get(sessionID);
@@ -73,11 +73,11 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		/*if (sessionID!=null)
 			allSessions.put(sessionID, timer);*/
 		
-		try {
+		/*try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		return myMessages;
 	}
