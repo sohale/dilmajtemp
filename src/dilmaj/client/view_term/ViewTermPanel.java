@@ -18,7 +18,7 @@ import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.WelcomeController;
 import dilmaj.shared.*;
 
-public class ViewTermPanel extends HorizontalPanel {
+public class ViewTermPanel extends VerticalPanel {
 	private MessageComposite message;
 	private AllTermsPanel allPanel;
 	private ViewTermController controller;
@@ -29,13 +29,14 @@ public class ViewTermPanel extends HorizontalPanel {
 
 	private HashMap<String, TermSuggestionComposite> suggestions=new HashMap<String, TermSuggestionComposite>();
 	
-	private VerticalPanel termPanel=new VerticalPanel();
+	private HorizontalPanel termPanel=new HorizontalPanel();
 	private Label termLabel;
 	private FlexTable suggestionsTable=new FlexTable();
 	
 	private static HashMap<TermComposite,ViewTermPanel> viewTermPanels=new HashMap<TermComposite,ViewTermPanel>();
 	
 	private Label languageLabel;
+	private Label userLabel;
 	
 	public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
 		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
@@ -54,13 +55,20 @@ public class ViewTermPanel extends HorizontalPanel {
 		controller=new ViewTermController(this, allPanel, popup);
 		this.theTerm=theTerm;
 
-		termLabel=new Label(GlobalSettings.constants.term()+" "+theTerm.getCaption());
+		termLabel=new Label(GlobalSettings.constants.term()+":"+theTerm.getCaption());
 		termPanel.add(termLabel);
+		termPanel.add(new Label(" | "));
 		
-		languageLabel=new Label(Language.getLanguage(theTerm.getLanguage()).toString());
+		languageLabel=new Label(GlobalSettings.constants.language()+":"+Language.getLanguage(theTerm.getLanguage()).toString());
 		termPanel.add(languageLabel);
+		termPanel.add(new Label(" | "));
 		
-		suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
+		userLabel=new Label(GlobalSettings.constants.creator()+":"+theTerm.getUser());
+		termPanel.add(userLabel);
+		termPanel.add(new Label(" | "));
+		
+		// removed to create Naser's prototype
+		/*suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
 		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());
 		int row=1;
 		Iterator<TermSuggestionComposite> tsIterator=theTerm.getSuggestions().iterator();
@@ -75,7 +83,7 @@ public class ViewTermPanel extends HorizontalPanel {
 			suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
 			row++;
 		}
-		termPanel.add(suggestionsTable);
+		termPanel.add(suggestionsTable);*/
 		add(termPanel);
 		add(addSuggestion);
 		add(closeButton);
