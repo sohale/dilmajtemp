@@ -19,6 +19,7 @@ public class UseCaseComposite extends InteractionComposite {
 					this.timeStamp=useCase.getTimestamp();
 					this.id=useCase.getId();
 					this.username=useCase.getUsername();
+					this.feedback=useCase.getFeedback();
 				}
 	}
 

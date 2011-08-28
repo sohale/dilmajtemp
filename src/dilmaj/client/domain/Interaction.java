@@ -56,6 +56,7 @@ public class Interaction {
 	public Interaction(UseCaseComposite newUseCase) {
 		timeStamp=newUseCase.getTimeStamp();
 		username=newUseCase.getUser();
+		feedback=newUseCase.getFeedback();
 		kind="useCase";
 	}
 	

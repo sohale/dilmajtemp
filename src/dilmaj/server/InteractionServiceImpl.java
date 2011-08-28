@@ -1,6 +1,5 @@
 package dilmaj.server;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,8 +42,8 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		newLike.setUser(username);
 		
 		Interaction like=new Interaction(newLike);
-	    //java.util.Date today = new java.util.Date();
-	    //like.setTimestamp(new Timestamp(today.getTime()));
+	    java.util.Date today = new java.util.Date();
+	    like.setTimestamp(today);
 		
 		TermSuggestionComposite tsVO=newLike.getTermSuggestion();
 		
@@ -78,7 +77,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
     		TermSuggestion ts=allTermSuggestions.get(0);
     		ts.addInteractionID(like.getId());
             newLike.setId(like.getId());
-            //newLike.setTimestamp(like.getTimestamp());
+            newLike.setTimestamp(like.getTimestamp());
             pm.makePersistent(ts);
             //tsVO.a
         } finally {
@@ -117,8 +116,8 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		newComment.setUser(username);
 		
 		Interaction Comment=new Interaction(newComment);
-	    //java.util.Date today = new java.util.Date();
-	    //Comment.setTimestamp(new Timestamp(today.getTime()));
+	    java.util.Date today = new java.util.Date();
+	    Comment.setTimestamp(today);
 		
 		TermSuggestionComposite tsVO=newComment.getTermSuggestion();
 		Comment.setTermSuggestionID(tsVO.getId());
@@ -140,7 +139,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
     		TermSuggestion ts=allTermSuggestions.get(0);
     		ts.addInteractionID(Comment.getId());
             newComment.setId(Comment.getId());
-            //newComment.setTimestamp(Comment.getTimestamp());
+            newComment.setTimestamp(Comment.getTimestamp());
             pm.makePersistent(ts);
             //tsVO.a
         } finally {
@@ -178,8 +177,8 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
 		newUseCase.setUser(username);
 		
 		Interaction useCase=new Interaction(newUseCase);
-	    //java.util.Date today = new java.util.Date();
-	    //useCase.setTimestamp(new Timestamp(today.getTime()));
+	    java.util.Date today = new java.util.Date();
+	    useCase.setTimestamp(today);
 		
 		TermSuggestionComposite tsVO=newUseCase.getTermSuggestion();
 		useCase.setTermSuggestionID(tsVO.getId());
@@ -201,7 +200,7 @@ public class InteractionServiceImpl extends RemoteServiceServlet implements Inte
     		TermSuggestion ts=allTermSuggestions.get(0);
     		ts.addInteractionID(useCase.getId());
             newUseCase.setId(useCase.getId());
-            //newuseCase.setTimestamp(useCase.getTimestamp());
+            newUseCase.setTimestamp(useCase.getTimestamp());
             pm.makePersistent(ts);
             //tsVO.a
         } finally {
