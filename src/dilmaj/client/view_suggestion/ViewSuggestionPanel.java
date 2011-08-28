@@ -5,9 +5,11 @@ import java.util.Iterator;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
@@ -17,6 +19,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.MyPanel;
 import dilmaj.shared.CommentComposite;
+import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
 import dilmaj.shared.MessageComposite;
@@ -55,6 +58,9 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	FlexTable samplesTable=new FlexTable();
 	TextArea sampleArea=new TextArea();
 	Button sampleButton=new Button("Create Sample");
+	
+	Button moreButton=new Button(GlobalSettings.constants.more()+">>");
+	
 	int samplesCounter=0;
 	
 	public static ViewSuggestionPanel getInstance(TermSuggestionComposite tsVO) {
@@ -127,6 +133,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		add(suggestorLabel);
 		add(votersLabel);
 		add(closeButton);
+		add(moreButton);
 	}
 	
 	public TermSuggestionComposite getTermSuggestionComposite() {

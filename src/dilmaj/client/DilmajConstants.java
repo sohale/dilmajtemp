@@ -132,4 +132,7 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Creator")
 	  String creator();
+
+	  @DefaultStringValue("More")
+	  String more();
 }

@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.TermButton;
+import dilmaj.client.view_suggestion.ViewSuggestionPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.WelcomeController;
 import dilmaj.shared.*;
@@ -68,23 +69,25 @@ public class ViewTermPanel extends VerticalPanel {
 		termPanel.add(new Label(" | "));
 		
 		// removed to create Naser's prototype
-		/*suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
+		suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
 		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());
 		int row=1;
 		Iterator<TermSuggestionComposite> tsIterator=theTerm.getSuggestions().iterator();
 		while (tsIterator.hasNext()) {
 			TermSuggestionComposite tsVO=tsIterator.next();
-			Label suggestionLabel=new Label(tsVO.getSuggestion().getCaption());
+			//Label suggestionLabel=new Label(tsVO.getSuggestion().getCaption());
 			suggestions.put(tsVO.getSuggestion().getCaption(), tsVO);
 			
-			suggestionLabel.addMouseOverHandler(controller);
+			//suggestionLabel.addMouseOverHandler(controller);
 			
-			suggestionsTable.setWidget(row, 1, suggestionLabel);
-			suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
+			ViewSuggestionPanel suggestionPanel=ViewSuggestionPanel.getInstance(tsVO);
+			
+			suggestionsTable.setWidget(row, 0, suggestionPanel);
+			//suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
 			row++;
 		}
-		termPanel.add(suggestionsTable);*/
 		add(termPanel);
+		add(suggestionsTable);
 		add(addSuggestion);
 		add(closeButton);
 		
