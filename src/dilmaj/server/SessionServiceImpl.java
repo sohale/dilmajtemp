@@ -89,7 +89,7 @@ public class SessionServiceImpl extends RemoteServiceServlet implements
 		
 		int index=timer;
 		//allSessions.put(sessionID, index);
-		MessageComposite newMessage=new MessageComposite("A new quest connected!!");
+		MessageComposite newMessage=new MessageComposite("A new guest connected!!");
 		addMessage(newMessage);
 		//allSessions.put(sessionID, timer);
 		
