@@ -96,11 +96,15 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		suggestorLabel=new Label(constants.suggestor()+": "+suggestion.getUser());
 		
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
+		
+		StringBuilder votersBuilder=new StringBuilder("");
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
 			try {
 				LikeComposite likeComposite=(LikeComposite)ic;
-				votersString=votersString.concat(ic.getUser()+", ");
+				votersBuilder.append(ic.getUser());
+				votersBuilder.append(", ");
+				//votersString=votersString.concat(ic.getUser()+", ");
 			}
 			catch (ClassCastException cce0) {
 				try {
@@ -120,6 +124,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 				}
 			}
 		}
+		votersString=votersBuilder.toString();
 		votersLabel=new Label(votersString);
 
 		add(commentArea);
