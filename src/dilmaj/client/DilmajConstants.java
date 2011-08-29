@@ -135,4 +135,7 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("More")
 	  String more();
+
+	  @DefaultStringValue("Less")
+	  String less();
 }

@@ -60,6 +60,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	Button sampleButton=new Button("Create Sample");
 	
 	Button moreButton=new Button(GlobalSettings.constants.more()+">>");
+	Button lessButton=new Button(GlobalSettings.constants.less()+"<<");
 	
 	int samplesCounter=0;
 	
@@ -126,19 +127,14 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		}
 		votersString=votersBuilder.toString();
 		votersLabel=new Label(votersString);
-
-		add(commentArea);
-		add(commentButton);
-		add(commentsTable);
-
-		add(sampleArea);
-		add(sampleButton);
-		add(samplesTable);
 		
 		add(suggestorLabel);
 		add(votersLabel);
 		add(closeButton);
 		add(moreButton);
+		
+		moreButton.addClickHandler(controller);
+		lessButton.addClickHandler(controller);
 	}
 	
 	public TermSuggestionComposite getTermSuggestionComposite() {
@@ -211,5 +207,31 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	public void reset() {
 		commentArea.setText("");
 		sampleArea.setText("");
+	}
+	
+	public void more() {
+		add(commentArea);
+		add(commentButton);
+		add(commentsTable);
+
+		add(sampleArea);
+		add(sampleButton);
+		add(samplesTable);
+		
+		add(lessButton);
+		remove(moreButton);
+	}
+	
+	public void less() {
+		remove(commentArea);
+		remove(commentButton);
+		remove(commentsTable);
+
+		remove(sampleArea);
+		remove(sampleButton);
+		remove(samplesTable);
+	
+		add(moreButton);
+		remove(lessButton);
 	}
 }

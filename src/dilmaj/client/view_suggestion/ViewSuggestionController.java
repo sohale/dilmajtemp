@@ -18,6 +18,7 @@ import dilmaj.client.TermSuggestionServiceAsync;
 import dilmaj.client.view_term.ViewTermCallback;
 import dilmaj.shared.CommentComposite;
 import dilmaj.shared.Controller;
+import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.InteractionComposite;
 import dilmaj.shared.LikeComposite;
 import dilmaj.shared.TermSuggestionComposite;
@@ -61,6 +62,10 @@ public class ViewSuggestionController extends Controller {
 				sampleVO.setFeedback(suggestionPanel.getUseCase());
 				sampleVO.setTermSuggestion(tsVO);
 				interactionSvc.create(sampleVO, new CreateUseCaseCallback(suggestionPanel));
+			} else if (buttonCaption.equals(GlobalSettings.constants.more()+">>")) {
+				suggestionPanel.more();
+			} else if (buttonCaption.equals(GlobalSettings.constants.less()+"<<")) {
+				suggestionPanel.less();
 			}
 			
 			if (!buttonCaption.equals("x"))
