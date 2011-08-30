@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dilmaj.shared.Controller;
@@ -20,7 +21,8 @@ public class LoadAllTermsCallback implements AsyncCallback<HashMap<Long, TermCom
 	@Override
 	public void onFailure(Throwable caught) {
 		// TODO Auto-generated method stub
-		//panel.setMessage(new MessageComposite("Error!"));
+		//AllTermsPanel.getInstance().setMessage(new MessageComposite("Error Loading All Terms!"));
+		Window.alert("Load all terms failed!");
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package dilmaj.shared;
 
+import java.util.Date;
+
 import dilmaj.client.domain.Interaction;
 
 public class CommentComposite extends InteractionComposite {
@@ -14,7 +16,11 @@ public class CommentComposite extends InteractionComposite {
 			if (comment.getId()!=null)
 			//	if (like.getUsername()!=null)
 				{
-					this.timeStamp=comment.getTimestamp();
+					if (comment.getTimestamp()==null)
+						timeStamp=new Date();
+					else
+						this.timeStamp=comment.getTimestamp();
+					
 					this.id=comment.getId();
 					this.username=comment.getUsername();
 					this.feedback=comment.getFeedback();

@@ -78,19 +78,19 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		if (allTermSuggestions!=null) {
 			Iterator<TermSuggestion> iterator=allTermSuggestions.iterator();
 			
-			StringBuilder runningTitle=new StringBuilder("");
-			
 			while (iterator.hasNext()) {
 				TermSuggestion ts=iterator.next();
 				
 				TermComposite tVO=termVOs.get(ts.getTermId());
 				TermComposite sVO=termVOs.get(ts.getSuggestionId());
-				runningTitle.append(tVO.getRunningTitle());
-				if (runningTitle!=null) {
-					runningTitle.append(" ");
-				} else {
-					runningTitle.append("");
-				}
+				
+				StringBuilder runningTitle=null;
+				if (tVO.getRunningTitle()!=null)
+					runningTitle=new StringBuilder(tVO.getRunningTitle());
+				else
+					runningTitle=new StringBuilder("");
+
+				runningTitle.append(" ");
 				runningTitle.append(sVO.getCaption());
 				tVO.setRunningTitle(runningTitle.toString());
 

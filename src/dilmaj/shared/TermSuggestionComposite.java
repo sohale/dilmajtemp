@@ -1,6 +1,7 @@
 package dilmaj.shared;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +23,10 @@ public class TermSuggestionComposite extends EntryComposite implements IsSeriali
 	
 	public TermSuggestionComposite(TermSuggestion termSuggestion) {
 		this.id=termSuggestion.getId();
-		this.timeStamp=termSuggestion.getTimestamp();
+		if (termSuggestion.getTimestamp()==null)
+			timeStamp=new Date();
+		else
+			this.timeStamp=termSuggestion.getTimestamp();
 		if (termSuggestion.getRank()!=null)
 			this.rank=termSuggestion.getRank();
 		else

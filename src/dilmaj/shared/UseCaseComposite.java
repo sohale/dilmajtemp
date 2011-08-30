@@ -1,5 +1,7 @@
 package dilmaj.shared;
 
+import java.util.Date;
+
 import dilmaj.client.domain.Interaction;
 
 
@@ -16,7 +18,10 @@ public class UseCaseComposite extends InteractionComposite {
 			if (useCase.getId()!=null)
 			//	if (like.getUsername()!=null)
 				{
-					this.timeStamp=useCase.getTimestamp();
+					if (useCase.getTimestamp()==null)
+						timeStamp=new Date();
+					else
+						this.timeStamp=useCase.getTimestamp();
 					this.id=useCase.getId();
 					this.username=useCase.getUsername();
 					this.feedback=useCase.getFeedback();
