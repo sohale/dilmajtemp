@@ -5,13 +5,6 @@ import java.util.Set;
 
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.SettingsListener;
-import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
-import dilmaj.client.insert_term.InsertTermPanel;
-import dilmaj.client.top.TopMenu;
-import dilmaj.client.view_my_terms.MyTermsPanel;
-import dilmaj.client.welcome.AllTermsPanel;
-import dilmaj.client.welcome.TermSuggestionsPanel;
-import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.Language;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SettingsComposite;
@@ -19,10 +12,8 @@ import dilmaj.shared.SettingsComposite;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 

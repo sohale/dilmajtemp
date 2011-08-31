@@ -1,6 +1,7 @@
 package dilmaj.client.login;
 
 import dilmaj.client.settings.SettingsPanel;
+import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.users_panel.UsersPanel;
 import dilmaj.client.view_my_terms.MyTerms;
 import dilmaj.shared.MessageComposite;
@@ -30,5 +31,7 @@ public class LogoutCallback implements AsyncCallback<Void> {
 		MyTerms.TheInstance.clear();
 		SettingsPanel.getInstance().setSettings(null);
 		//UsersPanel.getInstance().empty();
+		
+		TopMenuTabs.getInstance().logout();
 	}
 }

@@ -2,6 +2,7 @@ package dilmaj.client.login;
 
 import dilmaj.client.DilmajUserService;
 import dilmaj.client.DilmajUserServiceAsync;
+import dilmaj.client.top.GetLoggedAccountCallback;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MemberComposite;
@@ -48,7 +49,10 @@ public class LoginController extends Controller {
 		}
 	}
 
-
+	public void checkLogin() {
+		accountSvc.getLoggedUser(new GetLoggedAccountCallback());
+	}
+	
 	@Override
 	public void onMouseOut(MouseOutEvent event) {
 		// TODO Auto-generated method stub

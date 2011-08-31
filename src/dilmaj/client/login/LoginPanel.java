@@ -1,6 +1,5 @@
 package dilmaj.client.login;
 
-import dilmaj.client.top.TopMenu;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MessageComposite;
 
@@ -40,6 +39,8 @@ public class LoginPanel extends VerticalPanel {
 		buttonsPanel.add(loginButton);
 		loginButton.addClickHandler(controller);
 		closeButton.addClickHandler(controller);
+		
+		controller.checkLogin();
 	}
 	
 	public void setMessage(MessageComposite messageVO) {
@@ -62,7 +63,7 @@ public class LoginPanel extends VerticalPanel {
 			this.password.setVisible(false);
 			loginButton.setText(GlobalSettings.constants.logout());
 			isLogged=true;
-			TopMenu.getInstance().login(username);
+			//TopMenu.getInstance().login(username);
 		}
 	}
 	
@@ -73,7 +74,7 @@ public class LoginPanel extends VerticalPanel {
 			password.setVisible(true);
 			loginButton.setText(GlobalSettings.constants.login());
 			isLogged=false;
-			TopMenu.getInstance().logout();
+			//TopMenu.getInstance().logout();
 		}
 	}
 }

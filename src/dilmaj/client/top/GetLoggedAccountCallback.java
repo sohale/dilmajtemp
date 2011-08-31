@@ -9,6 +9,7 @@ import dilmaj.client.SettingsServiceAsync;
 import dilmaj.client.insert_term.InsertTermController;
 import dilmaj.client.insert_term.InsertTermPanel;
 import dilmaj.client.login.FindSettingsCallback;
+import dilmaj.client.login.LoginPanel;
 import dilmaj.shared.EmailComposite;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
@@ -34,14 +35,15 @@ public class GetLoggedAccountCallback implements AsyncCallback<MemberComposite> 
 		if (termPanel!=null)
 			termPanel.setMessage(new MessageComposite("Check Login Error!"));
 		else
-			TopMenu.getInstance().setMessage(new MessageComposite("Check Login Error!"));
+			LoginPanel.getInstance().setMessage(new MessageComposite("Check Login Error!"));
 	}
 
 	@Override
 	public void onSuccess(MemberComposite result) {
 		// TODO Auto-generated method stub
 		if (result!=null) {
-			TopMenu.getInstance().login(result.getUsername());
+			//TopMenu.getInstance().login(result.getUsername());
+			LoginPanel.getInstance().login(result.getUsername());
 			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
 		}
 		

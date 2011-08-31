@@ -6,14 +6,12 @@ import dilmaj.client.SettingsService;
 import dilmaj.client.SettingsServiceAsync;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
-import dilmaj.client.settings.SettingsPanel;
-import dilmaj.client.top.TopMenu;
+import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.users_panel.GetOnlineUsersCallback;
 import dilmaj.client.users_panel.UsersPanel;
 import dilmaj.client.view_my_terms.LoadMyTermsCallback;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
-import dilmaj.shared.SettingsComposite;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -42,7 +40,8 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			panel.setMessage(new MessageComposite("User not found!"));
 		else {
 			//panel.setMessage(new MessageComposite(result.getId()+""));
-			panel.login(result.getUsername()); //May call TopMenu automatically.
+			panel.login(result.getUsername()); 
+			TopMenuTabs.getInstance().login(result.getUsername());
 			termSvc.getMyTerms(new LoadMyTermsCallback());
 			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
 			

@@ -1,7 +1,6 @@
 package dilmaj.client.login;
 
 import dilmaj.client.settings.SettingsPanel;
-import dilmaj.client.top.TopMenu;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.SettingsComposite;
 
