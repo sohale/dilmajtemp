@@ -27,7 +27,7 @@ import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
 import dilmaj.shared.UseCaseComposite;
 
-public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
+public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 
 	private static HashMap<TermSuggestionComposite, ViewSuggestionPanel> allInstances=new HashMap<TermSuggestionComposite, ViewSuggestionPanel>();
@@ -42,12 +42,19 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	Label suggestorLabel;
 	Label votersLabel;
 	
+	
+	
 	Button closeButton=new Button("x");
 	
+	VerticalPanel suggestionPanel=new VerticalPanel();
+	VerticalPanel descriptionPanel=new VerticalPanel();
 	HorizontalPanel interactionPanel=new HorizontalPanel();
+	
+	
 	PushButton likeButton=new PushButton(new Image("images/like.jpg"));
 	Label likesLabel=new Label();
-	String votersString=constants.supporters()+": ";
+	String votersString=constants.supporters()+" ";
+	String lessVoters=constants.supporters()+" ";
 	ViewSuggestionController controller=new ViewSuggestionController(this);
 
 	FlexTable commentsTable=new FlexTable();
@@ -81,13 +88,17 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		this.suggestion=tsVO.getSuggestion();
 		this.term=tsVO.getTerm();
 		
-		tsLabel=new Label(suggestion.getCaption()+"="+term.getCaption());
-		add(tsLabel);
+		tsLabel=new Label(suggestion.getCaption()/*+"="+term.getCaption()*/);
+				
+		add(suggestionPanel);
+		suggestionPanel.add(tsLabel);
+		suggestionPanel.add(likeButton);
 		
-		add(interactionPanel);
-		interactionPanel.add(likeButton);
-		interactionPanel.add(likesLabel);
-		likesLabel.setText(termSuggestion.getLikes()+"");
+		add(descriptionPanel);
+		descriptionPanel.add(interactionPanel);
+		
+		//interactionPanel.add(likesLabel);
+		//likesLabel.setText(termSuggestion.getLikes()+" "+GlobalSettings.constants.people());
 
 		closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
@@ -99,13 +110,20 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
 		
 		StringBuilder votersBuilder=new StringBuilder("");
+		StringBuilder lessBuilder=new StringBuilder("");
+		int less=0;
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
 			try {
 				LikeComposite likeComposite=(LikeComposite)ic;
 				votersBuilder.append(ic.getUser());
 				votersBuilder.append(", ");
-				//votersString=votersString.concat(ic.getUser()+", ");
+				
+				if (less<2) {
+					lessBuilder.append(ic.getUser());
+					lessBuilder.append(", ");
+					less++;
+				}
 			}
 			catch (ClassCastException cce0) {
 				try {
@@ -126,10 +144,17 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 			}
 		}
 		votersString=votersBuilder.toString();
-		votersLabel=new Label(votersString);
+		int l=tsVO.getLikes();
+		if (l>2) {
+			lessBuilder.append(GlobalSettings.constants.and());
+			lessBuilder.append(l-less);
+			lessBuilder.append(GlobalSettings.constants.others());
+		}
+		lessVoters=lessBuilder.toString();
+		votersLabel=new Label(lessVoters);
+		interactionPanel.add(votersLabel);
 		
 		add(suggestorLabel);
-		add(votersLabel);
 		add(closeButton);
 		add(moreButton);
 		
@@ -220,6 +245,8 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 		
 		add(lessButton);
 		remove(moreButton);
+		
+		votersLabel.setText(votersString);
 	}
 	
 	public void less() {
@@ -233,5 +260,7 @@ public class ViewSuggestionPanel extends VerticalPanel implements MyPanel {
 	
 		add(moreButton);
 		remove(lessButton);
+		
+		votersLabel.setText(lessVoters);
 	}
 }

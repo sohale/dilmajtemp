@@ -138,4 +138,13 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Less")
 	  String less();
+
+	  @DefaultStringValue("People")
+	  String people();
+
+	  @DefaultStringValue("And")
+	  String and();
+
+	  @DefaultStringValue("Others")
+	  String others();
 }
