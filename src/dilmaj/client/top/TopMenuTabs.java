@@ -31,11 +31,15 @@ public class TopMenuTabs extends TabPanel {
 		//controller.checkLogin();
 	}
 	
-	public void login(String usename) {
+	public void login(String username) {
+		insert(LoginPanel.getInstance(), username, 1);
+		//remove(0);
 		//tabBar.setTabText(0, usename);
 	}
 	
 	public void logout() {
+		insert(LoginPanel.getInstance(), GlobalSettings.constants.login(), 1);
+		//remove(0);
 		//tabBar.setTabText(0, GlobalSettings.constants.login());
 	}
 }

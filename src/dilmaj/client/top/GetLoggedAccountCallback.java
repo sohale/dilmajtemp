@@ -45,6 +45,7 @@ public class GetLoggedAccountCallback implements AsyncCallback<MemberComposite> 
 			//TopMenu.getInstance().login(result.getUsername());
 			LoginPanel.getInstance().login(result.getUsername());
 			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
+			TopMenuTabs.getInstance().login(result.getUsername());
 		}
 		
 		/*if (termPanel!=null)

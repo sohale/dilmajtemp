@@ -69,6 +69,8 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	Button moreButton=new Button(GlobalSettings.constants.more()+">>");
 	Button lessButton=new Button(GlobalSettings.constants.less()+"<<");
 	
+	VerticalPanel morePanel=new VerticalPanel();
+	
 	int samplesCounter=0;
 	
 	public static ViewSuggestionPanel getInstance(TermSuggestionComposite tsVO) {
@@ -158,6 +160,8 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		add(closeButton);
 		add(moreButton);
 		
+		add(morePanel);
+		
 		moreButton.addClickHandler(controller);
 		lessButton.addClickHandler(controller);
 	}
@@ -235,31 +239,31 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	}
 	
 	public void more() {
-		add(commentArea);
-		add(commentButton);
-		add(commentsTable);
+		morePanel.add(commentArea);
+		morePanel.add(commentButton);
+		morePanel.add(commentsTable);
 
-		add(sampleArea);
-		add(sampleButton);
-		add(samplesTable);
-		
-		add(lessButton);
-		remove(moreButton);
+		morePanel.add(sampleArea);
+		morePanel.add(sampleButton);
+		morePanel.add(samplesTable);
+
+		morePanel.add(lessButton);
+		morePanel.remove(moreButton);
 		
 		votersLabel.setText(votersString);
 	}
 	
 	public void less() {
-		remove(commentArea);
-		remove(commentButton);
-		remove(commentsTable);
+		morePanel.remove(commentArea);
+		morePanel.remove(commentButton);
+		morePanel.remove(commentsTable);
 
-		remove(sampleArea);
-		remove(sampleButton);
-		remove(samplesTable);
+		morePanel.remove(sampleArea);
+		morePanel.remove(sampleButton);
+		morePanel.remove(samplesTable);
 	
-		add(moreButton);
-		remove(lessButton);
+		morePanel.add(moreButton);
+		morePanel.remove(lessButton);
 		
 		votersLabel.setText(lessVoters);
 	}
