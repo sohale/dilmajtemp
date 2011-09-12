@@ -38,7 +38,7 @@ public class User {
     protected Long id;
 
     public User(UserComposite newUser) {
-    	try {
+    	if (newUser.getClass().equals(MemberComposite.class)) {
     		MemberComposite member=(MemberComposite)newUser;
     		
     		username=member.getUsername();
@@ -51,8 +51,6 @@ public class User {
     		while (iterator.hasNext()) {
     			entries.add(iterator.next().getId());
     		}
-    	} catch (ClassCastException cce) {
-    		
     	}
 	}
 	

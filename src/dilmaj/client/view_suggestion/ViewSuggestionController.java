@@ -39,13 +39,13 @@ public class ViewSuggestionController extends Controller {
 		TermSuggestionComposite tsVO=suggestionPanel.getTermSuggestionComposite();
 		Object source=event.getSource();
 		
-		try {
+		if (source.getClass().equals(PushButton.class)) {
 			PushButton pushButton=(PushButton)source;
 			
 			LikeComposite likeVO=new LikeComposite();
 			likeVO.setTermSuggestion(tsVO);
 			interactionSvc.create(likeVO, new CreateLikeCallback(suggestionPanel));
-		} catch (ClassCastException cce0) {
+		} else {
 			Button sourceButton=(Button)source;
 			String buttonCaption=sourceButton.getText();
 			if (buttonCaption.equals("+")) {

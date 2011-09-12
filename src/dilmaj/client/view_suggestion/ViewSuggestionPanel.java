@@ -116,7 +116,9 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		int less=0;
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
-			try {
+			
+			Object icClass=ic.getClass();
+			if (icClass.equals(LikeComposite.class)) {
 				LikeComposite likeComposite=(LikeComposite)ic;
 				votersBuilder.append(ic.getUser());
 				votersBuilder.append(", ");
@@ -126,25 +128,17 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 					lessBuilder.append(", ");
 					less++;
 				}
-			}
-			catch (ClassCastException cce0) {
-				try {
-					CommentComposite commentComposite=(CommentComposite)ic;
-					commentsTable.setText(commentsCounter, 1, commentComposite.getUser()+constants.said());
-					commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
-				}
-				catch (ClassCastException cce1) {
-					try {
-						UseCaseComposite sampleComposite=(UseCaseComposite)ic;
-						samplesTable.setText(samplesCounter, 1, sampleComposite.getUser()+constants.said());
-						samplesTable.setText(samplesCounter++, 0, sampleComposite.getFeedback());
-					}
-					catch (ClassCastException cce2) {
-						
-					}
-				}
+			} else if (icClass.equals(CommentComposite.class)) {
+				CommentComposite commentComposite=(CommentComposite)ic;
+				commentsTable.setText(commentsCounter, 1, commentComposite.getUser()+constants.said());
+				commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
+			} else if (icClass.equals(UseCaseComposite.class)) {
+				UseCaseComposite sampleComposite=(UseCaseComposite)ic;
+				samplesTable.setText(samplesCounter, 1, sampleComposite.getUser()+constants.said());
+				samplesTable.setText(samplesCounter++, 0, sampleComposite.getFeedback());
 			}
 		}
+		
 		votersString=votersBuilder.toString();
 		int l=tsVO.getLikes();
 		if (l>2) {
@@ -190,26 +184,19 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
-			try {
+
+			Object icClass=ic.getClass();
+			if (icClass.equals(LikeComposite.class)) {
 				LikeComposite likeComposite=(LikeComposite)ic;
 				votersString=votersString.concat(ic.getUser()+", ");
-			}
-			catch (ClassCastException cce0) {
-				try {
-					CommentComposite commentComposite=(CommentComposite)ic;
-					commentsTable.setText(commentsCounter, 1, commentComposite.getUser()+constants.said());
-					commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
-				}
-				catch (ClassCastException cce1) {
-					try {
-						UseCaseComposite sampleComposite=(UseCaseComposite)ic;
-						samplesTable.setText(samplesCounter, 1, sampleComposite.getUser()+constants.said());
-						samplesTable.setText(samplesCounter++, 0, sampleComposite.getFeedback());
-					}
-					catch (ClassCastException cce2) {
-						
-					}
-				}
+			} else if (icClass.equals(CommentComposite.class)) {
+				CommentComposite commentComposite=(CommentComposite)ic;
+				commentsTable.setText(commentsCounter, 1, commentComposite.getUser()+constants.said());
+				commentsTable.setText(commentsCounter++, 0, commentComposite.getFeedback());
+			} else if (icClass.equals(UseCaseComposite.class)) {
+				UseCaseComposite sampleComposite=(UseCaseComposite)ic;
+				samplesTable.setText(samplesCounter, 1, sampleComposite.getUser()+constants.said());
+				samplesTable.setText(samplesCounter++, 0, sampleComposite.getFeedback());
 			}
 		}
 		votersLabel.setText(votersString);

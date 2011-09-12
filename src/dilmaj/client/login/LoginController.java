@@ -32,10 +32,9 @@ public class LoginController extends Controller {
 		Widget parent=panel.getParent(); // there is a popup
 		
 		if (parent!=null) { //if popped out, hide it
-			try {
+			if (parent.getClass().equals(PopupPanel.class)) {
 				PopupPanel popup=(PopupPanel)parent;
 				popup.hide();
-			} catch (ClassCastException cce) {
 			}
 		} else {
 			panel.setVisible(false);

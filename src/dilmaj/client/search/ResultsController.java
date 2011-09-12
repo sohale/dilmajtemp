@@ -33,8 +33,9 @@ public class ResultsController extends Controller implements ClickHandler {
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
-		try {
-			TermButton termButton=(TermButton)event.getSource();
+		Object object=event.getSource();
+		if (object.getClass().equals(TermButton.class)) {
+			TermButton termButton=(TermButton)object;
 			//String title=termButton.getText();
 			TermComposite termVO=termButton.getTermComposite();
 			if (termVO!=null) {
@@ -49,7 +50,7 @@ public class ResultsController extends Controller implements ClickHandler {
 				termVO=new TermComposite(termButton.getText());
 				termSvc.addEntry(termVO, new InsertTermCallback(aPanel));
 			}
-		} catch (ClassCastException cce) {
+		} else {
 			@SuppressWarnings("unused")
 			Button button=(Button)event.getSource();
 			aPanel.hide();

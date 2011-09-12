@@ -92,11 +92,9 @@ public class TermSuggestionComposite extends EntryComposite implements IsSeriali
 		while (iterator.hasNext()) {
 			InteractionComposite interactionComposite=iterator.next();
 			
-			try {
+			if (interactionComposite.getClass().equals(LikeComposite.class)) {
 				LikeComposite likeVO=(LikeComposite)interactionComposite;
 				nLikes++;
-			} catch(ClassCastException  cce) {
-				
 			}
 		}
 		

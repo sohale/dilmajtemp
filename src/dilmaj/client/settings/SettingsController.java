@@ -39,14 +39,13 @@ public class SettingsController extends Controller {
 		Widget parent=panel.getParent(); // there is a popup
 		
 		if (parent!=null) { //if popped out, hide it
-			try {
+			if (parent.getClass().equals(PopupPanel.class)) {
 				if (sourceTitle.compareTo(constants.confirm())==0) {
 					panel.update();
 					settingsSvc.update(panel.getSettings(), new UpdateSettingsCallback(panel));
 				}
 				PopupPanel popup=(PopupPanel)parent;
 				popup.hide();
-			} catch (ClassCastException cce) {
 			}
 		} else {
 			panel.setVisible(false);
