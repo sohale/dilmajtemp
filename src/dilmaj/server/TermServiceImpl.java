@@ -254,4 +254,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		return termsMap;
 	}
 
+	// calculates the distance between two strings
+	/*private int getDistanceOf(String termCaption, String filterCaption) {
+	}*/
 }
