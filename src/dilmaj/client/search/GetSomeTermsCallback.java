@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import dilmaj.shared.SearchResult;
 import dilmaj.shared.TermComposite;
 
-public class GetSomeTermsCallback implements AsyncCallback<List<TermComposite>> {
+public class GetSomeTermsCallback implements AsyncCallback<List<SearchResult>> {
 	String captionFilter;
 	//AllTermsPanel allPanel;
 	int left, top;
@@ -25,7 +26,7 @@ public class GetSomeTermsCallback implements AsyncCallback<List<TermComposite>> 
 	}
 
 	@Override
-	public void onSuccess(List<TermComposite> result) {
+	public void onSuccess(List<SearchResult> result) {
 		// TODO Auto-generated method stub
 		//panel.populateTable(result);
 		ResultsPanel panel=null;

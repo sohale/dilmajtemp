@@ -20,9 +20,11 @@ import dilmaj.client.domain.TermSuggestion;
 import dilmaj.client.domain.Term;
 import dilmaj.shared.CommentComposite;
 import dilmaj.shared.LikeComposite;
+import dilmaj.shared.SearchResult;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
 import dilmaj.shared.UseCaseComposite;
+import dilmaj.shared.MyString;
 
 public class TermServiceImpl extends RemoteServiceServlet implements TermService {
 
@@ -203,7 +205,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 	}
 
 	@Override
-	public List<TermComposite> getSome(String capionFilter) {
+	public List<SearchResult> getSome(String capionFilter) {
 		// TODO Auto-generated method stub
 		PersistenceManager pm=PMF.get().getPersistenceManager();
 		
@@ -211,16 +213,21 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 
 	    List<Term> allTerms = (List<Term>) pm.newQuery(query).execute();
 	    
-	    List<TermComposite> allTermVOs=new ArrayList<TermComposite>();
+	    List<SearchResult> allTermVOs=new ArrayList<SearchResult>();
 	    Iterator<Term> iterator=allTerms.iterator();
 	    while (iterator.hasNext()) {
 	    	Term term=iterator.next();
 	    	if (term!=null) {
 	    		if (term.getCaption()!=null) {
-			    	if (term.getCaption().contains(capionFilter)) {
-				    	TermComposite termVO=TermComposite.getInstance(term);
-				    	allTermVOs.add(termVO);
-			    	}
+	    			
+	    			//int distance=MyString.getInstance().getDistance(term.getCaption(), capionFilter);
+	    			
+	    			//if (term.getCaption().length()>distance)
+				    	if (/*distance<2*/term.getCaption().contains(capionFilter)) {
+					    	TermComposite termVO=TermComposite.getInstance(term);
+					    	SearchResult searchResult=new SearchResult(termVO, 0/*distance*/);
+					    	allTermVOs.add(searchResult);
+				    	}
 	    		}
 	    	}
 	    }

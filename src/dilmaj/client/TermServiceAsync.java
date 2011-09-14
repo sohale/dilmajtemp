@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import dilmaj.shared.SearchResult;
 import dilmaj.shared.TermComposite;
 
 public interface TermServiceAsync {
@@ -16,7 +17,7 @@ public interface TermServiceAsync {
 	void get(TermComposite term, AsyncCallback<TermComposite> callback);
 
 	void getSome(String capionFilter,
-			AsyncCallback<List<TermComposite>> callback);
+			AsyncCallback<List<SearchResult>> callback);
 
 	void getMyTerms(AsyncCallback<HashMap<Long, TermComposite>> callback);
 }

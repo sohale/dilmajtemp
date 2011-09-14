@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -16,17 +17,18 @@ import dilmaj.client.TermSummaryController;
 import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.MessageComposite;
+import dilmaj.shared.SearchResult;
 import dilmaj.shared.TermComposite;
 
 public class ResultsPanel extends PopupPanel implements MyPanel {
-	List<TermComposite> foundTerms=new ArrayList<TermComposite>();
+	List<SearchResult> foundTerms=new ArrayList<SearchResult>();
 	private AllTermsPanel allPanel;
 	private MessageComposite messageVO;
 	private Button closeButton=new Button("x");
 	
 	private static ResultsPanel resultsPanel=null;
 	
-	public static ResultsPanel getInstance(List<TermComposite> foundTerms) {
+	public static ResultsPanel getInstance(List<SearchResult> foundTerms) {
 		resultsPanel=new ResultsPanel(foundTerms);
 		return resultsPanel;
 	}
@@ -36,16 +38,20 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		return resultsPanel;
 	}
 	
-	private ResultsPanel(List<TermComposite> foundTerms) {
+	private ResultsPanel(List<SearchResult> foundTerms) {
 		this.foundTerms=foundTerms;
 
-		Iterator<TermComposite> iterator=foundTerms.iterator();
+		Iterator<SearchResult> iterator=foundTerms.iterator();
 		VerticalPanel mainPanel=new VerticalPanel();
 		while (iterator.hasNext()) {
-			TermComposite aTerm=iterator.next();
+			SearchResult result=iterator.next();
+			TermComposite aTerm=result.getTermComposite();
 			//ResultsController controller=new ResultsController(this);
 			TermSummaryPanel panel=TermSummaryPanel.getSummaryPanel(aTerm);
-			mainPanel.add(panel);
+			HorizontalPanel aPanel=new HorizontalPanel();
+			aPanel.add(panel);
+			aPanel.add(new Label("<"+result.getDistance()+">"));
+			mainPanel.add(aPanel);
 		}
 		
 		mainPanel.add(closeButton);
