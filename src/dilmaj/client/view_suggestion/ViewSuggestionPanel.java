@@ -111,8 +111,8 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
 		
-		StringBuilder votersBuilder=new StringBuilder("");
-		StringBuilder lessBuilder=new StringBuilder("");
+		StringBuilder votersBuilder=new StringBuilder(GlobalSettings.constants.supporters()+" : ");
+		StringBuilder lessBuilder=new StringBuilder(GlobalSettings.constants.supporters()+" : ");
 		int less=0;
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
@@ -148,13 +148,13 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		}
 		lessVoters=lessBuilder.toString();
 		votersLabel=new Label(lessVoters);
-		interactionPanel.add(votersLabel);
+		descriptionPanel.add(votersLabel);
 		
 		add(suggestorLabel);
 		add(closeButton);
-		add(moreButton);
+		morePanel.add(moreButton);
 		
-		add(morePanel);
+		descriptionPanel.add(morePanel);
 		
 		moreButton.addClickHandler(controller);
 		lessButton.addClickHandler(controller);
@@ -176,7 +176,7 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		//votesLabel.setText(termSuggestion.getRank()+"");
 		likesLabel.setText(termSuggestion.getLikes()+"");
 
-		votersString="";
+		votersString=GlobalSettings.constants.supporters()+" : ";
 		commentsCounter=0;
 		samplesCounter=0;
 		commentsTable.clear();
