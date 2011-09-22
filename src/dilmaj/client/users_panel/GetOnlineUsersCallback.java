@@ -16,12 +16,14 @@ import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SettingsComposite;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class GetOnlineUsersCallback implements AsyncCallback<Set<String>> {
 	private DilmajUserServiceAsync accountSvc = GWT.create(DilmajUserService.class);
 	
 	public GetOnlineUsersCallback() {
+		timer.scheduleRepeating(1000);
 	}
 
 	@Override
@@ -34,8 +36,19 @@ public class GetOnlineUsersCallback implements AsyncCallback<Set<String>> {
 	public void onSuccess(Set<String> result) {
 		// TODO Auto-generated method stub
 		UsersPanel.getInstance().updateUsersList(result);
-		
-		if (UsersPanel.getInstance().isLoggedIn())
-			accountSvc.getOnlineUsers(this/*new GetOnlineUsersCallback()*/);
 	}
+	
+	public void recall() {
+		if (UsersPanel.getInstance().isLoggedIn()) {
+			accountSvc.getOnlineUsers(this/*new GetOnlineUsersCallback()*/);
+		} else {
+			timer.cancel();
+		}
+	}
+	
+	Timer timer=new Timer() {
+		public void run() {
+			recall();
+		}
+	};
 }
