@@ -26,7 +26,7 @@ import javax.mail.internet.*;
 public class DilmajUserServiceImpl extends RemoteServiceServlet implements
 		DilmajUserService {
 
-	private static Set<String> onlineUsers=new HashSet<String>();
+	private static Set<String> onlineUsers=null;
 	
 	@Override
 	public MemberComposite create(MemberComposite userVO) {
@@ -82,6 +82,8 @@ public class DilmajUserServiceImpl extends RemoteServiceServlet implements
     	getThreadLocalRequest().getSession().setAttribute("loggedUser", member.getUsername());
 		
 	    //set the session variable
+    	if (onlineUsers==null)
+    		onlineUsers=new HashSet<String>();
     	onlineUsers.add(member.getUsername());
     	
 		String message=member.getUsername()+" just logged in!";
