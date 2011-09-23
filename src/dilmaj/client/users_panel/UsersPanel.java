@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -33,7 +34,7 @@ public class UsersPanel extends VerticalPanel {
 	
 	public void updateUsersList(Set<String> result) {
 		// TODO Auto-generated method stub
-		for (String username:users.keySet()) {
+		/*for (String username:users.keySet()) {
 			if (!result.contains(username)) {
 				Label label=users.get(username);
 				remove(label);
@@ -43,6 +44,12 @@ public class UsersPanel extends VerticalPanel {
 		for (String username:result) {
 			if (!users.containsKey(username))
 				addUser(username);
+		}*/
+		users.clear();
+		
+		for (String username:result) {
+			//addUser(username);
+			users.put(username, null);
 		}
 	}
 
@@ -51,8 +58,24 @@ public class UsersPanel extends VerticalPanel {
 		users.clear();
 	}
 	
+	Timer timer=new Timer() {
+		public void run() {
+			clear();
+			
+			for (String username:users.keySet()) {
+				Label label=users.get(username);
+				if (label==null) {
+					label=new Label(username);
+					users.put(username, label);
+				}
+				add(label);
+			}
+		}
+	};
+	
 	public void logIn() {
 		isLoggedIn=true;
+		timer.scheduleRepeating(1000);
 	}
 	
 	public boolean isLoggedIn() {
@@ -62,5 +85,6 @@ public class UsersPanel extends VerticalPanel {
 	public void logOut() {
 		empty();
 		isLoggedIn=false;
+		timer.cancel();
 	}
 }

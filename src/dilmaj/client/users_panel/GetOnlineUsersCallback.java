@@ -23,7 +23,6 @@ public class GetOnlineUsersCallback implements AsyncCallback<Set<String>> {
 	private DilmajUserServiceAsync accountSvc = GWT.create(DilmajUserService.class);
 	
 	public GetOnlineUsersCallback() {
-		timer.scheduleRepeating(1000);
 	}
 
 	@Override
@@ -36,19 +35,8 @@ public class GetOnlineUsersCallback implements AsyncCallback<Set<String>> {
 	public void onSuccess(Set<String> result) {
 		// TODO Auto-generated method stub
 		UsersPanel.getInstance().updateUsersList(result);
-	}
-	
-	public void recall() {
-		if (UsersPanel.getInstance().isLoggedIn()) {
+		
+		if (UsersPanel.getInstance().isLoggedIn())
 			accountSvc.getOnlineUsers(this/*new GetOnlineUsersCallback()*/);
-		} else {
-			timer.cancel();
-		}
 	}
-	
-	Timer timer=new Timer() {
-		public void run() {
-			recall();
-		}
-	};
 }
