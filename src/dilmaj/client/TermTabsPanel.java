@@ -8,7 +8,7 @@ import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 
-public class TermTabsPanel extends TabPanel {
+public class TermTabsPanel extends MyVerticalPanel {
 	private static TermTabsPanel theInstance=null;
 
 	public static TermTabsPanel getInstance() {
@@ -21,11 +21,11 @@ public class TermTabsPanel extends TabPanel {
 	private TermTabsPanel() {
 		super();
 		
-		add(AllTermsPanel.getInstance(), "All Terms");
-		add(TermSuggestionsPanel.getInstance(), "Terms and Suggestions");
-		add(MyTermsPanel.getInstance(), "My Terms");
+		add("All Terms", AllTermsPanel.getInstance());
+		add("Terms and Suggestions", TermSuggestionsPanel.getInstance());
+		add("My Terms", MyTermsPanel.getInstance());
 		
-		selectTab(1);
+		select("Terms and Suggestions");
 	}
 
 }
