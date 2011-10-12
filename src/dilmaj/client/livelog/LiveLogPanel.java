@@ -4,16 +4,18 @@ import java.util.List;
 
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.shared.MessageComposite;
 
-public class LiveLogPanel extends VerticalPanel {
+public class LiveLogPanel extends ScrollPanel {
 	private static LiveLogPanel theInstance=null;
 	private static String sessionID;
 	private LiveLogController controller;
 	private Button refreshButton=new Button("Refresh");
 	private int maxMessageId=-1;
+	private VerticalPanel mainPanel=new VerticalPanel();
 	
 	public static LiveLogPanel getInstance() {
 		if (theInstance==null)
@@ -23,9 +25,13 @@ public class LiveLogPanel extends VerticalPanel {
 	}
 	
 	private LiveLogPanel() {
+		add(mainPanel);
+		
+		setSize("400px", "120px");
+		
 		controller=new LiveLogController();
 		controller.openSession();
-		add(refreshButton);
+		mainPanel.add(refreshButton);
 		refreshButton.addClickHandler(controller);
 	}
 
@@ -34,8 +40,10 @@ public class LiveLogPanel extends VerticalPanel {
 			int messageId=aMessage.getSequence();
 			if (maxMessageId<messageId)
 				maxMessageId=messageId;
-			add(new Label(aMessage.toString()));
+			mainPanel.add(new Label(aMessage.toString()));
 		}
+		
+		scrollToBottom();
 	}
 	
 	public void setSessionID(String result) {
