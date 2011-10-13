@@ -29,6 +29,7 @@ public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
 			tabBar.add(label);
 			contents.put(barLabel, barPanel);
 			barPanel.setVisible(false);
+			barPanel.setStyleName("selectedTab");
 			label.addClickHandler(this);
 			add(barPanel);
 		}
@@ -37,12 +38,16 @@ public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
+		for (int i=0;i<tabBar.getWidgetCount();i++)
+			tabBar.getWidget(i).removeStyleName("selectedTab");
+		
 		Label label=(Label)event.getSource();
 		CellPanel cellPanel=contents.get(label.getText());
 		cellPanel.setVisible(true);
 		if (selectedPanel!=null)
 			selectedPanel.setVisible(false);
 		selectedPanel=cellPanel;
+		label.setStyleName("selectedTab");
 	}
 	
 	public void select(String label) {

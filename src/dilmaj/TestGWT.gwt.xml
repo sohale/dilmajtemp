@@ -19,4 +19,5 @@
   <source path='client'/>
   <source path='shared'/>
   <extend-property name="locale" values="ar_SA"/>
+	<inherits name="com.google.gwt.resources.Resources" />
 </module>

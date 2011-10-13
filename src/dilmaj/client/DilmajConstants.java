@@ -147,4 +147,13 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Others")
 	  String others();
+
+	  @DefaultStringValue("All Terms")
+	  String allTerms();
+
+	  @DefaultStringValue("Terms and Suggestions")
+	  String suggestionTerms();
+
+	  @DefaultStringValue("My Terms")
+	  String myTerms();
 }
