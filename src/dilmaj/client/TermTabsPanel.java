@@ -1,5 +1,6 @@
 package dilmaj.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TabPanel;
@@ -10,6 +11,7 @@ import dilmaj.client.welcome.TermSuggestionsPanel;
 
 public class TermTabsPanel extends MyVerticalPanel {
 	private static TermTabsPanel theInstance=null;
+	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 
 	public static TermTabsPanel getInstance() {
 		if (theInstance==null)
@@ -21,11 +23,11 @@ public class TermTabsPanel extends MyVerticalPanel {
 	private TermTabsPanel() {
 		super();
 		
-		add("All Terms", AllTermsPanel.getInstance());
-		add("Terms and Suggestions", TermSuggestionsPanel.getInstance());
-		add("My Terms", MyTermsPanel.getInstance());
+		add(constants.allTerms(), AllTermsPanel.getInstance());
+		add(constants.suggestionTerms(), TermSuggestionsPanel.getInstance());
+		add(constants.myTerms(), MyTermsPanel.getInstance());
 		
-		select("Terms and Suggestions");
+		select(constants.allTerms());
 	}
 
 }

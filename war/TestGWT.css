@@ -1,7 +1,15 @@
 /** Add css rules here for your application. */
 
-.selectedTab {
-	background-color:#E6E6E6;
+.tabPanel {
+	background-color:#FFFF99;
+	border-style:solid;
+	border-color:#99CCFF;
+}
+
+.tabLabel {
+	background-color:#99CCFF;
+	margin:4px;
+	cursor:pointer;
 }
 
 /** Example rules used by the template application (remove for your app) */
