@@ -23,6 +23,8 @@ public class TermTabsPanel extends MyVerticalPanel {
 	private TermTabsPanel() {
 		super();
 		
+		//addStyleName("sidePanel");
+		
 		add(constants.allTerms(), AllTermsPanel.getInstance());
 		add(constants.suggestionTerms(), TermSuggestionsPanel.getInstance());
 		add(constants.myTerms(), MyTermsPanel.getInstance());

@@ -12,6 +12,7 @@ import dilmaj.shared.TermComposite;
 
 public class TermSummaryController implements ClickHandler {
 	private static HashMap<TermComposite, TermSummaryController> controllers=new HashMap<TermComposite, TermSummaryController>();
+	private static TermButton selectedTermButton=null;
 	
 	private TermSummaryController() {
 		
@@ -31,6 +32,13 @@ public class TermSummaryController implements ClickHandler {
 		// TODO Auto-generated method stub
 		
 		TermButton termButton=(TermButton)event.getSource();
+		
+		if (selectedTermButton!=null) {
+			selectedTermButton.setStyleName("termButton");
+		}
+		selectedTermButton=termButton;
+		termButton.setStyleName("termButtonClicked");
+		
 		TermComposite termComposite=termButton.getTermComposite();
 		
 		//PopupPanel popup=new PopupPanel();
