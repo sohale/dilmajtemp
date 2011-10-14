@@ -5,11 +5,13 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 
+import dilmaj.client.login.LoginController;
+import dilmaj.client.login.LoginListener;
 import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 
-public class TermTabsPanel extends MyVerticalPanel {
+public class TermTabsPanel extends MyVerticalPanel implements LoginListener {
 	private static TermTabsPanel theInstance=null;
 	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 
@@ -23,6 +25,7 @@ public class TermTabsPanel extends MyVerticalPanel {
 	private TermTabsPanel() {
 		super();
 		
+		LoginController.getInstance().addLoginListener(this);
 		//addStyleName("sidePanel");
 		
 		add(constants.allTerms(), AllTermsPanel.getInstance());
@@ -31,13 +34,17 @@ public class TermTabsPanel extends MyVerticalPanel {
 		select(constants.allTerms());
 	}
 
-	public void login() {
+	@Override
+	public void onLogin() {
+		// TODO Auto-generated method stub
 		add(constants.myTerms(), MyTermsPanel.getInstance());
 		
 		select(constants.myTerms());
 	}
-	
-	public void logout() {
+
+	@Override
+	public void onLogout() {
+		// TODO Auto-generated method stub
 		remove(constants.myTerms());
 		
 		select(constants.allTerms());

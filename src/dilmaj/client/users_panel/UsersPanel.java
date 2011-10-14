@@ -8,7 +8,10 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class UsersPanel extends VerticalPanel {
+import dilmaj.client.login.LoginController;
+import dilmaj.client.login.LoginListener;
+
+public class UsersPanel extends VerticalPanel implements LoginListener {
 	private Map<String, Label> users=new HashMap<String, Label>();
 	
 	private static UsersPanel theInstance=null;
@@ -22,7 +25,7 @@ public class UsersPanel extends VerticalPanel {
 	}
 	
 	private UsersPanel() {
-		
+		LoginController.getInstance().addLoginListener(this);
 	}
 	
 	public void addUser(String username) {
@@ -73,16 +76,20 @@ public class UsersPanel extends VerticalPanel {
 		}
 	};
 	
-	public void logIn() {
-		isLoggedIn=true;
-		timer.scheduleRepeating(1000);
-	}
-	
 	public boolean isLoggedIn() {
 		return isLoggedIn;
 	}
 	
-	public void logOut() {
+	@Override
+	public void onLogin() {
+		// TODO Auto-generated method stub
+		isLoggedIn=true;
+		timer.scheduleRepeating(1000);
+	}
+
+	@Override
+	public void onLogout() {
+		// TODO Auto-generated method stub
 		empty();
 		isLoggedIn=false;
 		timer.cancel();

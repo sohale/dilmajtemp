@@ -77,7 +77,7 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 			while (iterator.hasNext()) {
 				Long key=iterator.next();
 				TermComposite termVO=MyTerms.TheInstance.getTerms().get(key);
-				TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(termVO);
+				TermSummaryPanel termPanel=TermSummaryPanel.getMySummaryPanel(termVO);
 				//termsTable.setWidget(row++, 0, termPanel);
 				TableRow tableRow=new TableRow();
 				tableRow.addWidget(termPanel);
@@ -90,7 +90,7 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 	}
 	
 	public void updateTermsTable(TermComposite newTerm) {
-		TermSummaryPanel termPanel=TermSummaryPanel.getSummaryPanel(newTerm);
+		TermSummaryPanel termPanel=TermSummaryPanel.getMySummaryPanel(newTerm);
 		termsTable.setWidget(MyTerms.TheInstance.getTerms().size(), 0, termPanel);
 	}
 	public void browseFirst() {

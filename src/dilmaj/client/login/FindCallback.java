@@ -1,5 +1,8 @@
 package dilmaj.client.login;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import dilmaj.client.DilmajUserService;
 import dilmaj.client.DilmajUserServiceAsync;
 import dilmaj.client.SettingsService;
@@ -46,9 +49,7 @@ public class FindCallback implements AsyncCallback<MemberComposite> {
 			termSvc.getMyTerms(new LoadMyTermsCallback());
 			settingsSvc.find(result.getUsername(), new FindSettingsCallback(result));
 			
-			UsersPanel.getInstance().logIn();
-			TermTabsPanel.getInstance().login();
-			//accountSvc.getOnlineUsers(new GetOnlineUsersCallback());
+			LoginController.getInstance().login();
 		}
 	}
 }

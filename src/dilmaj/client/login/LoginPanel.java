@@ -17,7 +17,7 @@ public class LoginPanel extends VerticalPanel {
 	private MessageComposite message;
 	private Button closeButton=new Button("x");
 	private HorizontalPanel buttonsPanel=new HorizontalPanel();
-	private LoginController controller=new LoginController(this);
+	private LoginController controller;
 	private boolean isLogged=false;
 	
 	private static LoginPanel theInstance=null;
@@ -34,6 +34,8 @@ public class LoginPanel extends VerticalPanel {
 		add(password);
 		
 		add(buttonsPanel);
+		
+		controller=LoginController.getInstance();
 
 		buttonsPanel.add(closeButton);
 		buttonsPanel.add(loginButton);
