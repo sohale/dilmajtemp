@@ -5,21 +5,61 @@
 }
 
 .tabPanel {
-	background-color:#FFFF99;
+	background-color:#A4A4A4;
 	border-style:solid;
 	border-color:#99CCFF;
+	border-width:1px;
+	width:100%;
+}
+
+.selectedTabLabel {
+	background-color:#A4A4A4;
+	border-style:solid;
+	border-color:#99CCFF;
+	border-width:1px;
+	width:100%;
 }
 
 .tabLabel {
 	background-color:#99CCFF;
 	margin:4px;
 	cursor:pointer;
+	width:100%;
 }
 
 .termButton {
 	text-decoration:underline;
 	cursor:pointer;
 	color:blue;
+}
+
+.termSummaryPanel {
+	border-bottom-style:solid;
+	border-bottom-color:#BDBDBD;
+	border-bottom-width:1px;
+}
+
+.termTable {
+	background-color:#E0F2F7;
+	width:100%;
+}
+
+.nextButton {
+	text-decoration:underline;
+	cursor:pointer;
+	color:blue;
+	text-align:right;
+}
+
+.prevButton {
+	text-decoration:underline;
+	cursor:pointer;
+	color:blue;
+	text-align:left;
+}
+
+.navigationTable {
+	width:100%;
 }
 
 .termButtonClicked {

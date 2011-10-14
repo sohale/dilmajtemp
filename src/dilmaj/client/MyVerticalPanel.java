@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CellPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -32,10 +33,21 @@ public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
 			label.setStyleName("tabLabel");
 			tabBar.add(label);
 			contents.put(barLabel, barPanel);
-			barPanel.setVisible(false);
+			//barPanel.setVisible(false);
 			barPanel.setStyleName("tabPanel");
 			label.addClickHandler(this);
-			add(barPanel);
+			//add(barPanel);
+		}
+	}
+	
+	public void remove(String barLabel) {
+		for (int i=0;i<tabBar.getWidgetCount();i++) {
+			Widget widget=tabBar.getWidget(i);
+			if (widget.getClass().equals(Label.class)) {
+				Label lab=(Label)widget;
+				if (lab.getText().compareTo(barLabel)==0)
+					tabBar.remove(lab);
+			}
 		}
 	}
 
@@ -47,12 +59,13 @@ public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
 		}
 				
 		Label label=(Label)event.getSource();
-		label.setStyleName("tabPanel");
+		label.setStyleName("selectedTabLabel");
 		selectedLab=label;
 		CellPanel cellPanel=contents.get(label.getText());
-		cellPanel.setVisible(true);
+		//cellPanel.setVisible(true);
+		RootPanel.get("termsPanel").add(cellPanel);
 		if (selectedPanel!=null)
-			selectedPanel.setVisible(false);
+			RootPanel.get("termsPanel").remove(selectedPanel);
 		selectedPanel=cellPanel;
 	}
 	
@@ -66,16 +79,18 @@ public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
 			Widget widget=tabBar.getWidget(i);
 			if (widget.getClass().equals(Label.class)) {
 				Label lab=(Label)widget;
-				if (lab.getText().compareTo(label)==0)
+				if (lab.getText().compareTo(label)==0) {
 					selectedLab=lab;
-					lab.setStyleName("tabPanel");
+					lab.setStyleName("selectedTabLabel");
+				}
 			}
 		}
 		
 		CellPanel cellPanel=contents.get(label);
-		cellPanel.setVisible(true);
+		//cellPanel.setVisible(true);
+		RootPanel.get("termsPanel").add(cellPanel);
 		if (selectedPanel!=null)
-			selectedPanel.setVisible(false);
+			RootPanel.get("termsPanel").remove(selectedPanel);
 		selectedPanel=cellPanel;
 	}
 }

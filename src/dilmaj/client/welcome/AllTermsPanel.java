@@ -31,8 +31,8 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 	private int currentIndex=0;
 	 
-	private Button nextButton=new Button("next");
-	private Button prevButton=new Button("prev");
+	private Label nextButton=new Label(">>");
+	private Label prevButton=new Label("<<");
 	
 	private static AllTermsPanel theInstance=null;
 	
@@ -45,10 +45,20 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 	
 	private AllTermsPanel() {
 		add(termsTable);
+		
 		HorizontalPanel navigationPanel=new HorizontalPanel();
-		navigationPanel.add(prevButton);
-		navigationPanel.add(nextButton);
+		navigationPanel.setStyleName("navigationTable");
+		FlexTable navigationTable=new FlexTable();
+		navigationTable.setStyleName("navigationTable");
+		navigationPanel.add(navigationTable);
+		navigationTable.setWidget(0, 0, prevButton);
+		navigationTable.setWidget(0, 1, nextButton);
+		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
+		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
 		add(navigationPanel);
+		prevButton.setStyleName("termButton");
+		nextButton.setStyleName("termButton");
+		
 		AllTermsController controller=new AllTermsController(this);
 		nextButton.addClickHandler(controller);
 		prevButton.addClickHandler(controller);
@@ -80,7 +90,7 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 				termsTable.setWidget(row, col, widget);
 				col++;
 			}
-			
+			termsTable.getRowFormatter().setStyleName(row, "termTable");
 			row++;
 		}
 		
@@ -115,7 +125,7 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 					termsTable.setWidget(row, col, widget);
 					col++;
 				}
-				
+				termsTable.getRowFormatter().setStyleName(row, "termTable");
 				row++;
 			}
 			

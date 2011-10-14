@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
@@ -28,7 +29,7 @@ public class MyTermsController extends Controller {
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
-		Button button=(Button)event.getSource();
+		Label button=(Label)event.getSource();
 		String text=button.getText();
 		
 		if (text.compareTo("next")==0)

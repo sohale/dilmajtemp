@@ -1,5 +1,6 @@
 package dilmaj.client.login;
 
+import dilmaj.client.TermTabsPanel;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.users_panel.UsersPanel;
@@ -33,5 +34,6 @@ public class LogoutCallback implements AsyncCallback<Void> {
 		//UsersPanel.getInstance().empty();
 		
 		TopMenuTabs.getInstance().logout();
+		TermTabsPanel.getInstance().logout();
 	}
 }

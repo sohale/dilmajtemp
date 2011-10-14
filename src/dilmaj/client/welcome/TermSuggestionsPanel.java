@@ -34,8 +34,8 @@ public class TermSuggestionsPanel extends VerticalPanel {
 	private int currentIndex=0;
 	private int prevIndex;
 	
-	private Button nextButton=new Button("next");
-	private Button prevButton=new Button("prev");
+	private Label nextButton=new Label(">>");
+	private Label prevButton=new Label("<<");
 	
 	private static TermSuggestionsPanel theInstance=null;
 	
@@ -52,14 +52,24 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		if (settingsVO!=null)
 			termsPerPage=settingsVO.getTermsPerPage();
 		add(tsTable);
+		
 		HorizontalPanel navigationPanel=new HorizontalPanel();
-		navigationPanel.add(prevButton);
-		navigationPanel.add(nextButton);
+		navigationPanel.setStyleName("navigationTable");
+		FlexTable navigationTable=new FlexTable();
+		navigationTable.setStyleName("navigationTable");
+		navigationPanel.add(navigationTable);
+		navigationTable.setWidget(0, 0, prevButton);
+		navigationTable.setWidget(0, 1, nextButton);
+		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
+		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
 		add(navigationPanel);
+		prevButton.setStyleName("termButton");
+		nextButton.setStyleName("termButton");
+		
 		TermSuggestionController controller=new TermSuggestionController(this);
 		nextButton.addClickHandler(controller);
 		prevButton.addClickHandler(controller);
-	}
+}
 	
 	public void browseFirst() {
 		currentIndex=0;
@@ -84,7 +94,7 @@ public class TermSuggestionsPanel extends VerticalPanel {
 				tsTable.setWidget(row, col, widget);
 				col++;
 			}
-			
+			tsTable.getRowFormatter().setStyleName(row, "termTable");
 			row++;
 		}
 		
@@ -119,7 +129,7 @@ public class TermSuggestionsPanel extends VerticalPanel {
 					tsTable.setWidget(row, col, widget);
 					col++;
 				}
-				
+				tsTable.getRowFormatter().setStyleName(row, "termTable");
 				row++;
 			}
 			

@@ -27,9 +27,19 @@ public class TermTabsPanel extends MyVerticalPanel {
 		
 		add(constants.allTerms(), AllTermsPanel.getInstance());
 		add(constants.suggestionTerms(), TermSuggestionsPanel.getInstance());
-		add(constants.myTerms(), MyTermsPanel.getInstance());
 		
 		select(constants.allTerms());
 	}
 
+	public void login() {
+		add(constants.myTerms(), MyTermsPanel.getInstance());
+		
+		select(constants.myTerms());
+	}
+	
+	public void logout() {
+		remove(constants.myTerms());
+		
+		select(constants.allTerms());
+	}
 }

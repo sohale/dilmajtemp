@@ -3,6 +3,7 @@ package dilmaj.client.welcome;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 
 import dilmaj.client.TermButton;
 import dilmaj.shared.Controller;
@@ -17,7 +18,7 @@ public class TermSuggestionController extends Controller {
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
-		Button button=(Button)event.getSource();
+		Label button=(Label)event.getSource();
 		String buttonText=button.getText();
 		
 		if (buttonText.compareTo("next")==0)
