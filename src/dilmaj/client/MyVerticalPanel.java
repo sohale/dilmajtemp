@@ -3,6 +3,8 @@ package dilmaj.client;
 import java.util.HashMap;
 import java.util.Map;
 
+import dilmaj.shared.GlobalSettings;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
@@ -31,9 +33,10 @@ public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
 		if (cellPanel==null) {
 			Label label=new Label(barLabel);
 			label.setStyleName("tabLabel");
+			label.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getSideMenuRatio()+"px");
+			//barPanel.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
 			tabBar.add(label);
 			contents.put(barLabel, barPanel);
-			//barPanel.setVisible(false);
 			barPanel.setStyleName("tabPanel");
 			label.addClickHandler(this);
 			//add(barPanel);

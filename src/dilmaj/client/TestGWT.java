@@ -111,7 +111,7 @@ public class TestGWT implements EntryPoint {
 			}
 		}
 	}
-
+	
 	public void setMessage(MessageComposite messageComposite) {
 		// TODO Auto-generated method stub
 		Window.alert(messageComposite.toString());

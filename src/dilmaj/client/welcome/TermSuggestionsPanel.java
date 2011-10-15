@@ -53,6 +53,9 @@ public class TermSuggestionsPanel extends VerticalPanel {
 			termsPerPage=settingsVO.getTermsPerPage();
 		add(tsTable);
 		
+		tsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
+		tsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
+		
 		HorizontalPanel navigationPanel=new HorizontalPanel();
 		navigationPanel.setStyleName("navigationTable");
 		FlexTable navigationTable=new FlexTable();

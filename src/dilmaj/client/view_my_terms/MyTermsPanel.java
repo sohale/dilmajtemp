@@ -51,6 +51,9 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 	private MyTermsPanel() {
 		add(termsTable);
 		
+		termsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
+		termsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
+		
 		MyTerms.TheInstance.setMyPanel(this);
 		
 		HorizontalPanel navigationPanel=new HorizontalPanel();

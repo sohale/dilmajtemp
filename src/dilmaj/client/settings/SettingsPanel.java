@@ -5,6 +5,7 @@ import java.util.Set;
 
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.SettingsListener;
+import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.Language;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SettingsComposite;
@@ -113,7 +114,7 @@ public class SettingsPanel extends VerticalPanel {
 	
 	public int getTermsPerPage() {
 		if (settingsVO==null)
-			return 10;
+			return 25;
 		return settingsVO.getTermsPerPage();
 	}
 	

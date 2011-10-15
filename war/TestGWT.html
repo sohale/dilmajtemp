@@ -46,33 +46,92 @@
       </div>
     </noscript>
 
-    <h1>سخن گزار</h1>
 
-	<table align=right dir=rtl>
-	<tr align=left  style="vertical-align:top">
-		<td >
-			<div id="topMenu"  style="background-color:#ffffbb;"></div>
-		</td>
-
-	<td>
-	<table>
-	<tr style="background-color:#bbddbb;">
-		<td span=2>
-			<div id="searchPanel">Search</div>
-		</td>
-	</tr>
-	<tr style="background-color:#bbddbb;">
-		<td>Insert Term
-			<div id="insertTerm"></div>
-		</td>
+	<table align=right dir=rtl width="100%">
+		<tr align=right  style="vertical-align:top">
+			<td width="30%">
+				<table align=right>
+					<tr>		
+						<td>
+						    سخن گزار
+						</td>
+						<td >
+							<div id="topMenu"  style="background-color:#ffffbb;"></div>
+						</td>
+					</tr>
+				</table>
+			</td>
 		</tr>
-	<tr style="background-color:#bbddbb;">
-		<td>Insert suggestion:
-			<div id="insertSuggestion"></div>
+	<tr style="vertical-align:top text-align:right">
+		<td width="30%">
+			<table align=right>
+				<tr>		
+					<td style="vertical-align:top">
+						<div id="termTabs"></div>
+					</td>
+					<td style="vertical-align:top">
+						<div id="termsPanel"></div>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="50%">
+			<table>
+			<tr>
+			<td>
+			توضیحات ترم
+			</td>
+			</tr>
+			<tr>
+			<td bgcolor=#ECF6CE>
+				<div id=termDetails></div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			توضیحات معادل
+			</td>
+			</tr>
+			<tr>
+	      	<td bgcolor=#F3F781>
+				<div id="termSuggestionDetails"></div>
+			</td>
+			</tr>
+			</table>
 		</td>
 	</tr>
-	</table>
+	<tr>
+
+		<td>
+			<table>
+				<tr style="background-color:#bbddbb;">
+					<td span=2>
+						<div id="searchPanel">Search</div>
+				</td>
+			</tr>
+			<tr style="background-color:#bbddbb;">
+				<td>Insert Term
+					<div id="insertTerm"></div>
+				</td>
+				</tr>
+			<tr style="background-color:#bbddbb;">
+				<td>Insert suggestion:
+					<div id="insertSuggestion"></div>
+				</td>
+			</tr>
+			</table>
+		</td>
+	<td style="vertical-align:bottom">
+		کاربران آنلاین
+		<div id="usersPanel"></div>
+		</td>
+		<td>
+	<div id="registerationPanel"  style="background-color:#ffffbb; direction:ltr;">
+	<center><b>Sign up</b></center>
+	</div>
 	</td>
+  	</tr>
+  	<tr>
 
 		<td style="vertical-align:top">
 		<table>
@@ -88,55 +147,6 @@
 		</tr>
 		</table>
 		</td>
-	</tr>
-	<tr style="vertical-align:top">
-		<td width="50%">
-			<table>
-				<tr>		
-					<td style="vertical-align:top" width="50%">
-						<div id="termTabs"></div>
-					</td>
-					<td style="vertical-align:top" width="50%">
-						<div id="termsPanel"></div>
-					</td>
-				</tr>
-			</table>
-		</td>
-		<td>
-		<table>
-		<tr>
-		<td>
-		توضیحات ترم
-		</td>
-		</tr>
-		<tr>
-		<td bgcolor=#ECF6CE>
-			<div id=termDetails></div>
-		</td>
-		</tr>
-		<tr>
-		<td>
-		توضیحات معادل
-		</td>
-		</tr>
-		<tr>
-      	<td bgcolor=#F3F781>
-			<div id="termSuggestionDetails"></div>
-		</td>
-		</tr>
-		</table>
-		</td>
-	<td style="vertical-align:bottom">
-		کاربران آنلاین
-		<div id="usersPanel"></div>
-		</td>
-	</tr>
-	<tr>
-		<td>
-	<div id="registerationPanel"  style="background-color:#ffffbb; direction:ltr;">
-	<center><b>Sign up</b></center>
-	</div>
-	</td>
   	</tr>
       </table>
   </body>

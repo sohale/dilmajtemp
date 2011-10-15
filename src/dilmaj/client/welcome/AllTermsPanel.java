@@ -46,6 +46,9 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 	private AllTermsPanel() {
 		add(termsTable);
 		
+		termsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
+		termsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
+		
 		HorizontalPanel navigationPanel=new HorizontalPanel();
 		navigationPanel.setStyleName("navigationTable");
 		FlexTable navigationTable=new FlexTable();
