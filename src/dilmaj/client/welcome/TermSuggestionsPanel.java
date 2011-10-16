@@ -26,8 +26,6 @@ import dilmaj.shared.*;
 
 public class TermSuggestionsPanel extends VerticalPanel {
 	private FlexTable tsTable=new FlexTable();
-	private Set<TermComposite> termSet=new HashSet<TermComposite>();
-	private AllTermsPanel allTermsPanel;
 	private List<TableRow> rows=new ArrayList<TableRow>();
 	
 	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
@@ -36,10 +34,10 @@ public class TermSuggestionsPanel extends VerticalPanel {
 	
 	private Label nextButton=new Label(">>");
 	private Label prevButton=new Label("<<");
+	private Label nextButtonTop=new Label(">>");
+	private Label prevButtonTop=new Label("<<");
 	
 	private static TermSuggestionsPanel theInstance=null;
-	
-	private int maxLength;
 	
 	public static TermSuggestionsPanel getInstance() {
 		if (theInstance==null)
@@ -51,7 +49,6 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		SettingsComposite settingsVO=SettingsPanel.getInstance().getSettings();
 		if (settingsVO!=null)
 			termsPerPage=settingsVO.getTermsPerPage();
-		add(tsTable);
 		
 		tsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
 		tsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
@@ -65,13 +62,30 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		navigationTable.setWidget(0, 1, nextButton);
 		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
 		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
-		add(navigationPanel);
 		prevButton.setStyleName("termButton");
 		nextButton.setStyleName("termButton");
+		
+		HorizontalPanel navigationPanelTop=new HorizontalPanel();
+		navigationPanelTop.setStyleName("navigationTable");
+		FlexTable navigationTableTop=new FlexTable();
+		navigationTableTop.setStyleName("navigationTable");
+		navigationPanelTop.add(navigationTableTop);
+		navigationTableTop.setWidget(0, 0, prevButtonTop);
+		navigationTableTop.setWidget(0, 1, nextButtonTop);
+		navigationTableTop.getColumnFormatter().setStyleName(0, "prevButton");
+		navigationTableTop.getColumnFormatter().setStyleName(1, "nextButton");
+		prevButtonTop.setStyleName("termButton");
+		nextButtonTop.setStyleName("termButton");
+		
+		add(navigationPanelTop);
+		add(tsTable);
+		add(navigationPanel);
 		
 		TermSuggestionController controller=new TermSuggestionController(this);
 		nextButton.addClickHandler(controller);
 		prevButton.addClickHandler(controller);
+		nextButtonTop.addClickHandler(controller);
+		prevButtonTop.addClickHandler(controller);
 }
 	
 	public void browseFirst() {

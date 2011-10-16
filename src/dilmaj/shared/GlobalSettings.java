@@ -38,4 +38,8 @@ public class GlobalSettings {
 	public static double getTermsPanelRowHeightRatio() {
 		return 4.0/125.0;
 	}
+	
+	public static int getFixedRowHeight() {
+		return com.google.gwt.user.client.Window.getClientHeight()*4/125;
+	}
 }

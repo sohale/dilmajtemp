@@ -14,12 +14,9 @@ import dilmaj.shared.TermComposite;
 
 public class MyTermsController extends Controller {
 	private static TermServiceAsync termSvc = GWT.create(TermService.class);
-	
-	MyTermsPanel panel;
 		
-	public MyTermsController(MyTermsPanel myTermsPanel) {
+	public MyTermsController() {
 		// TODO Auto-generated constructor stub
-		panel=myTermsPanel;
 	}
 
 	public static void loadMyTerms() {
@@ -33,8 +30,8 @@ public class MyTermsController extends Controller {
 		String text=button.getText();
 		
 		if (text.compareTo("next")==0)
-			panel.browseNext();
+			MyTermsPanel.getInstance().browseNext();
 		else
-			panel.browsePrev();
+			MyTermsPanel.getInstance().browsePrev();
 	}
 }

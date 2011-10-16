@@ -1,15 +1,18 @@
 package dilmaj.client;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
 import dilmaj.client.login.LoginController;
 import dilmaj.client.login.LoginListener;
 import dilmaj.shared.Controller;
-import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.TermComposite;
+import dilmaj.shared.Language;
+import dilmaj.shared.TermSuggestionComposite;
 
 public class TermSummaryPanel extends HorizontalPanel implements LoginListener {
 	TermComposite termVO;
@@ -42,18 +45,33 @@ public class TermSummaryPanel extends HorizontalPanel implements LoginListener {
 	private TermSummaryPanel(TermComposite termVO, TermSummaryController controller) {
 		LoginController.getInstance().addLoginListener(this);
 		
+		FlexTable contents=new FlexTable();
+		add(contents);		
+		
 		this.termVO=termVO;
 		button=new TermButton(termVO);
-		String trail="";
+		//String trail="";
 		String caption=termVO.getCaption();
 		button.setText(caption);
 		button.setTitle(termVO.getRunningTitle());
 		button.addClickHandler(controller);
-		add(button);
+		contents.setWidget(0,0,button);
 		
-		title="("+GlobalSettings.constants.suggestion()+" "+termVO.getSuggestions().size()+")";
+		//title="("+GlobalSettings.constants.suggestion()+" "+termVO.getSuggestions().size()+")";
+		StringBuilder sb=new StringBuilder();
+		sb.append("("+termVO.getSuggestions().size()+")"+" ");
+		Iterator<TermSuggestionComposite> tsIterator=termVO.getSuggestions().iterator();
+		for (int i=0;i<2 && tsIterator.hasNext();i++) {
+			TermSuggestionComposite tsVO=tsIterator.next();
+			sb.append(tsVO.getSuggestion().getCaption()+"/");
+		}
+		sb.append("... ");
+		sb.append(Language.getLanguage(termVO.getLanguage()));
+		title=sb.toString();
+		
 		summaryLabel=new Label(title);
-		add(summaryLabel);
+		contents.setWidget(0,1,summaryLabel);
+		contents.getCellFormatter().setStyleName(0, 1, "termSummaryTrailer");
 	}
 
 	@Override

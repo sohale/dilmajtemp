@@ -58,6 +58,12 @@
 	text-align:left;
 }
 
+.termSummaryTrailer {
+	font-weight:bold;
+	text-align:lefty;
+	color:#A4A4A4;
+}
+
 .navigationTable {
 	width:100%;
 }

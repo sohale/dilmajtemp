@@ -33,6 +33,8 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 	 
 	private Label nextButton=new Label(">>");
 	private Label prevButton=new Label("<<");
+	private Label nextButtonTop=new Label(">>");
+	private Label prevButtonTop=new Label("<<");
 	
 	private static AllTermsPanel theInstance=null;
 	
@@ -44,8 +46,6 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 	}
 	
 	private AllTermsPanel() {
-		add(termsTable);
-		
 		termsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
 		termsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
 		
@@ -58,13 +58,30 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 		navigationTable.setWidget(0, 1, nextButton);
 		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
 		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
-		add(navigationPanel);
 		prevButton.setStyleName("termButton");
 		nextButton.setStyleName("termButton");
+		
+		HorizontalPanel navigationPanelTop=new HorizontalPanel();
+		navigationPanelTop.setStyleName("navigationTable");
+		FlexTable navigationTableTop=new FlexTable();
+		navigationTableTop.setStyleName("navigationTable");
+		navigationPanelTop.add(navigationTableTop);
+		navigationTableTop.setWidget(0, 0, prevButtonTop);
+		navigationTableTop.setWidget(0, 1, nextButtonTop);
+		navigationTableTop.getColumnFormatter().setStyleName(0, "prevButton");
+		navigationTableTop.getColumnFormatter().setStyleName(1, "nextButton");
+		prevButtonTop.setStyleName("termButton");
+		nextButtonTop.setStyleName("termButton");
+		
+		add(navigationPanelTop);
+		add(termsTable);
+		add(navigationPanel);
 		
 		AllTermsController controller=new AllTermsController(this);
 		nextButton.addClickHandler(controller);
 		prevButton.addClickHandler(controller);
+		nextButtonTop.addClickHandler(controller);
+		prevButtonTop.addClickHandler(controller);
 		AllTerms.TheInstance.setAllTermsPanel(this);
 		
 		SettingsPanel.getInstance().addChangeListener(this);

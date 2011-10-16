@@ -34,9 +34,9 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 	
 	private Label nextButton=new Label(">>");
 	private Label prevButton=new Label("<<");
-	
-	private MyTermsController controller=new MyTermsController(this);
-	
+	private Label nextButtonTop=new Label(">>");
+	private Label prevButtonTop=new Label("<<");
+	private MyTermsController controller=new MyTermsController();
 	private static MyTermsPanel theInstance=null;
 	
 	private boolean isLoggedIn=false;
@@ -49,8 +49,6 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 	}
 	
 	private MyTermsPanel() {
-		add(termsTable);
-		
 		termsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
 		termsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
 		
@@ -65,9 +63,29 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 		navigationTable.setWidget(0, 1, nextButton);
 		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
 		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
-		add(navigationPanel);
 		prevButton.setStyleName("termButton");
 		nextButton.setStyleName("termButton");
+		
+		HorizontalPanel navigationPanelTop=new HorizontalPanel();
+		navigationPanelTop.setStyleName("navigationTable");
+		FlexTable navigationTableTop=new FlexTable();
+		navigationTableTop.setStyleName("navigationTable");
+		navigationPanelTop.add(navigationTableTop);
+		navigationTableTop.setWidget(0, 0, prevButtonTop);
+		navigationTableTop.setWidget(0, 1, nextButtonTop);
+		navigationTableTop.getColumnFormatter().setStyleName(0, "prevButton");
+		navigationTableTop.getColumnFormatter().setStyleName(1, "nextButton");
+		prevButtonTop.setStyleName("termButton");
+		nextButtonTop.setStyleName("termButton");
+		
+		add(navigationPanelTop);
+		add(termsTable);
+		add(navigationPanel);
+
+		nextButton.addClickHandler(controller);
+		prevButton.addClickHandler(controller);
+		nextButtonTop.addClickHandler(controller);
+		prevButtonTop.addClickHandler(controller);
 		
 		SettingsPanel.getInstance().addChangeListener(this);
 	}
