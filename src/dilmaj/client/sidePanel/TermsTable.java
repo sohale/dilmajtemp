@@ -8,7 +8,7 @@ import java.util.List;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Widget;
 
-import dilmaj.client.TermSummaryPanel;
+import dilmaj.client.termPanel.TermSummaryPanel;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.TermComposite;
 

@@ -286,13 +286,17 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 					Iterator<TermSuggestion> iterator=allTermSuggestions.iterator();
 					
 					StringBuilder runningTitle=new StringBuilder("");
+					boolean notFound=true;
 					while (iterator.hasNext()) {
 						TermSuggestion ts=iterator.next();
 						query = "select from " + Term.class.getName()+ " where id=="+ts.getSuggestionId();
 					    List<Term> suggestions = (List<Term>) pm.newQuery(query).execute();
 					    if (suggestions!=null) {
 					    	if (suggestions.size()>0) {
-								termVOs.add(termVO);
+					    		if (notFound) {
+					    			termVOs.add(termVO);
+					    			notFound=false;
+					    		}
 								
 								TermComposite sVO=TermComposite.getInstance(suggestions.get(0));
 		

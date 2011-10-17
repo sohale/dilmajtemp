@@ -1,4 +1,4 @@
-package dilmaj.client;
+package dilmaj.client.termPanel;
 
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;

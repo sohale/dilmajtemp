@@ -9,12 +9,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 
-import dilmaj.client.TermButton;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.TermSuggestionService;
 import dilmaj.client.TermSuggestionServiceAsync;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
+import dilmaj.client.termPanel.TermButton;
 import dilmaj.shared.Controller;
 import dilmaj.shared.Repository;
 import dilmaj.shared.TermComposite;

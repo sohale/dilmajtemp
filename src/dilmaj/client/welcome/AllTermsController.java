@@ -5,7 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 
-import dilmaj.client.TermButton;
+import dilmaj.client.termPanel.TermButton;
 import dilmaj.shared.Controller;
 
 public class AllTermsController extends Controller {

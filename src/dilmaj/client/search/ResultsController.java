@@ -6,10 +6,10 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.PopupPanel;
 
-import dilmaj.client.TermButton;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.insert_term.InsertTermCallback;
+import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.Controller;

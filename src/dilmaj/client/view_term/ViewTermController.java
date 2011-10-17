@@ -13,10 +13,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import dilmaj.client.TermButton;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
+import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.view_suggestion.ViewSuggestionPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.Controller;

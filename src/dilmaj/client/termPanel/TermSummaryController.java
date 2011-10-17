@@ -1,4 +1,4 @@
-package dilmaj.client;
+package dilmaj.client.termPanel;
 
 import java.util.HashMap;
 

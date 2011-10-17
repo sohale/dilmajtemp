@@ -12,9 +12,9 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.MyPanel;
-import dilmaj.client.TermButton;
-import dilmaj.client.TermSummaryController;
-import dilmaj.client.TermSummaryPanel;
+import dilmaj.client.termPanel.TermButton;
+import dilmaj.client.termPanel.TermSummaryController;
+import dilmaj.client.termPanel.TermSummaryPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SearchResult;
