@@ -11,7 +11,7 @@ import dilmaj.shared.Controller;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 
-public class GetTermSuggestionsCallback implements AsyncCallback<HashMap<Long, TermComposite>> {
+public class GetTermSuggestionsCallback implements AsyncCallback<List<TermComposite>> {
 	//AllTermsPanel panel;
 	private static GetTermSuggestionsCallback theInstance=null;
 	
@@ -30,11 +30,12 @@ public class GetTermSuggestionsCallback implements AsyncCallback<HashMap<Long, T
 	public void onFailure(Throwable caught) {
 		// TODO Auto-generated method stub
 		//AllTermsPanel.getInstance().setMessage(new MessageComposite("Error Loading All Terms!"));
-		Window.alert("Load all terms failed!");
+		Window.alert("Load term suggestions failed!");
 	}
 
 	@Override
-	public void onSuccess(HashMap<Long, TermComposite> result) {
+	public void onSuccess(List<TermComposite> result) {
+		TermsTable.TermSuggestionTable.populate(result);
 	}
 
 }

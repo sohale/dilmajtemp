@@ -42,4 +42,8 @@ public class GlobalSettings {
 	public static int getFixedRowHeight() {
 		return com.google.gwt.user.client.Window.getClientHeight()*4/125;
 	}
+	
+	public static int getTermsPerPage() {
+		return 25;
+	}
 }

@@ -22,5 +22,5 @@ public interface TermServiceAsync {
 	void getMyTerms(AsyncCallback<HashMap<Long, TermComposite>> callback);
 
 	void getTermsWithSuggestion(int from, int to,
-			AsyncCallback<HashMap<Long, TermComposite>> callback);
+			AsyncCallback<List<TermComposite>> callback);
 }

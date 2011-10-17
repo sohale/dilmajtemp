@@ -262,9 +262,9 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 	}
 
 	@Override
-	public HashMap<Long, TermComposite> getTermsWithSuggestion(int from, int to) {
+	public List<TermComposite> getTermsWithSuggestion(int from, int to) {
 		// TODO Auto-generated method stub
-		HashMap<Long, TermComposite> termVOs=new HashMap<Long, TermComposite>();
+		List<TermComposite> termVOs=new ArrayList<TermComposite>();
 		List<TermSuggestionComposite> tsVOs=new ArrayList<TermSuggestionComposite>();
 		
 		PersistenceManager pm=PMF.get().getPersistenceManager();
@@ -274,11 +274,9 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 	    int n=allTerms.size();
 		
 		if (allTerms!=null) {
-			int i=from;
-			while (i<n && i<=to) {
+			for (int i=from;i<n && i<=to;i++) {
 				Term term=allTerms.get(i);
 				TermComposite termVO=TermComposite.getInstance(term);//new TermComposite(iterator.next());
-				termVOs.put(termVO.getId(), termVO);
 				termVO.getSuggestions().clear();
 				
 				query = "select from " + TermSuggestion.class.getName()+ " where termID=="+term.getId();
@@ -290,42 +288,50 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 					StringBuilder runningTitle=new StringBuilder("");
 					while (iterator.hasNext()) {
 						TermSuggestion ts=iterator.next();
-						TermComposite sVO=termVOs.get(ts.getSuggestionId());
-
-						runningTitle.append(" ");
-						runningTitle.append(sVO.getCaption());
-
-						TermSuggestionComposite tsVO=new TermSuggestionComposite(ts);
-
-						Iterator<Long> interactionIDsIterator=ts.getInteractions().iterator();
-						while (interactionIDsIterator.hasNext()) {
-							Long interactionID=interactionIDsIterator.next();
-							query = "select from " + Interaction.class.getName()+" where id=="+interactionID;
-							List<Interaction> allInteractions=(List<Interaction>)pm.newQuery(query).execute();
-							if (allInteractions!=null) {
-								Iterator<Interaction> interactionsIterator=allInteractions.iterator();
-								while (interactionsIterator.hasNext()) {
-									Interaction interaction=interactionsIterator.next();
-									if (interaction.getKind().equals("like")) {
-										LikeComposite likeVO=new LikeComposite(interaction);
-										tsVO.addInteraction(likeVO);
-									}
-									if (interaction.getKind().equals("comment")) {
-										CommentComposite commentVO=new CommentComposite(interaction);
-										tsVO.addInteraction(commentVO);
-									}
-									if (interaction.getKind().equals("useCase")) {
-										UseCaseComposite sampleVO=new UseCaseComposite(interaction);
-										tsVO.addInteraction(sampleVO);
+						query = "select from " + Term.class.getName()+ " where id=="+ts.getSuggestionId();
+					    List<Term> suggestions = (List<Term>) pm.newQuery(query).execute();
+					    if (suggestions!=null) {
+					    	if (suggestions.size()>0) {
+								termVOs.add(termVO);
+								
+								TermComposite sVO=TermComposite.getInstance(suggestions.get(0));
+		
+								runningTitle.append(" ");
+								runningTitle.append(sVO.getCaption());
+		
+								TermSuggestionComposite tsVO=new TermSuggestionComposite(ts);
+		
+								Iterator<Long> interactionIDsIterator=ts.getInteractions().iterator();
+								while (interactionIDsIterator.hasNext()) {
+									Long interactionID=interactionIDsIterator.next();
+									query = "select from " + Interaction.class.getName()+" where id=="+interactionID;
+									List<Interaction> allInteractions=(List<Interaction>)pm.newQuery(query).execute();
+									if (allInteractions!=null) {
+										Iterator<Interaction> interactionsIterator=allInteractions.iterator();
+										while (interactionsIterator.hasNext()) {
+											Interaction interaction=interactionsIterator.next();
+											if (interaction.getKind().equals("like")) {
+												LikeComposite likeVO=new LikeComposite(interaction);
+												tsVO.addInteraction(likeVO);
+											}
+											if (interaction.getKind().equals("comment")) {
+												CommentComposite commentVO=new CommentComposite(interaction);
+												tsVO.addInteraction(commentVO);
+											}
+											if (interaction.getKind().equals("useCase")) {
+												UseCaseComposite sampleVO=new UseCaseComposite(interaction);
+												tsVO.addInteraction(sampleVO);
+											}
+										}
 									}
 								}
+								
+								tsVO.setSuggestion(sVO);
+								tsVO.setTerm(termVO);
+								termVO.addSuggestion(tsVO);
+								termVO.setRunningTitle(runningTitle.toString());
 							}
 						}
-						
-						tsVO.setSuggestion(sVO);
-						tsVO.setTerm(termVO);
-						termVO.addSuggestion(tsVO);
-						termVO.setRunningTitle(runningTitle.toString());
 					}
 				}
 			}

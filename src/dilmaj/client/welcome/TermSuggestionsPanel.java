@@ -22,6 +22,7 @@ import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.client.sidePanel.TableRow;
+import dilmaj.client.sidePanel.TermsTable;
 import dilmaj.shared.*;
 
 public class TermSuggestionsPanel extends VerticalPanel {
@@ -78,7 +79,8 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		nextButtonTop.setStyleName("termButton");
 		
 		add(navigationPanelTop);
-		add(tsTable);
+		//add(tsTable);
+		add(TermsTable.TermSuggestionTable.getTermsTable());
 		add(navigationPanel);
 		
 		TermSuggestionController controller=new TermSuggestionController(this);
@@ -89,9 +91,9 @@ public class TermSuggestionsPanel extends VerticalPanel {
 }
 	
 	public void browseFirst() {
-		currentIndex=0;
+		/*currentIndex=0;
 		prevIndex=rows.size()-1;
-		browseNext();
+		browseNext();*/
 	}
 	
 	public void browseNext() {
