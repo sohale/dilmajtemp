@@ -17,11 +17,11 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import dilmaj.client.TableRow;
 import dilmaj.client.TermButton;
 import dilmaj.client.TermSummaryPanel;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
+import dilmaj.client.sidePanel.TableRow;
 import dilmaj.shared.*;
 
 public class TermSuggestionsPanel extends VerticalPanel {

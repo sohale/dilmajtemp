@@ -1,4 +1,4 @@
-package dilmaj.client;
+package dilmaj.client.sidePanel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
+public class SidePanel extends HorizontalPanel implements ClickHandler {
 	VerticalPanel tabBar=new VerticalPanel();
 	
 	Map<String, CellPanel> contents=new HashMap<String, CellPanel>();
@@ -23,7 +23,7 @@ public class MyVerticalPanel extends HorizontalPanel implements ClickHandler {
 	CellPanel selectedPanel;
 	Label selectedLab=null;
 	
-	public MyVerticalPanel() {
+	public SidePanel() {
 		add(tabBar);
 	}
 	

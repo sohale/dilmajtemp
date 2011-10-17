@@ -16,4 +16,6 @@ public interface TermService extends RemoteService {
 	public TermComposite get(TermComposite term);
 	public List<SearchResult> getSome(String capionFilter);
 	public HashMap<Long, TermComposite> getMyTerms();
+	
+	public HashMap<Long, TermComposite> getTermsWithSuggestion(int from, int to);
 }

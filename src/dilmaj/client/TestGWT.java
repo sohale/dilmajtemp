@@ -20,6 +20,7 @@ import dilmaj.client.insert_term.InsertTermPanel;
 import dilmaj.client.livelog.LiveLogPanel;
 import dilmaj.client.register.FindUserCallback;
 import dilmaj.client.search.SearchPanel;
+import dilmaj.client.sidePanel.TermTabsPanel;
 import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.users_panel.UsersPanel;
 import dilmaj.client.view_suggestion.LoadSuggestionCallback;

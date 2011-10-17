@@ -1,17 +1,18 @@
-package dilmaj.client;
+package dilmaj.client.sidePanel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 
+import dilmaj.client.DilmajConstants;
 import dilmaj.client.login.LoginController;
 import dilmaj.client.login.LoginListener;
 import dilmaj.client.view_my_terms.MyTermsPanel;
 import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.TermSuggestionsPanel;
 
-public class TermTabsPanel extends MyVerticalPanel implements LoginListener {
+public class TermTabsPanel extends SidePanel implements LoginListener {
 	private static TermTabsPanel theInstance=null;
 	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 

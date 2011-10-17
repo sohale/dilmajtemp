@@ -9,7 +9,7 @@ import dilmaj.client.SettingsService;
 import dilmaj.client.SettingsServiceAsync;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
-import dilmaj.client.TermTabsPanel;
+import dilmaj.client.sidePanel.TermTabsPanel;
 import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.users_panel.GetOnlineUsersCallback;
 import dilmaj.client.users_panel.UsersPanel;

@@ -1,4 +1,4 @@
-package dilmaj.client;
+package dilmaj.client.sidePanel;
 
 import java.util.ArrayList;
 import java.util.List;
