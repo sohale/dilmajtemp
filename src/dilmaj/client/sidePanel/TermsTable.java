@@ -27,13 +27,14 @@ public enum TermsTable {
 	private FlexTable theTable=new FlexTable();
 	private boolean isLoaded=false;
 	private SidePanelController controller=new SidePanelController();
-	private int from, to, index;
+	private int from, to, index, actualTo;
 	private List<TermComposite> loadedTerms=new ArrayList<TermComposite>();
 	
 	private TermsTable() {
 		from=0;
-		to=99;
+		to=GlobalSettings.getTermsPerLoad()-1;
 		index=0;
+		actualTo=0;
 		theTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
 		theTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
 		controller.populateMe(this, from, to);
@@ -42,6 +43,9 @@ public enum TermsTable {
 	public void populate(List<TermComposite> newTerms) {
 		loadedTerms.clear();
 		loadedTerms.addAll(newTerms);
+		actualTo=newTerms.size()-1+from;
+		
+		index=0;
 		
 		browse();
 	}
@@ -61,7 +65,18 @@ public enum TermsTable {
 			theTable.setWidget(row, 0, widget);
 			theTable.getRowFormatter().setStyleName(row, "termTable");
 			row++;
+			index++;
 		}
+	}
+	
+	public int getLocalIndex() {
+		return index;
+	}
+	
+	public boolean endOfRows() {
+		if (index==actualTo+1)
+			return true;
+		return false;
 	}
 	
 	public FlexTable getTermsTable() {

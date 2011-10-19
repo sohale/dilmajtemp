@@ -1,4 +1,4 @@
-package dilmaj.client.welcome;
+package dilmaj.client.sidePanel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,10 +19,11 @@ import com.google.gwt.user.client.ui.Widget;
 
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
-import dilmaj.client.sidePanel.TableRow;
-import dilmaj.client.sidePanel.TermsTable;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.termPanel.TermSummaryPanel;
+import dilmaj.client.welcome.AllTerms;
+import dilmaj.client.welcome.AllTermsPanel;
+import dilmaj.client.welcome.TermSuggestionController;
 import dilmaj.shared.*;
 
 public class TermSuggestionsPanel extends VerticalPanel {
@@ -83,7 +84,7 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		add(TermsTable.TermSuggestionTable.getTermsTable());
 		add(navigationPanel);
 		
-		TermSuggestionController controller=new TermSuggestionController(this);
+		SidePanelController controller=new SidePanelController();
 		nextButton.addClickHandler(controller);
 		prevButton.addClickHandler(controller);
 		nextButtonTop.addClickHandler(controller);

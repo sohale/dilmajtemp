@@ -35,6 +35,7 @@ public class GetTermSuggestionsCallback implements AsyncCallback<List<TermCompos
 
 	@Override
 	public void onSuccess(List<TermComposite> result) {
+		Window.alert(result.size()+"");
 		TermsTable.TermSuggestionTable.populate(result);
 	}
 

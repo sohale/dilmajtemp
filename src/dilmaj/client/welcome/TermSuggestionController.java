@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 
+import dilmaj.client.sidePanel.TermSuggestionsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.shared.Controller;
 

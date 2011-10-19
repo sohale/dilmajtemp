@@ -21,6 +21,7 @@ import dilmaj.client.SettingsListener;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
 import dilmaj.client.sidePanel.TableRow;
+import dilmaj.client.sidePanel.TermSuggestionsPanel;
 import dilmaj.client.termPanel.TermSummaryPanel;
 import dilmaj.shared.*;
 
