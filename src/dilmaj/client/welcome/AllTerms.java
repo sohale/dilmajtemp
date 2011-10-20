@@ -3,6 +3,7 @@ package dilmaj.client.welcome;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.shared.TermComposite;
 
 public enum AllTerms {
@@ -23,7 +24,7 @@ public enum AllTerms {
 	public void setAllTermsPanel(AllTermsPanel allTermsPanel) {
 		allPanel=allTermsPanel;
 		if (!isLoaded && allTerms!=null) {
-			allPanel.populateTable();
+			//allPanel.populateTable();
 			isLoaded=true;
 		}
 	}
@@ -32,15 +33,15 @@ public enum AllTerms {
 		allTerms=terms;
 		
 		if (allPanel!=null && !isLoaded) {
-			allPanel.populateTable();
+			//allPanel.populateTable();
 			isLoaded=true;
 		}
 	}
 
 	public TermComposite add(TermComposite termVO) {
 		allTerms.put(termVO.getId(), termVO);
-		if (allPanel!=null)
-			allPanel.updateTermsTable(termVO);
+/*		if (allPanel!=null)
+			allPanel.updateTermsTable(termVO);*/
 		return termVO;
 	}
 	

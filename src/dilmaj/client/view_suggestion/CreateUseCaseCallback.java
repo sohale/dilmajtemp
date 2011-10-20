@@ -5,7 +5,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import dilmaj.client.TermSuggestionService;
 import dilmaj.client.TermSuggestionServiceAsync;
-import dilmaj.client.welcome.AllTermsPanel;
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.shared.CommentComposite;
 import dilmaj.shared.Controller;
 import dilmaj.shared.LikeComposite;

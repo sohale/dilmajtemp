@@ -13,9 +13,9 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.view_suggestion.ViewSuggestionPanel;
-import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.WelcomeController;
 import dilmaj.shared.*;
 

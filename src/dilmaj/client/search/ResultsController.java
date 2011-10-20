@@ -9,9 +9,9 @@ import com.google.gwt.user.client.ui.PopupPanel;
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.insert_term.InsertTermCallback;
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.view_term.ViewTermPanel;
-import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.TermComposite;
 

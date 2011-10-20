@@ -18,4 +18,5 @@ public interface TermService extends RemoteService {
 	public HashMap<Long, TermComposite> getMyTerms();
 	
 	public List<TermComposite> getTermsWithSuggestion(int from, int to);
+	public List<TermComposite> getTermsWithoutSuggestion(int from, int to);
 }

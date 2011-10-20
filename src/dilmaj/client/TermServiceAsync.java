@@ -23,4 +23,7 @@ public interface TermServiceAsync {
 
 	void getTermsWithSuggestion(int from, int to,
 			AsyncCallback<List<TermComposite>> callback);
+
+	void getTermsWithoutSuggestion(int from, int to,
+			AsyncCallback<List<TermComposite>> callback);
 }

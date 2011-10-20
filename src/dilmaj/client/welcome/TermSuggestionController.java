@@ -22,10 +22,10 @@ public class TermSuggestionController extends Controller {
 		Label button=(Label)event.getSource();
 		String buttonText=button.getText();
 		
-		if (buttonText.compareTo("next")==0)
+		/*if (buttonText.compareTo("next")==0)
 			panel.browseNext();
 		else
-			panel.browsePrev();
+			panel.browsePrev();*/
 	}
 
 }

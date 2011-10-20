@@ -1,4 +1,4 @@
-package dilmaj.client.welcome;
+package dilmaj.client.sidePanel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,22 +20,22 @@ import dilmaj.client.MyPanel;
 import dilmaj.client.SettingsListener;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.settings.SettingsPanel;
-import dilmaj.client.sidePanel.TableRow;
-import dilmaj.client.sidePanel.TermSuggestionsPanel;
 import dilmaj.client.termPanel.TermSummaryPanel;
+import dilmaj.client.welcome.AllTerms;
+import dilmaj.client.welcome.AllTermsController;
 import dilmaj.shared.*;
 
-public class AllTermsPanel extends VerticalPanel implements SettingsListener, MyPanel {
+public class AllTermsPanel extends VerticalPanel implements MyPanel {
 	private FlexTable termsTable=new FlexTable();
 	private List<TableRow> rows=new ArrayList<TableRow>();
 
 	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
 	private int currentIndex=0;
 	 
-	private Label nextButton=new Label(">>");
-	private Label prevButton=new Label("<<");
-	private Label nextButtonTop=new Label(">>");
-	private Label prevButtonTop=new Label("<<");
+	private Label nextButton=new Label("<<");
+	private Label prevButton=new Label(">>");
+	private Label nextButtonTop=new Label("<<");
+	private Label prevButtonTop=new Label(">>");
 	
 	private static AllTermsPanel theInstance=null;
 	
@@ -55,8 +55,8 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 		FlexTable navigationTable=new FlexTable();
 		navigationTable.setStyleName("navigationTable");
 		navigationPanel.add(navigationTable);
-		navigationTable.setWidget(0, 0, prevButton);
-		navigationTable.setWidget(0, 1, nextButton);
+		navigationTable.setWidget(0, 1, prevButton);
+		navigationTable.setWidget(0, 0, nextButton);
 		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
 		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
 		prevButton.setStyleName("termButton");
@@ -67,28 +67,29 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 		FlexTable navigationTableTop=new FlexTable();
 		navigationTableTop.setStyleName("navigationTable");
 		navigationPanelTop.add(navigationTableTop);
-		navigationTableTop.setWidget(0, 0, prevButtonTop);
-		navigationTableTop.setWidget(0, 1, nextButtonTop);
+		navigationTableTop.setWidget(0, 1, prevButtonTop);
+		navigationTableTop.setWidget(0, 0, nextButtonTop);
 		navigationTableTop.getColumnFormatter().setStyleName(0, "prevButton");
 		navigationTableTop.getColumnFormatter().setStyleName(1, "nextButton");
 		prevButtonTop.setStyleName("termButton");
 		nextButtonTop.setStyleName("termButton");
 		
 		add(navigationPanelTop);
-		add(termsTable);
+		//add(termsTable);
+		add(TermsTable.TermOnlyTable.getTermsTable());
 		add(navigationPanel);
 		
-		AllTermsController controller=new AllTermsController(this);
+		SidePanelController controller=new SidePanelController();
 		nextButton.addClickHandler(controller);
 		prevButton.addClickHandler(controller);
 		nextButtonTop.addClickHandler(controller);
 		prevButtonTop.addClickHandler(controller);
-		AllTerms.TheInstance.setAllTermsPanel(this);
+		//AllTerms.TheInstance.setAllTermsPanel(this);
 		
-		SettingsPanel.getInstance().addChangeListener(this);
+		//SettingsPanel.getInstance().addChangeListener(this);
 	}
 	
-	public void browseFirst() {
+/*	public void browseFirst() {
 		currentIndex=0;
 		browseNext();
 		TermSuggestionsPanel.getInstance().browseFirst();
@@ -189,11 +190,23 @@ public class AllTermsPanel extends VerticalPanel implements SettingsListener, My
 		currentIndex=0;
 		browseNext();
 		TermSuggestionsPanel.getInstance().browseFirst();
-	}
+	}*/
 
 	@Override
 	public void setMessage(MessageComposite messageVO) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void setNextLabel(long next) {
+		// TODO Auto-generated method stub
+		nextButton.setTitle(next+"");
+		nextButtonTop.setTitle(next+"");
+	}
+
+	public void setPrevLabel(int from) {
+		// TODO Auto-generated method stub
+		prevButton.setTitle(from+"");
+		prevButtonTop.setTitle(from+"");
 	}
 }

@@ -46,8 +46,4 @@ public class GlobalSettings {
 	public static int getTermsPerPage() {
 		return 25;
 	}
-	
-	public static int getTermsPerLoad() {
-		return 100;
-	}
 }

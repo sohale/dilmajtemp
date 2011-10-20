@@ -22,7 +22,6 @@ import dilmaj.client.settings.SettingsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.termPanel.TermSummaryPanel;
 import dilmaj.client.welcome.AllTerms;
-import dilmaj.client.welcome.AllTermsPanel;
 import dilmaj.client.welcome.TermSuggestionController;
 import dilmaj.shared.*;
 
@@ -34,10 +33,10 @@ public class TermSuggestionsPanel extends VerticalPanel {
 	private int currentIndex=0;
 	private int prevIndex;
 	
-	private Label nextButton=new Label(">>");
-	private Label prevButton=new Label("<<");
-	private Label nextButtonTop=new Label(">>");
-	private Label prevButtonTop=new Label("<<");
+	private Label nextButton=new Label("<<");
+	private Label prevButton=new Label(">>");
+	private Label nextButtonTop=new Label("<<");
+	private Label prevButtonTop=new Label(">>");
 	
 	private static TermSuggestionsPanel theInstance=null;
 	
@@ -60,8 +59,8 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		FlexTable navigationTable=new FlexTable();
 		navigationTable.setStyleName("navigationTable");
 		navigationPanel.add(navigationTable);
-		navigationTable.setWidget(0, 0, prevButton);
-		navigationTable.setWidget(0, 1, nextButton);
+		navigationTable.setWidget(0, 1, prevButton);
+		navigationTable.setWidget(0, 0, nextButton);
 		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
 		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
 		prevButton.setStyleName("termButton");
@@ -72,8 +71,8 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		FlexTable navigationTableTop=new FlexTable();
 		navigationTableTop.setStyleName("navigationTable");
 		navigationPanelTop.add(navigationTableTop);
-		navigationTableTop.setWidget(0, 0, prevButtonTop);
-		navigationTableTop.setWidget(0, 1, nextButtonTop);
+		navigationTableTop.setWidget(0, 1, prevButtonTop);
+		navigationTableTop.setWidget(0, 0, nextButtonTop);
 		navigationTableTop.getColumnFormatter().setStyleName(0, "prevButton");
 		navigationTableTop.getColumnFormatter().setStyleName(1, "nextButton");
 		prevButtonTop.setStyleName("termButton");
@@ -90,11 +89,23 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		nextButtonTop.addClickHandler(controller);
 		prevButtonTop.addClickHandler(controller);
 }
+
+	public void setNextLabel(long next) {
+		// TODO Auto-generated method stub
+		nextButton.setTitle(next+"");
+		nextButtonTop.setTitle(next+"");
+	}
+
+	public void setPrevLabel(int from) {
+		// TODO Auto-generated method stub
+		prevButton.setTitle(from+"");
+		prevButtonTop.setTitle(from+"");
+	}
 	
-	public void browseFirst() {
-		/*currentIndex=0;
+	/*public void browseFirst() {
+		currentIndex=0;
 		prevIndex=rows.size()-1;
-		browseNext();*/
+		browseNext();
 	}
 	
 	public void browseNext() {
@@ -184,11 +195,11 @@ public class TermSuggestionsPanel extends VerticalPanel {
 					
 					//col++;
 				}*/
-				rows.add(tableRow);
+		//		rows.add(tableRow);
 				//row++;
-			}
-		}
+			//}
+	//	}
 		
-		AllTermsPanel.getInstance().browseFirst();
-	}
+		//AllTermsPanel.getInstance().browseFirst();
+	//}
 }

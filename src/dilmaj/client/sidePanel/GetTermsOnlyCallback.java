@@ -7,22 +7,24 @@ import java.util.Set;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import dilmaj.client.WaitPanel;
 import dilmaj.shared.Controller;
+import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 
-public class GetTermSuggestionsCallback implements AsyncCallback<List<TermComposite>> {
+public class GetTermsOnlyCallback implements AsyncCallback<List<TermComposite>> {
 	//AllTermsPanel panel;
-	private static GetTermSuggestionsCallback theInstance=null;
+	private static GetTermsOnlyCallback theInstance=null;
 	
-	public static GetTermSuggestionsCallback getInstance() {
+	public static GetTermsOnlyCallback getInstance() {
 		if (theInstance==null)
-			theInstance=new GetTermSuggestionsCallback();
+			theInstance=new GetTermsOnlyCallback();
 		
 		return theInstance;
 	}
 	
-	private GetTermSuggestionsCallback() {
+	private GetTermsOnlyCallback() {
 		//this.panel=panel;
 	}
 
@@ -36,7 +38,7 @@ public class GetTermSuggestionsCallback implements AsyncCallback<List<TermCompos
 	@Override
 	public void onSuccess(List<TermComposite> result) {
 		//Window.alert(result.size()+"");
-		TermsTable.TermSuggestionTable.populate(result);
+		TermsTable.TermOnlyTable.populate(result);
 	}
 
 }

@@ -14,6 +14,7 @@ import dilmaj.client.TermServiceAsync;
 import dilmaj.client.TermSuggestionService;
 import dilmaj.client.TermSuggestionServiceAsync;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.sidePanel.TermSuggestionsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.shared.Controller;
@@ -34,7 +35,7 @@ public class WelcomeController extends Controller implements ClickHandler {
 	}
 	
 	public void updateTermsList(TermComposite newTerm) {
-		allTermPanel.updateTermsTable(newTerm);
+		//allTermPanel.updateTermsTable(newTerm);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.shared.Controller;
 
@@ -21,9 +22,9 @@ public class AllTermsController extends Controller {
 		Label button=(Label)event.getSource();
 		String text=button.getText();
 		
-		if (text.compareTo("next")==0)
+		/*if (text.compareTo("next")==0)
 			panel.browseNext();
 		else
-			panel.browsePrev();
+			panel.browsePrev();*/
 	}
 }

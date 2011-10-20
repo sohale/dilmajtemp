@@ -9,7 +9,6 @@ import dilmaj.client.DilmajConstants;
 import dilmaj.client.login.LoginController;
 import dilmaj.client.login.LoginListener;
 import dilmaj.client.view_my_terms.MyTermsPanel;
-import dilmaj.client.welcome.AllTermsPanel;
 
 public class TermTabsPanel extends SidePanel implements LoginListener {
 	private static TermTabsPanel theInstance=null;

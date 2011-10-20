@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.Button;
 
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
-import dilmaj.client.welcome.AllTermsPanel;
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.TermComposite;
 

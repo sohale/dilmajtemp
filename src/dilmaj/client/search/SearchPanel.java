@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
-import dilmaj.client.welcome.AllTermsPanel;
+import dilmaj.client.sidePanel.AllTermsPanel;
 
 public class SearchPanel extends VerticalPanel {
 	private HorizontalPanel inputPanel=new HorizontalPanel();

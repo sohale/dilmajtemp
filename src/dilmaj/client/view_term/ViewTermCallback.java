@@ -2,7 +2,7 @@ package dilmaj.client.view_term;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import dilmaj.client.welcome.AllTermsPanel;
+import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.Repository;

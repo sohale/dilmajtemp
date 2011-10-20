@@ -117,7 +117,7 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 	public void browseFirst() {
 		currentIndex=0;
 		browseNext();
-		TermSuggestionsPanel.getInstance().browseFirst();
+//		TermSuggestionsPanel.getInstance().browseFirst();
 	}
 	
 	public void browseNext() {
@@ -191,6 +191,6 @@ public class MyTermsPanel extends VerticalPanel implements SettingsListener {
 		// TODO Auto-generated method stub
 		currentIndex=0;
 		browseNext();
-		TermSuggestionsPanel.getInstance().browseFirst();
+	//	TermSuggestionsPanel.getInstance().browseFirst();
 	}
 }
