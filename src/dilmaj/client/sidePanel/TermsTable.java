@@ -97,7 +97,7 @@ public enum TermsTable {
 			theTable.getRowFormatter().setStyleName(row, "termTable");
 			row++;
 		}
-		
+
 		WaitPanel.getInstance().hide();
 	}
 	

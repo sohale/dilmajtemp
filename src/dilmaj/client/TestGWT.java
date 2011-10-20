@@ -44,7 +44,6 @@ public class TestGWT implements EntryPoint {
 	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 	  
 	private InsertSuggestionPanel insertSuggestionPanel=InsertSuggestionPanel.getInstance();
-	private AllTermsPanel allTermsPanel;
 	private InsertTermPanel insertTermPanel;
 
 	private DilmajUserServiceAsync userSvc = GWT.create(DilmajUserService.class);
@@ -78,7 +77,6 @@ public class TestGWT implements EntryPoint {
 				
 				//RootPanel.get("myTerms").add(MyTermsPanel.getInstance());
 				
-			    allTermsPanel=AllTermsPanel.getInstance();
 			    insertTermPanel=InsertTermPanel.getInstance();
 			    RootPanel.get("insertTerm").add(insertTermPanel);
 			    

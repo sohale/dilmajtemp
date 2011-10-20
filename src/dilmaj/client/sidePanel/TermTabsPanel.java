@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 
 import dilmaj.client.DilmajConstants;
+import dilmaj.client.WaitPanel;
 import dilmaj.client.login.LoginController;
 import dilmaj.client.login.LoginListener;
 import dilmaj.client.view_my_terms.MyTermsPanel;

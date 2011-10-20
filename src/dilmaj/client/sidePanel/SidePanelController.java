@@ -19,14 +19,12 @@ public class SidePanelController implements ClickHandler {
 	int tsTurn=0;
 
 	public void populateMe(TermsTable source, int from, int to) {
+		WaitPanel.getInstance().show();
+		
 		if (source.name().compareTo("TermSuggestionTable")==0) {
-			WaitPanel.getInstance().setPopupPosition(GlobalSettings.getBrowserWidth()/2, GlobalSettings.getBrowserHeight()/2);
-			WaitPanel.getInstance().show();
 			termSvc.getTermsWithSuggestion(from, to, GetTermSuggestionsCallback.getInstance());
 		}
 		if (source.name().compareTo("TermOnlyTable")==0) {
-			WaitPanel.getInstance().setPopupPosition(GlobalSettings.getBrowserWidth()/2, GlobalSettings.getBrowserHeight()/2);
-			WaitPanel.getInstance().show();
 			termSvc.getTermsWithoutSuggestion(from, to, GetTermsOnlyCallback.getInstance());
 		}
 	}
@@ -38,32 +36,31 @@ public class SidePanelController implements ClickHandler {
 			
 			FlexTable flexTable=(FlexTable)label.getParent();
 			HorizontalPanel horizontalPanel=(HorizontalPanel)flexTable.getParent();
-			String labelText=label.getText();
 			if (horizontalPanel.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.TermSuggestionsPanel")==0) {
 				if (label.getText().equals("<<")) {
-					if (TermsTable.TermSuggestionTable.isNextEnabled())
+					if (TermsTable.TermSuggestionTable.isNextEnabled()) {
 						++tsTurn;
-					else
 						populateMe(TermsTable.TermSuggestionTable,tsTurn*GlobalSettings.getTermsPerPage(), (tsTurn+1)*GlobalSettings.getTermsPerPage()-1);
+					}
 				} else {
-					if (TermsTable.TermSuggestionTable.isPrevEnabled())
+					if (TermsTable.TermSuggestionTable.isPrevEnabled()) {
 						--tsTurn;
-					else
 						populateMe(TermsTable.TermSuggestionTable,tsTurn*GlobalSettings.getTermsPerPage(), (tsTurn+1)*GlobalSettings.getTermsPerPage()-1);
+					}
 				}
 			}
 
 			if (horizontalPanel.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.AllTermsPanel")==0) {
 				if (label.getText().equals("<<")) {
-					if (TermsTable.TermOnlyTable.isNextEnabled())
+					if (TermsTable.TermOnlyTable.isNextEnabled()) {
 						++tsTurn;
-					else
 						populateMe(TermsTable.TermOnlyTable,tsTurn*GlobalSettings.getTermsPerPage(), (tsTurn+1)*GlobalSettings.getTermsPerPage()-1);
+					}
 				} else {
-					if (TermsTable.TermOnlyTable.isPrevEnabled())
+					if (TermsTable.TermOnlyTable.isPrevEnabled()) {
 						--tsTurn;
-					else
 						populateMe(TermsTable.TermOnlyTable,tsTurn*GlobalSettings.getTermsPerPage(), (tsTurn+1)*GlobalSettings.getTermsPerPage()-1);
+					}
 				}
 			}
 		} catch(Exception e) {
