@@ -19,4 +19,5 @@ public interface TermService extends RemoteService {
 	
 	public List<TermComposite> getTermsWithSuggestion(int from, int to);
 	public List<TermComposite> getTermsWithoutSuggestion(int from, int to);
+	public List<TermComposite> getMyTerms(int from, int to);
 }

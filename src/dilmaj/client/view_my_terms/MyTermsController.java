@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Label;
 
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
+import dilmaj.client.sidePanel.MyTermsPanel;
 import dilmaj.shared.Controller;
 import dilmaj.shared.TermComposite;
 
@@ -29,9 +30,9 @@ public class MyTermsController extends Controller {
 		Label button=(Label)event.getSource();
 		String text=button.getText();
 		
-		if (text.compareTo("next")==0)
+		/*if (text.compareTo("next")==0)
 			MyTermsPanel.getInstance().browseNext();
 		else
-			MyTermsPanel.getInstance().browsePrev();
+			MyTermsPanel.getInstance().browsePrev();*/
 	}
 }

@@ -278,6 +278,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		boolean addNow=false;
 		StringBuilder runningTitle=null;
 		int next=0;
+		int prev=0;
 		while (tsIterator.hasNext()) {
 			TermSuggestion ts=tsIterator.next();
 			TermSuggestionComposite tsVO=new TermSuggestionComposite(ts);
@@ -295,6 +296,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 				    termVOs.add(termVO);
 			    } else {
 			    	addNow=false;
+			    	++prev;
 			    }
 			    
 			    if (j>to)
@@ -344,6 +346,9 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		TermComposite nextTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
 		nextTerms.setId(new Long(next));
 		termVOs.add(nextTerms);
+		TermComposite prevTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
+		prevTerms.setId(new Long(prev));
+		termVOs.add(prevTerms);
 		return termVOs;
 	}
 	
@@ -358,7 +363,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		List<Term> termsList = (List<Term>) pm.newQuery(query).execute();
 		
 		int next=0;
-		
+		int prev=0;
 		if (termsList!=null) {
 			Iterator<Term> iterator=termsList.iterator();
 			int j=-1;
@@ -371,6 +376,8 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 						++j;
 						if (j>=from)
 							termVOs.add(TermComposite.getInstance(term));
+						else
+							++prev;
 					}
 				} else {
 					++next;
@@ -381,6 +388,52 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		TermComposite nextTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
 		nextTerms.setId(new Long(next));
 		termVOs.add(nextTerms);
+		TermComposite prevTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
+		prevTerms.setId(new Long(prev));
+		termVOs.add(prevTerms);
+		return termVOs;
+	}
+
+	@Override
+	public List<TermComposite> getMyTerms(int from, int to) {
+		// TODO Auto-generated method stub
+		List<TermComposite> termVOs=new ArrayList<TermComposite>();
+		String username=(String)getThreadLocalRequest().getSession().getAttribute("loggedUser");
+		
+		PersistenceManager pm=PMF.get().getPersistenceManager();
+		
+		String query = "select from " + Term.class.getName();// + " where username=='"+username+"'";
+
+	    List<Term> allTerms = (List<Term>) pm.newQuery(query).execute();
+	    
+	    Iterator<Term> iterator=allTerms.iterator();
+	    int j=-1;
+	    int next=0;
+	    int prev=0;
+	    while (iterator.hasNext()) {
+	    	Term term=iterator.next();
+	    	if (term.getUsername()!=null) {
+		    	if (term.getUsername().equalsIgnoreCase(username)) {
+		    		if (j<to) {
+				    	TermComposite termVO=TermComposite.getInstance(term);
+				    	++j;
+				    	if (j>=from)
+				    		termVOs.add(termVO);
+				    	else
+				    		++prev;
+		    		} else {
+		    			++next;
+		    		}
+		    	}
+	    	}
+	    }
+	    	
+		TermComposite nextTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
+		nextTerms.setId(new Long(next));
+		termVOs.add(nextTerms);
+		TermComposite prevTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
+		prevTerms.setId(new Long(prev));
+		termVOs.add(prevTerms);
 		return termVOs;
 	}
 }

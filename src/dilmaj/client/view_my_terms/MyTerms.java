@@ -3,6 +3,7 @@ package dilmaj.client.view_my_terms;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import dilmaj.client.sidePanel.MyTermsPanel;
 import dilmaj.shared.TermComposite;
 
 public enum MyTerms {
@@ -20,7 +21,7 @@ public enum MyTerms {
 		if (myTerms!=null) {
 			myTerms.clear();
 			myTerms=null;
-			myPanel.populateTable();
+			//myPanel.populateTable();
 		}
 		isLoaded=false;
 	}
@@ -28,7 +29,7 @@ public enum MyTerms {
 	public void setMyPanel(MyTermsPanel myPanel) {
 		this.myPanel=myPanel;
 		if (myTerms!=null && !isLoaded) {
-			myPanel.populateTable();
+			//myPanel.populateTable();
 			isLoaded=true;
 		}
 	}
@@ -37,8 +38,8 @@ public enum MyTerms {
 		myTerms=terms;
 		
 		if (myPanel!=null && !isLoaded) {
-			myPanel.populateTable();
-			myPanel.browseFirst();
+			//myPanel.populateTable();
+			//myPanel.browseFirst();
 			isLoaded=true;
 		}
 	}

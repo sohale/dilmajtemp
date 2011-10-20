@@ -26,7 +26,6 @@ import dilmaj.client.welcome.TermSuggestionController;
 import dilmaj.shared.*;
 
 public class TermSuggestionsPanel extends VerticalPanel {
-	private FlexTable tsTable=new FlexTable();
 	private List<TableRow> rows=new ArrayList<TableRow>();
 	
 	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
@@ -47,13 +46,6 @@ public class TermSuggestionsPanel extends VerticalPanel {
 	}
 	
 	private TermSuggestionsPanel() {
-		SettingsComposite settingsVO=SettingsPanel.getInstance().getSettings();
-		if (settingsVO!=null)
-			termsPerPage=settingsVO.getTermsPerPage();
-		
-		tsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
-		tsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
-		
 		HorizontalPanel navigationPanel=new HorizontalPanel();
 		navigationPanel.setStyleName("navigationTable");
 		FlexTable navigationTable=new FlexTable();
@@ -96,10 +88,10 @@ public class TermSuggestionsPanel extends VerticalPanel {
 		nextButtonTop.setTitle(next+"");
 	}
 
-	public void setPrevLabel(int from) {
+	public void setPrevLabel(long prev) {
 		// TODO Auto-generated method stub
-		prevButton.setTitle(from+"");
-		prevButtonTop.setTitle(from+"");
+		prevButton.setTitle(prev+"");
+		prevButtonTop.setTitle(prev+"");
 	}
 	
 	/*public void browseFirst() {

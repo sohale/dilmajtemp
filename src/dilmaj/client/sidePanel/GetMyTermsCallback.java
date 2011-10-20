@@ -13,18 +13,18 @@ import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 
-public class GetTermsOnlyCallback implements AsyncCallback<List<TermComposite>> {
+public class GetMyTermsCallback implements AsyncCallback<List<TermComposite>> {
 	//AllTermsPanel panel;
-	private static GetTermsOnlyCallback theInstance=null;
+	private static GetMyTermsCallback theInstance=null;
 	
-	public static GetTermsOnlyCallback getInstance() {
+	public static GetMyTermsCallback getInstance() {
 		if (theInstance==null)
-			theInstance=new GetTermsOnlyCallback();
+			theInstance=new GetMyTermsCallback();
 		
 		return theInstance;
 	}
 	
-	private GetTermsOnlyCallback() {
+	private GetMyTermsCallback() {
 		//this.panel=panel;
 	}
 
@@ -32,13 +32,13 @@ public class GetTermsOnlyCallback implements AsyncCallback<List<TermComposite>> 
 	public void onFailure(Throwable caught) {
 		// TODO Auto-generated method stub
 		//AllTermsPanel.getInstance().setMessage(new MessageComposite("Error Loading All Terms!"));
-		Window.alert("Load all terms failed!");
+		Window.alert("Load my terms failed!");
 	}
 
 	@Override
 	public void onSuccess(List<TermComposite> result) {
 		//Window.alert(result.size()+"");
-		TermsTable.TermOnlyTable.populate(result);
+		TermsTable.MyTermsTable.populate(result);
 	}
 
 }

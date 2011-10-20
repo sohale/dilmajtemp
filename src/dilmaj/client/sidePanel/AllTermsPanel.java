@@ -26,12 +26,6 @@ import dilmaj.client.welcome.AllTermsController;
 import dilmaj.shared.*;
 
 public class AllTermsPanel extends VerticalPanel implements MyPanel {
-	private FlexTable termsTable=new FlexTable();
-	private List<TableRow> rows=new ArrayList<TableRow>();
-
-	private int termsPerPage=SettingsPanel.getInstance().getTermsPerPage();
-	private int currentIndex=0;
-	 
 	private Label nextButton=new Label("<<");
 	private Label prevButton=new Label(">>");
 	private Label nextButtonTop=new Label("<<");
@@ -47,9 +41,6 @@ public class AllTermsPanel extends VerticalPanel implements MyPanel {
 	}
 	
 	private AllTermsPanel() {
-		termsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
-		termsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
-		
 		HorizontalPanel navigationPanel=new HorizontalPanel();
 		navigationPanel.setStyleName("navigationTable");
 		FlexTable navigationTable=new FlexTable();
@@ -204,9 +195,9 @@ public class AllTermsPanel extends VerticalPanel implements MyPanel {
 		nextButtonTop.setTitle(next+"");
 	}
 
-	public void setPrevLabel(int from) {
+	public void setPrevLabel(long prev) {
 		// TODO Auto-generated method stub
-		prevButton.setTitle(from+"");
-		prevButtonTop.setTitle(from+"");
+		prevButton.setTitle(prev+"");
+		prevButtonTop.setTitle(prev+"");
 	}
 }
