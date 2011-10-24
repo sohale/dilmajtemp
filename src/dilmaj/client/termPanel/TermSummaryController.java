@@ -2,17 +2,21 @@ package dilmaj.client.termPanel;
 
 import java.util.HashMap;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
+import dilmaj.client.DilmajConstants;
+import dilmaj.client.WaitPanel;
 import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.shared.TermComposite;
 
 public class TermSummaryController implements ClickHandler {
 	private static HashMap<TermComposite, TermSummaryController> controllers=new HashMap<TermComposite, TermSummaryController>();
 	private static TermButton selectedTermButton=null;
+	private DilmajConstants constants = GWT.create(DilmajConstants.class);
 	
 	private TermSummaryController() {
 		
@@ -42,11 +46,12 @@ public class TermSummaryController implements ClickHandler {
 		TermComposite termComposite=termButton.getTermComposite();
 		
 		//PopupPanel popup=new PopupPanel();
-		ViewTermPanel viewTermPanel=ViewTermPanel.getInstance(termComposite/*, popup*/);
+		WaitPanel.getInstance().addMessage(constants.termDetailsBeingLoaded());
+		ViewTermPanel.initializeWith(termComposite/*, popup*/);
 		
-		RootPanel.get("termDetails").clear();
-		RootPanel.get("termDetails").add(viewTermPanel);
-		RootPanel.get("termSuggestionDetails").clear();
+		//RootPanel.get("termDetails").clear();
+		//RootPanel.get("termDetails").add(viewTermPanel);
+		//RootPanel.get("termSuggestionDetails").clear();
 
 		/*popup.setSize("100px", "100px");
 		

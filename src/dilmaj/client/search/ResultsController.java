@@ -40,8 +40,9 @@ public class ResultsController extends Controller implements ClickHandler {
 			TermComposite termVO=termButton.getTermComposite();
 			if (termVO!=null) {
 				PopupPanel popup=new PopupPanel();
-				ViewTermPanel viewTerm=ViewTermPanel.getInstance(termButton.getTermComposite(), popup);
-				popup.add(viewTerm);
+				// this must be enabled for searching!
+				//ViewTermPanel viewTerm=ViewTermPanel.getInstance(termButton.getTermComposite(), popup);
+				//popup.add(viewTerm);
 				int left=termButton.getAbsoluteLeft();
 				int top=termButton.getAbsoluteTop();
 				popup.setPopupPosition(left, top);

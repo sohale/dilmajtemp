@@ -165,4 +165,7 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Terms without Suggestions Being Loaded")
 	  String allTermsBeingLoaded();
+
+	  @DefaultStringValue("Term Details being Loaded")
+	  String termDetailsBeingLoaded();
 }

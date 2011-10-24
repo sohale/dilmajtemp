@@ -24,6 +24,6 @@ public class LoadTermCallback implements AsyncCallback<TermComposite> {
 	public void onSuccess(TermComposite result) {
 		// TODO Auto-generated method stub
 		RootPanel.get("termDetails").clear();
-		RootPanel.get("termDetails").add(ViewTermPanel.getInstance(result));
+		RootPanel.get("termDetails").add(ViewTermPanel.getInstance().populateWith(result));
 	}
 }

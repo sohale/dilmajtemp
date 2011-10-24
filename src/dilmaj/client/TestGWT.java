@@ -104,9 +104,9 @@ public class TestGWT implements EntryPoint {
 				userVO.setActivator(activator);
 				userVO.setUsername(username);
 				userSvc.find(userVO, new FindUserCallback(this));
-			} else {
-				ViewTermPanel viewTermPanel=new ViewTermPanel(termId);
-			    RootPanel.get("insertTerm").add(viewTermPanel);
+			} else { // URL with termId
+				//ViewTermPanel viewTermPanel=new ViewTermPanel(termId);
+			    //RootPanel.get("insertTerm").add(viewTermPanel);
 			}
 		}
 	}

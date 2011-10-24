@@ -21,8 +21,6 @@ import dilmaj.shared.*;
 
 public class ViewTermPanel extends VerticalPanel {
 	private MessageComposite message;
-	private AllTermsPanel allPanel;
-	private ViewTermController controller;
 	private TermComposite theTerm;
 	private Button closeButton=new Button(GlobalSettings.constants.close());
 	private Button addSuggestion=new Button("add new suggestion");
@@ -34,12 +32,13 @@ public class ViewTermPanel extends VerticalPanel {
 	private Label termLabel;
 	private FlexTable suggestionsTable=new FlexTable();
 	
-	private static HashMap<TermComposite,ViewTermPanel> viewTermPanels=new HashMap<TermComposite,ViewTermPanel>();
-	
+	//private static HashMap<TermComposite,ViewTermPanel> viewTermPanels=new HashMap<TermComposite,ViewTermPanel>();
+	private static ViewTermPanel viewTermPanel=null;
+		
 	private Label languageLabel;
 	private Label userLabel;
 	
-	public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
+	/*public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
 		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
 		if (viewTermPanel==null) {
 			viewTermPanel=new ViewTermPanel(theTerm, popup);
@@ -95,25 +94,17 @@ public class ViewTermPanel extends VerticalPanel {
 		closeButton.addClickHandler(controller);
 		
 		this.popup=popup;
-	}
+	}*/
 	
-	public ViewTermPanel(String termId) {
+/*	public ViewTermPanel(String termId) {
 		controller=new ViewTermController(this, allPanel);
 		controller.getTerm(Long.parseLong(termId));
 
 		add(termLabel);
-		/*add(termBox);
-		add(insertButton);
-		add(languageBox);*/
 		add(closeButton);
 		
 		closeButton.addClickHandler(controller);
-		
-		/*languageBox.addItem(GlobalSettings.constants.english());
-		languageBox.addItem(GlobalSettings.constants.french());
-		languageBox.addItem(GlobalSettings.constants.arabic());
-		languageBox.setVisibleItemCount(1);*/
-	}
+	}*/
 	
 	public void setMessage(MessageComposite messageVO) {
 		message=messageVO;
@@ -139,15 +130,75 @@ public class ViewTermPanel extends VerticalPanel {
 	
 	public void setPopup(PopupPanel popup) {
 		this.popup=popup;
-		controller.setPopup(popup);
+		ViewTermController.getInstance().setPopup(popup);
 	}
 
-	public static ViewTermPanel getInstance(TermComposite theTerm) {
+	// to be called by callback only!
+	public ViewTermPanel populateWith(TermComposite theTerm) {
+		termPanel.clear();
+		suggestionsTable.clear();
+		clear();
+		
+		this.theTerm=theTerm;
+
+		termLabel=new Label(GlobalSettings.constants.term()+":"+theTerm.getCaption());
+		termPanel.add(termLabel);
+		termPanel.add(new Label(" | "));
+		
+		languageLabel=new Label(GlobalSettings.constants.language()+":"+Language.getLanguage(theTerm.getLanguage()).toString());
+		termPanel.add(languageLabel);
+		termPanel.add(new Label(" | "));
+		
+		userLabel=new Label(GlobalSettings.constants.creator()+":"+theTerm.getUser());
+		termPanel.add(userLabel);
+		termPanel.add(new Label(" | "));
+		
+		// removed to create Naser's prototype
+		suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
+		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());
+		int row=1;
+		Iterator<TermSuggestionComposite> tsIterator=theTerm.getSuggestions().iterator();
+		while (tsIterator.hasNext()) {
+			TermSuggestionComposite tsVO=tsIterator.next();
+			//Label suggestionLabel=new Label(tsVO.getSuggestion().getCaption());
+			suggestions.put(tsVO.getSuggestion().getCaption(), tsVO);
+			
+			//suggestionLabel.addMouseOverHandler(controller);
+			
+			ViewSuggestionPanel suggestionPanel=ViewSuggestionPanel.getInstance(tsVO);
+			
+			suggestionsTable.setWidget(row, 0, suggestionPanel);
+			//suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
+			row++;
+		}
+		add(termPanel);
+		add(suggestionsTable);
+		add(addSuggestion);
+		add(closeButton);
+		
+		addSuggestion.addClickHandler(ViewTermController.getInstance());
+		closeButton.addClickHandler(ViewTermController.getInstance());
+		
+		//this.popup=popup;
+		
+		return viewTermPanel;
+	}
+	
+	// to be called by term button and summary controller 
+	public static void initializeWith(TermComposite theTerm) {
 		// TODO Auto-generated method stub
-		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
+		//ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
 		if (viewTermPanel==null) {
-			viewTermPanel=new ViewTermPanel(theTerm, null);
-			viewTermPanels.put(theTerm, viewTermPanel);
+			viewTermPanel=new ViewTermPanel();
+			//viewTermPanels.put(theTerm, viewTermPanel);
+		}
+		
+		ViewTermController.getInstance().getTermDetails(theTerm);
+	}
+	
+	public static ViewTermPanel getInstance() {
+		if (viewTermPanel==null) {
+			viewTermPanel=new ViewTermPanel();
 		}
 		
 		return viewTermPanel;

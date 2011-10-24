@@ -57,17 +57,24 @@ public class TermSummaryPanel extends HorizontalPanel implements LoginListener {
 		button.addClickHandler(controller);
 		contents.setWidget(0,0,button);
 		
-		//title="("+GlobalSettings.constants.suggestion()+" "+termVO.getSuggestions().size()+")";
-		StringBuilder sb=new StringBuilder();
-		sb.append("("+termVO.getSuggestions().size()+")"+" ");
-		Iterator<TermSuggestionComposite> tsIterator=termVO.getSuggestions().iterator();
-		for (int i=0;i<2 && tsIterator.hasNext();i++) {
-			TermSuggestionComposite tsVO=tsIterator.next();
-			sb.append(tsVO.getSuggestion().getCaption()+"/");
+		if (termVO.getRunningTitle()!=null) {
+			String[] suggestions=termVO.getRunningTitle().split(" ");
+			int n=suggestions.length;
+			StringBuilder sb=new StringBuilder();
+			sb.append("("+(n-1)+")"+" ");
+			//Iterator<TermSuggestionComposite> tsIterator=termVO.getSuggestions().iterator();
+			for (int i=1;i<3 && i<n;i++) {
+				//TermSuggestionComposite tsVO=tsIterator.next();
+				sb.append(suggestions[i]);
+				sb.append("/");
+			}
+			if (n>3)
+				sb.append("... ");
+			sb.append(Language.getLanguage(termVO.getLanguage()));
+			title=sb.toString();
+		} else {
+			title="(0)";
 		}
-		sb.append("... ");
-		sb.append(Language.getLanguage(termVO.getLanguage()));
-		title=sb.toString();
 		
 		summaryLabel=new Label(title);
 		contents.setWidget(0,1,summaryLabel);

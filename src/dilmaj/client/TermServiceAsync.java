@@ -29,4 +29,7 @@ public interface TermServiceAsync {
 
 	void getMyTerms(int from, int to,
 			AsyncCallback<List<TermComposite>> callback);
+
+	void getTermDetails(TermComposite termVO,
+			AsyncCallback<TermComposite> callback);
 }

@@ -30,14 +30,26 @@ public class ViewTermController extends Controller {
 	private ViewTermPanel viewTermPanel;
 	private AllTermsPanel allPanel;
 	private PopupPanel popup;
-	private HashMap<ViewSuggestionPanel, PopupPanel> sPopups=new HashMap<ViewSuggestionPanel, PopupPanel>();
+	//private HashMap<ViewSuggestionPanel, PopupPanel> sPopups=new HashMap<ViewSuggestionPanel, PopupPanel>();
+	private static ViewTermController theInstance=null;
+
+	public static ViewTermController getInstance() {
+		if (theInstance==null)
+			theInstance=new ViewTermController();
+		
+		return theInstance;
+	}
 	
-	public ViewTermController(ViewTermPanel termPanel, AllTermsPanel allPanel) {
+	private ViewTermController() {
+		
+	}
+	
+	private ViewTermController(ViewTermPanel termPanel, AllTermsPanel allPanel) {
 		viewTermPanel=termPanel;
 		this.allPanel=allPanel;
 	}
 	
-	public ViewTermController(ViewTermPanel termPanel, AllTermsPanel allPanel, PopupPanel popup) {
+	private ViewTermController(ViewTermPanel termPanel, AllTermsPanel allPanel, PopupPanel popup) {
 		viewTermPanel=termPanel;
 		this.allPanel=allPanel;
 		this.popup=popup;
@@ -88,5 +100,10 @@ public class ViewTermController extends Controller {
 	
 	public void setPopup(PopupPanel popup) {
 		this.popup=popup;
+	}
+
+	public void getTermDetails(TermComposite theTerm) {
+		// TODO Auto-generated method stub
+		termSvc.getTermDetails(theTerm, GetTermDetailsCallback.getInstance());
 	}
 }
