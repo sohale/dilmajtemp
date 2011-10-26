@@ -58,7 +58,7 @@ public class TermSummaryPanel extends HorizontalPanel implements LoginListener {
 		contents.setWidget(0,0,button);
 		
 		if (termVO.getRunningTitle()!=null) {
-			String[] suggestions=termVO.getRunningTitle().split(" ");
+			String[] suggestions=termVO.getRunningTitle().split("-");
 			int n=suggestions.length;
 			StringBuilder sb=new StringBuilder();
 			sb.append("("+(n-1)+")"+" ");

@@ -291,16 +291,15 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 			    termId=termVO.getId();
 			    runningTitle=new StringBuilder("");
 			    ++j;
-			    if (j>=from && j<=to) {
+			    if (j<from) {
+			    	addNow=false;
+			    	++prev;
+			    } else if (j<=to) {
 			    	addNow=true;
 				    termVOs.add(termVO);
 			    } else {
-			    	addNow=false;
-			    	++prev;
-			    }
-			    
-			    if (j>to)
 			    	next++;
+			    }
 		    }
 			
 		    if (addNow) {
@@ -308,7 +307,7 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 			    Term suggestion=(Term)pm.getObjectById(idInstance);//tIterator.next();
 			    TermComposite sVO=TermComposite.getInstance(suggestion);
 			    
-				runningTitle.append(" ");
+				runningTitle.append("-");
 				runningTitle.append(sVO.getCaption());
 
 				/*Iterator<Long> interactionIDsIterator=ts.getInteractions().iterator();
