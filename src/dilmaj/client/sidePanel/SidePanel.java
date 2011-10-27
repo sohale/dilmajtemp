@@ -57,19 +57,22 @@ public class SidePanel extends HorizontalPanel implements ClickHandler {
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
-		if (selectedLab!=null) {
-			selectedLab.setStyleName("tabLabel");
-		}
-				
 		Label label=(Label)event.getSource();
-		label.setStyleName("selectedTabLabel");
-		selectedLab=label;
-		CellPanel cellPanel=contents.get(label.getText());
-		//cellPanel.setVisible(true);
-		RootPanel.get("termsPanel").add(cellPanel);
-		if (selectedPanel!=null)
-			RootPanel.get("termsPanel").remove(selectedPanel);
-		selectedPanel=cellPanel;
+		
+		if (label!=selectedLab) {
+			if (selectedLab!=null) {
+				selectedLab.setStyleName("tabLabel");
+			}
+		
+			label.setStyleName("selectedTabLabel");
+			selectedLab=label;
+			CellPanel cellPanel=contents.get(label.getText());
+			//cellPanel.setVisible(true);
+			RootPanel.get("termsPanel").add(cellPanel);
+			if (selectedPanel!=null)
+				RootPanel.get("termsPanel").remove(selectedPanel);
+			selectedPanel=cellPanel;
+		}
 	}
 	
 	public void select(String label) {

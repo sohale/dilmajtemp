@@ -70,7 +70,9 @@ public class TermSummaryPanel extends HorizontalPanel implements LoginListener {
 			}
 			if (n>3)
 				sb.append("... ");
-			sb.append(Language.getLanguage(termVO.getLanguage()));
+			int lang=termVO.getLanguage();
+			if (lang!=Language.UNKNOWN.indexOf())
+				sb.append(Language.getLanguage(termVO.getLanguage()));
 			title=sb.toString();
 		} else {
 			title="(0)";

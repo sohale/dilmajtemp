@@ -308,9 +308,9 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 			    TermComposite sVO=TermComposite.getInstance(suggestion);
 			    
 				runningTitle.append("-");
-				runningTitle.append(sVO.getCaption());
-
-				/*Iterator<Long> interactionIDsIterator=ts.getInteractions().iterator();
+				runningTitle.append(sVO.getCaption() + " (");
+				int like=0;
+				Iterator<Long> interactionIDsIterator=ts.getInteractions().iterator();
 				while (interactionIDsIterator.hasNext()) {
 					Long interactionID=interactionIDsIterator.next();
 					query = "select from " + Interaction.class.getName()+" where id=="+interactionID;
@@ -320,24 +320,13 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 						while (interactionsIterator.hasNext()) {
 							Interaction interaction=interactionsIterator.next();
 							if (interaction.getKind().equals("like")) {
-								LikeComposite likeVO=new LikeComposite(interaction);
-								tsVO.addInteraction(likeVO);
-							}
-							if (interaction.getKind().equals("comment")) {
-								CommentComposite commentVO=new CommentComposite(interaction);
-								tsVO.addInteraction(commentVO);
-							}
-							if (interaction.getKind().equals("useCase")) {
-								UseCaseComposite sampleVO=new UseCaseComposite(interaction);
-								tsVO.addInteraction(sampleVO);
+								++like;
 							}
 						}
 					}
 				}
 			    
-				tsVO.setSuggestion(sVO);
-				tsVO.setTerm(termVO);
-				termVO.addSuggestion(tsVO);*/
+				runningTitle.append(like + "+) ");
 				termVO.setRunningTitle(runningTitle.toString());
 		    }
 		}

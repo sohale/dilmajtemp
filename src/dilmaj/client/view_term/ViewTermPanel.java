@@ -38,6 +38,10 @@ public class ViewTermPanel extends VerticalPanel {
 	private Label languageLabel;
 	private Label userLabel;
 	
+	private ViewTermPanel() {
+		setStyleName("termDetailsPanel");
+	}
+	
 	/*public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
 		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
 		if (viewTermPanel==null) {
@@ -135,6 +139,11 @@ public class ViewTermPanel extends VerticalPanel {
 
 	// to be called by callback only!
 	public ViewTermPanel populateWith(TermComposite theTerm) {
+		setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()+"px");
+		setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermDetailsPanelHeightRatio()*theTerm.getSuggestions().size()+"px");
+		suggestionsTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()+"px");
+		suggestionsTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermDetailsPanelHeightRatio()*theTerm.getSuggestions().size()+"px");
+		
 		termPanel.clear();
 		suggestionsTable.clear();
 		clear();
@@ -154,9 +163,9 @@ public class ViewTermPanel extends VerticalPanel {
 		termPanel.add(new Label(" | "));
 		
 		// removed to create Naser's prototype
-		suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
-		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());
-		int row=1;
+		/*suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
+		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());*/
+		int row=0;
 		Iterator<TermSuggestionComposite> tsIterator=theTerm.getSuggestions().iterator();
 		while (tsIterator.hasNext()) {
 			TermSuggestionComposite tsVO=tsIterator.next();
@@ -168,6 +177,10 @@ public class ViewTermPanel extends VerticalPanel {
 			ViewSuggestionPanel suggestionPanel=ViewSuggestionPanel.getInstance(tsVO);
 			
 			suggestionsTable.setWidget(row, 0, suggestionPanel);
+			if (row%2==0)
+				suggestionsTable.getRowFormatter().setStyleName(row, "evenTableRow");
+			else
+				suggestionsTable.getRowFormatter().setStyleName(row, "oddTableRow");
 			//suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
 			row++;
 		}

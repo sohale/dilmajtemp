@@ -1,5 +1,18 @@
 /** Add css rules here for your application. */
 
+.oddTableRow {
+	background-color:#99CCFF;
+}
+
+.evenTableRow {
+	background-color:#3BB9FF;
+}
+
+.termDetailsPanel {
+	background-color:#A4A4A4;
+	vertical-align:top;
+}
+
 .sidePanel {
 	width:33%;
 }
