@@ -29,10 +29,10 @@ public class ViewTermPanel extends VerticalPanel {
 	private HashMap<String, TermSuggestionComposite> suggestions=new HashMap<String, TermSuggestionComposite>();
 	
 	private HorizontalPanel termPanel=new HorizontalPanel();
+	private FlexTable termSummaryTable=new FlexTable();
 	private Label termLabel;
 	private FlexTable suggestionsTable=new FlexTable();
 	
-	//private static HashMap<TermComposite,ViewTermPanel> viewTermPanels=new HashMap<TermComposite,ViewTermPanel>();
 	private static ViewTermPanel viewTermPanel=null;
 		
 	private Label languageLabel;
@@ -41,74 +41,6 @@ public class ViewTermPanel extends VerticalPanel {
 	private ViewTermPanel() {
 		setStyleName("termDetailsPanel");
 	}
-	
-	/*public static ViewTermPanel getInstance(TermComposite theTerm, PopupPanel popup) {
-		ViewTermPanel viewTermPanel=viewTermPanels.get(theTerm);
-		if (viewTermPanel==null) {
-			viewTermPanel=new ViewTermPanel(theTerm, popup);
-			viewTermPanels.put(theTerm, viewTermPanel);
-		} else {
-			if (popup!=viewTermPanel.getPopup())
-				viewTermPanel.setPopup(popup);
-		}
-		
-		return viewTermPanel;
-	}
-	
-	private ViewTermPanel(TermComposite theTerm, PopupPanel popup) {
-		controller=new ViewTermController(this, allPanel, popup);
-		this.theTerm=theTerm;
-
-		termLabel=new Label(GlobalSettings.constants.term()+":"+theTerm.getCaption());
-		termPanel.add(termLabel);
-		termPanel.add(new Label(" | "));
-		
-		languageLabel=new Label(GlobalSettings.constants.language()+":"+Language.getLanguage(theTerm.getLanguage()).toString());
-		termPanel.add(languageLabel);
-		termPanel.add(new Label(" | "));
-		
-		userLabel=new Label(GlobalSettings.constants.creator()+":"+theTerm.getUser());
-		termPanel.add(userLabel);
-		termPanel.add(new Label(" | "));
-		
-		// removed to create Naser's prototype
-		suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
-		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());
-		int row=1;
-		Iterator<TermSuggestionComposite> tsIterator=theTerm.getSuggestions().iterator();
-		while (tsIterator.hasNext()) {
-			TermSuggestionComposite tsVO=tsIterator.next();
-			//Label suggestionLabel=new Label(tsVO.getSuggestion().getCaption());
-			suggestions.put(tsVO.getSuggestion().getCaption(), tsVO);
-			
-			//suggestionLabel.addMouseOverHandler(controller);
-			
-			ViewSuggestionPanel suggestionPanel=ViewSuggestionPanel.getInstance(tsVO);
-			
-			suggestionsTable.setWidget(row, 0, suggestionPanel);
-			//suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
-			row++;
-		}
-		add(termPanel);
-		add(suggestionsTable);
-		add(addSuggestion);
-		add(closeButton);
-		
-		addSuggestion.addClickHandler(controller);
-		closeButton.addClickHandler(controller);
-		
-		this.popup=popup;
-	}*/
-	
-/*	public ViewTermPanel(String termId) {
-		controller=new ViewTermController(this, allPanel);
-		controller.getTerm(Long.parseLong(termId));
-
-		add(termLabel);
-		add(closeButton);
-		
-		closeButton.addClickHandler(controller);
-	}*/
 	
 	public void setMessage(MessageComposite messageVO) {
 		message=messageVO;
@@ -149,23 +81,21 @@ public class ViewTermPanel extends VerticalPanel {
 		clear();
 		
 		this.theTerm=theTerm;
+		termPanel.add(termSummaryTable);
 
 		termLabel=new Label(GlobalSettings.constants.term()+":"+theTerm.getCaption());
-		termPanel.add(termLabel);
-		termPanel.add(new Label(" | "));
+		termSummaryTable.setWidget(0, 0, termLabel);
 		
 		languageLabel=new Label(GlobalSettings.constants.language()+":"+Language.getLanguage(theTerm.getLanguage()).toString());
-		termPanel.add(languageLabel);
-		termPanel.add(new Label(" | "));
+		termSummaryTable.setWidget(0, 1, languageLabel);
 		
 		userLabel=new Label(GlobalSettings.constants.creator()+":"+theTerm.getUser());
-		termPanel.add(userLabel);
-		termPanel.add(new Label(" | "));
+		termSummaryTable.setWidget(0, 2, userLabel);
 		
-		// removed to create Naser's prototype
-		/*suggestionsTable.setText(0, 0, GlobalSettings.constants.rank());
-		suggestionsTable.setText(0, 1, GlobalSettings.constants.suggestion());*/
+		termSummaryTable.getRowFormatter().setStyleName(0, "termTableHeader");
+		
 		int row=0;
+		int nComments=0, nSamples=0;
 		Iterator<TermSuggestionComposite> tsIterator=theTerm.getSuggestions().iterator();
 		while (tsIterator.hasNext()) {
 			TermSuggestionComposite tsVO=tsIterator.next();
@@ -175,6 +105,8 @@ public class ViewTermPanel extends VerticalPanel {
 			//suggestionLabel.addMouseOverHandler(controller);
 			
 			ViewSuggestionPanel suggestionPanel=ViewSuggestionPanel.getInstance(tsVO);
+			nComments+=suggestionPanel.getCommentsCount();
+			nSamples+=suggestionPanel.getSamplesCount();
 			
 			suggestionsTable.setWidget(row, 0, suggestionPanel);
 			if (row%2==0)
@@ -184,6 +116,13 @@ public class ViewTermPanel extends VerticalPanel {
 			//suggestionsTable.setText(row, 0, tsVO.getLikes()+"");
 			row++;
 		}
+		StringBuilder sb=new StringBuilder(theTerm.getSuggestions().size()+" "+GlobalSettings.constants.suggestion()+" ");
+		sb.append(nComments+" "+GlobalSettings.constants.comment()+" ");
+		sb.append(nSamples+" "+GlobalSettings.constants.usecase());
+				
+		Label suggestionsLabel=new Label(sb.toString());
+		termSummaryTable.setWidget(0, 3, suggestionsLabel);
+		
 		add(termPanel);
 		add(suggestionsTable);
 		add(addSuggestion);

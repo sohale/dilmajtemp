@@ -41,17 +41,14 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	Label termLabel;
 	Label suggestorLabel;
 	Label votersLabel;
-	
-	
-	
+		
 	Button closeButton=new Button("x");
 	
 	VerticalPanel suggestionPanel=new VerticalPanel();
 	VerticalPanel descriptionPanel=new VerticalPanel();
 	HorizontalPanel interactionPanel=new HorizontalPanel();
 	
-	
-	PushButton likeButton=new PushButton(new Image("images/like.jpg"));
+	Image likeButton=new Image("images/like.jpg");
 	Label likesLabel=new Label();
 	String votersString=constants.supporters()+" ";
 	String lessVoters=constants.supporters()+" ";
@@ -91,10 +88,11 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		this.term=tsVO.getTerm();
 		
 		tsLabel=new Label(suggestion.getCaption()/*+"="+term.getCaption()*/);
-				
+		
+		FlexTable suggestionTable=new FlexTable();
+		suggestionTable.setStyleName("suggestionCellOfSuggestionPanel");
+		suggestionPanel.add(suggestionTable);
 		add(suggestionPanel);
-		suggestionPanel.add(tsLabel);
-		suggestionPanel.add(likeButton);
 		
 		add(descriptionPanel);
 		descriptionPanel.add(interactionPanel);
@@ -104,6 +102,7 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 
 		closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
+		likeButton.setStyleName("likeButton");
 		commentButton.addClickHandler(controller);
 		sampleButton.addClickHandler(controller);
 		
@@ -149,6 +148,18 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		lessVoters=lessBuilder.toString();
 		votersLabel=new Label(lessVoters);
 		descriptionPanel.add(votersLabel);
+		likesLabel.setText(l+"");
+		suggestionTable.setWidget(0, 0, tsLabel);
+		suggestionTable.setWidget(1, 1, likeButton);
+		suggestionTable.setWidget(1, 0, likesLabel);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 0, ALIGN_RIGHT);
+		suggestionTable.getCellFormatter().setVerticalAlignment(0, 0, ALIGN_TOP);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(1, 0, ALIGN_LEFT);
+		suggestionTable.getCellFormatter().setVerticalAlignment(1, 0, ALIGN_BOTTOM);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(1, 1, ALIGN_LEFT);
+		suggestionTable.getCellFormatter().setVerticalAlignment(1, 1, ALIGN_BOTTOM);
+		suggestionTable.setWidth(GlobalSettings.getBrowserWidth()/20+"px");
+
 		
 		add(suggestorLabel);
 		add(closeButton);
@@ -253,5 +264,13 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		morePanel.remove(lessButton);
 		
 		votersLabel.setText(lessVoters);
+	}
+	
+	public int getCommentsCount() {
+		return commentsCounter;
+	}
+	
+	public int getSamplesCount() {
+		return samplesCounter;
 	}
 }

@@ -1,5 +1,23 @@
 /** Add css rules here for your application. */
 
+.likeButton {
+	cursor:pointer;
+}
+
+.termTableHeader td {
+	border-left-width: 1px;
+	padding: 1px;
+	border-left-style: solid;
+	border-left-color: white;
+}
+
+.suggestionCellOfSuggestionPanel {
+	border-left-width: 1px;
+	padding: 1px;
+	border-left-style: solid;
+	border-left-color: white;
+}
+
 .oddTableRow {
 	background-color:#99CCFF;
 }
