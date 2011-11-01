@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dev.shell.HostedModeException;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
@@ -42,11 +43,11 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	Label suggestorLabel;
 	Label votersLabel;
 		
-	Button closeButton=new Button("x");
+	//Button closeButton=new Button("x");
 	
 	VerticalPanel suggestionPanel=new VerticalPanel();
-	VerticalPanel descriptionPanel=new VerticalPanel();
-	HorizontalPanel interactionPanel=new HorizontalPanel();
+	//VerticalPanel descriptionPanel=new VerticalPanel();
+	//HorizontalPanel interactionPanel=new HorizontalPanel();
 	
 	Image likeButton=new Image("images/like.jpg");
 	Label likesLabel=new Label();
@@ -90,17 +91,17 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		tsLabel=new Label(suggestion.getCaption()/*+"="+term.getCaption()*/);
 		
 		FlexTable suggestionTable=new FlexTable();
-		suggestionTable.setStyleName("suggestionCellOfSuggestionPanel");
-		suggestionPanel.add(suggestionTable);
-		add(suggestionPanel);
+		//suggestionTable.setStyleName("suggestionCellOfSuggestionPanel");
+		//suggestionPanel.add(suggestionTable);
+		add(suggestionTable);
 		
-		add(descriptionPanel);
-		descriptionPanel.add(interactionPanel);
+		//add(descriptionPanel);
+		//descriptionPanel.add(interactionPanel);
 		
 		//interactionPanel.add(likesLabel);
 		//likesLabel.setText(termSuggestion.getLikes()+" "+GlobalSettings.constants.people());
 
-		closeButton.addClickHandler(controller);
+		//closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
 		likeButton.setStyleName("likeButton");
 		commentButton.addClickHandler(controller);
@@ -147,25 +148,43 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		}
 		lessVoters=lessBuilder.toString();
 		votersLabel=new Label(lessVoters);
-		descriptionPanel.add(votersLabel);
+		//descriptionPanel.add(votersLabel);
 		likesLabel.setText(l+"");
+		
+		FlexTable likeTable=new FlexTable();
+		likeTable.setWidget(0, 0, likesLabel);
+		likeTable.setWidget(0, 1, likeButton);
+		likeTable.getCellFormatter().setHorizontalAlignment(1, 0, ALIGN_LEFT);
+		likeTable.getCellFormatter().setVerticalAlignment(1, 0, ALIGN_BOTTOM);
+		likeTable.getCellFormatter().setHorizontalAlignment(1, 1, ALIGN_LEFT);
+		likeTable.getCellFormatter().setVerticalAlignment(1, 1, ALIGN_BOTTOM);
+		
 		suggestionTable.setWidget(0, 0, tsLabel);
-		suggestionTable.setWidget(1, 1, likeButton);
-		suggestionTable.setWidget(1, 0, likesLabel);
+		suggestionTable.setWidget(1, 0, likeTable);
+		suggestionTable.setWidget(0, 1, suggestorLabel);
+		suggestionTable.setWidget(0, 2, votersLabel);
 		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 0, ALIGN_RIGHT);
 		suggestionTable.getCellFormatter().setVerticalAlignment(0, 0, ALIGN_TOP);
-		suggestionTable.getCellFormatter().setHorizontalAlignment(1, 0, ALIGN_LEFT);
-		suggestionTable.getCellFormatter().setVerticalAlignment(1, 0, ALIGN_BOTTOM);
-		suggestionTable.getCellFormatter().setHorizontalAlignment(1, 1, ALIGN_LEFT);
-		suggestionTable.getCellFormatter().setVerticalAlignment(1, 1, ALIGN_BOTTOM);
-		suggestionTable.setWidth(GlobalSettings.getBrowserWidth()/20+"px");
-
+		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 1, ALIGN_RIGHT);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 2, ALIGN_RIGHT);
+		suggestionTable.setWidth("100%");
+		suggestionTable.getCellFormatter().setStyleName(0, 0, "suggestionCellOfSuggestionPanel");
+		suggestionTable.getCellFormatter().setStyleName(0, 1, "suggestionCellOfSuggestionPanel");
+		suggestionTable.getCellFormatter().setStyleName(0, 2, "suggestionCellOfSuggestionPanel");
+		//suggestionTable.getCellFormatter().setStyleName(1, 1, "suggestionCellOfSuggestionPanel");
+		//suggestionTable.getCellFormatter().setStyleName(1, 2, "suggestionCellOfSuggestionPanel");
+		/*suggestionTable.getColumnFormatter().setStyleName(1, "suggestionCellOfSuggestionPanel");
+		suggestionTable.getColumnFormatter().setStyleName(2, "suggestionCellOfSuggestionPanel");
+		suggestionTable.getColumnFormatter().setStyleName(3, "suggestionCellOfSuggestionPanel");*/
+		suggestionTable.getColumnFormatter().setWidth(0, "20%");
+		suggestionTable.getColumnFormatter().setWidth(1, "30%");
+		suggestionTable.getColumnFormatter().setWidth(2, "50%");
 		
-		add(suggestorLabel);
-		add(closeButton);
-		morePanel.add(moreButton);
+		//add(suggestorLabel);
+		//add(closeButton);
+		//morePanel.add(moreButton);
 		
-		descriptionPanel.add(morePanel);
+		//descriptionPanel.add(morePanel);
 		
 		moreButton.addClickHandler(controller);
 		lessButton.addClickHandler(controller);
