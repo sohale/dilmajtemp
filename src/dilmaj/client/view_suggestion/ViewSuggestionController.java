@@ -6,6 +6,8 @@ import java.util.List;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.PushButton;
 
@@ -39,14 +41,14 @@ public class ViewSuggestionController extends Controller {
 		TermSuggestionComposite tsVO=suggestionPanel.getTermSuggestionComposite();
 		Object source=event.getSource();
 		
-		if (source.getClass().equals(PushButton.class)) {
-			PushButton pushButton=(PushButton)source;
+		if (source.getClass().equals(Image.class)) {
+			Image pushButton=(Image)source;
 			
 			LikeComposite likeVO=new LikeComposite();
 			likeVO.setTermSuggestion(tsVO);
 			interactionSvc.create(likeVO, new CreateLikeCallback(suggestionPanel));
 		} else {
-			Button sourceButton=(Button)source;
+			Label sourceButton=(Label)source;
 			String buttonCaption=sourceButton.getText();
 			if (buttonCaption.equals("+")) {
 				tsVO.increaseRank();

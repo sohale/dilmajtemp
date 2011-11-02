@@ -48,7 +48,7 @@ public enum TermsTable implements LoginListener {
 	private FlexTable theTable=new FlexTable();
 	private boolean loggedIn=false;
 	private SidePanelController controller=new SidePanelController();
-	private int from, to, index, actualTo;
+	private int from, to;
 	private List<TermComposite> loadedTerms=new ArrayList<TermComposite>();
 	private boolean isPrevEnabled;
 	private boolean isNextEnabled;
@@ -141,16 +141,6 @@ public enum TermsTable implements LoginListener {
 		if (name().equals("TermSuggestionTable"))
 			WaitPanel.getInstance().removeMessage(constants.termSuggestionsBeingLoaded());
 	}
-	
-	/*public int getLocalIndex() {
-		return index;
-	}
-	
-	public boolean endOfRows() {
-		if (index==actualTo+1)
-			return true;
-		return false;
-	}*/
 	
 	public FlexTable getTermsTable() {
 		return theTable;

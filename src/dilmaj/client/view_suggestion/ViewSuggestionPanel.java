@@ -4,16 +4,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dev.shell.HostedModeException;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -64,12 +60,14 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	TextArea sampleArea=new TextArea();
 	Button sampleButton=new Button("Create Sample");
 	
-	Button moreButton=new Button(GlobalSettings.constants.more()+">>");
-	Button lessButton=new Button(GlobalSettings.constants.less()+"<<");
+	Label moreButton=new Label(GlobalSettings.constants.more()+">>");
+	Label lessButton=new Label(GlobalSettings.constants.less()+"<<");
 	
 	VerticalPanel morePanel=new VerticalPanel();
+	FlexTable suggestionTable=new FlexTable();
 	
 	int samplesCounter=0;
+	int beginRow;
 	
 	public static ViewSuggestionPanel getInstance(TermSuggestionComposite tsVO) {
 		ViewSuggestionPanel anInstance=allInstances.get(tsVO);
@@ -90,7 +88,6 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		
 		tsLabel=new Label(suggestion.getCaption()/*+"="+term.getCaption()*/);
 		
-		FlexTable suggestionTable=new FlexTable();
 		//suggestionTable.setStyleName("suggestionCellOfSuggestionPanel");
 		//suggestionPanel.add(suggestionTable);
 		add(suggestionTable);
@@ -185,9 +182,14 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		//morePanel.add(moreButton);
 		
 		//descriptionPanel.add(morePanel);
-		
+		moreButton.setStyleName("termButton");
 		moreButton.addClickHandler(controller);
+		lessButton.setStyleName("termButton");
 		lessButton.addClickHandler(controller);
+		
+		suggestionTable.setWidget(suggestionTable.getRowCount(), 2, moreButton);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 2, ALIGN_LEFT);
+		beginRow=suggestionTable.getRowCount();
 	}
 	
 	public TermSuggestionComposite getTermSuggestionComposite() {
@@ -256,33 +258,31 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	}
 	
 	public void more() {
-		morePanel.add(commentArea);
-		morePanel.add(commentButton);
-		morePanel.add(commentsTable);
-
-		morePanel.add(sampleArea);
-		morePanel.add(sampleButton);
-		morePanel.add(samplesTable);
-
-		morePanel.add(lessButton);
-		morePanel.remove(moreButton);
+		beginRow=suggestionTable.getRowCount()-1;
+		suggestionTable.clearCell(beginRow, 2);
 		
-		votersLabel.setText(votersString);
+		suggestionTable.setWidget(beginRow, 0, commentArea);
+		suggestionTable.setWidget(beginRow, 1, commentButton);
+		suggestionTable.setWidget(beginRow, 2, commentsTable);
+
+		suggestionTable.setWidget(beginRow+1, 0, sampleArea);
+		suggestionTable.setWidget(beginRow+1, 1, sampleButton);
+		suggestionTable.setWidget(beginRow+1, 2, samplesTable);
+		
+		//votersLabel.setText(votersString);
+		suggestionTable.setWidget(beginRow+2, 0, lessButton);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 0, ALIGN_RIGHT);
 	}
 	
 	public void less() {
-		morePanel.remove(commentArea);
-		morePanel.remove(commentButton);
-		morePanel.remove(commentsTable);
-
-		morePanel.remove(sampleArea);
-		morePanel.remove(sampleButton);
-		morePanel.remove(samplesTable);
-	
-		morePanel.add(moreButton);
-		morePanel.remove(lessButton);
+		for (int i=beginRow;i<suggestionTable.getRowCount();i++) {
+			for (int j=0;j<3;j++)
+				suggestionTable.removeCell(i, j);
+		}
 		
-		votersLabel.setText(lessVoters);
+		//votersLabel.setText(lessVoters);
+		suggestionTable.setWidget(beginRow, 2, moreButton);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 0, ALIGN_LEFT);
 	}
 	
 	public int getCommentsCount() {
