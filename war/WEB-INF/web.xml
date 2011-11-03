@@ -6,6 +6,16 @@
 <web-app>
   
   <!-- Servlets -->
+    <servlet>
+    <servlet-name>feed</servlet-name>
+    <servlet-class>dilmaj.server.DilmajFeedServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>feed</servlet-name>
+    <url-pattern>/testgwt/feed</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>DilmajUserServiceImpl</servlet-name>
     <servlet-class>dilmaj.server.DilmajUserServiceImpl</servlet-class>

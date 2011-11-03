@@ -9,6 +9,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
@@ -54,6 +55,9 @@ public class TestGWT implements EntryPoint {
 		String username = com.google.gwt.user.client.Window.Location.getParameter("username");
 		String termSuggestionId = com.google.gwt.user.client.Window.Location.getParameter("termSuggestionId");
 	    
+        String link = GWT.getModuleBaseURL() + "feed"; 
+        RootPanel.get().add(new HTML("<a href=\"" + link + "\">Dilmaj Feed</a>"));
+		
 	    RootPanel.get("topMenu").add(TopMenuTabs.getInstance());
 		
 		if (termSuggestionId!=null) {
