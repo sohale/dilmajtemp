@@ -276,7 +276,7 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	
 	public void less() {
 		for (int i=beginRow;i<suggestionTable.getRowCount();i++) {
-			for (int j=0;j<3;j++)
+			for (int j=0;j<suggestionTable.getCellCount(beginRow);j++)
 				suggestionTable.removeCell(i, j);
 		}
 		
