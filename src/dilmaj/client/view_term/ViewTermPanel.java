@@ -123,6 +123,10 @@ public class ViewTermPanel extends VerticalPanel {
 		Label suggestionsLabel=new Label(sb.toString());
 		termSummaryTable.setWidget(0, 3, suggestionsLabel);
 		
+		for (int i=0;i<4;i++) {
+			termSummaryTable.getCellFormatter().setWidth(0, i, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.25+"px");
+		}
+		
 		add(termPanel);
 		add(suggestionsTable);
 		add(addSuggestion);

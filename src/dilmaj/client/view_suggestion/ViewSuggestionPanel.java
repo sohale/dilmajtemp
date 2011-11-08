@@ -173,9 +173,9 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		/*suggestionTable.getColumnFormatter().setStyleName(1, "suggestionCellOfSuggestionPanel");
 		suggestionTable.getColumnFormatter().setStyleName(2, "suggestionCellOfSuggestionPanel");
 		suggestionTable.getColumnFormatter().setStyleName(3, "suggestionCellOfSuggestionPanel");*/
-		suggestionTable.getColumnFormatter().setWidth(0, "20%");
-		suggestionTable.getColumnFormatter().setWidth(1, "30%");
-		suggestionTable.getColumnFormatter().setWidth(2, "50%");
+		suggestionTable.getColumnFormatter().setWidth(0, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.2+"px");
+		suggestionTable.getColumnFormatter().setWidth(1, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.3+"px");
+		suggestionTable.getColumnFormatter().setWidth(2, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.5+"px");
 		
 		//add(suggestorLabel);
 		//add(closeButton);
