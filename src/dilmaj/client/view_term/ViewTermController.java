@@ -27,7 +27,6 @@ import dilmaj.shared.TermSuggestionComposite;
 
 public class ViewTermController extends Controller {
 	private TermServiceAsync termSvc = GWT.create(TermService.class);
-	private ViewTermPanel viewTermPanel;
 	private AllTermsPanel allPanel;
 	private PopupPanel popup;
 	//private HashMap<ViewSuggestionPanel, PopupPanel> sPopups=new HashMap<ViewSuggestionPanel, PopupPanel>();
@@ -44,13 +43,11 @@ public class ViewTermController extends Controller {
 		
 	}
 	
-	private ViewTermController(ViewTermPanel termPanel, AllTermsPanel allPanel) {
-		viewTermPanel=termPanel;
+	private ViewTermController(AllTermsPanel allPanel) {
 		this.allPanel=allPanel;
 	}
 	
 	private ViewTermController(ViewTermPanel termPanel, AllTermsPanel allPanel, PopupPanel popup) {
-		viewTermPanel=termPanel;
 		this.allPanel=allPanel;
 		this.popup=popup;
 	}
@@ -59,7 +56,7 @@ public class ViewTermController extends Controller {
 		TermComposite termVO=new TermComposite();
 		termVO.setId(id);
 		
-		termSvc.get(termVO, new ViewTermCallback(viewTermPanel, allPanel));
+		termSvc.get(termVO, new ViewTermCallback(ViewTermPanel.getInstance(), allPanel));
 	}
 
 	@Override
@@ -69,7 +66,7 @@ public class ViewTermController extends Controller {
 		if (caption.compareTo(GlobalSettings.constants.close())==0)
 			popup.hide();
 		if (caption.compareTo("add new suggestion")==0) {
-			InsertSuggestionPanel.getInstance().setTerm(viewTermPanel.getTerm());
+			InsertSuggestionPanel.getInstance().setTerm(ViewTermPanel.getInstance().getTerm());
 			InsertSuggestionPanel.getInstance().setVisible(true);
 		}
 	}

@@ -187,8 +187,8 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		lessButton.setStyleName("termButton");
 		lessButton.addClickHandler(controller);
 		
-		suggestionTable.setWidget(suggestionTable.getRowCount(), 2, moreButton);
-		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 2, ALIGN_LEFT);
+		suggestionTable.setWidget(suggestionTable.getRowCount()-1, 2, moreButton);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(suggestionTable.getRowCount()-1, 2, ALIGN_LEFT);
 		beginRow=suggestionTable.getRowCount();
 	}
 	
@@ -270,19 +270,23 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		suggestionTable.setWidget(beginRow+1, 2, samplesTable);
 		
 		//votersLabel.setText(votersString);
-		suggestionTable.setWidget(beginRow+2, 0, lessButton);
-		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 0, ALIGN_RIGHT);
+		suggestionTable.setWidget(beginRow+2, 2, lessButton);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(beginRow+2, 2, ALIGN_LEFT);
 	}
 	
 	public void less() {
 		for (int i=beginRow;i<suggestionTable.getRowCount();i++) {
-			for (int j=0;j<suggestionTable.getCellCount(beginRow);j++)
-				suggestionTable.removeCell(i, j);
+			suggestionTable.removeRow(beginRow+1);
+			/*for (int j=0;j<suggestionTable.getCellCount(beginRow);j++)
+				suggestionTable.removeCell(i, 0);*/
 		}
+		
+		for (int j=0;j<suggestionTable.getCellCount(beginRow)-1;++j)
+			suggestionTable.clearCell(beginRow, j);
 		
 		//votersLabel.setText(lessVoters);
 		suggestionTable.setWidget(beginRow, 2, moreButton);
-		suggestionTable.getCellFormatter().setHorizontalAlignment(0, 0, ALIGN_LEFT);
+		suggestionTable.getCellFormatter().setHorizontalAlignment(beginRow, 2, ALIGN_LEFT);
 	}
 	
 	public int getCommentsCount() {
