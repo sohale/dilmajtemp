@@ -48,7 +48,7 @@ public class GlobalSettings {
 	}
 
 	public static double getTermDetailsPanelRatio() {
-		return 2.0/3.0;
+		return 3.0/5.0;
 	}
 	
 	public static double getTermDetailsPanelHeightRatio() {
