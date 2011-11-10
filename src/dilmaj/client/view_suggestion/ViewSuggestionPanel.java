@@ -1,7 +1,10 @@
 package dilmaj.client.view_suggestion;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -22,6 +25,7 @@ import dilmaj.shared.LikeComposite;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
+import dilmaj.shared.TimestampDescendingInteractionComparator;
 import dilmaj.shared.UseCaseComposite;
 
 public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
@@ -68,6 +72,7 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	
 	int samplesCounter=0;
 	int beginRow;
+	int nComment=0;
 	
 	public static ViewSuggestionPanel getInstance(TermSuggestionComposite tsVO) {
 		ViewSuggestionPanel anInstance=allInstances.get(tsVO);
@@ -86,19 +91,10 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		this.suggestion=tsVO.getSuggestion();
 		this.term=tsVO.getTerm();
 		
-		tsLabel=new Label(suggestion.getCaption()/*+"="+term.getCaption()*/);
+		tsLabel=new Label(suggestion.getCaption());
 		
-		//suggestionTable.setStyleName("suggestionCellOfSuggestionPanel");
-		//suggestionPanel.add(suggestionTable);
 		add(suggestionTable);
 		
-		//add(descriptionPanel);
-		//descriptionPanel.add(interactionPanel);
-		
-		//interactionPanel.add(likesLabel);
-		//likesLabel.setText(termSuggestion.getLikes()+" "+GlobalSettings.constants.people());
-
-		//closeButton.addClickHandler(controller);
 		likeButton.addClickHandler(controller);
 		likeButton.setStyleName("likeButton");
 		commentButton.addClickHandler(controller);
@@ -106,8 +102,24 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		
 		suggestorLabel=new Label(constants.suggestor()+": "+suggestion.getUser());
 		
-		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
+		SortedMap<Date, InteractionComposite> sortedInteractions=new TreeMap<Date, InteractionComposite>(new TimestampDescendingInteractionComparator());
+		Iterator<InteractionComposite> iterator=termSuggestion.getInteractions().iterator();
+		while (iterator.hasNext()) {
+			InteractionComposite anInteraction=iterator.next();
+			Date timeStamp=anInteraction.getTimeStamp();
+			if (timeStamp!=null)
+				sortedInteractions.put(anInteraction.getTimeStamp(), anInteraction);
+		}
 		
+		Iterator<InteractionComposite> icIterator=sortedInteractions.values().iterator();
+		while (icIterator.hasNext()) {
+			InteractionComposite ic=icIterator.next();
+			Object icClass=ic.getClass();
+			if (icClass.equals(CommentComposite.class))
+				++nComment;
+		}
+		
+		icIterator=sortedInteractions.values().iterator();
 		StringBuilder votersBuilder=new StringBuilder(GlobalSettings.constants.supporters()+" : ");
 		StringBuilder lessBuilder=new StringBuilder(GlobalSettings.constants.supporters()+" : ");
 		int less=0;
@@ -145,7 +157,6 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		}
 		lessVoters=lessBuilder.toString();
 		votersLabel=new Label(lessVoters);
-		//descriptionPanel.add(votersLabel);
 		likesLabel.setText(l+"");
 		
 		FlexTable likeTable=new FlexTable();
@@ -168,26 +179,16 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		suggestionTable.getCellFormatter().setStyleName(0, 0, "suggestionCellOfSuggestionPanel");
 		suggestionTable.getCellFormatter().setStyleName(0, 1, "suggestionCellOfSuggestionPanel");
 		suggestionTable.getCellFormatter().setStyleName(0, 2, "suggestionCellOfSuggestionPanel");
-		//suggestionTable.getCellFormatter().setStyleName(1, 1, "suggestionCellOfSuggestionPanel");
-		//suggestionTable.getCellFormatter().setStyleName(1, 2, "suggestionCellOfSuggestionPanel");
-		/*suggestionTable.getColumnFormatter().setStyleName(1, "suggestionCellOfSuggestionPanel");
-		suggestionTable.getColumnFormatter().setStyleName(2, "suggestionCellOfSuggestionPanel");
-		suggestionTable.getColumnFormatter().setStyleName(3, "suggestionCellOfSuggestionPanel");*/
 		suggestionTable.getColumnFormatter().setWidth(0, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.2+"px");
 		suggestionTable.getColumnFormatter().setWidth(1, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.3+"px");
 		suggestionTable.getColumnFormatter().setWidth(2, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.5+"px");
 		
-		//add(suggestorLabel);
-		//add(closeButton);
-		//morePanel.add(moreButton);
-		
-		//descriptionPanel.add(morePanel);
 		moreButton.setStyleName("termButton");
 		moreButton.addClickHandler(controller);
 		lessButton.setStyleName("termButton");
 		lessButton.addClickHandler(controller);
 		
-		suggestionTable.setWidget(suggestionTable.getRowCount()-1, 2, moreButton);
+		suggestionTable.setWidget(suggestionTable.getRowCount(), 2, moreButton);
 		suggestionTable.getCellFormatter().setHorizontalAlignment(suggestionTable.getRowCount()-1, 2, ALIGN_LEFT);
 		beginRow=suggestionTable.getRowCount();
 	}
@@ -213,6 +214,7 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		samplesCounter=0;
 		commentsTable.clear();
 		samplesTable.clear();
+		
 		Iterator<InteractionComposite> icIterator=termSuggestion.getInteractions().iterator();
 		while (icIterator.hasNext()) {
 			InteractionComposite ic=icIterator.next();
@@ -258,8 +260,8 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	}
 	
 	public void more() {
-		beginRow=suggestionTable.getRowCount()-1;
-		suggestionTable.clearCell(beginRow, 2);
+		beginRow=suggestionTable.getRowCount();
+		suggestionTable.clearCell(beginRow-1, 2);
 		
 		suggestionTable.setWidget(beginRow, 0, commentArea);
 		suggestionTable.setWidget(beginRow, 1, commentButton);
