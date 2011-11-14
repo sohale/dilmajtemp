@@ -11,6 +11,11 @@
 	border-left-color: white;
 }
 
+
+.commentsCellOfSuggestionPanel td {
+	colspan:3;
+}
+
 .suggestionCellOfSuggestionPanel td {
 	border-left-width: 1px;
 	padding: 1px;
