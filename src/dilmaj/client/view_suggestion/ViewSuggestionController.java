@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.PushButton;
+import com.google.gwt.user.client.ui.TextArea;
 
 import dilmaj.client.InteractionService;
 import dilmaj.client.InteractionServiceAsync;
@@ -17,6 +18,7 @@ import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.TermSuggestionService;
 import dilmaj.client.TermSuggestionServiceAsync;
+import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.view_term.ViewTermCallback;
 import dilmaj.shared.CommentComposite;
 import dilmaj.shared.Controller;
@@ -47,13 +49,15 @@ public class ViewSuggestionController extends Controller {
 			LikeComposite likeVO=new LikeComposite();
 			likeVO.setTermSuggestion(tsVO);
 			interactionSvc.create(likeVO, new CreateLikeCallback(suggestionPanel));
-		} else {
+		} else if (source.getClass().equals(Label.class)) {
 			Label sourceButton=(Label)source;
 			String buttonCaption=sourceButton.getText();
 			if (buttonCaption.equals("+")) {
 				tsVO.increaseRank();
 			} else if (buttonCaption.equals("-")) {
 				tsVO.decreaseRank();
+			} else if (buttonCaption.equals("Clear Comment")) {
+				suggestionPanel.clearCommentArea();
 			} else if (buttonCaption.equals("Create Comment")) {
 				CommentComposite commentVO=new CommentComposite();
 				commentVO.setFeedback(suggestionPanel.getComment());
@@ -72,6 +76,9 @@ public class ViewSuggestionController extends Controller {
 			
 			if (!buttonCaption.equals("x"))
 				tsSvc.update(tsVO, new UpdateTermSuggestionCallback(suggestionPanel));
+		} else if (source.getClass().equals(TextArea.class)) {
+			TextArea textArea=(TextArea)source;		
+			textArea.setText("");
 		}
 	}
 }

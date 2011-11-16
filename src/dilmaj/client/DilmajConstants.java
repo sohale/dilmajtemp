@@ -168,4 +168,7 @@ public interface DilmajConstants extends Constants {
 
 	  @DefaultStringValue("Term Details being Loaded")
 	  String termDetailsBeingLoaded();
+
+	  @DefaultStringValue("Your Comment ...")
+	  String yourComment();
 }
