@@ -56,14 +56,16 @@ public class ViewSuggestionController extends Controller {
 				tsVO.increaseRank();
 			} else if (buttonCaption.equals("-")) {
 				tsVO.decreaseRank();
-			} else if (buttonCaption.equals("Clear Comment")) {
+			} else if (buttonCaption.equals(GlobalSettings.constants.clearComment())) {
 				suggestionPanel.clearCommentArea();
-			} else if (buttonCaption.equals("Create Comment")) {
+			} else if (buttonCaption.equals(GlobalSettings.constants.clearSample())) {
+				suggestionPanel.clearSampleArea();
+			} else if (buttonCaption.equals(GlobalSettings.constants.createComment())) {
 				CommentComposite commentVO=new CommentComposite();
 				commentVO.setFeedback(suggestionPanel.getComment());
 				commentVO.setTermSuggestion(tsVO);
 				interactionSvc.create(commentVO, new CreateCommentCallback(suggestionPanel));
-			} else if (buttonCaption.equals("Create Sample")) {
+			} else if (buttonCaption.equals(GlobalSettings.constants.createSample())) {
 				UseCaseComposite sampleVO=new UseCaseComposite();
 				sampleVO.setFeedback(suggestionPanel.getUseCase());
 				sampleVO.setTermSuggestion(tsVO);

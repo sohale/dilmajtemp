@@ -58,13 +58,15 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 
 	FlexTable commentsTable=new FlexTable();
 	TextArea commentArea=new TextArea();
-	Label commentButton=new Label("Create Comment");
-	Label clearCommentButton=new Label("Clear Comment");
+	Label commentButton=new Label(GlobalSettings.constants.createComment());
+	Label clearCommentButton=new Label(GlobalSettings.constants.clearComment());
 	int commentsCounter=0;
 
 	FlexTable samplesTable=new FlexTable();
 	TextArea sampleArea=new TextArea();
-	Button sampleButton=new Button("Create Sample");
+	Label sampleButton=new Label(GlobalSettings.constants.createSample());
+	Label clearSampleButton=new Label(GlobalSettings.constants.clearSample());
+	int samplesCounter=0;
 	
 	Label moreButton=new Label(GlobalSettings.constants.more()+">>");
 	Label lessButton=new Label(GlobalSettings.constants.less()+"<<");
@@ -72,7 +74,6 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	VerticalPanel morePanel=new VerticalPanel();
 	FlexTable suggestionTable=new FlexTable();
 	
-	int samplesCounter=0;
 	int beginRow;
 	int nComment=0;
 	
@@ -102,7 +103,7 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		commentButton.addClickHandler(controller);
 		commentButton.setStyleName("termButton");
 		sampleButton.addClickHandler(controller);
-		//sampleButton.setStyleName("termButton");
+		sampleButton.setStyleName("termButton");
 		
 		suggestorLabel=new Label(constants.suggestor()+": "+suggestion.getUser());
 		
@@ -203,18 +204,19 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		suggestionTableHeader.setWidget(0, 4, moreButton);
 		suggestionTableHeader.getCellFormatter().setHorizontalAlignment(0, 4, ALIGN_LEFT);
 		
-		//suggestionTable.getRowFormatter().addStyleName(0, "FlexTable-Header");
-		//beginRow=suggestionTable.getRowCount();
 		suggestionTable.setWidget(1, 0, commentsTable);
+		suggestionTable.setWidget(3, 0, samplesTable);
 		
 		for (int i=1;i<commentsTable.getRowCount();++i) {
 			commentsTable.getRowFormatter().setVisible(i, false);
 		}
 		
-		//suggestionTable.setWidget(2, 0, samplesTable);
+		for (int i=1;i<samplesTable.getRowCount();++i) {
+			samplesTable.getRowFormatter().setVisible(i, false);
+		}
 		
+		// comments table
 		FlexTable addCommentTable=new FlexTable();
-		//addCommentTable.setText(0, 0, "Your Comment:");
 		addCommentTable.setWidget(0, 0, commentArea);
 		commentArea.setText(GlobalSettings.constants.yourComment());
 		commentArea.addClickHandler(controller);
@@ -229,9 +231,27 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		addCommentTable.setWidget(0, 1, buttonsTable);
 		buttonsTable.getCellFormatter().setVerticalAlignment(0,0,ALIGN_TOP);
 		buttonsTable.getCellFormatter().setVerticalAlignment(1,0,ALIGN_TOP);
-		//addCommentTable.getColumnFormatter().setWidth(1, ""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.15+"px");
 		commentButton.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.15+"px");
 		suggestionTable.setWidget(2, 0, addCommentTable);
+		
+		// samples table
+		FlexTable addSampleTable=new FlexTable();
+		addSampleTable.setWidget(0, 0, sampleArea);
+		sampleArea.setText(GlobalSettings.constants.yourSample());
+		sampleArea.addClickHandler(controller);
+		sampleArea.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.85+"px");
+		sampleButton.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.15+"px");
+		clearSampleButton.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.15+"px");
+		clearSampleButton.addClickHandler(controller);
+		clearSampleButton.setStyleName("termButton");
+		FlexTable sampleButtonsTable=new FlexTable();
+		sampleButtonsTable.setWidget(0, 0, sampleButton);
+		sampleButtonsTable.setWidget(1, 0, clearSampleButton);
+		addSampleTable.setWidget(0, 1, sampleButtonsTable);
+		sampleButtonsTable.getCellFormatter().setVerticalAlignment(0,0,ALIGN_TOP);
+		sampleButtonsTable.getCellFormatter().setVerticalAlignment(1,0,ALIGN_TOP);
+		sampleButton.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermDetailsPanelRatio()*.15+"px");
+		suggestionTable.setWidget(4, 0, addSampleTable);
 	}
 	
 	public TermSuggestionComposite getTermSuggestionComposite() {
@@ -304,6 +324,9 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 		for (int i=1;i<commentsTable.getRowCount();++i) {
 			commentsTable.getRowFormatter().setVisible(i, true);
 		}
+		for (int i=1;i<samplesTable.getRowCount();++i) {
+			samplesTable.getRowFormatter().setVisible(i, true);
+		}
 		suggestionTableHeader.clearCell(0, 4);
 		suggestionTableHeader.setWidget(0, 4, lessButton);
 	}
@@ -311,6 +334,9 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 	public void less() {
 		for (int i=1;i<commentsTable.getRowCount();++i) {
 			commentsTable.getRowFormatter().setVisible(i, false);
+		}
+		for (int i=1;i<samplesTable.getRowCount();++i) {
+			samplesTable.getRowFormatter().setVisible(i, false);
 		}
 		suggestionTableHeader.clearCell(0, 4);
 		suggestionTableHeader.setWidget(0, 4, moreButton);
@@ -326,5 +352,9 @@ public class ViewSuggestionPanel extends HorizontalPanel implements MyPanel {
 
 	public void clearCommentArea() {
 		commentArea.setText(GlobalSettings.constants.yourComment());
+	}
+
+	public void clearSampleArea() {
+		sampleArea.setText(GlobalSettings.constants.yourSample());
 	}
 }
