@@ -82,6 +82,14 @@
 	border-bottom-width:1px;
 }
 
+.searchTable {
+	background-color:#E0F8EC;
+	text-align:center;
+	margin:auto;
+	margin:auto;
+	width=60%;
+}
+
 .termTable {
 	background-color:#E0F2F7;
 	width:100%;

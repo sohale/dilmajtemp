@@ -5,11 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
-import dilmaj.client.sidePanel.AllTermsPanel;
+import dilmaj.shared.GlobalSettings;
 
 public class SearchPanel extends VerticalPanel {
 	private HorizontalPanel inputPanel=new HorizontalPanel();
@@ -23,16 +24,23 @@ public class SearchPanel extends VerticalPanel {
 	
 	private Button theButton=new Button();
 	
+	private FlexTable searchTable=new FlexTable();
+	
 	public SearchPanel() {
 		controller=new SearchController(this);
-		
+		setStyleName("searchTable");
 		inputBox.addKeyUpHandler(controller);
 		inputPanel.add(inputBox);
-		add(inputPanel);
+		inputBox.setWidth(GlobalSettings.getBrowserWidth()*.4+"px");
+		inputBox.setText(GlobalSettings.constants.search()+" ...");
+		inputBox.addClickHandler(controller);
+		searchTable.setWidget(0, 0, inputBox);
+		//searchTable.setWidth(GlobalSettings.getBrowserWidth()*2/3+"px");
+		add(searchTable);
 		
-		add(outputPanel);
+		//add(outputPanel);
 		
-		add(theButton);
+		//add(theButton);
 		theButton.addClickHandler(controller);
 		theButton.setVisible(false);
 	}
@@ -67,5 +75,9 @@ public class SearchPanel extends VerticalPanel {
 	
 	public String getInputText() {
 		return inputBox.getText();
+	}
+
+	public void reset() {
+		inputBox.setText("");
 	}
 }

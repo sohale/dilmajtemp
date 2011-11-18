@@ -26,6 +26,14 @@
     <!-- be added before this line.                -->
     <!--                                           -->
     <script type="text/javascript" language="javascript" src="testgwt/testgwt.nocache.js"></script>
+    
+    <style type="text/css">
+		.center
+		{
+			margin:auto;
+			width:60%;
+		}
+	</style>
   </head>
 
   <!--                                           -->
@@ -62,6 +70,11 @@
 				</table>
 			</td>
 		</tr>
+		<tr style="text-align:center;">
+			<td style="text-align:center;" width=100%>
+				<div id="searchPanel" class="center"></div>
+			</td>
+		</tr>
 	<tr style="vertical-align:top text-align:right">
 		<td width="30%">
 			<table align=right>
@@ -75,30 +88,14 @@
 				</tr>
 			</table>
 		</td>
-		<td width="30%"  style="vertical-align:top">
-			<table>
-				<tr>
-					<td>
-					توضیحات ترم
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div id=termDetails></div>
-					</td>
-				</tr>
-			</table>
+		<td width="30%"  style="vertical-align:top; text-align:right;">
+			<div id=termDetails></div>
 		</td>
 	</tr>
 	<tr>
 
 		<td>
 			<table>
-				<tr style="background-color:#bbddbb;">
-					<td span=2>
-						<div id="searchPanel">Search</div>
-				</td>
-			</tr>
 			<tr style="background-color:#bbddbb;">
 				<td>Insert Term
 					<div id="insertTerm"></div>

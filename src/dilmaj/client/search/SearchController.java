@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.TextBox;
 
 import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
@@ -38,8 +39,15 @@ public class SearchController extends Controller implements KeyUpHandler, ClickH
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
-		Button button=(Button)event.getSource();
-		String captionFilter=button.getText();
-		termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter, button.getAbsoluteLeft(), button.getAbsoluteTop()));
+		Object source=event.getSource();
+		String className=source.getClass().getName();
+		
+		if (className.equals(TextBox.class)) {
+			panel.reset();
+		} else if (className.equals(Button.class)) {
+			Button button=(Button)event.getSource();
+			String captionFilter=button.getText();
+			termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter, button.getAbsoluteLeft(), button.getAbsoluteTop()));
+		}
 	}
 }
