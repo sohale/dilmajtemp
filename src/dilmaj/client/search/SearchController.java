@@ -5,8 +5,12 @@ import java.util.List;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.TextBox;
 
@@ -14,6 +18,7 @@ import dilmaj.client.TermService;
 import dilmaj.client.TermServiceAsync;
 import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.shared.Controller;
+import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.TermComposite;
 
 public class SearchController extends Controller implements KeyUpHandler, ClickHandler {
@@ -42,9 +47,9 @@ public class SearchController extends Controller implements KeyUpHandler, ClickH
 		Object source=event.getSource();
 		String className=source.getClass().getName();
 		
-		if (className.equals(TextBox.class)) {
+		if (className.equals(TextBox.class.getName())) {
 			panel.reset();
-		} else if (className.equals(Button.class)) {
+		} else if (className.equals(Button.class.getName())) {
 			Button button=(Button)event.getSource();
 			String captionFilter=button.getText();
 			termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter, button.getAbsoluteLeft(), button.getAbsoluteTop()));

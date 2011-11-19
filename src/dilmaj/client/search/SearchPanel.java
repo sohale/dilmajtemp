@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -14,13 +15,13 @@ import dilmaj.shared.GlobalSettings;
 
 public class SearchPanel extends VerticalPanel {
 	private HorizontalPanel inputPanel=new HorizontalPanel();
-	private HorizontalPanel outputPanel=new HorizontalPanel();
-	
+	private SplitTermsPanel outputPanel=new SplitTermsPanel(this);
+	private Label searchLabel=new Label(GlobalSettings.constants.search()+":");
 	private TextBox inputBox=new TextBox();
 	
 	private SearchController controller;
 	
-	private List<Button> buttons=new ArrayList<Button>();
+	private List<Label> buttons=new ArrayList<Label>();
 	
 	private Button theButton=new Button();
 	
@@ -32,10 +33,9 @@ public class SearchPanel extends VerticalPanel {
 		inputBox.addKeyUpHandler(controller);
 		inputPanel.add(inputBox);
 		inputBox.setWidth(GlobalSettings.getBrowserWidth()*.4+"px");
-		inputBox.setText(GlobalSettings.constants.search()+" ...");
-		inputBox.addClickHandler(controller);
-		searchTable.setWidget(0, 0, inputBox);
-		//searchTable.setWidth(GlobalSettings.getBrowserWidth()*2/3+"px");
+		searchTable.setWidget(0, 0, searchLabel);
+		searchTable.setWidget(0, 1, inputBox);
+		
 		add(searchTable);
 		
 		//add(outputPanel);
@@ -57,18 +57,19 @@ public class SearchPanel extends VerticalPanel {
 		} else
 			theButton.setVisible(false);
 		
-		Iterator<Button> iterator=buttons.iterator();
+		Iterator<Label> iterator=buttons.iterator();
 		while (iterator.hasNext()) {
-			outputPanel.remove(iterator.next());
+			outputPanel.removeButton(iterator.next());
 		}
 		buttons.clear();
 		
 		if (text.length()>0 && entries.length>1)
 			for (String s:entries) {
 			//for (int i=0;i<entries.length;i++) {
-				Button button=new Button(s);
+				Label button=new Label(s);
+				button.setStyleName("termButton");
 				button.addClickHandler(controller);
-				outputPanel.add(button);
+				outputPanel.addButton(button);
 				buttons.add(button);
 			}
 	}
@@ -79,5 +80,10 @@ public class SearchPanel extends VerticalPanel {
 
 	public void reset() {
 		inputBox.setText("");
+	}
+
+	public void setSearchFilter(String string) {
+		// TODO Auto-generated method stub
+		inputBox.setText(string);
 	}
 }
