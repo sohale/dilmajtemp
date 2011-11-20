@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 
 import dilmaj.client.TermService;
@@ -49,8 +50,8 @@ public class SearchController extends Controller implements KeyUpHandler, ClickH
 		
 		if (className.equals(TextBox.class.getName())) {
 			panel.reset();
-		} else if (className.equals(Button.class.getName())) {
-			Button button=(Button)event.getSource();
+		} else if (className.equals(Label.class.getName())) {
+			Label button=(Label)event.getSource();
 			String captionFilter=button.getText();
 			termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter, button.getAbsoluteLeft(), button.getAbsoluteTop()));
 		}

@@ -84,6 +84,13 @@
 	color:blue;
 }
 
+.termSplitButton {
+	text-decoration:underline;
+	cursor:pointer;
+	color:blue;
+	font-weight:bold;
+}
+
 .termSummaryPanel {
 	border-bottom-style:solid;
 	border-bottom-color:#BDBDBD;

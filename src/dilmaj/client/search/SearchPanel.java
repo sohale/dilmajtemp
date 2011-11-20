@@ -23,7 +23,7 @@ public class SearchPanel extends VerticalPanel {
 	
 	private List<Label> buttons=new ArrayList<Label>();
 	
-	private Button theButton=new Button();
+	private Label theButton=new Label();
 	
 	private FlexTable searchTable=new FlexTable();
 	
@@ -37,12 +37,8 @@ public class SearchPanel extends VerticalPanel {
 		searchTable.setWidget(0, 1, inputBox);
 		
 		add(searchTable);
-		
-		//add(outputPanel);
-		
-		//add(theButton);
+		theButton.setStyleName("termSplitButton");
 		theButton.addClickHandler(controller);
-		theButton.setVisible(false);
 	}
 	
 	public void addButton(String entry) {
@@ -53,9 +49,9 @@ public class SearchPanel extends VerticalPanel {
 		String text=inputBox.getText();
 		if (text.length()>0) {
 			theButton.setText(inputBox.getText());
-			theButton.setVisible(true);
+			outputPanel.addButton(theButton);
 		} else
-			theButton.setVisible(false);
+			outputPanel.removeButton(theButton);
 		
 		Iterator<Label> iterator=buttons.iterator();
 		while (iterator.hasNext()) {
@@ -67,7 +63,7 @@ public class SearchPanel extends VerticalPanel {
 			for (String s:entries) {
 			//for (int i=0;i<entries.length;i++) {
 				Label button=new Label(s);
-				button.setStyleName("termButton");
+				button.setStyleName("termSplitButton");
 				button.addClickHandler(controller);
 				outputPanel.addButton(button);
 				buttons.add(button);
@@ -80,6 +76,7 @@ public class SearchPanel extends VerticalPanel {
 
 	public void reset() {
 		inputBox.setText("");
+		buttons.clear();
 	}
 
 	public void setSearchFilter(String string) {

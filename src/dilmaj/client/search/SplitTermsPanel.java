@@ -15,10 +15,10 @@ public class SplitTermsPanel extends PopupPanel implements ClickHandler, Compara
 	VerticalPanel mainPanel=new VerticalPanel();
 	int nButtons=0;
 	Button closeButton=new Button("x");
-	Panel parent;
+	SearchPanel parent;
 	//PriorityQueue<Integer> maxHeap=new PriorityQueue<Integer>(10, this);
 	
-	public SplitTermsPanel(Panel panel) {
+	public SplitTermsPanel(SearchPanel panel) {
 		parent=panel;
 		//setGlassEnabled(true);
 		setStyleName("transparentPopup");
@@ -37,7 +37,8 @@ public class SplitTermsPanel extends PopupPanel implements ClickHandler, Compara
 	//		maxHeap.add(button.getOffsetWidth());
 			int x=parent.getAbsoluteLeft();
 			int y=parent.getAbsoluteTop();
-			setPopupPosition(x, y);
+			int h=parent.getOffsetHeight();
+			setPopupPosition(x, y+h);
 		//	setWidth(maxHeap.peek()+"px");
 			show();
 		}
@@ -59,6 +60,7 @@ public class SplitTermsPanel extends PopupPanel implements ClickHandler, Compara
 		hide();
 		mainPanel.clear();
 		nButtons=0;
+		parent.reset();
 	}
 
 	@Override
