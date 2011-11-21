@@ -18,7 +18,16 @@ public class SplitTermsPanel extends PopupPanel implements ClickHandler, Compara
 	SearchPanel parent;
 	//PriorityQueue<Integer> maxHeap=new PriorityQueue<Integer>(10, this);
 	
-	public SplitTermsPanel(SearchPanel panel) {
+	private static SplitTermsPanel theInstance=null;
+	
+	public static SplitTermsPanel getInstance(SearchPanel panel) {
+		if (theInstance==null)
+			theInstance=new SplitTermsPanel(panel);
+		
+		return theInstance;
+	}
+	
+	private SplitTermsPanel(SearchPanel panel) {
 		parent=panel;
 		//setGlassEnabled(true);
 		setStyleName("transparentPopup");
@@ -27,11 +36,12 @@ public class SplitTermsPanel extends PopupPanel implements ClickHandler, Compara
 		closeButton.addClickHandler(this);
 		mainPanel.add(closeButton);
 		mainPanel.setHorizontalAlignment(VerticalPanel.ALIGN_LEFT);
-		setWidth("100px");
+		//setWidth("100px");
 	}
 	
 	public void addButton(Label button) {
 		mainPanel.add(button);
+		button.addClickHandler(this);
 		++nButtons;
 		if (nButtons==1) {
 	//		maxHeap.add(button.getOffsetWidth());

@@ -39,19 +39,18 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 	}
 	
 	private ResultsPanel(List<SearchResult> foundTerms) {
+		setStyleName("transparentPopup");
+		
 		this.foundTerms=foundTerms;
 
 		Iterator<SearchResult> iterator=foundTerms.iterator();
 		VerticalPanel mainPanel=new VerticalPanel();
+		mainPanel.setStyleName("transparentPopup");
 		while (iterator.hasNext()) {
 			SearchResult result=iterator.next();
 			TermComposite aTerm=result.getTermComposite();
-			//ResultsController controller=new ResultsController(this);
 			TermSummaryPanel panel=TermSummaryPanel.getSummaryPanel(aTerm);
-			HorizontalPanel aPanel=new HorizontalPanel();
-			aPanel.add(panel);
-			aPanel.add(new Label("<"+result.getDistance()+">"));
-			mainPanel.add(aPanel);
+			mainPanel.add(panel);
 		}
 		
 		mainPanel.add(closeButton);
@@ -61,13 +60,14 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 	}
 	
 	private ResultsPanel(String newTerm) {
-		this.allPanel=allPanel;
 		TermButton termButton=new TermButton(newTerm);
 		ResultsController controller=new ResultsController(allPanel, this);
 		termButton.addClickHandler(controller);
 		
 		VerticalPanel mainPanel=new VerticalPanel();
 		Label label=new Label("add it as new");
+		setStyleName("transparentPopup");
+		mainPanel.setStyleName("transparentPopup");
 		mainPanel.add(label);
 		mainPanel.add(termButton);
 		add(mainPanel);

@@ -15,7 +15,7 @@ import dilmaj.shared.GlobalSettings;
 
 public class SearchPanel extends VerticalPanel {
 	private HorizontalPanel inputPanel=new HorizontalPanel();
-	private SplitTermsPanel outputPanel=new SplitTermsPanel(this);
+	private SplitTermsPanel outputPanel=SplitTermsPanel.getInstance(this);
 	private Label searchLabel=new Label(GlobalSettings.constants.search()+":");
 	private TextBox inputBox=new TextBox();
 	
@@ -27,7 +27,16 @@ public class SearchPanel extends VerticalPanel {
 	
 	private FlexTable searchTable=new FlexTable();
 	
-	public SearchPanel() {
+	private static SearchPanel theInstance=null;
+	
+	public static SearchPanel getInstance() {
+		if (theInstance==null)
+			theInstance=new SearchPanel();
+		
+		return theInstance;
+	}
+	
+	private SearchPanel() {
 		controller=new SearchController(this);
 		setStyleName("searchTable");
 		inputBox.addKeyUpHandler(controller);

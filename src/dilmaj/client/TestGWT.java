@@ -71,7 +71,7 @@ public class TestGWT implements EntryPoint {
 				TermSuggestionsPanel termSuggestionsPanel=TermSuggestionsPanel.getInstance();
 				termSvc.loadAll(new LoadAllTermsCallback());
 			    
-				SearchPanel searchPanel=new SearchPanel();
+				SearchPanel searchPanel=SearchPanel.getInstance();
 				RootPanel.get("searchPanel").add(searchPanel);
 				
 				//RegisterPanel registerPanel=new RegisterPanel();
