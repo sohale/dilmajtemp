@@ -9,14 +9,9 @@ import dilmaj.shared.TermComposite;
 
 public class GetSomeTermsCallback implements AsyncCallback<List<SearchResult>> {
 	String captionFilter;
-	//AllTermsPanel allPanel;
-	int left, top;
 	
-	public GetSomeTermsCallback(String filter, int left, int top) {
+	public GetSomeTermsCallback(String filter) {
 		captionFilter=filter;
-		//this.allPanel=allPanel;
-		this.left=left;
-		this.top=top;
 	}
 
 	@Override
@@ -38,7 +33,7 @@ public class GetSomeTermsCallback implements AsyncCallback<List<SearchResult>> {
 		
 		panel.setSize("100px", "100px");
 		
-		panel.setPopupPosition(left, top);
+		//panel.setPopupPosition(left, top);
 		panel.show();
 	}
 

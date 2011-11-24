@@ -7,6 +7,9 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.FocusEvent;
 import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.dom.client.MouseOutEvent;
@@ -22,7 +25,7 @@ import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.TermComposite;
 
-public class SearchController extends Controller implements KeyUpHandler, ClickHandler {
+public class SearchController extends Controller implements KeyDownHandler, ClickHandler {
 	private SearchPanel panel;
 	private boolean atEnd=true;
 	//private AllTermsPanel allPanel;
@@ -33,14 +36,14 @@ public class SearchController extends Controller implements KeyUpHandler, ClickH
 		//this.allPanel=allPanel;
 	}
 	
-	@Override
+	/*@Override
 	public void onKeyUp(KeyUpEvent event) {
 		// TODO Auto-generated method stub
 		String input=panel.getInputText();
 		input=input.trim();
 		String[] subInputs=input.split(" ");
 		panel.setButtons(subInputs);
-	}
+	}*/
 
 	@Override
 	public void onClick(ClickEvent event) {
@@ -53,7 +56,17 @@ public class SearchController extends Controller implements KeyUpHandler, ClickH
 		} else if (className.equals(Label.class.getName())) {
 			Label button=(Label)event.getSource();
 			String captionFilter=button.getText();
-			termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter, button.getAbsoluteLeft(), button.getAbsoluteTop()));
+			termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter));
+		}
+	}
+
+	@Override
+	public void onKeyDown(KeyDownEvent event) {
+		// TODO Auto-generated method stub
+		if (event.getNativeKeyCode()==KeyCodes.KEY_ENTER) {
+			TextBox eventBox=(TextBox)event.getSource();
+			String captionFilter=eventBox.getText();
+			termSvc.getSome(captionFilter, new GetSomeTermsCallback(captionFilter));
 		}
 	}
 }

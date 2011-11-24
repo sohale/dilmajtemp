@@ -39,7 +39,7 @@ public class SearchPanel extends VerticalPanel {
 	private SearchPanel() {
 		controller=new SearchController(this);
 		setStyleName("searchTable");
-		inputBox.addKeyUpHandler(controller);
+		inputBox.addKeyDownHandler(controller);
 		inputPanel.add(inputBox);
 		inputBox.setWidth(GlobalSettings.getBrowserWidth()*.4+"px");
 		searchTable.setWidget(0, 0, searchLabel);
@@ -91,5 +91,9 @@ public class SearchPanel extends VerticalPanel {
 	public void setSearchFilter(String string) {
 		// TODO Auto-generated method stub
 		inputBox.setText(string);
+	}
+	
+	public TextBox getSearchBox() {
+		return inputBox;
 	}
 }

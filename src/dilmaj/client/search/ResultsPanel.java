@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.MyPanel;
@@ -41,11 +42,21 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 	private ResultsPanel(List<SearchResult> foundTerms) {
 		setStyleName("transparentPopup");
 		
+		TextBox inputBox=SearchPanel.getInstance().getSearchBox();
+		int left=inputBox.getAbsoluteLeft();
+		int top=inputBox.getAbsoluteTop();
+		int width=inputBox.getOffsetWidth();
+		int height=inputBox.getOffsetHeight();
+		
+		this.setPopupPosition(left, top+height);
+		this.setWidth(width+"px");
+		
 		this.foundTerms=foundTerms;
 
 		Iterator<SearchResult> iterator=foundTerms.iterator();
 		VerticalPanel mainPanel=new VerticalPanel();
 		mainPanel.setStyleName("transparentPopup");
+		mainPanel.setWidth(width+"px");
 		while (iterator.hasNext()) {
 			SearchResult result=iterator.next();
 			TermComposite aTerm=result.getTermComposite();
