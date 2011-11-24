@@ -17,7 +17,7 @@ import dilmaj.shared.TermSuggestionComposite;
 public class TermSummaryPanel extends HorizontalPanel implements LoginListener {
 	TermComposite termVO;
 	TermButton button;
-	Controller controller;
+	//Controller controller;
 	Label summaryLabel;
 	String title;
 	

@@ -52,8 +52,8 @@ public class ResultsController extends Controller implements ClickHandler {
 				termSvc.addEntry(termVO, new InsertTermCallback(aPanel));
 			}
 		} else {
-			@SuppressWarnings("unused")
-			Button button=(Button)event.getSource();
+			//@SuppressWarnings("unused")
+			//Button button=(Button)event.getSource();
 			aPanel.hide();
 		}
 	}

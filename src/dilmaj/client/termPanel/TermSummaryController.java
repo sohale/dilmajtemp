@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.WaitPanel;
@@ -37,6 +38,13 @@ public class TermSummaryController implements ClickHandler {
 		
 		TermButton termButton=(TermButton)event.getSource();
 		
+		Widget parent=termButton.getParent().getParent();
+		
+		if (!parent.getClass().equals(TermSummaryPanel.class)) {
+			Widget popupPanel=parent.getParent();
+			((PopupPanel)popupPanel).hide();
+		}
+		
 		if (selectedTermButton!=null) {
 			selectedTermButton.setStyleName("termButton");
 		}
@@ -45,23 +53,8 @@ public class TermSummaryController implements ClickHandler {
 		
 		TermComposite termComposite=termButton.getTermComposite();
 		
-		//PopupPanel popup=new PopupPanel();
 		WaitPanel.getInstance().addMessage(constants.termDetailsBeingLoaded());
 		ViewTermPanel.initializeWith(termComposite/*, popup*/);
-		
-		//RootPanel.get("termDetails").clear();
-		//RootPanel.get("termDetails").add(viewTermPanel);
-		//RootPanel.get("termSuggestionDetails").clear();
-
-		/*popup.setSize("100px", "100px");
-		
-		int left=termButton.getAbsoluteLeft();
-		int bottom=termButton.getAbsoluteTop()+termButton.getOffsetHeight();
-		popup.setPopupPosition(left, bottom);
-		
-		popup.add(viewTermPanel);
-		
-		popup.show();*/
 	}
 
 }

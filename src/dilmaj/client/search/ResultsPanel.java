@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -26,21 +27,21 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 	List<SearchResult> foundTerms=new ArrayList<SearchResult>();
 	private AllTermsPanel allPanel;
 	private MessageComposite messageVO;
-	private Button closeButton=new Button("x");
+	private Label closeButton=new Label("x");
 	
 	private static ResultsPanel resultsPanel=null;
 	
-	public static ResultsPanel getInstance(List<SearchResult> foundTerms) {
-		resultsPanel=new ResultsPanel(foundTerms);
+	public static ResultsPanel getInstance(List<SearchResult> foundTerms, String newTerm) {
+		resultsPanel=new ResultsPanel(foundTerms, newTerm);
 		return resultsPanel;
 	}
 	
-	public static ResultsPanel getInstance(String newTerm) {
+	/*public static ResultsPanel getInstance(String newTerm) {
 		resultsPanel=new ResultsPanel(newTerm);
 		return resultsPanel;
-	}
+	}*/
 	
-	private ResultsPanel(List<SearchResult> foundTerms) {
+	private ResultsPanel(List<SearchResult> foundTerms, String newTerm) {
 		setStyleName("transparentPopup");
 		
 		TextBox inputBox=SearchPanel.getInstance().getSearchBox();
@@ -58,21 +59,27 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		VerticalPanel mainPanel=new VerticalPanel();
 		mainPanel.setStyleName("transparentPopup");
 		mainPanel.setWidth(width+"px");
+		FlexTable termsTable=new FlexTable();
+		termsTable.setWidth(width+"px");
+		closeButton.setStyleName("termSplitButton");
+		mainPanel.add(closeButton);
+		mainPanel.add(termsTable);
+		int row=0;
 		while (iterator.hasNext()) {
 			SearchResult result=iterator.next();
 			TermComposite aTerm=result.getTermComposite();
-			TermSummaryPanel panel=TermSummaryPanel.getSummaryPanel(aTerm);
-			panel.setButtonStyle("termSplitButton");
-			mainPanel.add(panel);
+			TermButton termButton=new TermButton(aTerm);
+			termButton.addClickHandler(TermSummaryController.getController(aTerm));
+			termButton.setStyleName("termSplitButton");
+			termsTable.setWidget(row++, 0, termButton);
 		}
 		
-		mainPanel.add(closeButton);
 		ResultsController controller=new ResultsController(this);
 		closeButton.addClickHandler(controller);
 		add(mainPanel);
 	}
 	
-	private ResultsPanel(String newTerm) {
+	/*private ResultsPanel(String newTerm) {
 		TermButton termButton=new TermButton(newTerm);
 		ResultsController controller=new ResultsController(allPanel, this);
 		termButton.addClickHandler(controller);
@@ -84,7 +91,7 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		mainPanel.add(label);
 		mainPanel.add(termButton);
 		add(mainPanel);
-	}
+	}*/
 
 	@Override
 	public void setMessage(MessageComposite messageVO) {
