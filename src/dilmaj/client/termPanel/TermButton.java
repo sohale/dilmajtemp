@@ -22,4 +22,8 @@ public class TermButton extends Label {
 	public TermComposite getTermComposite() {
 		return termComposite;
 	}
+	
+	public void setNewStyle(String styleName) {
+		setStyleName(styleName);
+	}
 }

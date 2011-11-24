@@ -83,6 +83,10 @@ public class TermSummaryPanel extends HorizontalPanel implements LoginListener {
 		contents.getCellFormatter().setStyleName(0, 1, "termSummaryTrailer");
 	}
 
+	public void setButtonStyle(String styleName) {
+		button.setNewStyle(styleName);
+	}
+	
 	@Override
 	public void onLogin() {
 		// TODO Auto-generated method stub

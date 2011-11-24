@@ -31,7 +31,7 @@ public class GetSomeTermsCallback implements AsyncCallback<List<SearchResult>> {
 		else
 			panel=ResultsPanel.getInstance(captionFilter);
 		
-		panel.setSize("100px", "100px");
+		//panel.setSize("100px", "100px");
 		
 		//panel.setPopupPosition(left, top);
 		panel.show();

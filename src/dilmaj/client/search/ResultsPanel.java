@@ -17,6 +17,7 @@ import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.termPanel.TermSummaryController;
 import dilmaj.client.termPanel.TermSummaryPanel;
+import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MessageComposite;
 import dilmaj.shared.SearchResult;
 import dilmaj.shared.TermComposite;
@@ -61,6 +62,7 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 			SearchResult result=iterator.next();
 			TermComposite aTerm=result.getTermComposite();
 			TermSummaryPanel panel=TermSummaryPanel.getSummaryPanel(aTerm);
+			panel.setButtonStyle("termSplitButton");
 			mainPanel.add(panel);
 		}
 		
