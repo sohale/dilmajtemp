@@ -186,4 +186,8 @@ public interface DilmajConstants extends Constants {
 	
   @DefaultStringValue("Clear Comment")
 	String clearComment();
+  
+  @DefaultStringValue("Would you like to add")
+	String addNewMessage();
+
 }

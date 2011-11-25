@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.MyPanel;
+import dilmaj.client.insert_term.InsertTermPanel;
 import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.termPanel.TermButton;
 import dilmaj.client.termPanel.TermSummaryController;
@@ -64,6 +65,15 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		closeButton.setStyleName("termSplitButton");
 		mainPanel.add(closeButton);
 		mainPanel.add(termsTable);
+		
+		if (!newTerm.equals("")) {
+			FlexTable insertTermTable=new FlexTable();
+			Label messageLabel=new Label(newTerm+" "+GlobalSettings.constants.addNewMessage()+":");
+			insertTermTable.setWidget(0, 0, messageLabel);
+			insertTermTable.setWidget(1, 0, InsertTermPanel.getInstance());
+			mainPanel.add(insertTermTable);
+		}
+		
 		int row=0;
 		while (iterator.hasNext()) {
 			SearchResult result=iterator.next();
