@@ -3,6 +3,7 @@ package dilmaj.client.insert_term;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.PopupPanel;
 
 import dilmaj.client.MyPanel;
 import dilmaj.client.TermService;
@@ -32,11 +33,13 @@ public class InsertTermController extends Controller implements ClickHandler {
 	
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
-		//insertTermPanel=(MyHorizontalPanel)().getParent();
-		//userSvc.getLoggedUser(new GetLoggedAccountCallback((InsertTermPanel)insertTermPanel, this, ((InsertTermPanel)insertTermPanel).getTermCaption()));
 		String caption=((InsertTermPanel)insertTermPanel).getTermCaption();
 		int language=((InsertTermPanel)insertTermPanel).getTermLanguage();
+		
+		PopupPanel popup=InsertTermPanel.getInstance().getPopupParent();
+		if (popup!=null)
+			popup.hide();
+		
 		insertTerm(caption, language);
-		/*TermComposite termVO=insertTerm();*/
 	}
 }

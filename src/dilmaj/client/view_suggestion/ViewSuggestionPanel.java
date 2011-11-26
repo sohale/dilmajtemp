@@ -8,7 +8,6 @@ import java.util.TreeMap;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -18,7 +17,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import dilmaj.client.DilmajConstants;
 import dilmaj.client.MyPanel;
-import dilmaj.client.termPanel.TermButton;
 import dilmaj.shared.CommentComposite;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.InteractionComposite;

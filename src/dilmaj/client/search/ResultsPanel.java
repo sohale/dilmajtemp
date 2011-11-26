@@ -7,6 +7,7 @@ import java.util.List;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -68,8 +69,12 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		
 		if (!newTerm.equals("")) {
 			FlexTable insertTermTable=new FlexTable();
-			Label messageLabel=new Label(newTerm+" "+GlobalSettings.constants.addNewMessage()+":");
+			Label messageLabel=new Label(":"+GlobalSettings.constants.addNewMessage()+" "+newTerm);
+			messageLabel.setStyleName("insertTermInResultsPanel");
 			insertTermTable.setWidget(0, 0, messageLabel);
+			insertTermTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+			InsertTermPanel.getInstance().setTermCaption(newTerm);
+			InsertTermPanel.getInstance().setPopupParent(this);
 			insertTermTable.setWidget(1, 0, InsertTermPanel.getInstance());
 			mainPanel.add(insertTermTable);
 		}

@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.TextBox;
 
 import dilmaj.client.MyPanel;
@@ -20,6 +21,7 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel, Setting
 	private InsertTermController controller;
 	private MessageComposite messageComposite;
 	private static InsertTermPanel theInstance=null;
+	private PopupPanel popupParent=null;
 	
 	public static InsertTermPanel getInstance() {
 		if (theInstance==null)
@@ -32,10 +34,11 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel, Setting
 		
 		controller=new InsertTermController(this);
 
-		add(termLabel);
-		add(termBox);
-		add(insertButton);
+		setStyleName("insertTermPanel");
 		add(languageBox);
+		add(insertButton);
+		add(termBox);
+		add(termLabel);
 		
 		insertButton.addClickHandler(controller);
 		
@@ -73,5 +76,13 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel, Setting
 	public int getTermLanguage() {
 		// TODO Auto-generated method stub
 		return languageBox.getSelectedIndex();
+	}
+	
+	public void setPopupParent(PopupPanel popupPanel) {
+		popupParent=popupPanel;
+	}
+	
+	public PopupPanel getPopupParent() {
+		return popupParent;
 	}
 }
