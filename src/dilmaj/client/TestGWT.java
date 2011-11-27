@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import dilmaj.client.insert_suggestion.InsertSuggestionPanel;
 import dilmaj.client.insert_term.InsertTermPanel;
 import dilmaj.client.livelog.LiveLogPanel;
+import dilmaj.client.notice.NoticePanel;
 import dilmaj.client.register.FindUserCallback;
 import dilmaj.client.search.SearchPanel;
 import dilmaj.client.sidePanel.AllTermsPanel;
@@ -58,6 +59,8 @@ public class TestGWT implements EntryPoint {
         String link = GWT.getModuleBaseURL() + "feed"; 
         RootPanel.get().add(new HTML("<a href=\"" + link + "\">Dilmaj Feed</a>"));
 		
+        RootPanel.get("noticeThing").add(NoticePanel.getInstance());
+        
 	    RootPanel.get("topMenu").add(TopMenuTabs.getInstance());
 		
 		if (termSuggestionId!=null) {
