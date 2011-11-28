@@ -2,6 +2,7 @@ package dilmaj.client.insert_term;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -35,10 +36,14 @@ public class InsertTermPanel extends HorizontalPanel implements MyPanel, Setting
 		controller=new InsertTermController(this);
 
 		setStyleName("insertTermPanel");
-		add(languageBox);
-		add(insertButton);
-		add(termBox);
-		add(termLabel);
+		FlexTable mainTable=new FlexTable();
+		mainTable.setWidget(0, 0, languageBox);
+		mainTable.setWidget(0, 1, insertButton);
+		mainTable.setWidget(0, 2, termBox);
+		mainTable.setWidget(0, 3, termLabel);
+		for (int i=0;i<4;i++)
+			mainTable.getCellFormatter().setVerticalAlignment(0, i, ALIGN_MIDDLE);
+		add(mainTable);
 		
 		insertButton.addClickHandler(controller);
 		

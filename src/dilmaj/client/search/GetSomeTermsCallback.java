@@ -26,10 +26,10 @@ public class GetSomeTermsCallback implements AsyncCallback<List<SearchResult>> {
 		//panel.populateTable(result);
 		ResultsPanel panel=null;
 		
-		if (result.size()>0) 
+		/*if (result.size()>0) 
 			panel=ResultsPanel.getInstance(result, "");
-		else
-			panel=ResultsPanel.getInstance(result, captionFilter);
+		else*/
+		panel=ResultsPanel.getInstance(result, captionFilter);
 		
 		//panel.setSize("100px", "100px");
 		

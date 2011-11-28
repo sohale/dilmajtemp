@@ -67,7 +67,23 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 		mainPanel.add(closeButton);
 		mainPanel.add(termsTable);
 		
-		if (!newTerm.equals("")) {
+		int row=0;
+		boolean notFound=true;
+		while (iterator.hasNext()) {
+			SearchResult result=iterator.next();
+			TermComposite aTerm=result.getTermComposite();
+			
+			if (notFound && aTerm.getCaption().equals(newTerm)) {
+				notFound=false;
+			}
+			
+			TermButton termButton=new TermButton(aTerm);
+			termButton.addClickHandler(TermSummaryController.getController(aTerm));
+			termButton.setStyleName("termSplitButton");
+			termsTable.setWidget(row++, 0, termButton);
+		}
+		
+		if (notFound) {
 			FlexTable insertTermTable=new FlexTable();
 			Label messageLabel=new Label(":"+GlobalSettings.constants.addNewMessage()+" "+newTerm);
 			messageLabel.setStyleName("insertTermInResultsPanel");
@@ -77,16 +93,6 @@ public class ResultsPanel extends PopupPanel implements MyPanel {
 			InsertTermPanel.getInstance().setPopupParent(this);
 			insertTermTable.setWidget(1, 0, InsertTermPanel.getInstance());
 			mainPanel.add(insertTermTable);
-		}
-		
-		int row=0;
-		while (iterator.hasNext()) {
-			SearchResult result=iterator.next();
-			TermComposite aTerm=result.getTermComposite();
-			TermButton termButton=new TermButton(aTerm);
-			termButton.addClickHandler(TermSummaryController.getController(aTerm));
-			termButton.setStyleName("termSplitButton");
-			termsTable.setWidget(row++, 0, termButton);
 		}
 		
 		ResultsController controller=new ResultsController(this);
