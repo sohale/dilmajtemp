@@ -37,6 +37,8 @@ import dilmaj.shared.TermSuggestionComposite;
 public class DilmajFeedServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	Object beginDate=req.getAttribute("date");
+    	
 		resp.setContentType("text/xml");
 		PrintWriter out = resp.getWriter();    	
 		
