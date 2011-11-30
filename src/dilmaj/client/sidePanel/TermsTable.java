@@ -116,9 +116,16 @@ public enum TermsTable implements LoginListener {
 		if (newTerms.size()>0) {
 			loadedTerms.clear();
 			loadedTerms.addAll(newTerms);
-			
-			browse();
 		}
+		
+		browse();
+
+		if (name().equals("MyTermsTable"))
+			WaitPanel.getInstance().removeMessage(constants.myTermsBeingLoaded());
+		if (name().equals("TermOnlyTable"))
+			WaitPanel.getInstance().removeMessage(constants.allTermsBeingLoaded());
+		if (name().equals("TermSuggestionTable"))
+			WaitPanel.getInstance().removeMessage(constants.termSuggestionsBeingLoaded());
 	}
 	
 	public void browse() {
@@ -133,13 +140,6 @@ public enum TermsTable implements LoginListener {
 			theTable.getRowFormatter().setStyleName(row, "termTable");
 			row++;
 		}
-
-		if (name().equals("MyTermsTable"))
-			WaitPanel.getInstance().removeMessage(constants.myTermsBeingLoaded());
-		if (name().equals("TermOnlyTable"))
-			WaitPanel.getInstance().removeMessage(constants.allTermsBeingLoaded());
-		if (name().equals("TermSuggestionTable"))
-			WaitPanel.getInstance().removeMessage(constants.termSuggestionsBeingLoaded());
 	}
 	
 	public FlexTable getTermsTable() {
