@@ -4,9 +4,12 @@ package dilmaj.client;
 
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Unit;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
@@ -22,14 +25,12 @@ import dilmaj.client.livelog.LiveLogPanel;
 import dilmaj.client.notice.NoticePanel;
 import dilmaj.client.register.FindUserCallback;
 import dilmaj.client.search.SearchPanel;
-import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.sidePanel.TermSuggestionsPanel;
 import dilmaj.client.sidePanel.TermTabsPanel;
 import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.users_panel.UsersPanel;
 import dilmaj.client.view_suggestion.LoadSuggestionCallback;
 import dilmaj.client.view_term.LoadTermCallback;
-import dilmaj.client.view_term.ViewTermPanel;
 import dilmaj.client.welcome.LoadAllTermsCallback;
 import dilmaj.shared.MemberComposite;
 import dilmaj.shared.MessageComposite;
@@ -58,7 +59,9 @@ public class TestGWT implements EntryPoint {
 	    
         String link = GWT.getModuleBaseURL() + "feed"; 
         RootPanel.get().add(new HTML("<a href=\"" + link + "\">Dilmaj Feed</a>"));
-		
+		Date date=new Date();
+        RootPanel.get().add(new HTML("<a href=\"" + link + "?date="+date.getTime() +"\">Recent Dilmaj Feed</a>"));
+        
         RootPanel.get("noticeThing").add(NoticePanel.getInstance());
         
 	    RootPanel.get("topMenu").add(TopMenuTabs.getInstance());
