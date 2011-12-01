@@ -2,13 +2,10 @@ package dilmaj.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -21,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -33,7 +29,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import dilmaj.client.domain.Term;
-import dilmaj.shared.TermComposite;
 import dilmaj.shared.TermSuggestionComposite;
 
 public class DilmajFeedServlet extends HttpServlet {

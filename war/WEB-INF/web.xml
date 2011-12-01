@@ -77,6 +77,16 @@
     <url-pattern>/testgwt/sessionservice</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>NoticeServiceImpl</servlet-name>
+    <servlet-class>dilmaj.server.NoticeServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>NoticeServiceImpl</servlet-name>
+    <url-pattern>/testgwt/noticeservice</url-pattern>
+  </servlet-mapping>
+
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>TestGWT.html</welcome-file>

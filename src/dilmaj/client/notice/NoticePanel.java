@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class NoticePanel extends VerticalPanel {
 	Image noticeButton=new Image("images/notice.jpg");
+	NoticeController controller=new NoticeController();
 	
 	private static NoticePanel theInstance=null;
 	
@@ -16,6 +17,7 @@ public class NoticePanel extends VerticalPanel {
 	}
 	
 	private NoticePanel() {
+		noticeButton.addClickHandler(controller);
 		add(noticeButton);
 	}
 }
