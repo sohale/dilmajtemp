@@ -84,7 +84,7 @@
   
   <servlet-mapping>
     <servlet-name>NoticeServiceImpl</servlet-name>
-    <url-pattern>/testgwt/noticeservice</url-pattern>
+    <url-pattern>/testgwt/feedservice</url-pattern>
   </servlet-mapping>
 
   <!-- Default page to serve -->

@@ -1,5 +1,13 @@
 /** Add css rules here for your application. */
 
+.noticeLabel {
+	background-color:red;
+	color:white;
+	font-weight:bold;
+	padding:0;
+	margin:0;
+}
+
 .insertTermPanel {
 	background-color:#F3F781;
 }
