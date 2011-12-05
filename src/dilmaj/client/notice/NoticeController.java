@@ -35,12 +35,13 @@ public class NoticeController extends Controller {
 	
 	public NoticeController() {
 		//readFeed();
-		feedSvc.getFeed(date, new GetFeedCallback());
+		//feedSvc.getFeed(date, new GetFeedCallback());
 	}
 	
 	public void readFeed() {
         //Document feedDom = XMLParser.parse();
         //Element element=feedDom.getDocumentElement();
+		feedSvc.getFeed(date, new GetFeedCallback());
 	}
 	
 	@Override

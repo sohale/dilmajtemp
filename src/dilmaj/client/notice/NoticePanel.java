@@ -1,5 +1,6 @@
 package dilmaj.client.notice;
 
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -14,6 +15,7 @@ public class NoticePanel extends HorizontalPanel {
 	NoticeController controller=new NoticeController();
 	Document theFeed;
 	Label noticeLabel=new Label("0");
+	boolean noticeShown=false;
 	
 	private static NoticePanel theInstance=null;
 	
@@ -28,6 +30,9 @@ public class NoticePanel extends HorizontalPanel {
 		noticeButton.setAltText("nonotice");
 		add(noticeButton);
 		noticeButton.addClickHandler(controller);
+		//add(noticeLabel);
+		noticeLabel.setStyleName("noticeLabel");
+		timer.scheduleRepeating(1000);
 		//addClickHandler();
 		//noticeLabel.addClickHandler(controller);
 		//FlexTable theTable=new FlexTable();
@@ -54,5 +59,16 @@ public class NoticePanel extends HorizontalPanel {
 		theFeed=xmlDocument;
 		int count=xmlDocument.getElementsByTagName("item").getLength();
 		noticeLabel.setText(count+"");
+		if (count>0  && !noticeShown) {
+			add(noticeLabel);
+			noticeShown=true;
+			noticeButton.setUrl("images/notice.jpg");
+			noticeButton.setAltText("notice");		}
 	}
+		
+	Timer timer=new Timer() {
+		public void run() {
+			controller.readFeed();
+		}
+	};
 }
