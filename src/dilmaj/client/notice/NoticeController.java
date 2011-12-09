@@ -42,6 +42,7 @@ public class NoticeController extends Controller {
         //Document feedDom = XMLParser.parse();
         //Element element=feedDom.getDocumentElement();
 		feedSvc.getFeed(date, new GetFeedCallback());
+		date=new Date();
 	}
 	
 	@Override
@@ -57,5 +58,6 @@ public class NoticeController extends Controller {
 			image.setUrl("images/nonotice.jpg");
 			image.setAltText("nonotice");
 		}
+		readFeed();
 	}
 }

@@ -30,9 +30,11 @@ public class NoticePanel extends HorizontalPanel {
 		noticeButton.setAltText("nonotice");
 		add(noticeButton);
 		noticeButton.addClickHandler(controller);
-		//add(noticeLabel);
 		noticeLabel.setStyleName("noticeLabel");
-		timer.scheduleRepeating(1000);
+		
+		// activate this once service load issue is resolved
+		//timer.scheduleRepeating(1000);
+		
 		//addClickHandler();
 		//noticeLabel.addClickHandler(controller);
 		//FlexTable theTable=new FlexTable();
