@@ -1,0 +1,205 @@
+#container {
+	align:right;
+	text-align:right;
+	background:#F2EFE8;
+	font-family:Tahoma, Geneva, sans-serif;
+	margin:.2%;
+}
+
+#header {
+	text-align:center;
+	vertical-align:middle;
+	padding:.2%;
+}
+
+#navigation {
+	float: right;
+	background: #FFFFFF;
+	width:100%;
+}
+
+#navigation ul {
+	margin: 0;
+	padding: 0;
+}
+
+#navigation ul li {
+	list-style-type: none;
+	display: inline;
+}
+
+#navigation li a {
+	display: block;
+	float: right;
+	padding: .2% 1%;
+	color: #7F796B;
+	text-decoration: none;
+	border-right: .2% solid #FFFFFF;
+}
+
+#navigation li a:hover {
+	background: #F3B842;
+}
+
+#search {
+	float:right;
+	width:100%;
+	background: #B6B2A6;
+	text-align:center;
+}
+
+#searchLabel {
+	float:right;
+	margin:.5%;
+	background:#F18F24;
+	width:10%;
+	padding:.5% .1%;
+}
+
+#searchLabel p {
+	padding-top:1%;
+	padding-bottom:1%;
+	padding-right:1%;
+	padding-left:1%;
+}
+
+#searchBox {
+	float:right;
+	margin:.5%;
+	background:#F18F24;
+	width:40%;
+	padding:.5% .1%;
+}
+
+#searchInput {
+	width:98%;
+	height:99%;
+}
+
+#terms {
+	float:right;
+	margin:.5%;
+	width:50%;
+	padding:.5% .1%;
+}
+
+#termSuggestions {
+	float:right;
+	margin:.5%;
+	background:#F3B842;
+	width:33%;
+	padding:.1% .1%;
+	text-align:center;
+	cursor:pointer;
+}
+
+#termSuggestions p {
+	padding-top:.1%;
+	padding-bottom:.1%;
+	padding-right:.1%;
+	padding-left:.1%;
+	font-weight:bold;
+}
+
+#termsOnly {
+	float:right;
+	margin:.5%;
+	background:#F3B842;
+	width:33%;
+	padding:.1% .1%;
+	text-align:center;
+	cursor:pointer;
+}
+
+#termsOnly p {
+	padding-top:.1%;
+	padding-bottom:.1%;
+	padding-right:.1%;
+	padding-left:.1%;
+	font-weight:bold;
+}
+
+#myTerms {
+	float:right;
+	margin:.5%;
+	background:#F3B842;
+	width:22%;
+	padding:.1% .1%;
+	text-align:center;
+	cursor:pointer;
+}
+
+#myTerms p {
+	padding-top:.1%;
+	padding-bottom:.1%;
+	padding-right:.1%;
+	padding-left:.1%;
+	font-weight:bold;
+}
+
+#termsTable {
+	float:right;
+	margin:.3%;
+	width:51%;
+	padding:.5% .1%;
+	bakcground:#87A9AB;
+}
+
+#termsTableHeader {
+	float:right;
+	background:#51787D;
+	width:90%;
+	padding:.1% .1%;
+	text-align:center;
+}
+
+#termsTableHeaderRightArrow {
+	float:right;
+	cursor:pointer;
+}
+
+#termsTableHeaderLeftArrow {
+	float:left;
+	cursor:pointer;
+}
+
+#termsTableData {
+	float:right;
+	background:#D6DCDC;
+	width:30%;
+	padding:.1% .1%;
+	text-align:center;
+	border-bottom-style:solid;
+	border-bottom-color:#87A9AB;
+}
+
+#termsTableData a {
+	color:#51787D;
+}
+
+#termsTableSuggestion {
+	float:right;
+	background:#D6DCDC;
+	width:60%;
+	padding:.1% .1%;
+	text-align:center;
+	border-bottom-style:solid;
+	border-bottom-color:#87A9AB;
+}
+
+#termsTableSuggestion a {
+	color:#7F796B;
+}
+
+#loginPanel {
+	background-color:#F3B842;
+	visibility:hidden;
+	width:20%;
+	position:fixed;
+	float:right;
+	color: #7F796B;
+}
+
+/*
+Orange Garden Version 1.0 by Maryam Shafiei. 
+*/
