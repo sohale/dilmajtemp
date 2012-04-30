@@ -62,9 +62,9 @@ public class TestGWT implements EntryPoint {
 		Date date=new Date();
         RootPanel.get().add(new HTML("<a href=\"" + link + "?date="+date.getTime() +"\">Recent Dilmaj Feed</a>"));
         
-        RootPanel.get("noticeThing").add(NoticePanel.getInstance());
+        //RootPanel.get("noticeThing").add(NoticePanel.getInstance());
         
-	    RootPanel.get("topMenu").add(TopMenuTabs.getInstance());
+	    //RootPanel.get("topMenu").add(TopMenuTabs.getInstance());
 		
 		if (termSuggestionId!=null) {
 			termSuggestionSvc.load(Long.parseLong(termSuggestionId), new LoadSuggestionCallback());
@@ -78,7 +78,7 @@ public class TestGWT implements EntryPoint {
 				termSvc.loadAll(new LoadAllTermsCallback());
 			    
 				SearchPanel searchPanel=SearchPanel.getInstance();
-				RootPanel.get("searchPanel").add(searchPanel);
+				//RootPanel.get("search").add(searchPanel);
 				
 				//RegisterPanel registerPanel=new RegisterPanel();
 				//RootPanel.get("registerationPanel").add(registerPanel);
@@ -88,9 +88,9 @@ public class TestGWT implements EntryPoint {
 				//RootPanel.get("myTerms").add(MyTermsPanel.getInstance());
 				
 			    insertTermPanel=InsertTermPanel.getInstance();
-			    RootPanel.get("insertTerm").add(insertTermPanel);
+			    //RootPanel.get("insertTerm").add(insertTermPanel);
 			    
-			    RootPanel.get("insertSuggestion").add(insertSuggestionPanel);
+			    //RootPanel.get("insertSuggestion").add(insertSuggestionPanel);
 			    insertSuggestionPanel.setVisible(false);
 			    
 			    /*HorizontalPanel hp = new HorizontalPanel();
@@ -104,11 +104,11 @@ public class TestGWT implements EntryPoint {
 			    descriptionPanel.add(new Label(constants.describeProject()));
 			    //RootPanel.get("projectDescription").add(descriptionPanel);
 			    
-			    RootPanel.get("liveLogWall").add(LiveLogPanel.getInstance());
+			    //RootPanel.get("liveLogWall").add(LiveLogPanel.getInstance());
 			    
-			    RootPanel.get("termTabs").add(TermTabsPanel.getInstance());
+			    //RootPanel.get("termTabs").add(TermTabsPanel.getInstance());
 			    
-			    RootPanel.get("usersPanel").add(UsersPanel.getInstance());
+			   // RootPanel.get("usersPanel").add(UsersPanel.getInstance());
 			} else if (username!=null && activator!=null) {
 				MemberComposite userVO=new MemberComposite();
 				userVO.setActivator(activator);

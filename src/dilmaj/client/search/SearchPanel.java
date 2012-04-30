@@ -7,17 +7,19 @@ import java.util.List;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
 import dilmaj.shared.GlobalSettings;
 
-public class SearchPanel extends VerticalPanel {
+public class SearchPanel {
 	private HorizontalPanel inputPanel=new HorizontalPanel();
+	private HorizontalPanel mainPanel=new HorizontalPanel();
 	private SplitTermsPanel outputPanel=SplitTermsPanel.getInstance(this);
-	private Label searchLabel=new Label(GlobalSettings.constants.search()+":");
-	private TextBox inputBox=new TextBox();
+	private Button searchLabel=new Button(GlobalSettings.constants.search());
+	private TextBox inputBox=new TextBox();//(TextBox)RootPanel.get("searchInput").asWidget();//new TextBox();
 	
 	private SearchController controller;
 	
@@ -25,7 +27,7 @@ public class SearchPanel extends VerticalPanel {
 	
 	private Label theButton=new Label();
 	
-	private FlexTable searchTable=new FlexTable();
+	//private FlexTable searchTable=new FlexTable();
 	
 	private static SearchPanel theInstance=null;
 	
@@ -37,17 +39,24 @@ public class SearchPanel extends VerticalPanel {
 	}
 	
 	private SearchPanel() {
+//		/setStyleName("search");
 		controller=new SearchController(this);
-		setStyleName("searchTable");
+		//setStyleName("searchTable");
+		inputBox.setStyleName("searchInput");
 		inputBox.addKeyDownHandler(controller);
-		inputPanel.add(inputBox);
-		inputBox.setWidth(GlobalSettings.getBrowserWidth()*.4+"px");
-		searchTable.setWidget(0, 0, searchLabel);
-		searchTable.setWidget(0, 1, inputBox);
+		inputPanel.setStyleName("searchBox");
+		RootPanel.get("search").add(inputPanel);
+		RootPanel.get("search").add(searchLabel);
+		//inputBox.setWidth(GlobalSettings.getBrowserWidth()*.4+"px");
+		//searchTable.setWidget(0, 0, searchLabel);
+		//searchTable.setWidget(0, 1, inputBox);
 		
-		add(searchTable);
+		//add(searchTable);
+		//RootPanel.get("searchBox").add(inputBox);
 		theButton.setStyleName("termSplitButton");
 		theButton.addClickHandler(controller);
+		searchLabel.setStyleName("searchLabel");
+		inputPanel.add(inputBox);
 	}
 	
 	public void addButton(String entry) {
@@ -96,4 +105,18 @@ public class SearchPanel extends VerticalPanel {
 	public TextBox getSearchBox() {
 		return inputBox;
 	}
+
+	public int getAbsoluteLeft() {
+		return RootPanel.get("search").getAbsoluteLeft();
+	}
+
+	public int getAbsoluteTop() {
+		return RootPanel.get("search").getAbsoluteTop();
+	}
+
+	public int getOffsetHeight() {
+		// TODO Auto-generated method stub
+		return RootPanel.get("search").getOffsetHeight();
+	}
+
 }
