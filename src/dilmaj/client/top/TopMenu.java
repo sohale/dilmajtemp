@@ -4,13 +4,14 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 
 import dilmaj.client.MyPanel;
 import dilmaj.client.login.LoginPanel;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MessageComposite;
 
-public class TopMenu extends HorizontalPanel implements MyPanel {
+public class TopMenu {//extends HorizontalPanel implements MyPanel {
 	private MessageComposite message;
 
 	private FocusPanel loginPanel=new FocusPanel();
@@ -31,22 +32,28 @@ public class TopMenu extends HorizontalPanel implements MyPanel {
 	}
 	
 	private TopMenu() {
-		loginPanel.setTitle(GlobalSettings.constants.login());
+		//setStyleName("navigation");
+		
+		/*loginPanel.setTitle(GlobalSettings.constants.login());
 		loginPanel.add(loginLabel);
 		add(loginPanel);
-		/*mouseOver=*/loginPanel.addMouseOverHandler(controller);
+		loginPanel.addMouseOverHandler(controller);
 		
 		add(new EmptyPanel());
 		
 		settingsPanel.setTitle(GlobalSettings.constants.settings());
 		settingsPanel.add(settingsLabel);
 		add(settingsPanel);
-		/*mouseOver=*/settingsPanel.addMouseOverHandler(controller);
+		settingsPanel.addMouseOverHandler(controller);*/
+		RootPanel.get("navigation").setStyleName("navigation");
+		loginLabel.setStyleName("navigationLabel");
+		RootPanel.get("navigation").add(loginLabel);
+		settingsLabel.setStyleName("navigationLabel");
+		RootPanel.get("navigation").add(settingsLabel);
 		
 		controller.checkLogin();
 	}
 	
-	@Override
 	public void setMessage(MessageComposite messageVO) {
 		// TODO Auto-generated method stub
 		message=messageVO;

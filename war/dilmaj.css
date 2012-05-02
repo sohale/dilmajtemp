@@ -12,15 +12,27 @@
 	padding:.2%;
 }
 
-#navigation {
+.navigation {
 	float: right;
 	background: #FFFFFF;
 	width:100%;
 }
 
-#navigation ul {
+.navigationLabel {
 	margin: 0;
 	padding: 0;
+	list-style-type: none;
+	display: block;
+	float: right;
+	padding: .2% 1%;
+	color: #7F796B;
+	text-decoration: none;
+	border-right: .2% solid #FFFFFF;
+}
+
+.navigationLabel:hover {
+		background: #F3B842;
+		cursor:pointer;
 }
 
 #navigation ul li {

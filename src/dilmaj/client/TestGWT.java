@@ -27,6 +27,7 @@ import dilmaj.client.register.FindUserCallback;
 import dilmaj.client.search.SearchPanel;
 import dilmaj.client.sidePanel.TermSuggestionsPanel;
 import dilmaj.client.sidePanel.TermTabsPanel;
+import dilmaj.client.top.TopMenu;
 import dilmaj.client.top.TopMenuTabs;
 import dilmaj.client.users_panel.UsersPanel;
 import dilmaj.client.view_suggestion.LoadSuggestionCallback;
@@ -63,8 +64,8 @@ public class TestGWT implements EntryPoint {
         RootPanel.get().add(new HTML("<a href=\"" + link + "?date="+date.getTime() +"\">Recent Dilmaj Feed</a>"));
         
         //RootPanel.get("noticeThing").add(NoticePanel.getInstance());
-        
-	    //RootPanel.get("topMenu").add(TopMenuTabs.getInstance());
+        TopMenu.getInstance();
+	    //RootPanel.get("navigation").add(TopMenuTabs.getInstance());
 		
 		if (termSuggestionId!=null) {
 			termSuggestionSvc.load(Long.parseLong(termSuggestionId), new LoadSuggestionCallback());
