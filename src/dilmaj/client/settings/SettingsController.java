@@ -9,6 +9,7 @@ import dilmaj.client.TermSuggestionService;
 import dilmaj.client.TermSuggestionServiceAsync;
 import dilmaj.client.sidePanel.AllTermsPanel;
 import dilmaj.client.sidePanel.TermSuggestionsPanel;
+import dilmaj.client.top.MenuPopup;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MemberComposite;
@@ -28,30 +29,28 @@ public class SettingsController extends Controller {
 	public SettingsController(SettingsPanel panel) {
 		this.panel=panel;
 	}
-	
+
 	@Override
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
 		Button button=(Button)event.getSource();
 		String sourceTitle=button.getText();
 
-		
-		Widget parent=panel.getParent(); // there is a popup
-		
-		if (parent!=null) { //if popped out, hide it
-			if (parent.getClass().equals(PopupPanel.class)) {
-				if (sourceTitle.compareTo(constants.confirm())==0) {
-					panel.update();
-					settingsSvc.update(panel.getSettings(), new UpdateSettingsCallback(panel));
-				}
-				PopupPanel popup=(PopupPanel)parent;
-				popup.hide();
-			}
-		} else {
-			panel.setVisible(false);
-		}
-	}
 
+		//Widget parent=panel.getParent(); // there is a popup
+
+		//if (parent!=null) { //if popped out, hide it
+		//if (parent.getClass().equals(PopupPanel.class)) {
+		if (sourceTitle.compareTo(constants.confirm())==0) {
+			panel.update();
+			settingsSvc.update(panel.getSettings(), new UpdateSettingsCallback(panel));
+		}
+		//		PopupPanel popup=(PopupPanel)parent;
+		//	popup.hide();
+		MenuPopup.getSettingsPopup().hide();
+	}
+	//} else {
+	//panel.setVisible(false);
 
 	@Override
 	public void onMouseOut(MouseOutEvent event) {

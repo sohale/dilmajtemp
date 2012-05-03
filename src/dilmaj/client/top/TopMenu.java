@@ -50,6 +50,9 @@ public class TopMenu {//extends HorizontalPanel implements MyPanel {
 		RootPanel.get("navigation").add(loginLabel);
 		settingsLabel.setStyleName("navigationLabel");
 		RootPanel.get("navigation").add(settingsLabel);
+		loginLabel.addMouseOverHandler(controller);
+		settingsLabel.addMouseOverHandler(controller);
+		//loginLabel.addMouseOutHandler(controller);
 		
 		controller.checkLogin();
 	}

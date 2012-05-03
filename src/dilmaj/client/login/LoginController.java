@@ -6,6 +6,7 @@ import java.util.Set;
 import dilmaj.client.DilmajUserService;
 import dilmaj.client.DilmajUserServiceAsync;
 import dilmaj.client.top.GetLoggedAccountCallback;
+import dilmaj.client.top.MenuPopup;
 import dilmaj.shared.Controller;
 import dilmaj.shared.GlobalSettings;
 import dilmaj.shared.MemberComposite;
@@ -58,14 +59,15 @@ public class LoginController extends Controller {
 		
 		Widget parent=panel.getParent(); // there is a popup
 		
-		if (parent!=null) { //if popped out, hide it
+		/*if (parent!=null) { //if popped out, hide it
 			if (parent.getClass().equals(PopupPanel.class)) {
 				PopupPanel popup=(PopupPanel)parent;
 				popup.hide();
 			}
 		} else {
 			panel.setVisible(false);
-		}
+		}*/
+		MenuPopup.getLoginPopup().hide();
 		
 		if (sourceTitle.compareTo(GlobalSettings.constants.login())==0) {
 			MemberComposite accountVO=new MemberComposite(panel.getUsername(), panel.getPassword());
