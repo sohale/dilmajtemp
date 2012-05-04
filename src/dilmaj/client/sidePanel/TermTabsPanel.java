@@ -29,8 +29,9 @@ public class TermTabsPanel extends SidePanel implements LoginListener {
 		
 		add(constants.allTerms(), AllTermsPanel.getInstance());
 		add(constants.suggestionTerms(), TermSuggestionsPanel.getInstance());
+		add(constants.myTerms(), MyTermsPanel.getInstance());
 		
-		select(constants.suggestionTerms());
+		//select(constants.suggestionTerms());
 	}
 
 	@Override

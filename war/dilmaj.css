@@ -88,65 +88,27 @@
 	height:99%;
 }
 
-#terms {
+.termMenu {
+	float:right;
+	margin:.5%;
+	background:#F3B842;
+	width:30%;
+	padding:1% 0%;
+	text-align:center;
+	cursor:pointer;
+}
+
+.termMenuLabel {
+	font-weight:bold;
+	text-align:center;
+	width:100%;
+}
+
+.terms {
 	float:right;
 	margin:.5%;
 	width:50%;
 	padding:.5% .1%;
-}
-
-#termSuggestions {
-	float:right;
-	margin:.5%;
-	background:#F3B842;
-	width:33%;
-	padding:.1% .1%;
-	text-align:center;
-	cursor:pointer;
-}
-
-#termSuggestions p {
-	padding-top:.1%;
-	padding-bottom:.1%;
-	padding-right:.1%;
-	padding-left:.1%;
-	font-weight:bold;
-}
-
-#termsOnly {
-	float:right;
-	margin:.5%;
-	background:#F3B842;
-	width:33%;
-	padding:.1% .1%;
-	text-align:center;
-	cursor:pointer;
-}
-
-#termsOnly p {
-	padding-top:.1%;
-	padding-bottom:.1%;
-	padding-right:.1%;
-	padding-left:.1%;
-	font-weight:bold;
-}
-
-#myTerms {
-	float:right;
-	margin:.5%;
-	background:#F3B842;
-	width:22%;
-	padding:.1% .1%;
-	text-align:center;
-	cursor:pointer;
-}
-
-#myTerms p {
-	padding-top:.1%;
-	padding-bottom:.1%;
-	padding-right:.1%;
-	padding-left:.1%;
-	font-weight:bold;
 }
 
 #termsTable {

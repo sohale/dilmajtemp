@@ -15,8 +15,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class SidePanel extends HorizontalPanel implements ClickHandler {
-	VerticalPanel tabBar=new VerticalPanel();
+public class SidePanel /*extends VerticalPanel*/ implements ClickHandler {
+	HorizontalPanel tabBar=new HorizontalPanel();
 	
 	Map<String, CellPanel> contents=new HashMap<String, CellPanel>();
 	
@@ -24,22 +24,26 @@ public class SidePanel extends HorizontalPanel implements ClickHandler {
 	Label selectedLab=null;
 	
 	public SidePanel() {
-		add(tabBar);
+		//tabBar.setStyleName("terms");
+		//RootPanel.get("terms").add(tabBar);
 	}
 	
 	public void add(String barLabel, CellPanel barPanel) {
 		CellPanel cellPanel=contents.get(barLabel);
 		
 		if (cellPanel==null) {
+			HorizontalPanel panel=new HorizontalPanel();
+			panel.setStyleName("termMenu");
 			Label label=new Label(barLabel);
-			label.setStyleName("tabLabel");
-			label.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getSideMenuRatio()+"px");
+			label.setStyleName("termMenuLabel");
+			//label.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getSideMenuRatio()+"px");
+			panel.add(label);
 			//barPanel.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
-			tabBar.add(label);
+			RootPanel.get("terms").add(panel);
 			contents.put(barLabel, barPanel);
-			barPanel.setStyleName("tabPanel");
+			barPanel.setStyleName("termMenuLabel");
 			label.addClickHandler(this);
-			//add(barPanel);
+			//RootPanel.get("termsTable").add(barPanel);
 		}
 	}
 	
@@ -61,23 +65,24 @@ public class SidePanel extends HorizontalPanel implements ClickHandler {
 		
 		if (label!=selectedLab) {
 			if (selectedLab!=null) {
-				selectedLab.setStyleName("tabLabel");
+				selectedLab.setStyleName("termMenuLabel");
 			}
 		
 			label.setStyleName("selectedTabLabel");
 			selectedLab=label;
 			CellPanel cellPanel=contents.get(label.getText());
 			//cellPanel.setVisible(true);
-			RootPanel.get("termsPanel").add(cellPanel);
+
 			if (selectedPanel!=null)
-				RootPanel.get("termsPanel").remove(selectedPanel);
+				RootPanel.get("termsTable").remove(selectedPanel);
+			RootPanel.get("termsTable").add(cellPanel);
 			selectedPanel=cellPanel;
 		}
 	}
 	
 	public void select(String label) {
 		if (selectedLab!=null) {
-			selectedLab.setStyleName("tabLabel");
+			selectedLab.setStyleName("termMenuLabel");
 			selectedLab=null;
 		}
 
@@ -94,9 +99,9 @@ public class SidePanel extends HorizontalPanel implements ClickHandler {
 		
 		CellPanel cellPanel=contents.get(label);
 		//cellPanel.setVisible(true);
-		RootPanel.get("termsPanel").add(cellPanel);
+		RootPanel.get("terms").add(cellPanel);
 		if (selectedPanel!=null)
-			RootPanel.get("termsPanel").remove(selectedPanel);
+			RootPanel.get("terms").remove(selectedPanel);
 		selectedPanel=cellPanel;
 	}
 }

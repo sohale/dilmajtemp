@@ -58,10 +58,10 @@ public class TestGWT implements EntryPoint {
 		String username = com.google.gwt.user.client.Window.Location.getParameter("username");
 		String termSuggestionId = com.google.gwt.user.client.Window.Location.getParameter("termSuggestionId");
 	    
-        String link = GWT.getModuleBaseURL() + "feed"; 
+        /*String link = GWT.getModuleBaseURL() + "feed"; 
         RootPanel.get().add(new HTML("<a href=\"" + link + "\">Dilmaj Feed</a>"));
 		Date date=new Date();
-        RootPanel.get().add(new HTML("<a href=\"" + link + "?date="+date.getTime() +"\">Recent Dilmaj Feed</a>"));
+        RootPanel.get().add(new HTML("<a href=\"" + link + "?date="+date.getTime() +"\">Recent Dilmaj Feed</a>"));*/
         
         //RootPanel.get("noticeThing").add(NoticePanel.getInstance());
         TopMenu.getInstance();
@@ -107,7 +107,7 @@ public class TestGWT implements EntryPoint {
 			    
 			    //RootPanel.get("liveLogWall").add(LiveLogPanel.getInstance());
 			    
-			    //RootPanel.get("termTabs").add(TermTabsPanel.getInstance());
+			    /*RootPanel.get("termsTable").add(*/TermTabsPanel.getInstance();//);
 			    
 			   // RootPanel.get("usersPanel").add(UsersPanel.getInstance());
 			} else if (username!=null && activator!=null) {
