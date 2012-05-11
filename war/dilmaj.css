@@ -104,6 +104,16 @@
 	width:100%;
 }
 
+.selectedTab {
+	float:right;
+	margin:.5%;
+	background:#F18F24;
+	width:30%;
+	padding:1% 0%;
+	text-align:center;
+	cursor:pointer;
+}
+
 .terms {
 	float:right;
 	margin:.5%;

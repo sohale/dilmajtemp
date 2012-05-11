@@ -62,13 +62,15 @@ public class SidePanel /*extends VerticalPanel*/ implements ClickHandler {
 	public void onClick(ClickEvent event) {
 		// TODO Auto-generated method stub
 		Label label=(Label)event.getSource();
+		HorizontalPanel panel=(HorizontalPanel)label.getParent();
 		
 		if (label!=selectedLab) {
 			if (selectedLab!=null) {
-				selectedLab.setStyleName("termMenuLabel");
+				HorizontalPanel selectedPan=(HorizontalPanel)selectedLab.getParent();
+				selectedPan.setStyleName("termMenu");
 			}
 		
-			label.setStyleName("selectedTabLabel");
+			panel.setStyleName("selectedTab");
 			selectedLab=label;
 			CellPanel cellPanel=contents.get(label.getText());
 			//cellPanel.setVisible(true);
@@ -82,7 +84,8 @@ public class SidePanel /*extends VerticalPanel*/ implements ClickHandler {
 	
 	public void select(String label) {
 		if (selectedLab!=null) {
-			selectedLab.setStyleName("termMenuLabel");
+			HorizontalPanel selectedPan=(HorizontalPanel)selectedLab.getParent();
+			selectedPan.setStyleName("termMenu");
 			selectedLab=null;
 		}
 
@@ -92,7 +95,8 @@ public class SidePanel /*extends VerticalPanel*/ implements ClickHandler {
 				Label lab=(Label)widget;
 				if (lab.getText().compareTo(label)==0) {
 					selectedLab=lab;
-					lab.setStyleName("selectedTabLabel");
+					HorizontalPanel pan=(HorizontalPanel)lab.getParent();
+					pan.setStyleName("selectedTab");
 				}
 			}
 		}
