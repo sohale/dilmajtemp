@@ -76,8 +76,8 @@ public class SidePanel /*extends VerticalPanel*/ implements ClickHandler {
 			//cellPanel.setVisible(true);
 
 			if (selectedPanel!=null)
-				RootPanel.get("termsTable").remove(selectedPanel);
-			RootPanel.get("termsTable").add(cellPanel);
+				RootPanel.get("terms").remove(selectedPanel);
+			RootPanel.get("terms").add(cellPanel);
 			selectedPanel=cellPanel;
 		}
 	}
