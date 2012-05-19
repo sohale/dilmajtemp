@@ -56,10 +56,9 @@ public enum TermsTable implements LoginListener {
 	private TermsTable() {
 		from=0;
 		to=GlobalSettings.getTermsPerPage()-1;
-		//index=0;
-		//actualTo=0;
-		theTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
-		theTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");
+		/*theTable.setWidth(""+GlobalSettings.getBrowserWidth()*GlobalSettings.getTermsPanelRatio()+"px");
+		theTable.setHeight(""+GlobalSettings.getBrowserHeight()*GlobalSettings.getTermsPanelHeightRatio()+"px");*/
+		//theTable.setStyleName("termsTable");
 	
 		LoginController.getInstance().addLoginListener(this);
 		

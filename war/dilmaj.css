@@ -121,30 +121,35 @@
 	padding:.5% .1%;
 }
 
-#termsTable {
+.termsTable {
 	float:right;
 	margin:.3%;
-	width:51%;
+	width:100%;
 	padding:.5% .1%;
 	bakcground:#87A9AB;
 }
 
-#termsTableHeader {
+.termsTableHeader {
 	float:right;
 	background:#51787D;
 	width:90%;
 	padding:.1% .1%;
 	text-align:center;
 }
-
-#termsTableHeaderRightArrow {
+.termsTableHeaderRightArrow {
 	float:right;
 	cursor:pointer;
 }
 
-#termsTableHeaderLeftArrow {
+.termsTableHeaderLeftArrow {
 	float:left;
 	cursor:pointer;
+}
+
+#tableSpace {
+	float:right;
+	width:50%;
+	margin:1%;
 }
 
 #termsTableData {
