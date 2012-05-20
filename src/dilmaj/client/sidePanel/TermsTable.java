@@ -136,7 +136,7 @@ public enum TermsTable implements LoginListener {
 			TermComposite termVO=iterator.next();
 			TermSummaryPanel widget=TermSummaryPanel.getSummaryPanel(termVO);
 			theTable.setWidget(row, 0, widget);
-			theTable.getRowFormatter().setStyleName(row, "termTable");
+			theTable.getRowFormatter().setStyleName(row, "termsTableData");
 			row++;
 		}
 	}

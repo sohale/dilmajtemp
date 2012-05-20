@@ -152,10 +152,10 @@
 	margin:1%;
 }
 
-#termsTableData {
+.termsTableData {
 	float:right;
 	background:#D6DCDC;
-	width:30%;
+	width:89.8%;
 	padding:.1% .1%;
 	text-align:center;
 	border-bottom-style:solid;

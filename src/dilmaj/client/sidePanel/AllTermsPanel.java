@@ -56,19 +56,19 @@ public class AllTermsPanel extends VerticalPanel implements MyPanel {
 		prevButton.setStyleName("termsTableHeaderRightArrow");
 		nextButton.setStyleName("termsTableHeaderLeftArrow");
 		
-		HorizontalPanel navigationPanelTop=new HorizontalPanel();
-		navigationPanelTop.setStyleName("termsTableHeader");
+		//HorizontalPanel navigationPanelTop=new HorizontalPanel();
+		///navigationPanelTop.setStyleName("termsTableHeader");
 		FlexTable navigationTableTop=new FlexTable();
-		navigationTableTop.setStyleName("termsTable");
-		navigationPanelTop.add(navigationTableTop);
+		navigationTableTop.setStyleName("termsTableHeader");
+		//navigationPanelTop.add(navigationTableTop);
 		navigationTableTop.setWidget(0, 1, prevButtonTop);
 		navigationTableTop.setWidget(0, 0, nextButtonTop);
-		navigationTableTop.getColumnFormatter().setStyleName(0, "prevButton");
-		navigationTableTop.getColumnFormatter().setStyleName(1, "nextButton");
-		prevButtonTop.setStyleName("termButton");
-		nextButtonTop.setStyleName("termButton");
+		navigationTableTop.getColumnFormatter().setStyleName(0, "termsTableHeaderRightArrow");
+		navigationTableTop.getColumnFormatter().setStyleName(1, "termsTableHeaderLeftArrow");
+		prevButtonTop.setStyleName("termsTableHeaderRightArrow");
+		nextButtonTop.setStyleName("termsTableHeaderLeftArrow");
 		
-		add(navigationPanelTop);
+		add(navigationTableTop);
 		//add(termsTable);
 		add(TermsTable.TermOnlyTable.getTermsTable());
 		add(navigationTable);
