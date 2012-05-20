@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -38,12 +39,12 @@ public class SidePanelController implements ClickHandler {
 	@Override
 	public void onClick(ClickEvent event) {
 		try {
-			Label label=(Label)event.getSource();
+			Image image=(Image)event.getSource();
 			
-			FlexTable flexTable=(FlexTable)label.getParent();
-			HorizontalPanel horizontalPanel=(HorizontalPanel)flexTable.getParent();
-			if (horizontalPanel.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.TermSuggestionsPanel")==0) {
-				if (label.getText().equals("<<")) {
+			FlexTable flexTable=(FlexTable)image.getParent();
+			//HorizontalPanel horizontalPanel=(HorizontalPanel)flexTable.getParent();
+			if (flexTable.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.TermSuggestionsPanel")==0) {
+				if (image.getAltText().equals("<<")) {
 					if (TermsTable.TermSuggestionTable.isNextEnabled()) {
 						++tsTurn;
 						populateMe(TermsTable.TermSuggestionTable,tsTurn*GlobalSettings.getTermsPerPage(), (tsTurn+1)*GlobalSettings.getTermsPerPage()-1);
@@ -56,8 +57,8 @@ public class SidePanelController implements ClickHandler {
 				}
 			}
 
-			if (horizontalPanel.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.AllTermsPanel")==0) {
-				if (label.getText().equals("<<")) {
+			if (flexTable.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.AllTermsPanel")==0) {
+				if (image.getAltText().equals("<<")) {
 					if (TermsTable.TermOnlyTable.isNextEnabled()) {
 						++tsTurn;
 						populateMe(TermsTable.TermOnlyTable,tsTurn*GlobalSettings.getTermsPerPage(), (tsTurn+1)*GlobalSettings.getTermsPerPage()-1);
@@ -70,8 +71,8 @@ public class SidePanelController implements ClickHandler {
 				}
 			}
 
-			if (horizontalPanel.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.MyTermsPanel")==0) {
-				if (label.getText().equals("<<")) {
+			if (flexTable.getParent().getClass().getName().compareToIgnoreCase("dilmaj.client.sidePanel.MyTermsPanel")==0) {
+				if (image.getAltText().equals("<<")) {
 					if (TermsTable.MyTermsTable.isNextEnabled()) {
 						++tsTurn;
 						populateMe(TermsTable.MyTermsTable,tsTurn*GlobalSettings.getTermsPerPage(), (tsTurn+1)*GlobalSettings.getTermsPerPage()-1);

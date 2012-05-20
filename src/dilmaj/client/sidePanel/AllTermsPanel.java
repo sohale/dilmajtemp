@@ -43,6 +43,11 @@ public class AllTermsPanel extends VerticalPanel implements MyPanel {
 	}
 	
 	private AllTermsPanel() {
+		nextButton.setAltText(">>");
+		prevButton.setAltText("<<");
+		nextButtonTop.setAltText(">>");
+		prevButtonTop.setAltText("<<");
+		
 		setStyleName("termsTable");
 		//HorizontalPanel navigationPanel=new HorizontalPanel();
 		//navigationPanel.setStyleName("termsTableHeader");

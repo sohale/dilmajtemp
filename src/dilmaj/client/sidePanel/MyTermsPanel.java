@@ -10,6 +10,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
@@ -26,10 +27,10 @@ import dilmaj.client.view_my_terms.MyTermsController;
 import dilmaj.shared.*;
 
 public class MyTermsPanel extends VerticalPanel {
-	private Label nextButton=new Label("<<");
-	private Label prevButton=new Label(">>");
-	private Label nextButtonTop=new Label("<<");
-	private Label prevButtonTop=new Label(">>");
+	private Image nextButton=new Image("images/leftArrow.jpg");
+	private Image prevButton=new Image("images/rightArrow.jpg");
+	private Image nextButtonTop=new Image("images/leftArrow.jpg");
+	private Image prevButtonTop=new Image("images/rightArrow.jpg");
 	private static MyTermsPanel theInstance=null;
 	
 	private boolean isLoggedIn=false;
@@ -42,34 +43,40 @@ public class MyTermsPanel extends VerticalPanel {
 	}
 	
 	private MyTermsPanel() {
-		HorizontalPanel navigationPanel=new HorizontalPanel();
-		navigationPanel.setStyleName("navigationTable");
+		nextButton.setAltText(">>");
+		prevButton.setAltText("<<");
+		nextButtonTop.setAltText(">>");
+		prevButtonTop.setAltText("<<");
+		
+		setStyleName("termsTable");
+		//HorizontalPanel navigationPanel=new HorizontalPanel();
+		//navigationPanel.setStyleName("navigationTable");
 		FlexTable navigationTable=new FlexTable();
-		navigationTable.setStyleName("navigationTable");
-		navigationPanel.add(navigationTable);
+		navigationTable.setStyleName("termsTableHeader");
+		//navigationPanel.add(navigationTable);
 		navigationTable.setWidget(0, 1, prevButton);
 		navigationTable.setWidget(0, 0, nextButton);
-		navigationTable.getColumnFormatter().setStyleName(0, "prevButton");
-		navigationTable.getColumnFormatter().setStyleName(1, "nextButton");
-		prevButton.setStyleName("termButton");
-		nextButton.setStyleName("termButton");
+		navigationTable.getColumnFormatter().setStyleName(0, "termsTableHeaderRightArrow");
+		navigationTable.getColumnFormatter().setStyleName(1, "termsTableHeaderLeftArrow");
+		prevButton.setStyleName("termsTableHeaderRightArrow");
+		nextButton.setStyleName("termsTableHeaderLeftArrow");
 		
-		HorizontalPanel navigationPanelTop=new HorizontalPanel();
-		navigationPanelTop.setStyleName("navigationTable");
+		//HorizontalPanel navigationPanelTop=new HorizontalPanel();
+		//navigationPanelTop.setStyleName("navigationTable");
 		FlexTable navigationTableTop=new FlexTable();
-		navigationTableTop.setStyleName("navigationTable");
-		navigationPanelTop.add(navigationTableTop);
+		navigationTableTop.setStyleName("termsTableHeader");
+		//navigationPanelTop.add(navigationTableTop);
 		navigationTableTop.setWidget(0, 1, prevButtonTop);
 		navigationTableTop.setWidget(0, 0, nextButtonTop);
-		navigationTableTop.getColumnFormatter().setStyleName(0, "prevButton");
-		navigationTableTop.getColumnFormatter().setStyleName(1, "nextButton");
-		prevButtonTop.setStyleName("termButton");
-		nextButtonTop.setStyleName("termButton");
+		navigationTableTop.getColumnFormatter().setStyleName(0, "termsTableHeaderRightArrow");
+		navigationTableTop.getColumnFormatter().setStyleName(1, "termsTableHeaderLeftArrow");
+		prevButtonTop.setStyleName("termsTableHeaderRightArrow");
+		nextButtonTop.setStyleName("termsTableHeaderLeftArrow");
 		
-		add(navigationPanelTop);
+		add(navigationTableTop);
 		//add(termsTable);
 		add(TermsTable.MyTermsTable.getTermsTable());
-		add(navigationPanel);
+		add(navigationTable);
 
 		SidePanelController controller=new SidePanelController();
 		nextButton.addClickHandler(controller);
