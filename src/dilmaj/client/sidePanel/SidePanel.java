@@ -86,7 +86,7 @@ public class SidePanel /*extends VerticalPanel*/ implements ClickHandler {
 		if (selectedLab!=null) {
 			HorizontalPanel selectedPan=(HorizontalPanel)selectedLab.getParent();
 			selectedPan.setStyleName("termMenu");
-			selectedLab=null;
+			//selectedLab=null;
 		}
 
 		for (int i=0;selectedLab==null && i<tabBar.getWidgetCount();i++) {
@@ -103,9 +103,9 @@ public class SidePanel /*extends VerticalPanel*/ implements ClickHandler {
 		
 		CellPanel cellPanel=contents.get(label);
 		//cellPanel.setVisible(true);
-		RootPanel.get("terms").add(cellPanel);
+		RootPanel.get("tableSpace").add(cellPanel);
 		if (selectedPanel!=null)
-			RootPanel.get("terms").remove(selectedPanel);
+			RootPanel.get("tableSpace").remove(selectedPanel);
 		selectedPanel=cellPanel;
 	}
 }
