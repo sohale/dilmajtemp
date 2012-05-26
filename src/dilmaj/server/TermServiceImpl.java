@@ -335,8 +335,8 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		nextTerms.setId(new Long(next));
 		TermComposite prevTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
 		prevTerms.setId(new Long(prev));
-		termVOs.add(prevTerms);
 		termVOs.add(nextTerms);
+		termVOs.add(prevTerms);
 		return termVOs;
 	}
 	
@@ -377,8 +377,8 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		nextTerms.setId(new Long(next));
 		TermComposite prevTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
 		prevTerms.setId(new Long(prev));
-		termVOs.add(prevTerms);
 		termVOs.add(nextTerms);
+		termVOs.add(prevTerms);
 		return termVOs;
 	}
 
@@ -420,8 +420,8 @@ public class TermServiceImpl extends RemoteServiceServlet implements TermService
 		nextTerms.setId(new Long(next));
 		TermComposite prevTerms=new TermComposite(); // this is an information element only, which says how many more terms are left
 		prevTerms.setId(new Long(prev));
-		termVOs.add(prevTerms);
 		termVOs.add(nextTerms);
+		termVOs.add(prevTerms);
 		return termVOs;
 	}
 
