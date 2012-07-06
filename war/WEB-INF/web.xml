@@ -7,6 +7,16 @@
   
   <!-- Servlets -->
     <servlet>
+    <servlet-name>tesmysqlservice</servlet-name>
+    <servlet-class>dilmaj.server.TestMysqlServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>tesmysqlservice</servlet-name>
+    <url-pattern>/testgwt/tesmysqlservice</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
     <servlet-name>feed</servlet-name>
     <servlet-class>dilmaj.server.DilmajFeedServlet</servlet-class>
   </servlet>

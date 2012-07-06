@@ -12,9 +12,11 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
 
 import com.google.gwt.user.client.ui.RootPanel;
 //import com.google.gwt.widgetideas.client.CollapsiblePanel;
@@ -52,7 +54,26 @@ public class TestGWT implements EntryPoint {
 
 	private DilmajUserServiceAsync userSvc = GWT.create(DilmajUserService.class);
 
+	private TestMysqlServiceAsync testSvc = GWT.create(TestMysqlService.class);
+	
 	public void onModuleLoad() {
+		// this is to test mysql
+		/*testSvc.test(new AsyncCallback<String>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				RootPanel.get("header").add(new Label("call back failed!"));
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				// TODO Auto-generated method stub
+				RootPanel.get("header").add(new Label(result));
+			}
+			
+		});*/
+		
 		String termId = com.google.gwt.user.client.Window.Location.getParameter("termId");
 		String activator = com.google.gwt.user.client.Window.Location.getParameter("activator");
 		String username = com.google.gwt.user.client.Window.Location.getParameter("username");
